@@ -1,4 +1,4 @@
-package com.example.sportapp.Shared
+package com.example.sportapp.shared
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

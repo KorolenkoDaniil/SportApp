@@ -1,9 +1,9 @@
-package com.example.sportapp.Widgets.Home
+package com.example.sportapp.widgets.Home
 
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
-import com.example.sportapp.Shared.ItemCard
+import com.example.sportapp.shared.ItemCard
 
 @Composable
 

@@ -14,14 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.sportapp.Pages.HomePage
-import com.example.sportapp.Pages.LikePage
-import com.example.sportapp.Pages.MatchesPage
-import com.example.sportapp.Pages.VideoPage
-import com.example.sportapp.Widgets.AppBar.TopAppBar
+import com.example.sportapp.API.entities.MatchesActivityViewModel
+import com.example.sportapp.pages.HomePage
+import com.example.sportapp.pages.LikePage
+import com.example.sportapp.pages.MatchesPage
+import com.example.sportapp.pages.VideoPage
+import com.example.sportapp.widgets.AppBar.TopAppBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,8 @@ class MainActivity : ComponentActivity() {
             val currentPage = remember {
                 mutableStateOf("home")
             }
+
+//            val mainViewModel: MatchesActivityViewModel = viewModel()
 
 //            val navController = rememberNavController()
 
@@ -54,10 +58,10 @@ class MainActivity : ComponentActivity() {
                 ) {
 //                    NavHost(navController = navController,
 //                        startDestination = "home") {
-//                        composable("home") { HomePage() }
-//                        composable("matches") { MatchesPage() }
-//                        composable("video") { VideoPage() }
-//                        composable("like") { LikePage() }
+//                        composable("home") { HomePage(mainViewModel) }
+//                        composable("matches") { MatchesPage(mainViewModel) }
+//                        composable("video") { VideoPage(mainViewModel) }
+//                        composable("like") { LikePage(mainViewModel) }
 //                    }
                     when (currentPage.value) {
                         "home" -> HomePage()

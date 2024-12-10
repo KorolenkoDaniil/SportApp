@@ -1,4 +1,4 @@
-package com.example.sportapp.Pages
+package com.example.sportapp.pages
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -7,12 +7,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.Widgets.Home.CurrentMatch
-import com.example.sportapp.Widgets.Home.NewsCards
+import androidx.lifecycle.ViewModel
+import com.example.sportapp.API.entities.MatchesActivityViewModel
+import com.example.sportapp.widgets.Home.CurrentMatch
+import com.example.sportapp.widgets.Home.NewsCards
 import com.example.sportapp.ui.theme.style1
 
 @Composable
-fun HomePage() {
+fun HomePage(
+
+) {
     LazyColumn {
         item { CurrentMatch() }
         item { Spacer(modifier = Modifier.height(32.dp) ) }

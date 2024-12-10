@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.example.sportapp.Shared.LiveTranslationFlag
+import com.example.sportapp.shared.LiveTranslationFlag
 import com.example.sportapp.ui.theme.style3
 
 @Composable

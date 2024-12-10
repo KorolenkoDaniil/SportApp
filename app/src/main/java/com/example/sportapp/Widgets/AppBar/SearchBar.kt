@@ -1,4 +1,4 @@
-package com.example.sportapp.Widgets.BottomBar
+package com.example.sportapp.widgets.BottomBar
 
 
 import androidx.compose.foundation.background

@@ -1,23 +1,34 @@
-package com.example.sportapp.Pages
+package com.example.sportapp.pages
 
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import com.example.sportapp.API.Entities.fetchMatches
-import kotlinx.coroutines.launch
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.sportapp.API.entities.MatchState
+import com.example.sportapp.API.entities.MatchesActivityViewModel
 
 @Composable
-fun MatchesPage() {
-    val coroutineScope = rememberCoroutineScope()
+fun MatchesPage(
+    mainViewModel: MatchesActivityViewModel = viewModel()
+) {
+//    val coroutineScope = rememberCoroutineScope()
 
-    Button(
-        onClick = {
-            coroutineScope.launch {
-                fetchMatches()
+    val state by mainViewModel.state.collectAsState()
+    when (val data = state) {
+        is MatchState.Error -> {
+            Text(text = "Ошибка")
+        }
+        MatchState.Load -> {
+            Text(text = "Загрузка")
+        }
+        is MatchState.MatchContent -> {
+            Column {
+                Text(text = data.matches.size.toString())
             }
         }
-    ) {
-        Text(text = "Кнопка")
     }
+
+
 }

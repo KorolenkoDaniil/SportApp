@@ -1,4 +1,4 @@
-package com.example.sportapp.Shared.BottomBar
+package com.example.sportapp.shared.BottomBar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

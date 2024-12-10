@@ -1,9 +1,11 @@
-package com.example.sportapp.Pages
+package com.example.sportapp.pages
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun VideoPage() {
+fun VideoPage(
+
+) {
     Text(text = "VideoPage")
 }
