@@ -4,12 +4,9 @@ import BottomBar
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,6 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.Pages.HomePage
 import com.example.sportapp.Pages.LikePage
 import com.example.sportapp.Pages.MatchesPage
@@ -32,6 +32,8 @@ class MainActivity : ComponentActivity() {
             val currentPage = remember {
                 mutableStateOf("home")
             }
+
+//            val navController = rememberNavController()
 
             Scaffold(
                 containerColor = Color(0xFFF6F6F6),
@@ -50,6 +52,13 @@ class MainActivity : ComponentActivity() {
                         .padding(innerPadding)
                         .padding(horizontal = 20.dp)
                 ) {
+//                    NavHost(navController = navController,
+//                        startDestination = "home") {
+//                        composable("home") { HomePage() }
+//                        composable("matches") { MatchesPage() }
+//                        composable("video") { VideoPage() }
+//                        composable("like") { LikePage() }
+//                    }
                     when (currentPage.value) {
                         "home" -> HomePage()
                         "matches" -> MatchesPage()
