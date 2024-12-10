@@ -46,6 +46,7 @@ dependencies {
     implementation("io.ktor:ktor-client-okhttp:2.3.3")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.3")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.serialization)
