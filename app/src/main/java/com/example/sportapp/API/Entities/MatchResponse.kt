@@ -29,14 +29,11 @@ suspend fun fetchMatches(): List<MatchItem>? {
     try {
         val response: HttpResponse = client.get(GET_UUID)
         val data: String = response.body()
-        Log.i("FetchMatches", "Response: $data")
 
         val matchResponse: MatchResponse = Json.decodeFromString(data)
 
-        Log.d("ttt", matchResponse.itemsCount.toString())
-
         return matchResponse.items
-//        viewModel.matchesState = matchResponse
+
     } catch (e: Exception) {
         Log.e("FetchMatches", "Error: ${e.message}")
         return null
@@ -44,4 +41,8 @@ suspend fun fetchMatches(): List<MatchItem>? {
         client.close()
     }
 }
+
+
+
+
 

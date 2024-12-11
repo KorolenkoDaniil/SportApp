@@ -7,8 +7,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import com.example.sportapp.API.entities.MatchesActivityViewModel
 import com.example.sportapp.widgets.Home.CurrentMatch
 import com.example.sportapp.widgets.Home.NewsCards
 import com.example.sportapp.ui.theme.style1

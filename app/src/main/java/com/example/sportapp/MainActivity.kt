@@ -15,10 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.sportapp.API.entities.MatchesActivityViewModel
+import com.example.sportapp.API.ViewModels.MatchesActivityViewModel
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage
@@ -35,9 +32,7 @@ class MainActivity : ComponentActivity() {
                 mutableStateOf("home")
             }
 
-//            val mainViewModel: MatchesActivityViewModel = viewModel()
-
-//            val navController = rememberNavController()
+            val mainViewModel: MatchesActivityViewModel = viewModel()
 
             Scaffold(
                 containerColor = Color(0xFFF6F6F6),
@@ -65,7 +60,7 @@ class MainActivity : ComponentActivity() {
 //                    }
                     when (currentPage.value) {
                         "home" -> HomePage()
-                        "matches" -> MatchesPage()
+                        "matches" -> MatchesPage(mainViewModel)
                         "video" -> VideoPage()
                         "like" -> LikePage()
                     }

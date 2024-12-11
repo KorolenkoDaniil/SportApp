@@ -8,7 +8,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.API.entities.MatchesActivityViewModel
 import com.example.sportapp.R
 import com.example.sportapp.widgets.BottomBar.BottomBarImage
 
