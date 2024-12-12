@@ -1,4 +1,4 @@
-package com.example.sportapp.API.entities
+package com.example.sportapp.api.entities.matches
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

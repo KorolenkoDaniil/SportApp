@@ -1,4 +1,4 @@
-package com.example.sportapp.widgets.Home
+package com.example.sportapp.widgets.home
 
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed

@@ -7,8 +7,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.widgets.Home.CurrentMatch
-import com.example.sportapp.widgets.Home.NewsCards
+import com.example.sportapp.widgets.home.CurrentMatch
+import com.example.sportapp.widgets.home.NewsCards
 import com.example.sportapp.ui.theme.style1
 
 @Composable

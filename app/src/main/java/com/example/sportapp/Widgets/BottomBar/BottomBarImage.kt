@@ -1,4 +1,4 @@
-package com.example.sportapp.widgets.BottomBar
+package com.example.sportapp.widgets.bottomBar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

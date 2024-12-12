@@ -1,4 +1,4 @@
-package com.example.sportapp.widgets.AppBar
+package com.example.sportapp.widgets.appBar
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.sportapp.shared.BottomBar.UserImage
-import com.example.sportapp.widgets.BottomBar.SearchBar
+import com.example.sportapp.widgets.bottomBar.SearchBar
 
 @Composable
 fun TopAppBar(modifier: Modifier){
