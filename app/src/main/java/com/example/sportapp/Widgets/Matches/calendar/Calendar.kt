@@ -12,12 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.api.viewModels.MatchState
+import com.example.sportapp.ui.theme.Blue100
+import com.example.sportapp.ui.theme.style6
 import com.example.sportapp.ui.theme.style7
 
 
 @Composable
 fun Calendar(
-    data: MatchState.MatchContent
+    data: MatchState.MatchContent,
+    openedMatchDay: Int
 ) {
     Box(
         modifier = Modifier
@@ -32,7 +35,10 @@ fun Calendar(
                 .height(50.dp),
         ) {
             itemsIndexed(data.matchDays) { index, item ->
-                CalendarDay(item.name, style7)
+                when (index == openedMatchDay){
+                    true -> CalendarDay(item.name, style6, backColor = Blue100)
+                    false -> CalendarDay(item.name, style7, backColor = Color.Transparent)
+                }
             }
         }
     }

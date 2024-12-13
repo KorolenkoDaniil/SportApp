@@ -2,9 +2,10 @@ package com.example.sportapp.api
 
 import android.util.Log
 import com.example.sportapp.api.entities.Ranking.TeamResponse
-import com.example.sportapp.api.entities.matches.MatchDayEntity
+import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.api.entities.matches.MatchResponse
+import com.example.sportapp.domain.RankingEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.defaultRequest
@@ -73,7 +74,7 @@ class SoccerRepository {
     }
 
 
-    suspend fun getRankings() {
+    suspend fun getRankings(): List<RankingEntity> {
 
         val builder = HttpRequestBuilder()
         builder.method = HttpMethod.Get
@@ -90,6 +91,14 @@ class SoccerRepository {
         Log.d("rankings", responseString)
 
         val teamResponse: TeamResponse = json.decodeFromString(responseString)
+
+        return teamResponse.items.map { item ->
+            RankingEntity(
+                id = item.teamId,
+                name = item.shortName,
+                logoUrl = "https://origins-lsa.origins-digital.com/assets/deltatre/teams/${item.teamId}.png"
+            )
+        }
 
         /*val matches = matchResponse.items.orEmpty()*/
 

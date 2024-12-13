@@ -54,6 +54,8 @@ val style4 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 16
 
 val style5 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 32.sp, fontWeight = FontWeight.Bold)
 
+val style6 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Normal)
+
 val style7 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Normal)
 
 val style8 = TextStyle(color = Blue100, fontFamily = OpenSans, fontSize = 40.sp, fontWeight = FontWeight.Bold)
