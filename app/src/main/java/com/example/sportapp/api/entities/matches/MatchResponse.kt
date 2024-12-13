@@ -11,8 +11,3 @@ data class MatchResponse(
     @SerialName("is_last_page") val isLastPage: Boolean? = null,
     @SerialName("items") val items: List<MatchItem>? = null
 )
-
-
-
-
-

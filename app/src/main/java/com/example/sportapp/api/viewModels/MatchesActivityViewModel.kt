@@ -1,6 +1,5 @@
 package com.example.sportapp.api.viewModels
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.SoccerRepository
@@ -10,13 +9,6 @@ import kotlinx.coroutines.launch
 
 class MatchesActivityViewModel : ViewModel() {
     val state: MutableStateFlow<MatchState> = MutableStateFlow(MatchState.Load)
-
-    var openedMatchDay: MutableStateFlow<Int> = MutableStateFlow(0)
-
-    fun changeMatchDay (newPage: Int) {
-        openedMatchDay.value = newPage
-    }
-
 
     val soccerRepository = SoccerRepository()
 

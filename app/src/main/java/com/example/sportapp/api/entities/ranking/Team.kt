@@ -1,4 +1,4 @@
-package com.example.sportapp.api.entities.Ranking
+package com.example.sportapp.api.entities.ranking
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

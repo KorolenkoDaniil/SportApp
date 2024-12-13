@@ -1,10 +1,10 @@
 package com.example.sportapp.api
 
 import android.util.Log
-import com.example.sportapp.api.entities.Ranking.TeamResponse
-import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.api.entities.matches.MatchResponse
+import com.example.sportapp.api.entities.ranking.TeamResponse
+import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.domain.RankingEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -15,13 +15,15 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.path
 import kotlinx.serialization.json.Json
 
+
 class SoccerRepository {
 
     private val baseUrl = "https://dev-lsa-stats.origins-digital.com/lsa/stats/api/proxy/d3/"
     private val seasonId = "serie-a::Football_Season::1e32f55e98fc408a9d1fc27c0ba43243"
 
-    private val json = Json
-
+    private val json = Json {
+        ignoreUnknownKeys = true // Игнорирует неизвестные поля
+    }
 
     private val client = HttpClient {
         defaultRequest {
@@ -49,6 +51,8 @@ class SoccerRepository {
         val response = client.request(builder)
 
         val responseString: String = response.body()
+
+        Log.d("ttt", responseString)
 
         val matchResponse: MatchResponse = json.decodeFromString(responseString)
 
