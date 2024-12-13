@@ -8,8 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sportapp.api.viewModels.MatchState
@@ -20,14 +18,15 @@ import com.example.sportapp.shared.Loading
 import com.example.sportapp.widgets.matches.calendar.Calendar
 import com.example.sportapp.widgets.matches.matchesList.MatchesList
 
+
 @Composable
 fun MatchesPage(
     mainViewModel: MatchesActivityViewModel = viewModel(),
     rankingsViewModel: RankingsActivityViewModel = viewModel()
 ) {
+
     val state by mainViewModel.state.collectAsState()
-    val state1 by rankingsViewModel.state.collectAsState()
-    val currentMatchDay = remember { mutableStateOf(0) }
+    val currentPage by mainViewModel.openedMatchDay.collectAsState()
 
     Column {
         when (val data = state) {
@@ -40,18 +39,21 @@ fun MatchesPage(
             }
 
             is MatchState.MatchContent -> {
-                val pagerState = rememberPagerState(initialPage = currentMatchDay.value)
+                val pagerState = rememberPagerState(initialPage = currentPage, pageCount = { data.matchDays.size })
 
-                // Синхронизация currentMatchDay и pagerState
                 LaunchedEffect(pagerState.currentPage) {
-                    if (currentMatchDay.value != pagerState.currentPage) {
-                        currentMatchDay.value = pagerState.currentPage
-                        // Вы можете вызвать mainViewModel.setOpenedMatchDay здесь, если это необходимо
-                        // mainViewModel.setOpenedMatchDay(pagerState.currentPage)
+                    if (pagerState.currentPage != currentPage) {
+                        mainViewModel.changeMatchDay(pagerState.currentPage)
                     }
                 }
 
-                Calendar(data, currentMatchDay.value)
+                LaunchedEffect(currentPage) {
+                    if (pagerState.currentPage != currentPage) {
+                        pagerState.scrollToPage(currentPage)
+                    }
+                }
+
+                Calendar(data, currentPage)
 
                 HorizontalPager(
                     state = pagerState,
@@ -65,3 +67,5 @@ fun MatchesPage(
         }
     }
 }
+
+

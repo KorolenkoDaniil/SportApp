@@ -6,21 +6,19 @@ import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.SoccerRepository
 import com.example.sportapp.domain.MatchDayEntity
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MatchesActivityViewModel : ViewModel() {
     val state: MutableStateFlow<MatchState> = MutableStateFlow(MatchState.Load)
 
-    private val _openedMatchDay: MutableStateFlow<Int> = MutableStateFlow(0)
-    val openedMatchDay = _openedMatchDay.asStateFlow()
+    var openedMatchDay: MutableStateFlow<Int> = MutableStateFlow(0)
 
-    val soccerRepository = SoccerRepository()
-
-    fun setOpenedMatchDay(day: Int) {
-        _openedMatchDay.value = day
+    fun changeMatchDay (newPage: Int) {
+        openedMatchDay.value = newPage
     }
 
+
+    val soccerRepository = SoccerRepository()
 
     init {
         loadMatches()
