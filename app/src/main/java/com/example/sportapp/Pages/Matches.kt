@@ -1,5 +1,6 @@
 package com.example.sportapp.pages
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,6 +22,7 @@ import com.example.sportapp.api.viewModels.RankingsActivityViewModel
 import com.example.sportapp.shared.CommonError
 import com.example.sportapp.shared.Loading
 import com.example.sportapp.widgets.matches.calendar.CalendarTab
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -47,6 +49,8 @@ fun MatchesPage(
             is MatchState.MatchContent -> {
                 val pageState = rememberPagerState (pageCount = { data.matchDays.size })
 
+                Log.d("daa", pageState.pageCount.toString())
+
                 CalendarTab(pageState, data)
 
                 Spacer(Modifier.height(16.dp))
@@ -55,6 +59,8 @@ fun MatchesPage(
                     state = pageState,
                     modifier = Modifier.fillMaxSize()
                 ) { page ->
+
+
                     Column (
                         modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -67,5 +73,3 @@ fun MatchesPage(
         }
     }
 }
-
-

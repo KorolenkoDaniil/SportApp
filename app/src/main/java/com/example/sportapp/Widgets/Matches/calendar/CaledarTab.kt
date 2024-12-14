@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,15 +23,22 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun CalendarTab(pageState: PagerState, data: MatchState.MatchContent) {
+
     val scope = rememberCoroutineScope()
+    val tabState = rememberLazyListState()
+
+    LaunchedEffect(pageState.currentPage) {
+        tabState.animateScrollToItem(
+            index = pageState.currentPage
+        )
+    }
 
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
-        userScrollEnabled = false
+        state = tabState
     ) {
         items(data.matchDays.size) { index ->
             val dayName = data.matchDays[index]
-
             val isSelected = pageState.currentPage == index
 
             Box(
@@ -41,7 +50,7 @@ fun CalendarTab(pageState: PagerState, data: MatchState.MatchContent) {
                     )
             ) {
                 Tab(
-                    selected = pageState.currentPage == index,
+                    selected = isSelected,
                     onClick = {
                         scope.launch {
                             pageState.animateScrollToPage(index)
@@ -52,7 +61,6 @@ fun CalendarTab(pageState: PagerState, data: MatchState.MatchContent) {
                     }
                 )
             }
-
         }
     }
 }

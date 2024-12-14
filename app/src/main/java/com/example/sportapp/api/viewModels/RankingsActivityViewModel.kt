@@ -20,11 +20,9 @@ class RankingsActivityViewModel: ViewModel() {
         viewModelScope.launch {
             try {
                 val rankings = soccerRepository.getRankings()
-                Log.d("rankings", "нормально")
             }
             catch (e: Throwable){
                 state.value = MatchState.Error(e)
-                Log.d("rankings", "говно")
             }
         }
     }
