@@ -17,7 +17,7 @@ class MatchesActivityViewModel : ViewModel() {
     }
 
     fun loadMatches() {
-        state.value = MatchState.Load
+        MatchState.Load.also { state.value = it }
         viewModelScope.launch {
             try {
                 val matchDays = soccerRepository.getMatchDays()

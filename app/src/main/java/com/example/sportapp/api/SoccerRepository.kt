@@ -103,11 +103,5 @@ class SoccerRepository {
                 logoUrl = "https://origins-lsa.origins-digital.com/assets/deltatre/teams/${item.teamId}.png"
             )
         }
-
-        /*val matches = matchResponse.items.orEmpty()*/
-
-//        return matchDaysList(matches)
     }
-
-
 }

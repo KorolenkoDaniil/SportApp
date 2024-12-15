@@ -4,5 +4,4 @@ data class RankingEntity(
     val id: String,
     val logoUrl: String,
     val name: String,
-) {
-}
+)

@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation (libs.coil.compose)
 
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
@@ -52,8 +53,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.serialization)
-    implementation(libs.volley)
     implementation(libs.compose.ui)
     implementation(libs.compose.runtime)
     implementation(libs.coroutines.android)
