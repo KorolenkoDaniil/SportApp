@@ -1,5 +1,6 @@
 package com.example.sportapp.widgets.matches.calendar
 
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,9 +28,10 @@ fun CalendarTab(pageState: PagerState, data: MatchState.MatchContent) {
     val scope = rememberCoroutineScope()
     val tabState = rememberLazyListState()
 
+
     LaunchedEffect(pageState.currentPage) {
         tabState.animateScrollToItem(
-            index = pageState.currentPage
+            index = pageState.currentPage,
         )
     }
 

@@ -22,6 +22,7 @@ import com.example.sportapp.api.viewModels.RankingsActivityViewModel
 import com.example.sportapp.shared.CommonError
 import com.example.sportapp.shared.Loading
 import com.example.sportapp.widgets.matches.calendar.CalendarTab
+import com.example.sportapp.widgets.matches.matchesList.MatchesList
 import kotlinx.coroutines.launch
 
 
@@ -55,20 +56,10 @@ fun MatchesPage(
 
                 Spacer(Modifier.height(16.dp))
 
-                HorizontalPager(
-                    state = pageState,
-                    modifier = Modifier.fillMaxSize()
-                ) { page ->
-
-
-                    Column (
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(text = data.matchDays[page].name)
-                    }
-                }
+                MatchesList(
+                    pageState = pageState,
+                    matchDays = data.matchDays
+                )
             }
         }
     }
