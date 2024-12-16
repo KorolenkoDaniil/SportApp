@@ -35,7 +35,7 @@ data class MatchItem(
     @SerialName("match_phase") val matchPhase: String,
     @SerialName("opta_id") val optaId: String,
     @SerialName("is_forfeit_win") val isForfeitWin: Int,
-    @SerialName("minute") val minute: Int,
+    @SerialName("minute") val minute: Int? = null,
 
 //    @Transient val logoUrl: String = "",
 )

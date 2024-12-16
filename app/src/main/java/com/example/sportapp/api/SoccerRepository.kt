@@ -1,10 +1,13 @@
 package com.example.sportapp.api
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.api.entities.matches.MatchResponse
 import com.example.sportapp.api.entities.ranking.TeamResponse
 import com.example.sportapp.domain.MatchDayEntity
+import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.domain.RankingEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -14,6 +17,7 @@ import io.ktor.client.request.request
 import io.ktor.http.HttpMethod
 import io.ktor.http.path
 import kotlinx.serialization.json.Json
+import java.time.ZonedDateTime
 
 
 class SoccerRepository {
@@ -38,6 +42,7 @@ class SoccerRepository {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun getMatchDays(): List<MatchDayEntity> {
 
         val builder = HttpRequestBuilder()
@@ -62,17 +67,54 @@ class SoccerRepository {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun matchDaysList(matches: List<MatchItem>): List<MatchDayEntity> {
         val group = matches.groupBy { it.matchDayName }
 
-        Log.d("group", group.toString())
+        Log.d("ttt", group.toString())
 
         return group.keys.sortedBy {
             it.substringAfter("Matchday ").toIntOrNull()
         }.map { name ->
-            MatchDayEntity(name = name, matches = group[name].orEmpty())
-        }.also {
-            Log.d("ttt1", it.toString())
+            MatchDayEntity(name = name,
+                matches = group[name].orEmpty().map { item ->
+                    MatchEntity(
+                        id = item.matchId,
+                        date = ZonedDateTime.parse(item.date).toLocalDateTime(),
+//                        name = item.matchDayName,
+                        competitionId = item.competitionId,
+                        seasonId = item.seasonId,
+                        matchId = item.matchId,
+                        matchUniqueCode = item.matchUniqueCode,
+                        matchDayId = item.matchDayId,
+                        matchDayName = item.matchDayName,
+                        matchDayShortName = item.matchDayShortName,
+                        dateOrder = item.dateOrder,
+                        teamAId = item.teamAId,
+                        teamAName = item.teamAName,
+                        teamAShortName = item.teamAShortName,
+                        teamAAcronym = item.teamAAcronym,
+                        teamBId = item.teamBId,
+                        teamBName = item.teamBName,
+                        teamBShortName = item.teamBShortName,
+                        teamBAcronym = item.teamBAcronym,
+                        goalsTeamA = item.goalsTeamA,
+                        goalsTeamB = item.goalsTeamB,
+                        stadiumName = item.stadiumName,
+                        stadiumCity = item.stadiumCity,
+                        matchStatus = item.matchStatus,
+                        isAbandoned = item.isAbandoned,
+                        isPostponed = item.isPostponed,
+                        isSuspended = item.isSuspended,
+                        broadcaster = item.broadcaster,
+                        matchStartTime = item.matchStartTime,
+                        matchPhase = item.matchPhase,
+                        optaId = item.optaId,
+                        isForfeitWin = item.isForfeitWin,
+                        minute = item.minute,
+                    )
+                }
+            )
         }
 
     }
@@ -92,7 +134,7 @@ class SoccerRepository {
 
         val responseString: String = response.body()
 
-        Log.d("rankings", responseString)
+        Log.d("ttt", responseString)
 
         val teamResponse: TeamResponse = json.decodeFromString(responseString)
 
