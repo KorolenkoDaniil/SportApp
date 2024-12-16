@@ -1,6 +1,8 @@
 package com.example.sportapp.pages
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -20,6 +22,7 @@ import com.example.sportapp.shared.Loading
 import com.example.sportapp.widgets.matches.calendar.CalendarTab
 import com.example.sportapp.widgets.matches.matchesList.MatchesList
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MatchesPage(
     mainViewModel: MatchesActivityViewModel = viewModel(),

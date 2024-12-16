@@ -1,7 +1,5 @@
 package com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,25 +7,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.example.sportapp.api.entities.matches.MatchItem
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun DatePart(modifier: Modifier, date: LocalDateTime) {
-    val dateFormatter = DateTimeFormatter.ofPattern("MM-dd")
-    val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-
-    val formattedDate = date.format(dateFormatter)
-    val formattedTime = date.format(timeFormatter)
+fun ScorePart(modifier: Modifier, item: MatchItem) {
 
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = formattedDate)
-        Text(text = formattedTime)
+        Text(text = "${item.goalsTeamA} : ${item.goalsTeamB}")
     }
 }
 

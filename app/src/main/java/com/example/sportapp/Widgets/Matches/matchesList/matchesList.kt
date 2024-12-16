@@ -47,10 +47,13 @@ fun MatchesList(
                     Log.d("ttt", teamALogoUrl.toString())
                     Log.d("ttt", teamBLogoUrl.toString())
 
-                    MatchCard(item.teamAAcronym, item.teamBAcronym, item.date, teamALogoUrl, teamBLogoUrl)
+                    MatchCard(
+                        teamALogoUrl,
+                        teamBLogoUrl,
+                        item
+                    )
                 }
             }
-
         }
     }
 }

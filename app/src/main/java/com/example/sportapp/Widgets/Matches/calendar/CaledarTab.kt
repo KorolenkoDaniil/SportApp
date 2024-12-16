@@ -1,6 +1,5 @@
 package com.example.sportapp.widgets.matches.calendar
 
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.api.viewModels.MatchState
 import com.example.sportapp.ui.theme.Blue100
@@ -59,7 +59,9 @@ fun CalendarTab(pageState: PagerState, data: MatchState.MatchContent) {
                         }
                     },
                     text = {
-                        Text(text = dayName.name)
+                        Text(text = dayName.name, style = TextStyle(
+                            if (isSelected) Color.White else Color.Black
+                        ))
                     }
                 )
             }

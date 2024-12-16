@@ -25,15 +25,15 @@ fun Loading() {
     val startRotation = 0f
     val endRotation = 360f
 
-    val transition = rememberInfiniteTransition()
+    val transition = rememberInfiniteTransition(label = "")
 
     val offset by transition.animateFloat(
-        initialValue = startRotation, // Начальное значение
-        targetValue = endRotation,   // Конечное значение
+        initialValue = startRotation,
+        targetValue = endRotation,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 5000, easing = LinearEasing),
+            animation = tween(durationMillis = 3000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
-        )
+        ), label = ""
     )
 
 
