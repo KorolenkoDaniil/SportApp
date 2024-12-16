@@ -1,5 +1,6 @@
 package com.example.sportapp.shared
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,8 +25,9 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun CommonError(mainViewModel: MatchesActivityViewModel) {
+fun CommonError(mainViewModel: MatchesActivityViewModel, text: String) {
 
+    Log.d("ErrorText", text)
     val coroutineScope = rememberCoroutineScope()
 
     Column(

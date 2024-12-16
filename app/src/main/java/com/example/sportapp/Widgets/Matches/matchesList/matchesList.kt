@@ -1,5 +1,8 @@
 package com.example.sportapp.widgets.matches.matchesList
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,13 +15,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.sportapp.domain.MatchDayEntity
+import com.example.sportapp.domain.RankingEntity
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.MatchCard
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MatchesList(
     pageState: PagerState,
-    matchDays: List<MatchDayEntity>
+    matchDays: List<MatchDayEntity>,
+    rankings: List<RankingEntity>
 ) {
+
+    val logoUrlMap = rankings.associateBy { it.name }
 
     HorizontalPager(
         state = pageState,
@@ -32,7 +40,14 @@ fun MatchesList(
             Text(text = matchDays[page].name)
             LazyColumn {
                 itemsIndexed(matchDays[pageState.currentPage].matches) { index, item ->
-                    MatchCard(item.teamAName, item.teamBName, item.date)
+
+                    val teamALogoUrl = logoUrlMap[item.teamAAcronym]?.logoUrl
+                    val teamBLogoUrl = logoUrlMap[item.teamBAcronym]?.logoUrl
+
+                    Log.d("ttt", teamALogoUrl.toString())
+                    Log.d("ttt", teamBLogoUrl.toString())
+
+                    MatchCard(item.teamAAcronym, item.teamBAcronym, item.date, teamALogoUrl, teamBLogoUrl)
                 }
             }
 
