@@ -7,10 +7,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.sportapp.api.entities.matches.MatchItem
+import com.example.sportapp.domain.MatchEntity
 
 @Composable
-fun ScorePart(modifier: Modifier, item: MatchItem) {
+fun ScorePart(modifier: Modifier, item: MatchEntity) {
 
     Column(
         modifier = modifier.fillMaxSize(),

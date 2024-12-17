@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.entities.matches.MatchItem
+import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.DatePart
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.ImagePart
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.ScorePart
@@ -26,9 +26,9 @@ import java.time.ZonedDateTime
 fun MatchCard(
     logoURLA: String?,
     logoURLB: String?,
-    item: MatchItem
+    item: MatchEntity
 ) {
-    val date = ZonedDateTime.parse(item.date).toLocalDateTime()
+    val date = item.date
     val currentTime = ZonedDateTime.now().toLocalDateTime()
 
     Box(
