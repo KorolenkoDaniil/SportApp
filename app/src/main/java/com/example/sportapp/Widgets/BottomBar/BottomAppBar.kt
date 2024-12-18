@@ -4,17 +4,20 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.sportapp.R
 import com.example.sportapp.widgets.bottomBar.BottomBarImage
 
 @Composable
-fun BottomBar(currentPage: MutableState<String>) {
+fun BottomBar(
+    navController: NavController
+) {
 
     BottomAppBar(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .fillMaxHeight(0.08f),
         containerColor = Color(0xFFFFFFFF)
     ) {
@@ -22,10 +25,10 @@ fun BottomBar(currentPage: MutableState<String>) {
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
         ) {
-            BottomBarImage(currentPage, "home", R.drawable.home)
-            BottomBarImage(currentPage, "matches", R.drawable.matches)
-            BottomBarImage(currentPage, "video", R.drawable.videos)
-            BottomBarImage(currentPage, "like", R.drawable.like)
+            BottomBarImage( "home", R.drawable.home, navController)
+            BottomBarImage( "matches", R.drawable.matches, navController)
+            BottomBarImage( "video", R.drawable.videos, navController)
+            BottomBarImage( "like", R.drawable.like, navController)
         }
     }
 }

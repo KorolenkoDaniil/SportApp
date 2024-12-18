@@ -1,26 +1,25 @@
 package com.example.sportapp.pages
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.sportapp.api.viewModels.MatchState
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.api.viewModels.MatchesActivityViewModel
 import com.example.sportapp.api.viewModels.RankingsActivityViewModel
-import com.example.sportapp.api.viewModels.RankingsState
-import com.example.sportapp.shared.CommonError
-import com.example.sportapp.shared.Loading
-import com.example.sportapp.widgets.matches.calendar.CalendarTab
-import com.example.sportapp.widgets.matches.matchesList.MatchesList
+import com.example.sportapp.widgets.matches.MatchesContent
+import com.example.sportapp.widgets.matches.MatchesPageNavigation
+import com.example.sportapp.widgets.matches.rankigs.RankingsContent
+
+sealed class MatchScreen(val route: String) {
+    object MatchesPage : MatchScreen("matchesScreen")
+    object RankingsPage : MatchScreen("rankings")
+}
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -31,46 +30,23 @@ fun MatchesPage(
     val state by mainViewModel.state.collectAsState()
     val rankingsState by rankingsViewModel.state.collectAsState()
 
+    val matchesNavController = rememberNavController()
+
     Column {
-        when (val matchData = state) {
-            is MatchState.Error -> {
-                Log.d("stateee", rankingsState.toString())
-                CommonError(mainViewModel, "1")
+
+        MatchesPageNavigation(matchesNavController)
+
+        NavHost(
+            navController = matchesNavController,
+            startDestination = MatchScreen.MatchesPage.route
+        ) {
+            composable(MatchScreen.MatchesPage.route) {
+                MatchesContent(state, rankingsState, mainViewModel)
             }
-
-            MatchState.Load -> {
-                Log.d("stateee", rankingsState.toString())
-                Loading()
-            }
-
-            is MatchState.MatchContent -> {
-                when (val rankingData = rankingsState) {
-                    is RankingsState.RankingsContent -> {
-
-                        val pageState = rememberPagerState(pageCount = { matchData.matchDays.size })
-
-                        Log.d("daa", pageState.pageCount.toString())
-
-                        CalendarTab(pageState, matchData)
-
-                        Spacer(Modifier.height(16.dp))
-
-                        MatchesList(
-                            pageState = pageState,
-                            matchDays = matchData.matchDays,
-                            rankings = rankingData.rankings
-                        )
-                    }
-
-                    RankingsState.Load -> {
-                        Loading()
-                    }
-
-                    is RankingsState.Error -> {
-                        CommonError(mainViewModel, "2")
-                    }
-                }
+            composable(MatchScreen.RankingsPage.route) {
+                RankingsContent(rankingsState)
             }
         }
     }
 }
+

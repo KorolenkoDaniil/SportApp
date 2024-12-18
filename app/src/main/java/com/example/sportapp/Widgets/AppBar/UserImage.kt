@@ -2,6 +2,7 @@ package com.example.sportapp.shared.BottomBar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -18,5 +19,6 @@ fun UserImage() {
             .size(50.dp)
             .clip(RoundedCornerShape(50))
             .background(color = Color.Gray)
+            .padding(end = 16.dp)
     ) {}
 }

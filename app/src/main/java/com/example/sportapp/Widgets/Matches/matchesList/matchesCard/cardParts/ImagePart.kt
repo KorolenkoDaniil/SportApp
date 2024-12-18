@@ -14,7 +14,9 @@ import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun ImagePart(modifier: Modifier, url: String?) {
+
     val painter = rememberAsyncImagePainter(url)
+
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,

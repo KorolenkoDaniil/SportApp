@@ -1,6 +1,7 @@
 package com.example.sportapp
 
 import BottomBar
+import TopAppBar
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,19 +15,17 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.sportapp.api.viewModels.MainViewModel
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage
-import com.example.sportapp.pages.Rankings
 import com.example.sportapp.pages.VideoPage
+
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
     object Matches : Screen("matches")
     object Video : Screen("video")
     object Like : Screen("like")
-    object Rankings : Screen("rankings")
 }
 
 class mainActivity : ComponentActivity() {
@@ -35,7 +34,6 @@ class mainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val mainViewmodel = MainViewModel()
             val navController = rememberNavController()
 
             Scaffold(
@@ -45,6 +43,7 @@ class mainActivity : ComponentActivity() {
                         navController = navController,
                     )
                 },
+                topBar = { TopAppBar() }
             ) { innerPadding ->
 
                 NavHost(
@@ -58,7 +57,6 @@ class mainActivity : ComponentActivity() {
                     composable(Screen.Matches.route) { MatchesPage() }
                     composable(Screen.Video.route) { VideoPage() }
                     composable(Screen.Like.route) { LikePage() }
-                    composable(Screen.Rankings.route) { Rankings() }
                 }
             }
         }
