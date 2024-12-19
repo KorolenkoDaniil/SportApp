@@ -1,26 +1,24 @@
-@file:Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-
 package com.example.sportapp.pages
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sportapp.api.viewModels.MatchReportActivityViewModel
 import com.example.sportapp.api.viewModels.MatchReportState
-import com.example.sportapp.api.viewModels.MatchesActivityViewModel
 import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.shared.CommonError
+import com.example.sportapp.shared.Loading
 
 @Composable
 fun MatchInfo(
     matchId: String?,
     listDayEntity: List<MatchDayEntity>,
     pageNumber: Int?,
-    matchReportViewModel: MatchReportActivityViewModel = viewModel(),
+    matchReportViewModel: MatchReportActivityViewModel
 ) {
 
     val match: MatchEntity?
@@ -29,18 +27,21 @@ fun MatchInfo(
 
     when (matchReportState) {
         is MatchReportState.RankingsContent -> {
+
+            Log.d("tttMatchReport", "пришли данные")
+
             if (pageNumber != null && pageNumber >= 0 && pageNumber < listDayEntity.size && matchId != null) {
 
                 val dayEntityMatches = listDayEntity[pageNumber].matches
 
                 match = dayEntityMatches.find { it.matchId == matchId }
 
-                matchReportViewModel.loadMatchReport(match!!.matchId)
+                Log.d("tttDebug", "MatchInfo: перед вызовом loadMatchReport")
 
                 Column {
                     Text(text = matchId.toString())
                     Text(text = "page $pageNumber")
-                    Text(text = match.teamAName)
+                    Text(text = match!!.teamAName)
                     Text(text = match.teamBName)
                 }
             }
@@ -48,12 +49,20 @@ fun MatchInfo(
 
 
         is MatchReportState.Error -> {
-            CommonError()
+
+//            Log.d("tttMatchReport", )
+
+            CommonError(matchReportViewModel)
         }
 
 
 
-        is MatchReportState.Load -> TODO()
+        is MatchReportState.Load -> {
+
+            Log.d("tttMatchReport", "загрузка репортов матча")
+
+            Loading()
+        }
     }
 
 

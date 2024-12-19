@@ -1,5 +1,6 @@
 package com.example.sportapp.api.viewModels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.SoccerRepository
@@ -21,11 +22,20 @@ class MatchReportActivityViewModel: ViewModel(), ViewModelInterface<MatchReportS
     override fun loadData () { }
 
     fun loadMatchReport(matchId: String){
+
+        Log.d("tttMatchReport", "MatchReportActivityViewModel: вызов loadMatchReport с matchId: $matchId")
+
         viewModelScope.launch {
+            val a = soccerRepository.getMatchReport(matchId)
+
+            Log.d("tttMatchReport", "aaaa $a.toString()")
             try {
+
+
                 state.value = MatchReportState.RankingsContent(soccerRepository.getMatchReport(matchId))
             }
             catch (e: Throwable){
+                Log.d("tttMatchReport", e.message.toString())
                 state.value = MatchReportState.Error(e)
             }
         }

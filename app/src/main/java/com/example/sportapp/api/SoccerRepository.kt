@@ -1,7 +1,7 @@
 package com.example.sportapp.api
 
+import EventResponse
 import android.util.Log
-import com.example.sportapp.api.entities.matchReport.EventResponse
 import com.example.sportapp.api.entities.matchReport.MatchReportResponse
 import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.api.entities.matches.MatchResponse
@@ -198,26 +198,21 @@ class SoccerRepository {
 
 
     private fun getMatchEventsList(matchEvents: List<EventResponse>): List<EventResponseEntity> {
-        val matchEventsList = mutableListOf<EventResponseEntity>()
-
-        for (event in matchEvents) {
-
-            val eventEntity = EventResponseEntity(
-                type = event.type,
-                matchPhase = event.matchPhase,
-                order = event.order,
-                id = event.id,
-                teamId = event.teamId,
-                playerId = event.playerId,
-                playerSurname = event.playerSurname,
-                name = event.name,
-                playerFullName = event.playerFullName,
-                playerShirtName = event.playerShirtName,
-                minute = event.minute
+        return matchEvents.map { event ->
+            EventResponseEntity(
+                type = event.type ?: "unknown",
+                matchPhase = event.matchPhase ?: "default_phase",
+                order = event.order?: 0,
+                id = event.id ?: "0",
+                teamId = event.teamId ?: "0",
+                playerId = event.playerId ?: "0",
+                playerSurname = event.playerSurname ?: "Unknown",
+                name = event.name ?: "Unknown",
+                playerFullName = event.playerFullName ?: "Unknown",
+                playerShirtName = event.playerShirtName ?: "Unknown",
+                minute = event.minute ?: 0
             )
-            matchEventsList.add(eventEntity)
         }
-
-        return matchEventsList
     }
+
 }

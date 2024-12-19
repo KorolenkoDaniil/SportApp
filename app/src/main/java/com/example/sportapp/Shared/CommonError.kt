@@ -1,6 +1,5 @@
 package com.example.sportapp.shared
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,7 +14,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.BaseState
+import com.example.sportapp.api.viewModels.ViewModelInterface
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.ui.theme.style10
 import com.example.sportapp.ui.theme.style11
@@ -25,7 +24,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun CommonError(viewModel: BaseState) {
+fun <T> CommonError(viewModel: ViewModelInterface<T>) {
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -57,7 +56,7 @@ fun CommonError(viewModel: BaseState) {
                 disabledContainerColor = Blue100
             ), onClick = {
                 coroutineScope.launch {
-                    mainViewModel()
+                    viewModel.loadData()
                 }
             }) {
                 Text(text = "Try again", style = style11)

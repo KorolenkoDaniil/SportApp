@@ -1,6 +1,9 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.example.sportapp.widgets.matches
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -8,9 +11,11 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.sportapp.api.viewModels.MatchReportActivityViewModel
 import com.example.sportapp.api.viewModels.MatchState
 import com.example.sportapp.api.viewModels.MatchesActivityViewModel
 import com.example.sportapp.api.viewModels.RankingsState
@@ -39,7 +44,7 @@ fun MatchesContent(
 
     when (state) {
         is MatchState.Error -> {
-            CommonError(mainViewModel, "Error loading matches")
+            CommonError(mainViewModel)
         }
 
         MatchState.Load -> {
@@ -58,6 +63,8 @@ fun MatchesContent(
                             startDestination = MatchesMatchInfoScreen.MatchesPage.route
                         ) {
                             composable(MatchesMatchInfoScreen.MatchesPage.route) {
+                                Log.d("tttDebug", "NavHost: маршрут изменён")
+
                                 Column {
                                     CalendarTab(pageState, state)
                                     Spacer(Modifier.height(16.dp))
@@ -72,9 +79,17 @@ fun MatchesContent(
                             composable(
                                 route = MatchesMatchInfoScreen.MatchInfoPage.route
                             ) { backStackEntry ->
+                                Log.d("tttDebug", "NavHost: маршрут изменён")
                                 val matchId = backStackEntry.arguments?.getString("matchId")
                                 val matchDayNumber = backStackEntry.arguments?.getString("matchDayNumber")?.toIntOrNull()
-                                MatchInfo(matchId, state.matchDays, matchDayNumber)
+                                Log.d("tttDebug", "MatchInfo вызван с matchId: $matchId, matchDayNumber: $matchDayNumber")
+                                val matchReportViewModel: MatchReportActivityViewModel = viewModel()
+                                if (matchId != null) {
+                                    val matchReportViewModel: MatchReportActivityViewModel = viewModel()
+                                    matchReportViewModel.loadMatchReport(matchId)
+                                    MatchInfo(matchId, state.matchDays, matchDayNumber, matchReportViewModel)
+                                }
+                                MatchInfo(matchId, state.matchDays, matchDayNumber, matchReportViewModel)
                             }
 
                         }
@@ -88,7 +103,7 @@ fun MatchesContent(
 
 
                 is RankingsState.Error -> {
-                    CommonError(mainViewModel, "Error loading rankings")
+                    CommonError(mainViewModel)
                 }
             }
         }
