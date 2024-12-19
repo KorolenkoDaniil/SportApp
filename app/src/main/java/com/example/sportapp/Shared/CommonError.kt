@@ -15,7 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.MatchesActivityViewModel
+import com.example.sportapp.api.viewModels.BaseState
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.ui.theme.style10
 import com.example.sportapp.ui.theme.style11
@@ -25,9 +25,8 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun CommonError(mainViewModel: MatchesActivityViewModel, text: String) {
+fun CommonError(viewModel: BaseState) {
 
-    Log.d("ErrorText", text)
     val coroutineScope = rememberCoroutineScope()
 
     Column(
@@ -58,7 +57,7 @@ fun CommonError(mainViewModel: MatchesActivityViewModel, text: String) {
                 disabledContainerColor = Blue100
             ), onClick = {
                 coroutineScope.launch {
-                    mainViewModel.loadMatches()
+                    mainViewModel()
                 }
             }) {
                 Text(text = "Try again", style = style11)

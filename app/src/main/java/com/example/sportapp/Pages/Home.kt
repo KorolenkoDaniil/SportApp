@@ -16,23 +16,15 @@ fun HomePage(
 
 ) {
     LazyColumn {
-//        item {
-//            Box(
-//                modifier = Modifier
-//                    .padding(8.dp)
-//            ) {
-//                TopAppBar(modifier = Modifier.statusBarsPadding())
-//            }
-//        }
         item { CurrentMatch() }
         item { Spacer(modifier = Modifier.height(32.dp)) }
         item { Text(text = "Sport news", style = style1) }
         item { Spacer(modifier = Modifier.height(24.dp)) }
-        item { NewsCards() } // news block
+        item { NewsCards() }
         item { Spacer(modifier = Modifier.height(24.dp)) }
         item { Text(text = "Highlights", style = style1) }
         item { Spacer(modifier = Modifier.height(24.dp)) }
-        item { NewsCards() } // Video block
+        item { NewsCards() }
         item { Spacer(modifier = Modifier.height(24.dp)) }
     }
 }

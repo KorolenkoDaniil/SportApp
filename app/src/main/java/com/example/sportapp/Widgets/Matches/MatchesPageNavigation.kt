@@ -8,7 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.pages.MatchScreen
+import com.example.sportapp.pages.MatchesRankingsScreen
 
 
 @Composable
@@ -18,10 +18,10 @@ fun MatchesPageNavigation (matchesNavController: androidx.navigation.NavControll
             .fillMaxWidth()
             .height(60.dp)
     ) {
-        Button(onClick = { matchesNavController.navigate(MatchScreen.MatchesPage.route) }) {
+        Button(onClick = { matchesNavController.navigate(MatchesRankingsScreen.MatchesPage.route) }) {
             Text("Matches")
         }
-        Button(onClick = { matchesNavController.navigate(MatchScreen.RankingsPage.route) }) {
+        Button(onClick = { matchesNavController.navigate(MatchesRankingsScreen.RankingsPage.route) }) {
             Text("Rankings")
         }
     }

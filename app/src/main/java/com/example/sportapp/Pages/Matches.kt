@@ -1,7 +1,5 @@
 package com.example.sportapp.pages
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,34 +14,33 @@ import com.example.sportapp.widgets.matches.MatchesContent
 import com.example.sportapp.widgets.matches.MatchesPageNavigation
 import com.example.sportapp.widgets.matches.rankigs.RankingsContent
 
-sealed class MatchScreen(val route: String) {
-    object MatchesPage : MatchScreen("matchesScreen")
-    object RankingsPage : MatchScreen("rankings")
+sealed class MatchesRankingsScreen(val route: String) {
+    object MatchesPage : MatchesRankingsScreen("matchesScreen")
+    object RankingsPage : MatchesRankingsScreen("rankings")
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MatchesPage(
     mainViewModel: MatchesActivityViewModel = viewModel(),
     rankingsViewModel: RankingsActivityViewModel = viewModel()
 ) {
-    val state by mainViewModel.state.collectAsState()
-    val rankingsState by rankingsViewModel.state.collectAsState()
+    val state by mainViewModel.getState().collectAsState()
+    val rankingsState by rankingsViewModel.getState().collectAsState()
 
-    val matchesNavController = rememberNavController()
+    val matchesRankingsNavController = rememberNavController()
 
     Column {
 
-        MatchesPageNavigation(matchesNavController)
+        MatchesPageNavigation(matchesRankingsNavController)
 
         NavHost(
-            navController = matchesNavController,
-            startDestination = MatchScreen.MatchesPage.route
+            navController = matchesRankingsNavController,
+            startDestination = MatchesRankingsScreen.MatchesPage.route
         ) {
-            composable(MatchScreen.MatchesPage.route) {
+            composable(MatchesRankingsScreen.MatchesPage.route) {
                 MatchesContent(state, rankingsState, mainViewModel)
             }
-            composable(MatchScreen.RankingsPage.route) {
+            composable(MatchesRankingsScreen.RankingsPage.route) {
                 RankingsContent(rankingsState)
             }
         }

@@ -1,11 +1,12 @@
 package com.example.sportapp.api
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
+import com.example.sportapp.api.entities.matchReport.EventResponse
+import com.example.sportapp.api.entities.matchReport.MatchReportResponse
 import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.api.entities.matches.MatchResponse
 import com.example.sportapp.api.entities.ranking.TeamResponse
+import com.example.sportapp.domain.EventResponseEntity
 import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.domain.RankingEntity
@@ -25,6 +26,7 @@ class SoccerRepository {
     private val baseUrl = "https://dev-lsa-stats.origins-digital.com/lsa/stats/api/proxy/d3/"
     private val seasonId = "serie-a::Football_Season::1e32f55e98fc408a9d1fc27c0ba43243"
 
+
     private val json = Json {
         ignoreUnknownKeys = true // Игнорирует неизвестные поля
     }
@@ -42,7 +44,6 @@ class SoccerRepository {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun getMatchDays(): List<MatchDayEntity> {
 
         val builder = HttpRequestBuilder()
@@ -67,7 +68,6 @@ class SoccerRepository {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun matchDaysList(matches: List<MatchItem>): List<MatchDayEntity> {
         val group = matches.groupBy { it.matchDayName }
 
@@ -171,5 +171,54 @@ class SoccerRepository {
                 lastMatchesResults = item.lastMatchesResults
             )
         }
+    }
+
+
+    suspend fun getMatchReport(matchId: String): List<EventResponseEntity> {
+        val builder = HttpRequestBuilder()
+        builder.method = HttpMethod.Get
+
+        builder.url {
+            this.path("match_report")
+            this.parameters.append("season_id", seasonId)
+            this.parameters.append("match_id", matchId)
+        }
+
+        val response = client1.request(builder)
+
+        val responseString: String = response.body()
+
+        Log.d("tttMatchReport", responseString)
+
+        val match: MatchReportResponse = json.decodeFromString(responseString)
+
+        val matchEvents =  match.items
+
+        return getMatchEventsList(matchEvents)
+    }
+
+
+    private fun getMatchEventsList(matchEvents: List<EventResponse>): List<EventResponseEntity> {
+        val matchEventsList = mutableListOf<EventResponseEntity>()
+
+        for (event in matchEvents) {
+
+            val eventEntity = EventResponseEntity(
+                type = event.type,
+                matchPhase = event.matchPhase,
+                order = event.order,
+                id = event.id,
+                teamId = event.teamId,
+                playerId = event.playerId,
+                playerSurname = event.playerSurname,
+                name = event.name,
+                playerFullName = event.playerFullName,
+                playerShirtName = event.playerShirtName,
+                minute = event.minute
+            )
+            matchEventsList.add(eventEntity)
+        }
+
+        return matchEventsList
     }
 }

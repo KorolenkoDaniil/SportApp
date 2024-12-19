@@ -13,16 +13,18 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.domain.RankingEntity
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.MatchCard
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 @Composable
 fun MatchesList(
     pageState: PagerState,
     matchDays: List<MatchDayEntity>,
-    rankings: List<RankingEntity>
+    rankings: List<RankingEntity>,
+    matchesMatchInfoNavController: NavHostController
 ) {
 
     val logoUrlMap = rankings.associateBy { it.name }
@@ -48,7 +50,9 @@ fun MatchesList(
                     MatchCard(
                         teamALogoUrl,
                         teamBLogoUrl,
-                        item
+                        item,
+                        matchesMatchInfoNavController,
+                        page
                     )
                 }
             }

@@ -1,7 +1,6 @@
 package com.example.sportapp.widgets.matches.matchesList.matchesCard
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -14,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.DatePart
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.ImagePart
@@ -21,12 +21,13 @@ import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.Sc
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.TextPart
 import java.time.ZonedDateTime
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MatchCard(
     logoURLA: String?,
     logoURLB: String?,
-    item: MatchEntity
+    item: MatchEntity,
+    matchesMatchInfoNavController: NavHostController,
+    pageNumber: Int
 ) {
     val date = item.date
     val currentTime = ZonedDateTime.now().toLocalDateTime()
@@ -34,10 +35,16 @@ fun MatchCard(
     Box(
         modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp)
     ) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
+        Card(modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp),
+
+            onClick = {
+                val matchId = item.id
+                Log.d("ttt", "pageeee  $pageNumber" )
+                matchesMatchInfoNavController.navigate("matchInfo/$matchId/$pageNumber")
+            }
+
         ) {
             Row(
                 modifier = Modifier.fillMaxSize(),
@@ -59,8 +66,7 @@ fun MatchCard(
                     ScorePart(
                         modifier = Modifier
                             .weight(1f)
-                            .fillMaxSize(),
-                        item
+                            .fillMaxSize(), item
                     )
                 }
                 if (date.isAfter(currentTime)) {

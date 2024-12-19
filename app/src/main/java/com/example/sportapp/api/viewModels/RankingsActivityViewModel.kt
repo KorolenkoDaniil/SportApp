@@ -6,12 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.SoccerRepository
 import com.example.sportapp.domain.RankingEntity
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class RankingsActivityViewModel: ViewModel() {
-    val state : MutableStateFlow<RankingsState> = MutableStateFlow(RankingsState.Load)
+    private val _state : MutableStateFlow<RankingsState> = MutableStateFlow(RankingsState.Load)
 
-    val soccerRepository = SoccerRepository()
+    private val _soccerRepository = SoccerRepository()
+
+    fun getState(): StateFlow<RankingsState> {
+        return _state
+    }
+
 
     init {
         loadRankings()
@@ -20,18 +26,16 @@ class RankingsActivityViewModel: ViewModel() {
     fun loadRankings(){
         viewModelScope.launch {
             try {
-                val rankings = soccerRepository.getRankings()
-                Log.d("rankings", rankings.toString())
-                state.value = RankingsState.RankingsContent(soccerRepository.getRankings())
+                _state.value = RankingsState.RankingsContent(_soccerRepository.getRankings())
             }
             catch (e: Throwable){
-                state.value = RankingsState.Error(e)
+                _state.value = RankingsState.Error(e)
             }
         }
     }
 }
 
-sealed interface RankingsState{
+sealed interface RankingsState : BaseState{
     data object Load : RankingsState
     data class Error(val e: Throwable): RankingsState
     data class RankingsContent (val rankings: List<RankingEntity>): RankingsState
