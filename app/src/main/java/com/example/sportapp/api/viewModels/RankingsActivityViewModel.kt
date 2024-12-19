@@ -1,6 +1,5 @@
 package com.example.sportapp.api.viewModels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.SoccerRepository
@@ -9,27 +8,27 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class RankingsActivityViewModel: ViewModel() {
-    private val _state : MutableStateFlow<RankingsState> = MutableStateFlow(RankingsState.Load)
+class RankingsActivityViewModel: ViewModel(), ViewModelInterface<RankingsState> {
+    override val state : MutableStateFlow<RankingsState> = MutableStateFlow(RankingsState.Load)
 
-    private val _soccerRepository = SoccerRepository()
+    override val soccerRepository = SoccerRepository()
 
-    fun getState(): StateFlow<RankingsState> {
-        return _state
+    override fun getState(): StateFlow<RankingsState> {
+        return state
     }
 
 
     init {
-        loadRankings()
+        loadData()
     }
 
-    fun loadRankings(){
+    override fun loadData() {
         viewModelScope.launch {
             try {
-                _state.value = RankingsState.RankingsContent(_soccerRepository.getRankings())
+                state.value = RankingsState.RankingsContent(soccerRepository.getRankings())
             }
             catch (e: Throwable){
-                _state.value = RankingsState.Error(e)
+                state.value = RankingsState.Error(e)
             }
         }
     }

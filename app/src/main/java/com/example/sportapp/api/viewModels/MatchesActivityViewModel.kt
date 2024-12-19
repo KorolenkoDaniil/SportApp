@@ -8,28 +8,28 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class MatchesActivityViewModel : ViewModel() {
+class MatchesActivityViewModel : ViewModel(), ViewModelInterface<MatchState> {
 
-    private val _state: MutableStateFlow<MatchState> = MutableStateFlow(MatchState.Load)
+    override val state: MutableStateFlow<MatchState> = MutableStateFlow(MatchState.Load)
 
-    private val _soccerRepository = SoccerRepository()
+    override val soccerRepository = SoccerRepository()
 
-    fun getState(): StateFlow<MatchState> {
-        return _state
+    override fun getState(): StateFlow<MatchState> {
+        return state
     }
 
     init {
-        loadMatches()
+        loadData()
     }
 
-    fun loadMatches() {
-        MatchState.Load.also { _state.value = it }
+    override fun loadData() {
+        MatchState.Load.also { state.value = it }
         viewModelScope.launch {
             try {
-                val matchDays = _soccerRepository.getMatchDays()
-                _state.value = MatchState.MatchContent(matchDays = matchDays)
+                val matchDays = soccerRepository.getMatchDays()
+                state.value = MatchState.MatchContent(matchDays = matchDays)
             } catch (e: Throwable) {
-                _state.value = MatchState.Error(e)
+                state.value = MatchState.Error(e)
             }
         }
     }

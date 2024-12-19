@@ -1,32 +1,32 @@
 package com.example.sportapp.api.viewModels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.SoccerRepository
 import com.example.sportapp.domain.EventResponseEntity
-import com.example.sportapp.domain.RankingEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class MatchReportActivityViewModel: ViewModel() {
-    private val _state : MutableStateFlow<MatchReportState> = MutableStateFlow(MatchReportState.Load)
+class MatchReportActivityViewModel: ViewModel(), ViewModelInterface<MatchReportState> {
 
-    private val _soccerRepository = SoccerRepository()
+    override val state : MutableStateFlow<MatchReportState> = MutableStateFlow(MatchReportState.Load)
 
-    fun getState(): StateFlow<MatchReportState> {
-        return _state
+    override val soccerRepository = SoccerRepository()
+
+    override fun getState(): StateFlow<MatchReportState> {
+        return state
     }
 
+    override fun loadData () { }
 
     fun loadMatchReport(matchId: String){
         viewModelScope.launch {
             try {
-                _state.value = MatchReportState.RankingsContent(_soccerRepository.getMatchReport(matchId))
+                state.value = MatchReportState.RankingsContent(soccerRepository.getMatchReport(matchId))
             }
             catch (e: Throwable){
-                _state.value = MatchReportState.Error(e)
+                state.value = MatchReportState.Error(e)
             }
         }
     }

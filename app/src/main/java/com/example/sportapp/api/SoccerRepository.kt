@@ -81,7 +81,6 @@ class SoccerRepository {
                     MatchEntity(
                         id = item.matchId,
                         date = ZonedDateTime.parse(item.date).toLocalDateTime(),
-//                        name = item.matchDayName,
                         competitionId = item.competitionId,
                         seasonId = item.seasonId,
                         matchId = item.matchId,
