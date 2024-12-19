@@ -6,6 +6,7 @@ import com.example.sportapp.api.entities.matchReport.MatchReportResponse
 import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.api.entities.matches.MatchResponse
 import com.example.sportapp.api.entities.ranking.TeamResponse
+import com.example.sportapp.api.Mappers.RankingsMapper
 import com.example.sportapp.domain.EventResponseEntity
 import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.domain.MatchEntity
@@ -25,6 +26,8 @@ class SoccerRepository {
 
     private val baseUrl = "https://dev-lsa-stats.origins-digital.com/lsa/stats/api/proxy/d3/"
     private val seasonId = "serie-a::Football_Season::1e32f55e98fc408a9d1fc27c0ba43243"
+
+    private val rankingsMapper = RankingsMapper()
 
 
     private val json = Json {
@@ -136,40 +139,8 @@ class SoccerRepository {
         Log.d("ttt", responseString)
 
         val teamResponse: TeamResponse = json.decodeFromString(responseString)
+        return rankingsMapper.mapRankings(teamResponse)
 
-        return teamResponse.items.map { item ->
-            RankingEntity(
-                id = item.teamId,
-                name = item.shortName,
-                logoUrl = "https://origins-lsa.origins-digital.com/assets/deltatre/teams/${item.teamId}.png",
-                fullName = item.fullName,
-                shortName = item.shortName,
-                teamId = item.teamId,
-                ranking = item.ranking,
-                points = item.points,
-                gamesPlayed = item.gamesPlayed,
-                won = item.won,
-                draws = item.draws,
-                lost = item.lost,
-                goalsMade = item.goalsMade,
-                goalsConceeded = item.goalsConceeded,
-                pointsHome = item.pointsHome,
-                playedHome = item.playedHome,
-                winHome = item.winHome,
-                drawsHome = item.drawsHome,
-                lostHome = item.lostHome,
-                goalsMadeHome = item.goalsMadeHome,
-                goalsConceededHome = item.goalsConceededHome,
-                pointsAway = item.pointsAway,
-                playedAway = item.playedAway,
-                wonAway = item.wonAway,
-                drawsAway = item.drawsAway,
-                lostAway = item.lostAway,
-                goalsMadeAway = item.goalsMadeAway,
-                goalsConceededAway = item.goalsConceededAway,
-                lastMatchesResults = item.lastMatchesResults
-            )
-        }
     }
 
 
