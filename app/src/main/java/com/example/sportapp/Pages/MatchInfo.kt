@@ -49,18 +49,14 @@ fun MatchInfo(
 
 
         is MatchReportState.Error -> {
-
 //            Log.d("tttMatchReport", )
-
             CommonError(matchReportViewModel)
         }
 
 
 
         is MatchReportState.Load -> {
-
             Log.d("tttMatchReport", "загрузка репортов матча")
-
             Loading()
         }
     }
