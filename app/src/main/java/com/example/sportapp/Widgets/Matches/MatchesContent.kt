@@ -15,8 +15,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.sportapp.api.viewModels.MatchActivityViewModel
 import com.example.sportapp.api.viewModels.MatchReportActivityViewModel
-import com.example.sportapp.api.viewModels.MatchState
+import com.example.sportapp.api.viewModels.MatchesState
 import com.example.sportapp.api.viewModels.MatchesActivityViewModel
 import com.example.sportapp.api.viewModels.RankingsState
 import com.example.sportapp.pages.MatchInfo
@@ -34,7 +35,7 @@ sealed class MatchesMatchInfoScreen(val route: String) {
 @SuppressLint("NewApi")
 @Composable
 fun MatchesContent(
-    state: MatchState,
+    state: MatchesState,
     rankingsState: RankingsState,
     mainViewModel: MatchesActivityViewModel
 ) {
@@ -43,15 +44,15 @@ fun MatchesContent(
 
 
     when (state) {
-        is MatchState.Error -> {
+        is MatchesState.Error -> {
             CommonError(mainViewModel)
         }
 
-        MatchState.Load -> {
+        MatchesState.Load -> {
             Loading()
         }
 
-        is MatchState.MatchContent -> {
+        is MatchesState.MatchesContent -> {
             when (rankingsState) {
                 is RankingsState.RankingsContent -> {
                     val pageState = rememberPagerState(pageCount = { state.matchDays.size })
@@ -81,15 +82,32 @@ fun MatchesContent(
                             ) { backStackEntry ->
                                 Log.d("tttDebug", "NavHost: маршрут изменён")
                                 val matchId = backStackEntry.arguments?.getString("matchId")
-                                val matchDayNumber = backStackEntry.arguments?.getString("matchDayNumber")?.toIntOrNull()
-                                Log.d("tttDebug", "MatchInfo вызван с matchId: $matchId, matchDayNumber: $matchDayNumber")
+                                val matchDayNumber =
+                                    backStackEntry.arguments?.getString("matchDayNumber")
+                                        ?.toIntOrNull()
+                                Log.d(
+                                    "tttDebug",
+                                    "MatchInfo вызван с matchId: $matchId, matchDayNumber: $matchDayNumber"
+                                )
+
+
                                 val matchReportViewModel: MatchReportActivityViewModel = viewModel()
+                                val matchViewModel: MatchActivityViewModel = viewModel()
+
+
                                 if (matchId != null) {
-                                    val matchReportViewModel: MatchReportActivityViewModel = viewModel()
+
                                     matchReportViewModel.loadMatchReport(matchId)
-                                    MatchInfo(matchId, state.matchDays, matchDayNumber, matchReportViewModel)
+                                    matchViewModel.loadData()
+
+                                    MatchInfo(
+                                        matchId,
+                                        state.matchDays,
+                                        matchDayNumber,
+                                        matchReportViewModel,
+                                        matchViewModel
+                                    )
                                 }
-                                MatchInfo(matchId, state.matchDays, matchDayNumber, matchReportViewModel)
                             }
 
                         }

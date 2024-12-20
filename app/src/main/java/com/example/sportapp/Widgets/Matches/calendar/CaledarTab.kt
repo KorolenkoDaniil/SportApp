@@ -18,12 +18,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.MatchState
+import com.example.sportapp.api.viewModels.MatchesState
 import com.example.sportapp.ui.theme.Blue100
 import kotlinx.coroutines.launch
 
 @Composable
-fun CalendarTab(pageState: PagerState, data: MatchState.MatchContent) {
+fun CalendarTab(pageState: PagerState, data: MatchesState.MatchesContent) {
 
     val scope = rememberCoroutineScope()
     val tabState = rememberLazyListState()
