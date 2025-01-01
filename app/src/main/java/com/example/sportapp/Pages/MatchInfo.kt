@@ -1,8 +1,7 @@
 package com.example.sportapp.pages
 
+import MatchInfoContent
 import android.util.Log
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -31,35 +30,33 @@ fun MatchInfo(
             when (matchState) {
                 is MatchState.MatchContent -> {
                     if (pageNumber == null || matchId == null || pageNumber !in listDayEntity.indices) {
-                        Log.e("tttDebug", "Некорректные данные: pageNumber=$pageNumber, matchId=$matchId")
+                        Log.e(
+                            "tttDebug",
+                            "Некорректные данные: pageNumber=$pageNumber, matchId=$matchId"
+                        )
                         return
                     }
 
                     val dayEntityMatches = listDayEntity[pageNumber].matches
                     val matchDay = dayEntityMatches.find { it.matchId == matchId }
 
-                    matchDay?.let {
-                        Column {
-                            Text(text = matchId)
-                            Text(text = "page $pageNumber")
-                            Text(text = it.teamAName)
-                            Text(text = it.teamBName)
-                        }
-                    } ?: run {
-                        Log.e("tttDebug", "Match not found for matchId: $matchId")
-                    }
+                    MatchInfoContent(matchDay)
                 }
+
                 is MatchState.Error -> {
                     CommonError(matchViewModel)
                 }
+
                 is MatchState.Load -> {
                     Loading()
                 }
             }
         }
+
         is MatchReportState.Error -> {
             CommonError(matchReportViewModel)
         }
+
         is MatchReportState.Load -> {
             Log.d("tttMatchReport", "загрузка репортов матча")
             Loading()

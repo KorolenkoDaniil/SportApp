@@ -2,6 +2,7 @@ package com.example.sportapp.api.entities.matches
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class MatchItem(
@@ -36,5 +37,4 @@ data class MatchItem(
     @SerialName("opta_id") val optaId: String,
     @SerialName("is_forfeit_win") val isForfeitWin: Int,
     @SerialName("minute") val minute: Int? = null,
-//    @Transient val logoUrl: String = "",
 )

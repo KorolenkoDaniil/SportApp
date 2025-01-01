@@ -35,4 +35,6 @@ data class MatchEntity(
     val optaId: String,
     val isForfeitWin: Int,
     val minute: Int?,
+    val logoUrlA: String,
+    val logoUrlB: String,
     )

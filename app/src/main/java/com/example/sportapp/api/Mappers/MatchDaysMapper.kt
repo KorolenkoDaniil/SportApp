@@ -50,6 +50,8 @@ class MatchDaysMapper {
                         optaId = item.optaId,
                         isForfeitWin = item.isForfeitWin,
                         minute = item.minute,
+                        logoUrlA = "https://origins-lsa.origins-digital.com/assets/deltatre/teams/${item.teamAId}.png",
+                        logoUrlB = "https://origins-lsa.origins-digital.com/assets/deltatre/teams/${item.teamBId}.png",
                     )
                 }
             )
