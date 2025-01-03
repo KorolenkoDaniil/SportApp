@@ -20,17 +20,22 @@ fun RankingsContent(rankingsState: RankingsState) {
 
     Column {
 
+        //строка шапки страницы
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
+
+            // team
             Box(
                 modifier = Modifier.weight(1f),
                 contentAlignment = Alignment.Center
             ) {
                 Text(text = "Team")
             }
+
+            //подстрока шапки таблицы
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -47,10 +52,12 @@ fun RankingsContent(rankingsState: RankingsState) {
         }
 
 
-        when (val rankingsData = rankingsState) {
+        when (rankingsState) {
+
+
             is RankingsState.RankingsContent -> {
                 LazyColumn {
-                    itemsIndexed(rankingsData.rankings) { index, item ->
+                    itemsIndexed(rankingsState.rankings) { index, item ->
                         RankingCard(item, index)
                     }
                 }

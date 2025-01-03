@@ -1,4 +1,4 @@
-package com.example.sportapp.api.Mappers
+package com.example.sportapp.api.mappers
 
 import com.example.sportapp.api.entities.ranking.TeamResponse
 import com.example.sportapp.domain.RankingEntity

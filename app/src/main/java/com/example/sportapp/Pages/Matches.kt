@@ -14,35 +14,54 @@ import com.example.sportapp.widgets.matches.MatchesContent
 import com.example.sportapp.widgets.matches.MatchesPageNavigation
 import com.example.sportapp.widgets.matches.rankigs.RankingsContent
 
+
+//класс для упраления контентом на страница матчи-ранкинги
 sealed class MatchesRankingsScreen(val route: String) {
     object MatchesPage : MatchesRankingsScreen("matchesScreen")
     object RankingsPage : MatchesRankingsScreen("rankings")
 }
 
+
+//контент страницы матчей
 @Composable
 fun MatchesPage(
+
+    //создание вьюммоделей
     mainViewModel: MatchesActivityViewModel = viewModel(),
     rankingsViewModel: RankingsActivityViewModel = viewModel()
+
 ) {
+
+    //получение состоний вьюмоделей
     val state by mainViewModel.getState().collectAsState()
     val rankingsState by rankingsViewModel.getState().collectAsState()
 
+    //контроллер навигации страницы матчи-ранкинги
     val matchesRankingsNavController = rememberNavController()
+
 
     Column {
 
+
+        //кнопки для навигации межджду контентом, потом переделать
         MatchesPageNavigation(matchesRankingsNavController)
 
+        //навигация между контентом страинцы матчи-ранкинги
         NavHost(
             navController = matchesRankingsNavController,
             startDestination = MatchesRankingsScreen.MatchesPage.route
         ) {
+
             composable(MatchesRankingsScreen.MatchesPage.route) {
+                //экран с матчами
                 MatchesContent(state, rankingsState, mainViewModel)
             }
+
             composable(MatchesRankingsScreen.RankingsPage.route) {
+                //экран с ранкингами
                 RankingsContent(rankingsState)
             }
+
         }
     }
 }

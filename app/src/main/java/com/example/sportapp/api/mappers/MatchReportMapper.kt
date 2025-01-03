@@ -1,4 +1,4 @@
-package com.example.sportapp.api.Mappers
+package com.example.sportapp.api.mappers
 
 import EventResponse
 import com.example.sportapp.domain.EventResponseEntity

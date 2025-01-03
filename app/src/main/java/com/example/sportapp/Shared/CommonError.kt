@@ -49,6 +49,8 @@ fun <T> CommonError(viewModel: ViewModelInterface<T>) {
             )
             Spacer(Modifier.height(32.dp))
 
+
+            //кнопка загрузки данных еще раз
             Button(colors = ButtonColors(
                 contentColor = Blue100,
                 disabledContentColor = Blue100,
@@ -62,6 +64,7 @@ fun <T> CommonError(viewModel: ViewModelInterface<T>) {
                 Text(text = "Try again", style = style11)
             }
         }
+
 
     }
 }

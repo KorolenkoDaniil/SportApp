@@ -1,8 +1,10 @@
 package com.example.sportapp.api.entities.matchReport
 
+import EventResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+//класс, представления списка событий в матче
 @Serializable
 data class MatchReportResponse(
     @SerialName("page_index") val pageIndex: Int,

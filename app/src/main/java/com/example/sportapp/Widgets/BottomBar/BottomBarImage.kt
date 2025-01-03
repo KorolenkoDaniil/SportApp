@@ -20,6 +20,7 @@ fun BottomBarImage(
     navController: NavController,
 ) {
 
+
     val currentRoute by navController.currentBackStackEntryAsState()
     val isSelected = currentRoute?.destination?.route == newPage
 

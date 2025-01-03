@@ -58,7 +58,6 @@ fun MatchInfo(
         }
 
         is MatchReportState.Load -> {
-            Log.d("tttMatchReport", "загрузка репортов матча")
             Loading()
         }
     }

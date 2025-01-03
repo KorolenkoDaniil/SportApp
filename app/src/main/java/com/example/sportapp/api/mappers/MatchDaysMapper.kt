@@ -1,4 +1,4 @@
-package com.example.sportapp.api.Mappers
+package com.example.sportapp.api.mappers
 
 import android.util.Log
 import com.example.sportapp.api.entities.matches.MatchItem

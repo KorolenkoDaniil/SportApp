@@ -1,6 +1,7 @@
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+//класс, представления 1 события в матче
 @Serializable
 data class EventResponse(
     @SerialName("type") val type: String? = null,

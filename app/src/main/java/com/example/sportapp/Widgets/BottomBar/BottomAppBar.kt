@@ -11,7 +11,7 @@ import com.example.sportapp.R
 import com.example.sportapp.widgets.bottomBar.BottomBarImage
 
 @Composable
-fun BottomBar(
+fun BottomNavBar(
     navController: NavController
 ) {
 
@@ -21,14 +21,18 @@ fun BottomBar(
             .fillMaxHeight(0.08f),
         containerColor = Color(0xFFFFFFFF)
     ) {
+
+        //строка, содержащая навигационные иконки
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
         ) {
-            BottomBarImage( "home", R.drawable.home, navController)
-            BottomBarImage( "matches", R.drawable.matches, navController)
-            BottomBarImage( "video", R.drawable.videos, navController)
-            BottomBarImage( "like", R.drawable.like, navController)
+
+            //навигационные иконки
+            BottomBarImage("home", R.drawable.home, navController)
+            BottomBarImage("matches", R.drawable.matches, navController)
+            BottomBarImage("video", R.drawable.videos, navController)
+            BottomBarImage("like", R.drawable.like, navController)
         }
     }
 }

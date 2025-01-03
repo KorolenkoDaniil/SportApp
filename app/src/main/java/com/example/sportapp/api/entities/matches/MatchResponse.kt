@@ -3,6 +3,8 @@ package com.example.sportapp.api.entities.matches
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+
+//класс, представления 1 матча
 @Serializable
 data class MatchResponse(
     @SerialName("page_index") val pageIndex: Int? = null,

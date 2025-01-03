@@ -17,34 +17,44 @@ import com.example.sportapp.domain.RankingEntity
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.MatchCard
 
 
+//функция, коуторая отображет список матчей
 @Composable
 fun MatchesList(
+    //состояние горизонтальбной прокрутки
     pageState: PagerState,
+    //список матч дэев
     matchDays: List<MatchDayEntity>,
+    //список ранкингов
     rankings: List<RankingEntity>,
+    //контроллер страниц матчи-информация про матчи
     matchesMatchInfoNavController: NavHostController
 ) {
 
+    //ассоциацитивный список ранкингов по имени
     val logoUrlMap = rankings.associateBy { it.name }
 
+
     HorizontalPager(
+
+        //состояние горизонтального списка
         state = pageState,
         modifier = Modifier.fillMaxSize()
+
     ) { page ->
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
+
+            //список вертикальный матчей
             LazyColumn {
                 itemsIndexed(matchDays[pageState.currentPage].matches) { index, item ->
 
                     val teamALogoUrl = logoUrlMap[item.teamAAcronym]?.logoUrl
                     val teamBLogoUrl = logoUrlMap[item.teamBAcronym]?.logoUrl
 
-                    Log.d("ttt", teamALogoUrl.toString())
-                    Log.d("ttt", teamBLogoUrl.toString())
-
+                    //карточка 1 матча
                     MatchCard(
                         teamALogoUrl,
                         teamBLogoUrl,

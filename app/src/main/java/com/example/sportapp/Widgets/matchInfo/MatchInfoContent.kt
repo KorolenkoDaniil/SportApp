@@ -19,6 +19,7 @@ import com.example.sportapp.widgets.matchInfo.MatchCardContent
 
 @Composable
 fun MatchInfoContent(matchDay: MatchEntity?) {
+
     val lazyListState = rememberLazyListState()
 
     val isAtTop = remember {

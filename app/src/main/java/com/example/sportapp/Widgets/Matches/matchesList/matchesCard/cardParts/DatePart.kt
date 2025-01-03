@@ -1,7 +1,5 @@
 package com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,10 +10,9 @@ import androidx.compose.ui.Modifier
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DatePart(modifier: Modifier, date: LocalDateTime) {
-    val dateFormatter = DateTimeFormatter.ofPattern("MM-dd")
+    val dateFormatter = DateTimeFormatter.ofPattern("dd-MM")
     val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
     val formattedDate = date.format(dateFormatter)

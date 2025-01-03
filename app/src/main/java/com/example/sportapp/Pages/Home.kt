@@ -11,6 +11,8 @@ import com.example.sportapp.ui.theme.style1
 import com.example.sportapp.widgets.home.CurrentMatch
 import com.example.sportapp.widgets.home.NewsCards
 
+
+//главная страница, покает отекущий матч, спортивные новсти и видео, хайлайты,
 @Composable
 fun HomePage(
 

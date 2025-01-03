@@ -1,12 +1,10 @@
 package com.example.sportapp
 
-import BottomBar
+import BottomNavBar
 import TopAppBar
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
@@ -20,6 +18,7 @@ import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage
 import com.example.sportapp.pages.VideoPage
 
+// класс, который определяет текущий экран
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
@@ -28,8 +27,9 @@ sealed class Screen(val route: String) {
     object Like : Screen("like")
 }
 
+
+
 class mainActivity : ComponentActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -38,14 +38,21 @@ class mainActivity : ComponentActivity() {
 
             Scaffold(
                 containerColor = Color(0xFFF6F6F6),
+
+                //нижняяя навигационная панель
                 bottomBar = {
-                    BottomBar(
+                    BottomNavBar(
                         navController = navController,
                     )
                 },
+
+                //верхняя панель
                 topBar = { TopAppBar() }
+
+
             ) { innerPadding ->
 
+                //контролер навигации в приложжениии и пути навигации
                 NavHost(
                     navController = navController,
                     startDestination = Screen.Home.route,

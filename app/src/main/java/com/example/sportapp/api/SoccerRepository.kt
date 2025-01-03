@@ -1,17 +1,14 @@
 package com.example.sportapp.api
 
-import EventResponse
 import android.util.Log
-import com.example.sportapp.api.Mappers.MatchDaysMapper
-import com.example.sportapp.api.Mappers.MatchReportMapper
 import com.example.sportapp.api.entities.matchReport.MatchReportResponse
-import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.api.entities.matches.MatchResponse
 import com.example.sportapp.api.entities.ranking.TeamResponse
-import com.example.sportapp.api.Mappers.RankingsMapper
+import com.example.sportapp.api.mappers.MatchDaysMapper
+import com.example.sportapp.api.mappers.MatchReportMapper
+import com.example.sportapp.api.mappers.RankingsMapper
 import com.example.sportapp.domain.EventResponseEntity
 import com.example.sportapp.domain.MatchDayEntity
-import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.domain.RankingEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -21,22 +18,22 @@ import io.ktor.client.request.request
 import io.ktor.http.HttpMethod
 import io.ktor.http.path
 import kotlinx.serialization.json.Json
-import java.time.ZonedDateTime
 
 
 class SoccerRepository {
 
+    //ссылка доступа
     private val baseUrl = "https://dev-lsa-stats.origins-digital.com/lsa/stats/api/proxy/d3/"
     private val seasonId = "serie-a::Football_Season::1e32f55e98fc408a9d1fc27c0ba43243"
 
+
+    //мапперы для доступа к вынесенным методам
     private val rankingsMapper = RankingsMapper()
     private val matchReportMapper = MatchReportMapper()
     private val matchDaysMapper = MatchDaysMapper()
 
 
-    private val json = Json {
-        ignoreUnknownKeys = true // Игнорирует неизвестные поля
-    }
+    private val json = Json
 
     private val client = HttpClient {
         defaultRequest {

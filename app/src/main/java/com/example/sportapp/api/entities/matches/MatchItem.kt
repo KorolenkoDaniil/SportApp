@@ -2,8 +2,9 @@ package com.example.sportapp.api.entities.matches
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
+
+//класс, представления 1 матча
 @Serializable
 data class MatchItem(
     @SerialName("competition_id") val competitionId: String,
