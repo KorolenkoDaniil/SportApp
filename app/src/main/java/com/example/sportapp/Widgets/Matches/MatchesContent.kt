@@ -23,6 +23,7 @@ import com.example.sportapp.shared.CommonError
 import com.example.sportapp.shared.Loading
 import com.example.sportapp.widgets.matches.calendar.CalendarTab
 import com.example.sportapp.widgets.matches.matchesList.MatchesList
+import java.time.ZonedDateTime
 
 
 //класс для управления частью контента (матчи матч дэй или ифнормация про 1 матч)
@@ -44,6 +45,7 @@ fun MatchesContent(
 
     //контроллер страниц матчи-информация про матчи
     val matchesMatchInfoNavController = rememberNavController()
+    var i = -1
 
 
 
@@ -74,9 +76,19 @@ fun MatchesContent(
                     //переход к старинце с текущим матчем
                     LaunchedEffect(pageState) {
 
+                        val currentTime = ZonedDateTime.now()
 
+                        do {
+                            i++
+                            val matchDateTime = ZonedDateTime.parse(state.matchDays[i].matches[9].matchStartTime)
+                            Log.d("dateTime", "" +
+                                    "matchDateTime  $matchDateTime" +
+                                    "currentTime $currentTime" +
+                                    "          $i")
 
-                        pageState.scrollToPage(3)
+                        } while (matchDateTime < currentTime)
+
+                        pageState.scrollToPage(i)
                     }
 
                     Column {
