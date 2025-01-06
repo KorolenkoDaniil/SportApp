@@ -7,26 +7,47 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.composable
+import com.example.sportapp.Screen
+import com.example.sportapp.api.viewModels.MatchesActivityViewModel
+import com.example.sportapp.api.viewModels.MatchesState
+import com.example.sportapp.shared.CommonError
+import com.example.sportapp.shared.Loading
 import com.example.sportapp.ui.theme.style1
 import com.example.sportapp.widgets.home.CurrentMatch
 import com.example.sportapp.widgets.home.NewsCards
 
 
-//главная страница, покает отекущий матч, спортивные новсти и видео, хайлайты,
 @Composable
 fun HomePage(
-
+    state: MatchesState,
+    mainViewModel: MatchesActivityViewModel,
 ) {
-    LazyColumn {
-        item { CurrentMatch() }
-        item { Spacer(modifier = Modifier.height(32.dp)) }
-        item { Text(text = "Sport news", style = style1) }
-        item { Spacer(modifier = Modifier.height(24.dp)) }
-        item { NewsCards() }
-        item { Spacer(modifier = Modifier.height(24.dp)) }
-        item { Text(text = "Highlights", style = style1) }
-        item { Spacer(modifier = Modifier.height(24.dp)) }
-        item { NewsCards() }
-        item { Spacer(modifier = Modifier.height(24.dp)) }
+    when (state) {
+
+        is MatchesState.MatchesContent -> {
+            LazyColumn {
+                item { CurrentMatch(mainViewModel) }
+                item { Spacer(modifier = Modifier.height(32.dp)) }
+                item { Text(text = "Sport news", style = style1) }
+                item { Spacer(modifier = Modifier.height(24.dp)) }
+                item { NewsCards() }
+                item { Spacer(modifier = Modifier.height(24.dp)) }
+                item { Text(text = "Highlights", style = style1) }
+                item { Spacer(modifier = Modifier.height(24.dp)) }
+                item { NewsCards() }
+                item { Spacer(modifier = Modifier.height(24.dp)) }
+            }
+        }
+
+        //ошибька загрузки матчей
+        is MatchesState.Error -> {
+            CommonError(mainViewModel)
+        }
+
+        //загрузка матчей
+        MatchesState.Load -> {
+            Loading()
+        }
     }
 }

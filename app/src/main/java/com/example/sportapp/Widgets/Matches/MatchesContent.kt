@@ -45,9 +45,6 @@ fun MatchesContent(
 
     //контроллер страниц матчи-информация про матчи
     val matchesMatchInfoNavController = rememberNavController()
-    var i = -1
-
-
 
 
     when (state) {
@@ -77,16 +74,17 @@ fun MatchesContent(
                     LaunchedEffect(pageState) {
 
                         val currentTime = ZonedDateTime.now()
+                        var i = -1
 
                         do {
                             i++
-                            val matchDateTime = ZonedDateTime.parse(state.matchDays[i].matches[9].matchStartTime)
+                            val matchDateTime = ZonedDateTime.parse(state.matchDays[i].matches[0].matchStartTime)
                             Log.d("dateTime", "" +
                                     "matchDateTime  $matchDateTime" +
                                     "currentTime $currentTime" +
                                     "          $i")
 
-                        } while (matchDateTime < currentTime)
+                        } while (matchDateTime.isBefore(currentTime) || matchDateTime.isEqual(currentTime))
 
                         pageState.scrollToPage(i)
                     }

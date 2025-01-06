@@ -31,8 +31,8 @@ fun MatchCard(
     pageNumber: Int
 ) {
 
-    val date = item.date
-    val currentTime = ZonedDateTime.now().toLocalDateTime()
+    val date = ZonedDateTime.parse(item.date)
+    val currentTime = ZonedDateTime.now()
 
     Box(
         modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp)
@@ -72,10 +72,12 @@ fun MatchCard(
                     )
                 }
                 if (date.isAfter(currentTime)) {
+
+                    Log.d("datePart", item.date)
                     DatePart(
                         modifier = Modifier
                             .weight(1f)
-                            .fillMaxSize(), date = date
+                            .fillMaxSize(), item.date
                     )
                 }
 

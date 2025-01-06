@@ -1,10 +1,11 @@
 package com.example.sportapp.domain
 
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 
 data class MatchEntity(
     val id: String,
-    val date: LocalDateTime,
+    val date: String,
+    val localDateTimeMatchStart: ZonedDateTime,
     val competitionId: String,
     val seasonId: String,
     val matchId: String,

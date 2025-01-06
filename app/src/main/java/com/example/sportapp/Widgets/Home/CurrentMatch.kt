@@ -10,12 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.Widgets.Home.current_match_features.MiddleLine
-import com.example.sportapp.Widgets.Home.current_match_features.Top_line
+import com.example.sportapp.api.viewModels.MatchesActivityViewModel
 import com.example.sportapp.ui.theme.Blue100
+import com.example.sportapp.widgets.home.currentMatchFeatures.MiddleLine
+import com.example.sportapp.widgets.home.currentMatchFeatures.Top_line
 
 @Composable
-fun CurrentMatch() {
+fun CurrentMatch(
+    mainViewModel: MatchesActivityViewModel,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -25,8 +28,9 @@ fun CurrentMatch() {
     ) {
         Column {
             Top_line()
-            MiddleLine()
+            MiddleLine(mainViewModel.nearestMatch)
         }
     }
 }
+
 

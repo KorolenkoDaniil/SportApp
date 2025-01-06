@@ -1,4 +1,4 @@
-package com.example.sportapp.Widgets.Home.current_match_features
+package com.example.sportapp.widgets.home.currentMatchFeatures
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -12,16 +12,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.R
+import coil.compose.rememberAsyncImagePainter
+import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.ui.theme.style4
 import com.example.sportapp.ui.theme.style5
 
 @Composable
-fun MiddleLine() {
+fun MiddleLine(
+    nearestMatch: MatchEntity
+) {
+
+    val painterLogoA = rememberAsyncImagePainter(nearestMatch.logoUrlA)
+    val painterLogoB = rememberAsyncImagePainter(nearestMatch.logoUrlB)
+
+    val currentCardText = ""
+
     Row(
         modifier = Modifier.fillMaxSize(),
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -33,14 +41,14 @@ fun MiddleLine() {
             modifier = Modifier.fillMaxHeight()
         ) {
             Image(
-                painter = painterResource(R.drawable.barcelona),
+                painter = painterLogoA,
                 contentDescription = "",
                 modifier = Modifier
                     .size(60.dp)
             )
 
             Text(
-                text = "Barcelona",
+                text = nearestMatch.teamAAcronym,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.width(100.dp),
@@ -61,14 +69,14 @@ fun MiddleLine() {
             modifier = Modifier.fillMaxHeight()
         ) {
             Image(
-                painter = painterResource(R.drawable.manchester_united),
+                painter = painterLogoB,
                 contentDescription = "",
                 modifier = Modifier
                     .size(60.dp),
             )
 
             Text(
-                text = "Manchester United",
+                text = nearestMatch.teamBAcronym,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,

@@ -2,7 +2,9 @@ package com.example.sportapp.api.entities.matches
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 //класс, представления 1 матча
 @Serializable
@@ -38,4 +40,13 @@ data class MatchItem(
     @SerialName("opta_id") val optaId: String,
     @SerialName("is_forfeit_win") val isForfeitWin: Int,
     @SerialName("minute") val minute: Int? = null,
-)
+) {
+    fun convertStringToLocalDate(): ZonedDateTime {
+
+        val formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME
+        val localZoneId = ZoneId.systemDefault()
+
+        val zonedDateTime = ZonedDateTime.parse(matchStartTime, formatter)
+        return zonedDateTime.withZoneSameInstant(localZoneId)
+    }
+}

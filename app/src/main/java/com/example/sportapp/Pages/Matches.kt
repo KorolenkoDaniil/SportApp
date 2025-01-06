@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.api.viewModels.MatchesActivityViewModel
+import com.example.sportapp.api.viewModels.MatchesState
 import com.example.sportapp.api.viewModels.RankingsActivityViewModel
 import com.example.sportapp.widgets.matches.MatchesContent
 import com.example.sportapp.widgets.matches.MatchesPageNavigation
@@ -26,14 +27,14 @@ sealed class MatchesRankingsScreen(val route: String) {
 @Composable
 fun MatchesPage(
 
-    //создание вьюммоделей
-    mainViewModel: MatchesActivityViewModel = viewModel(),
+    mainViewModel: MatchesActivityViewModel,
+    state: MatchesState,
     rankingsViewModel: RankingsActivityViewModel = viewModel()
 
 ) {
 
     //получение состоний вьюмоделей
-    val state by mainViewModel.getState().collectAsState()
+
     val rankingsState by rankingsViewModel.getState().collectAsState()
 
     //контроллер навигации страницы матчи-ранкинги

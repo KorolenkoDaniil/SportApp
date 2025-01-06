@@ -15,6 +15,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.DatePart
 import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.ScorePart
+import java.time.LocalDateTime
 import java.time.ZonedDateTime
 
 @Composable
@@ -24,7 +25,7 @@ fun MatchCardContent(matchDay: MatchEntity?, currentSize: Dp) {
     val painterLogoB = rememberAsyncImagePainter(matchDay?.logoUrlB)
 
     val currentTime = ZonedDateTime.now().toLocalDateTime()
-    val date = matchDay!!.date
+    val date = LocalDateTime.parse(matchDay!!.date)
 
 
     Row(
@@ -63,7 +64,7 @@ fun MatchCardContent(matchDay: MatchEntity?, currentSize: Dp) {
             DatePart(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxSize(), date = date
+                    .fillMaxSize(), date = matchDay.date
             )
         }
 

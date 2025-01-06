@@ -4,7 +4,6 @@ import android.util.Log
 import com.example.sportapp.api.entities.matches.MatchItem
 import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.domain.MatchEntity
-import java.time.ZonedDateTime
 
 class MatchDaysMapper {
     fun matchDaysList(matches: List<MatchItem>): List<MatchDayEntity> {
@@ -19,7 +18,7 @@ class MatchDaysMapper {
                 matches = group[name].orEmpty().map { item ->
                     MatchEntity(
                         id = item.matchId,
-                        date = ZonedDateTime.parse(item.date).toLocalDateTime(),
+                        date = item.date,
                         competitionId = item.competitionId,
                         seasonId = item.seasonId,
                         matchId = item.matchId,
@@ -52,6 +51,7 @@ class MatchDaysMapper {
                         minute = item.minute,
                         logoUrlA = "https://origins-lsa.origins-digital.com/assets/deltatre/teams/${item.teamAId}.png",
                         logoUrlB = "https://origins-lsa.origins-digital.com/assets/deltatre/teams/${item.teamBId}.png",
+                        localDateTimeMatchStart = item.convertStringToLocalDate()
                     )
                 }
             )

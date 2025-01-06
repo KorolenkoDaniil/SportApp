@@ -1,4 +1,4 @@
-package com.example.sportapp.Widgets.Home.current_match_features
+package com.example.sportapp.widgets.home.currentMatchFeatures
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
