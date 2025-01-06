@@ -1,13 +1,14 @@
 package com.example.sportapp.ui.theme
 
-import androidx.compose.material3.Typography
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.sportapp.R
+
 //
 //// Set of Material typography styles to start with
 //val Typography = Typography(
@@ -52,11 +53,9 @@ val style3 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 18
 
 val style4 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 16.sp, fontWeight = FontWeight.Bold)
 
-val style5 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 32.sp, fontWeight = FontWeight.Bold)
+val style5 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 32.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
 
-val style6 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Normal)
-
-val style7 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Normal)
+val style6 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 24.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
 
 val style8 = TextStyle(color = Blue100, fontFamily = OpenSans, fontSize = 40.sp, fontWeight = FontWeight.Bold)
 

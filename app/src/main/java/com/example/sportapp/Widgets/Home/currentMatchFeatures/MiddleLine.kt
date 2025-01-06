@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -19,6 +20,9 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.ui.theme.style4
 import com.example.sportapp.ui.theme.style5
+import com.example.sportapp.ui.theme.style6
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun MiddleLine(
@@ -28,7 +32,26 @@ fun MiddleLine(
     val painterLogoA = rememberAsyncImagePainter(nearestMatch.logoUrlA)
     val painterLogoB = rememberAsyncImagePainter(nearestMatch.logoUrlB)
 
-    val currentCardText = ""
+    val currentTime = ZonedDateTime.now()
+    val currentMatchCardText: String
+    val mainCardTextStyle: TextStyle
+
+
+    if (nearestMatch.localDateTimeMatchStart.isBefore(currentTime)){
+        currentMatchCardText = "${nearestMatch.goalsTeamA} :  ${nearestMatch.goalsTeamB}"
+        mainCardTextStyle = style5
+    }
+    else {
+
+        val dateFormatter = DateTimeFormatter.ofPattern("dd MMMM")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+
+        val formattedDate = nearestMatch.localDateTimeMatchStart.format(dateFormatter)
+        val formattedTime = nearestMatch.localDateTimeMatchStart.format(timeFormatter)
+
+        currentMatchCardText = "$formattedTime\n$formattedDate"
+        mainCardTextStyle = style6
+    }
 
     Row(
         modifier = Modifier.fillMaxSize(),
@@ -58,9 +81,9 @@ fun MiddleLine(
         }
 
         Text(
-            text = "4 : 0",
+            text = currentMatchCardText,
             modifier = Modifier.align(Alignment.CenterVertically),
-            style = style5
+            style = mainCardTextStyle
         )
 
         Column(

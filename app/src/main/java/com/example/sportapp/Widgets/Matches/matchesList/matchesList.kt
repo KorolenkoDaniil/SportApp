@@ -1,6 +1,5 @@
 package com.example.sportapp.widgets.matches.matchesList
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,12 +26,11 @@ fun MatchesList(
     //список ранкингов
     rankings: List<RankingEntity>,
     //контроллер страниц матчи-информация про матчи
-    matchesMatchInfoNavController: NavHostController
+    matchesMatchInfoNavController: NavHostController,
 ) {
 
     //ассоциацитивный список ранкингов по имени
     val logoUrlMap = rankings.associateBy { it.name }
-
 
     HorizontalPager(
 
@@ -49,7 +47,7 @@ fun MatchesList(
 
             //список вертикальный матчей
             LazyColumn {
-                itemsIndexed(matchDays[pageState.currentPage].matches) { index, item ->
+                itemsIndexed(matchDays[pageState.currentPage].matches) { _, item ->
 
                     val teamALogoUrl = logoUrlMap[item.teamAAcronym]?.logoUrl
                     val teamBLogoUrl = logoUrlMap[item.teamBAcronym]?.logoUrl
