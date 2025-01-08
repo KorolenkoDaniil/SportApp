@@ -19,14 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.MatchesActivityViewModel
-import com.example.sportapp.domain.EventResponseEntity
+import com.example.sportapp.domain.EventEntity
+import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.widgets.home.CurrentMatch
 import com.example.sportapp.widgets.matchInfo.MatchCardContent
 
 @Composable
-fun MatchInfoContent(matchesViewModel: MatchesActivityViewModel, eventsList: List<EventResponseEntity>) {
+fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity) {
 
     val lazyListState = rememberLazyListState()
 
@@ -68,12 +68,12 @@ fun MatchInfoContent(matchesViewModel: MatchesActivityViewModel, eventsList: Lis
                         .background(color = Blue100)
                         .fillMaxWidth()
                 ) {
-                    CurrentMatch(matchesViewModel)
+                    CurrentMatch(match)
                 }
             }
         }
         items(eventsList.size) { index ->
-            MatchCardContent()
+            MatchCardContent(eventsList[index])
         }
     }
 }

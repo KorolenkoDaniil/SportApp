@@ -14,5 +14,7 @@ data class EventResponse(
     @SerialName("name") val name: String? = null,
     @SerialName("player_full_name") val playerFullName: String? = null,
     @SerialName("player_shirt_name") val playerShirtName: String? = null,
-    @SerialName("minute") val minute: Int? = null
+    @SerialName("minute") val minute: Int? = null,
+    @SerialName("additional_minute") val additionalMinute: Int? = null
+
 )

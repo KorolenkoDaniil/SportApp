@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.SoccerRepository
-import com.example.sportapp.domain.EventResponseEntity
+import com.example.sportapp.domain.EventEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -30,8 +30,6 @@ class MatchReportActivityViewModel: ViewModel(), ViewModelInterface<MatchReportS
 
             Log.d("tttMatchReport", "aaaa $a.toString()")
             try {
-
-
                 state.value = MatchReportState.RankingsContent(soccerRepository.getMatchReport(matchId))
             }
             catch (e: Throwable){
@@ -45,5 +43,5 @@ class MatchReportActivityViewModel: ViewModel(), ViewModelInterface<MatchReportS
 sealed interface MatchReportState : BaseState{
     data object Load : MatchReportState
     data class Error(val e: Throwable): MatchReportState
-    data class RankingsContent (val rankings: List<EventResponseEntity>): MatchReportState
+    data class RankingsContent (val rankings: List<EventEntity>): MatchReportState
 }

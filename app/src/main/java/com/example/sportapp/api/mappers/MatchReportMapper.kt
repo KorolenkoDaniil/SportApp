@@ -1,13 +1,13 @@
 package com.example.sportapp.api.mappers
 
 import EventResponse
-import com.example.sportapp.domain.EventResponseEntity
+import com.example.sportapp.domain.EventEntity
 
 class MatchReportMapper {
 
-    fun getMatchEventsList(matchEvents: List<EventResponse>): List<EventResponseEntity> {
+    fun getMatchEventsList(matchEvents: List<EventResponse>): List<EventEntity> {
         return matchEvents.map { event ->
-            EventResponseEntity(
+            EventEntity(
                 type = event.type ?: "unknown",
                 matchPhase = event.matchPhase ?: "default_phase",
                 order = event.order ?: 0,
@@ -18,7 +18,8 @@ class MatchReportMapper {
                 name = event.name ?: "Unknown",
                 playerFullName = event.playerFullName ?: "Unknown",
                 playerShirtName = event.playerShirtName ?: "Unknown",
-                minute = event.minute ?: 0
+                minute = event.minute ?: 0,
+                additionalMinute = event.additionalMinute?: 0
             )
         }
     }

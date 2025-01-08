@@ -6,7 +6,7 @@ import com.example.sportapp.domain.MatchDayEntity
 import com.example.sportapp.domain.MatchEntity
 
 class MatchDaysMapper {
-    fun matchDaysList(matches: List<MatchItem>): List<MatchDayEntity> {
+    fun getMatchDaysList(matches: List<MatchItem>): List<MatchDayEntity> {
         val group = matches.groupBy { it.matchDayName }
 
         Log.d("ttt", group.toString())

@@ -9,7 +9,6 @@ import com.example.sportapp.api.viewModels.MatchActivityViewModel
 import com.example.sportapp.api.viewModels.MatchReportActivityViewModel
 import com.example.sportapp.api.viewModels.MatchReportState
 import com.example.sportapp.api.viewModels.MatchState
-import com.example.sportapp.api.viewModels.MatchesActivityViewModel
 import com.example.sportapp.shared.CommonError
 import com.example.sportapp.shared.Loading
 
@@ -18,7 +17,6 @@ import com.example.sportapp.shared.Loading
 fun MatchInfo(
     matchReportViewModel: MatchReportActivityViewModel,
     matchViewModel: MatchActivityViewModel,
-    matchesViewModel: MatchesActivityViewModel,
     appActivity: AppActivityViewModel,
 ) {
     appActivity.changePageName("Match center")
@@ -29,8 +27,7 @@ fun MatchInfo(
         is MatchReportState.RankingsContent -> {
             when (matchState) {
                 is MatchState.MatchContent -> {
-
-                    MatchInfoContent(matchesViewModel, matchReportState.rankings)
+                    MatchInfoContent((matchReportState as MatchReportState.RankingsContent).rankings, (matchState as MatchState.MatchContent).match)
                 }
 
                 is MatchState.Error -> {

@@ -42,7 +42,7 @@ fun MatchesContent(
     rankingsState: RankingsState,
     //модель матчей
     matchesViewModel: MatchesActivityViewModel,
-    
+
     appActivity: AppActivityViewModel,
     ) {
 
@@ -127,34 +127,24 @@ fun MatchesContent(
                             }
 
 
-                            //путь и контент инфформации про 1 матч
                             composable(
                                 route = MatchesMatchInfoScreen.MatchInfoPage.route
                             ) { backStackEntry ->
                                 Log.d("tttDebug", "NavHost: маршрут изменён")
                                 val matchId = backStackEntry.arguments?.getString("matchId")
-                                val matchDayNumber =
-                                    backStackEntry.arguments?.getString("matchDayNumber")
-                                        ?.toIntOrNull()
-                                Log.d(
-                                    "tttDebug",
-                                    "MatchInfo вызван с matchId: $matchId, matchDayNumber: $matchDayNumber"
-                                )
 
 
                                 val matchReportViewModel: MatchReportActivityViewModel = viewModel()
                                 val matchViewModel: MatchActivityViewModel = viewModel()
 
-
                                 if (matchId != null) {
 
                                     matchReportViewModel.loadMatchReport(matchId)
-                                    matchViewModel.loadData()
+                                    matchViewModel.loadMatchData(matchId)
 
                                     MatchInfo(
                                         matchReportViewModel,
                                         matchViewModel,
-                                        matchesViewModel,
                                         appActivity
                                     )
                                 }

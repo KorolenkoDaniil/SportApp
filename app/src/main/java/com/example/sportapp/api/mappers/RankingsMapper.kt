@@ -5,7 +5,7 @@ import com.example.sportapp.domain.RankingEntity
 
 class RankingsMapper {
 
-    fun mapRankings(response: TeamResponse) : List<RankingEntity> {
+    fun getListRankingEntity (response: TeamResponse) : List<RankingEntity> {
         return response.items.map { item ->
             RankingEntity(
                 id = item.teamId,

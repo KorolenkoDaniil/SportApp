@@ -6,5 +6,5 @@ data class MatchReportEntity(
     val pageSize: Int,
     val itemsCount: Int,
     val isLastPage: Boolean,
-    val items: List<EventResponseEntity>
+    val items: List<EventEntity>
 )
