@@ -1,88 +1,18 @@
-//package com.example.sportapp.widgets.matchInfo
-//
-//import androidx.compose.foundation.Image
-//import androidx.compose.foundation.layout.Arrangement
-//import androidx.compose.foundation.layout.Column
-//import androidx.compose.foundation.layout.Row
-//import androidx.compose.foundation.layout.fillMaxSize
-//import androidx.compose.foundation.layout.size
-//import androidx.compose.material3.Text
-//import androidx.compose.runtime.Composable
-//import androidx.compose.ui.Alignment
-//import androidx.compose.ui.Modifier
-//import androidx.compose.ui.unit.Dp
-//import coil.compose.rememberAsyncImagePainter
-//import com.example.sportapp.domain.MatchEntity
-//import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.DatePart
-//import com.example.sportapp.widgets.matches.matchesList.matchesCard.cardParts.ScorePart
-//import java.time.ZonedDateTime
-//
-//@Composable
-//fun MatchCardContent(matchDay: MatchEntity, currentSize: Dp) {
-//
-//    val painterLogoA = rememberAsyncImagePainter(matchDay.logoUrlA)
-//    val painterLogoB = rememberAsyncImagePainter(matchDay.logoUrlB)
-//
-//    val currentTime = ZonedDateTime.now()
-//
-//    Row(
-//        modifier = Modifier
-//            .fillMaxSize()
-//
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .weight(1f),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.Center
-//        ) {
-//            Image(
-//                painter = painterLogoA,
-//                contentDescription = null,
-//                modifier = Modifier
-//                    .size(currentSize)
-//            )
-//
-//            Text(text = matchDay.teamAName)
-//        }
-//
-//
-//
-//
-//        if (matchDay.localDateTimeMatchStart.isBefore(currentTime) || matchDay.localDateTimeMatchStart.isEqual(currentTime)) {
-//            ScorePart(
-//                modifier = Modifier
-//                    .weight(1f)
-//                    .fillMaxSize(), matchDay
-//            )
-//        }
-//        if (matchDay.localDateTimeMatchStart.isAfter(currentTime)) {
-//            DatePart(
-//                modifier = Modifier
-//                    .weight(1f)
-//                    .fillMaxSize(), date = matchDay.localDateTimeMatchStart
-//            )
-//        }
-//
-//
-//
-//
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .weight(1f),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.Center
-//        ) {
-//            Image(
-//                painter = painterLogoB,
-//                contentDescription = null,
-//                modifier = Modifier
-//                    .size(currentSize)
-//            )
-//
-//            Text(text = matchDay.teamBName)
-//        }
-//    }
-//}
+package com.example.sportapp.widgets.matchInfo
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import com.example.sportapp.domain.EventResponseEntity
+
+@Composable
+fun MatchCardContent(event: EventResponseEntity) {
+    Column {
+        Text(event.type)
+        Text(event.order.toString())
+        Text(event.id)
+        Text(event.type)
+        Text(event.type)
+        Text(event.type)
+    }
+}

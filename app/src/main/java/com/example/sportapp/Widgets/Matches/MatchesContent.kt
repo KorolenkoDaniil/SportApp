@@ -41,7 +41,8 @@ fun MatchesContent(
     //состоняние загрузки ранкингов
     rankingsState: RankingsState,
     //модель матчей
-    mainViewModel: MatchesActivityViewModel,
+    matchesViewModel: MatchesActivityViewModel,
+    
     appActivity: AppActivityViewModel,
     ) {
 
@@ -53,7 +54,7 @@ fun MatchesContent(
 
         //ошибька загрузки матчей
         is MatchesState.Error -> {
-            CommonError(mainViewModel)
+            CommonError(matchesViewModel)
         }
 
         //загрузка матчей
@@ -153,7 +154,7 @@ fun MatchesContent(
                                     MatchInfo(
                                         matchReportViewModel,
                                         matchViewModel,
-                                        mainViewModel,
+                                        matchesViewModel,
                                         appActivity
                                     )
                                 }
@@ -172,7 +173,7 @@ fun MatchesContent(
 
                 //ошибка загрузки ранкингов
                 is RankingsState.Error -> {
-                    CommonError(mainViewModel)
+                    CommonError(matchesViewModel)
                 }
 
             }

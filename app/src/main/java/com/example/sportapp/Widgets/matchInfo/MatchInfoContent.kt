@@ -5,11 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -22,12 +20,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.api.viewModels.MatchesActivityViewModel
+import com.example.sportapp.domain.EventResponseEntity
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.widgets.home.CurrentMatch
+import com.example.sportapp.widgets.matchInfo.MatchCardContent
 
 @Composable
-fun MatchInfoContent(mainViewModel: MatchesActivityViewModel,) {
-
+fun MatchInfoContent(matchesViewModel: MatchesActivityViewModel, eventsList: List<EventResponseEntity>) {
 
     val lazyListState = rememberLazyListState()
 
@@ -52,14 +51,6 @@ fun MatchInfoContent(mainViewModel: MatchesActivityViewModel,) {
         }
     )
 
-//    val imageSize by animateDpAsState(
-//        targetValue = currentSize,
-//        animationSpec = if (currentSize == 10.dp) {
-//            tween(durationMillis = 4000)
-//        } else {
-//            tween(durationMillis = 4000)
-//        }
-//    )
 
     LazyColumn(state = lazyListState) {
         item {
@@ -77,17 +68,12 @@ fun MatchInfoContent(mainViewModel: MatchesActivityViewModel,) {
                         .background(color = Blue100)
                         .fillMaxWidth()
                 ) {
-                    CurrentMatch(mainViewModel)
+                    CurrentMatch(matchesViewModel)
                 }
             }
         }
-        items(100) { index ->
-            Text(
-                text = "Item $index",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            )
+        items(eventsList.size) { index ->
+            MatchCardContent()
         }
     }
 }

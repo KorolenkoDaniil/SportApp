@@ -17,7 +17,7 @@ import com.example.sportapp.widgets.home.currentMatchFeatures.Top_line
 
 @Composable
 fun CurrentMatch(
-    mainViewModel: MatchesActivityViewModel,
+    matchesViewModel: MatchesActivityViewModel,
 ) {
     Box(
         modifier = Modifier
@@ -27,8 +27,8 @@ fun CurrentMatch(
             .height(176.dp)
     ) {
         Column {
-            Top_line(mainViewModel.nearestMatch)
-            MiddleLine(mainViewModel.nearestMatch)
+            Top_line(matchesViewModel.nearestMatch)
+            MiddleLine(matchesViewModel.nearestMatch)
         }
     }
 }

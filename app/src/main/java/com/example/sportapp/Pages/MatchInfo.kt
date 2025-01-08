@@ -18,7 +18,7 @@ import com.example.sportapp.shared.Loading
 fun MatchInfo(
     matchReportViewModel: MatchReportActivityViewModel,
     matchViewModel: MatchActivityViewModel,
-    mainViewModel: MatchesActivityViewModel,
+    matchesViewModel: MatchesActivityViewModel,
     appActivity: AppActivityViewModel,
 ) {
     appActivity.changePageName("Match center")
@@ -30,7 +30,7 @@ fun MatchInfo(
             when (matchState) {
                 is MatchState.MatchContent -> {
 
-                    MatchInfoContent(mainViewModel)
+                    MatchInfoContent(matchesViewModel, matchReportState.rankings)
                 }
 
                 is MatchState.Error -> {
