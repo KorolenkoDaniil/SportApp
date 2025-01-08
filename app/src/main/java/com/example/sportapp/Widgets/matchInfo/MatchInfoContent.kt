@@ -1,8 +1,8 @@
-
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,10 +23,12 @@ import com.example.sportapp.domain.EventEntity
 import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.widgets.home.CurrentMatch
-import com.example.sportapp.widgets.matchInfo.MatchCardContent
+import com.example.sportapp.widgets.matchInfo.MatchEventItem
+import com.example.sportapp.widgets.matchInfo.PhaseNameLine
 
 @Composable
 fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity) {
+
 
     val lazyListState = rememberLazyListState()
 
@@ -51,7 +53,6 @@ fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity) {
         }
     )
 
-
     LazyColumn(state = lazyListState) {
         item {
             Box(
@@ -61,19 +62,32 @@ fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity) {
                     .background(color = Color.Transparent)
                     .fillMaxWidth()
             ) {
-                Box(
-                    modifier = Modifier
-                        .height(boxHeight)
-                        .clip(shape = RoundedCornerShape(16.dp))
-                        .background(color = Blue100)
-                        .fillMaxWidth()
-                ) {
-                    CurrentMatch(match)
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .height(boxHeight)
+                            .clip(shape = RoundedCornerShape(16.dp))
+                            .background(color = Blue100)
+                            .fillMaxWidth()
+                    ) {
+                        CurrentMatch(match)
+                    }
                 }
             }
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(15.dp)
+            )
         }
         items(eventsList.size) { index ->
-            MatchCardContent(eventsList[index])
+            if (index == eventsList.size - 1) PhaseNameLine("1st HALF")
+            else {
+                MatchEventItem(eventsList[index])
+            }
         }
     }
 }
+
+
+

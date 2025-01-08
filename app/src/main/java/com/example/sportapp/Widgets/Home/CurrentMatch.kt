@@ -10,14 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.MatchesActivityViewModel
+import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.widgets.home.currentMatchFeatures.MiddleLine
 import com.example.sportapp.widgets.home.currentMatchFeatures.Top_line
 
 @Composable
 fun CurrentMatch(
-    matchesViewModel: MatchesActivityViewModel,
+    match: MatchEntity
 ) {
     Box(
         modifier = Modifier
@@ -27,8 +27,8 @@ fun CurrentMatch(
             .height(176.dp)
     ) {
         Column {
-            Top_line(matchesViewModel.nearestMatch)
-            MiddleLine(matchesViewModel.nearestMatch)
+            Top_line(match)
+            MiddleLine(match)
         }
     }
 }

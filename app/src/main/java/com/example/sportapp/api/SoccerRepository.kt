@@ -121,11 +121,14 @@ class SoccerRepository {
         val builder = HttpRequestBuilder()
         builder.method = HttpMethod.Get
 
-        builder.url {
+        val url = builder.url {
             this.path("match_report")
             this.parameters.append("season_id", seasonId)
             this.parameters.append("match_id", matchId)
         }
+
+        Log.d("URL", url.toString())
+
 
         val response = client.request(builder)
 
@@ -139,7 +142,4 @@ class SoccerRepository {
 
         return matchReportMapper.getMatchEventsList(matchEvents)
     }
-
-
-
 }

@@ -28,7 +28,7 @@ fun HomePage(
 
         is MatchesState.MatchesContent -> {
             LazyColumn {
-                item { CurrentMatch(mainViewModel) }
+                item { CurrentMatch(mainViewModel.nearestMatch) }
                 item { Spacer(modifier = Modifier.height(32.dp)) }
                 item { Text(text = "Sport news", style = style1) }
                 item { Spacer(modifier = Modifier.height(24.dp)) }
