@@ -1,5 +1,6 @@
 package com.example.sportapp.pages
 
+import AppActivityViewModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,11 +27,10 @@ sealed class MatchesRankingsScreen(val route: String) {
 //контент страницы матчей
 @Composable
 fun MatchesPage(
-
-    mainViewModel: MatchesActivityViewModel,
+    matchesViewModel: MatchesActivityViewModel,
     state: MatchesState,
-    rankingsViewModel: RankingsActivityViewModel = viewModel()
-
+    appActivity: AppActivityViewModel,
+    rankingsViewModel: RankingsActivityViewModel = viewModel(),
 ) {
 
     //получение состоний вьюмоделей
@@ -55,12 +55,12 @@ fun MatchesPage(
 
             composable(MatchesRankingsScreen.MatchesPage.route) {
                 //экран с матчами
-                MatchesContent(state, rankingsState, mainViewModel)
+                MatchesContent(state, rankingsState, matchesViewModel, appActivity)
             }
 
             composable(MatchesRankingsScreen.RankingsPage.route) {
                 //экран с ранкингами
-                RankingsContent(rankingsState)
+                RankingsContent(rankingsState, appActivity)
             }
 
         }

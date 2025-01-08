@@ -9,21 +9,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.shared.LiveTranslationFlag
 import com.example.sportapp.ui.theme.style3
 
 @Composable
-fun Top_line() {
+fun Top_line(nearestMatch: MatchEntity) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
     ) {
-        LiveTranslationFlag(
-            modifier = Modifier
-                .padding(top = 8.dp, start = 8.dp)
-                .zIndex(1f)
-        )
+        if (nearestMatch.matchStatus == 1) {
+            LiveTranslationFlag(
+                modifier = Modifier
+                    .padding(top = 8.dp, start = 8.dp)
+                    .zIndex(1f)
+            )
+        }
         Text(
             text = "League name",
             style = style3,

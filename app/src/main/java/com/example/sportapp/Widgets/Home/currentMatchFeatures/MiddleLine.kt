@@ -37,7 +37,7 @@ fun MiddleLine(
     val mainCardTextStyle: TextStyle
 
 
-    if (nearestMatch.localDateTimeMatchStart.isBefore(currentTime)){
+    if (nearestMatch.localDateTimeMatchStart.isBefore(currentTime) || nearestMatch.matchStatus == 1){
         currentMatchCardText = "${nearestMatch.goalsTeamA} :  ${nearestMatch.goalsTeamB}"
         mainCardTextStyle = style5
     }

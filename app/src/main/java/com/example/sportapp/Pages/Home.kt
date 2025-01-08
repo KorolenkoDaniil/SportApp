@@ -1,5 +1,6 @@
 package com.example.sportapp.pages
 
+import AppActivityViewModel
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -7,8 +8,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.composable
-import com.example.sportapp.Screen
 import com.example.sportapp.api.viewModels.MatchesActivityViewModel
 import com.example.sportapp.api.viewModels.MatchesState
 import com.example.sportapp.shared.CommonError
@@ -22,7 +21,9 @@ import com.example.sportapp.widgets.home.NewsCards
 fun HomePage(
     state: MatchesState,
     mainViewModel: MatchesActivityViewModel,
+    appActivity: AppActivityViewModel
 ) {
+    appActivity.changePageName("Home")
     when (state) {
 
         is MatchesState.MatchesContent -> {

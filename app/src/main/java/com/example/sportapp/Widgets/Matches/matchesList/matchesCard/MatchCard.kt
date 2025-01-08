@@ -31,7 +31,6 @@ fun MatchCard(
     pageNumber: Int
 ) {
 
-    val date = ZonedDateTime.parse(item.date)
     val currentTime = ZonedDateTime.now()
 
     Box(
@@ -64,20 +63,20 @@ fun MatchCard(
                         .fillMaxSize(), url = logoURLA
                 )
 
-                if (date.isBefore(currentTime) || date.isEqual(currentTime)) {
+                if (item.localDateTimeMatchStart.isBefore(currentTime) || item.localDateTimeMatchStart.isEqual(currentTime)) {
                     ScorePart(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxSize(), item
                     )
                 }
-                if (date.isAfter(currentTime)) {
+                if (item.localDateTimeMatchStart.isAfter(currentTime)) {
 
                     Log.d("datePart", item.date)
                     DatePart(
                         modifier = Modifier
                             .weight(1f)
-                            .fillMaxSize(), item.date
+                            .fillMaxSize(), item.localDateTimeMatchStart
                     )
                 }
 

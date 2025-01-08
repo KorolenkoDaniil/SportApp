@@ -1,5 +1,6 @@
 package com.example.sportapp
 
+import AppActivityViewModel
 import BottomNavBar
 import TopAppBar
 import android.annotation.SuppressLint
@@ -13,21 +14,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.api.viewModels.MatchesActivityViewModel
-import com.example.sportapp.api.viewModels.MatchesState
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage
 import com.example.sportapp.pages.VideoPage
-import com.example.sportapp.shared.CommonError
-import com.example.sportapp.shared.Loading
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 // класс, который определяет текущий экран
 
@@ -45,8 +40,9 @@ class mainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val mainViewModel: MatchesActivityViewModel = viewModel()
-            val state by mainViewModel.getState().collectAsState()
+            val appActivity: AppActivityViewModel = viewModel()
+            val matchesViewModel: MatchesActivityViewModel = viewModel()
+            val state by matchesViewModel.getState().collectAsState()
 
             val navController = rememberNavController()
 
@@ -61,7 +57,7 @@ class mainActivity : ComponentActivity() {
                 },
 
                 //верхняя панель
-                topBar = { TopAppBar() }
+                topBar = { TopAppBar(appActivity) }
 
 
             ) { innerPadding ->
@@ -74,10 +70,10 @@ class mainActivity : ComponentActivity() {
                         .padding(innerPadding)
                         .padding(horizontal = 8.dp)
                 ) {
-                    composable(Screen.Home.route) { HomePage(state, mainViewModel) }
-                    composable(Screen.Matches.route) { MatchesPage(mainViewModel, state) }
-                    composable(Screen.Video.route) { VideoPage() }
-                    composable(Screen.Like.route) { LikePage() }
+                    composable(Screen.Home.route) { HomePage(state, matchesViewModel, appActivity)}
+                    composable(Screen.Matches.route) { MatchesPage(matchesViewModel, state, appActivity) }
+                    composable(Screen.Video.route) { VideoPage(appActivity) }
+                    composable(Screen.Like.route) { LikePage(appActivity) }
                 }
             }
         }

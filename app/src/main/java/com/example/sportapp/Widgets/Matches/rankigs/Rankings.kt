@@ -1,5 +1,6 @@
 package com.example.sportapp.widgets.matches.rankigs
 
+import AppActivityViewModel
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,12 +12,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.example.sportapp.api.viewModels.RankingsState
 import com.example.sportapp.shared.Loading
 
 
 @Composable
-fun RankingsContent(rankingsState: RankingsState) {
+fun RankingsContent(rankingsState: RankingsState, appActivity: AppActivityViewModel) {
+    appActivity.changePageName("Rankings")
+
+    val colors = arrayOf(
+        Color(0xFF0000FF), // Синий
+        Color(0xFFFFA500), // Оранжевый
+        Color.Green, // еленый
+        Color(0xFFFF0000)  // Красный
+    )
 
     Column {
 
@@ -58,7 +68,16 @@ fun RankingsContent(rankingsState: RankingsState) {
             is RankingsState.RankingsContent -> {
                 LazyColumn {
                     itemsIndexed(rankingsState.rankings) { index, item ->
-                        RankingCard(item, index)
+                        if (index in 0..4)
+                            RankingCard(item, index, colors[0])
+                        else if (index in 5..6)
+                            RankingCard(item, index, colors[1])
+                        else if (index == 7)
+                            RankingCard(item, index, colors[2])
+                        else if (index in (rankingsState.rankings.size - 3)..rankingsState.rankings.size)
+                            RankingCard(item, index, Color.Red)
+                        else
+                            RankingCard(item, index, Color.Transparent)
                     }
                 }
             }

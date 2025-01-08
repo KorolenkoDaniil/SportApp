@@ -1,5 +1,6 @@
 package com.example.sportapp.widgets.matches
 
+import AppActivityViewModel
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -40,8 +41,9 @@ fun MatchesContent(
     //состоняние загрузки ранкингов
     rankingsState: RankingsState,
     //модель матчей
-    mainViewModel: MatchesActivityViewModel
-) {
+    mainViewModel: MatchesActivityViewModel,
+    appActivity: AppActivityViewModel,
+    ) {
 
     //контроллер страниц матчи-информация про матчи
     val matchesMatchInfoNavController = rememberNavController()
@@ -69,7 +71,6 @@ fun MatchesContent(
 
                     val pageState = rememberPagerState(pageCount = { state.matchDays.size })
 
-
                     //переход к старинце с текущим матчем
                     LaunchedEffect(pageState) {
 
@@ -78,13 +79,19 @@ fun MatchesContent(
 
                         do {
                             i++
-                            val matchDateTime = ZonedDateTime.parse(state.matchDays[i].matches[0].matchStartTime)
-                            Log.d("dateTime", "" +
-                                    "matchDateTime  $matchDateTime" +
-                                    "currentTime $currentTime" +
-                                    "          $i")
+                            val matchDateTime =
+                                ZonedDateTime.parse(state.matchDays[i].matches[0].matchStartTime)
+                            Log.d(
+                                "dateTime", "" +
+                                        "matchDateTime  $matchDateTime" +
+                                        "currentTime $currentTime" +
+                                        "          $i"
+                            )
 
-                        } while (matchDateTime.isBefore(currentTime) || matchDateTime.isEqual(currentTime))
+                        } while (matchDateTime.isBefore(currentTime) || matchDateTime.isEqual(
+                                currentTime
+                            )
+                        )
 
                         pageState.scrollToPage(i)
                     }
@@ -99,7 +106,7 @@ fun MatchesContent(
                             composable(MatchesMatchInfoScreen.MatchesPage.route) {
                                 Log.d("tttDebug", "NavHost: маршрут изменён")
 
-
+                                appActivity.changePageName("Match schedule")
                                 //контент страницы страницы матчей
                                 Column {
 
@@ -144,11 +151,10 @@ fun MatchesContent(
                                     matchViewModel.loadData()
 
                                     MatchInfo(
-                                        matchId,
-                                        state.matchDays,
-                                        matchDayNumber,
                                         matchReportViewModel,
-                                        matchViewModel
+                                        matchViewModel,
+                                        mainViewModel,
+                                        appActivity
                                     )
                                 }
                             }

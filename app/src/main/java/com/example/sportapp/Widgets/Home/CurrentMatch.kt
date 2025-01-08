@@ -27,7 +27,7 @@ fun CurrentMatch(
             .height(176.dp)
     ) {
         Column {
-            Top_line()
+            Top_line(mainViewModel.nearestMatch)
             MiddleLine(mainViewModel.nearestMatch)
         }
     }

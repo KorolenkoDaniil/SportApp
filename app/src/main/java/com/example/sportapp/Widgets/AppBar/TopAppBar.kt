@@ -1,8 +1,17 @@
+
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -14,7 +23,9 @@ import com.example.sportapp.shared.BottomBar.UserImage
 import com.example.sportapp.ui.theme.Blue100
 
 @Composable
-fun TopAppBar() {
+fun TopAppBar( appActivity: AppActivityViewModel ) {
+
+    val pageName by appActivity.pageName.collectAsState()
 
     Box(
         modifier = Modifier
@@ -37,7 +48,7 @@ fun TopAppBar() {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Page Title Here",
+                text = pageName,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
