@@ -23,4 +23,10 @@ class MatchReportMapper {
             )
         }
     }
+
+
+//
+//    fun eventMerging(eventsList: List<EventEntity>) : List<EventEntity> {
+//
+//    }
 }

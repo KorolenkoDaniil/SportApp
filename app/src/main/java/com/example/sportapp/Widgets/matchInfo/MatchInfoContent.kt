@@ -83,7 +83,7 @@ fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity) {
         items(eventsList.size) { index ->
             if (index == eventsList.size - 1) PhaseNameLine("1st HALF")
             else {
-                MatchEventItem(eventsList[index])
+                MatchEventItem(eventsList[index], match)
             }
         }
     }

@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.sportapp.domain.EventEntity
 
 @Composable
-fun YellowCardCard (event: EventEntity, side: Boolean) {
+fun GoalCard (event: EventEntity, side: Boolean) {
     Row(Modifier.padding()){
         Box (Modifier.fillMaxWidth().height(40.dp).shadow(4.dp, shape = RectangleShape).background(color = Color.White)) {
             Text(event.type)
