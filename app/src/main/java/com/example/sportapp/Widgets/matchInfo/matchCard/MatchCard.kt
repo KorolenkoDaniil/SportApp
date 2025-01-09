@@ -33,7 +33,7 @@ fun MatchCard(event: EventEntity, match: MatchEntity){
                 when (event.type) {
                     "yellow_card" ->  YellowCardCard(event, true)
                     "goal" -> GoalCard(event, true)
-                    "substitution_player_in", "substitution_player_out" -> PlayerSubstitulation(event, true)
+                    "substitution_player" -> PlayerSubstitulation(event, true)
                     else -> Box { Text(event.type + "--?") }
                 }
 
@@ -52,7 +52,7 @@ fun MatchCard(event: EventEntity, match: MatchEntity){
                 when (event.type) {
                     "yellow_card" ->  YellowCardCard(event, false)
                     "goal" -> GoalCard(event, false)
-                    "substitution_player_in", "substitution_player_out" -> PlayerSubstitulation(event, false)
+                    "substitution_player" -> PlayerSubstitulation(event, false)
                     else -> Box { Text(event.type + "--?") }
                 }
             }
