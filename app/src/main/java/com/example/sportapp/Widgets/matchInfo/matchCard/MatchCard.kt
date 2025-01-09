@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.example.sportapp.domain.EventEntity
 import com.example.sportapp.domain.MatchEntity
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.GoalCard
-import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.PlayerSubstitulation
+import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.PlayerSubstitution
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.YellowCardCard
 
 @Composable
@@ -22,7 +22,7 @@ fun MatchCard(event: EventEntity, match: MatchEntity){
     Row(
         Modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(70.dp)
     ) {
         Box(
             Modifier
@@ -33,7 +33,7 @@ fun MatchCard(event: EventEntity, match: MatchEntity){
                 when (event.type) {
                     "yellow_card" ->  YellowCardCard(event, true)
                     "goal" -> GoalCard(event, true)
-                    "substitution_player" -> PlayerSubstitulation(event, true)
+                    "substitution_player" -> PlayerSubstitution(event, true)
                     else -> Box { Text(event.type + "--?") }
                 }
 
@@ -52,7 +52,7 @@ fun MatchCard(event: EventEntity, match: MatchEntity){
                 when (event.type) {
                     "yellow_card" ->  YellowCardCard(event, false)
                     "goal" -> GoalCard(event, false)
-                    "substitution_player" -> PlayerSubstitulation(event, false)
+                    "substitution_player" -> PlayerSubstitution(event, false)
                     else -> Box { Text(event.type + "--?") }
                 }
             }
