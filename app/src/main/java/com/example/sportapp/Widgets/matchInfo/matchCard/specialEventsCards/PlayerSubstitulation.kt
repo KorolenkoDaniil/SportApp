@@ -1,7 +1,7 @@
 package com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards
 
 import androidx.compose.runtime.Composable
-import com.example.sportapp.domain.EventEntity
+import com.example.sportapp.models.soccer.domain.EventEntity
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.playerSubstitulation.LeftSubstitulation
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.playerSubstitulation.RightSubstitulation
 

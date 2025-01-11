@@ -1,8 +1,8 @@
 package com.example.sportapp.widgets.matchInfo
 
 import androidx.compose.runtime.Composable
-import com.example.sportapp.domain.EventEntity
-import com.example.sportapp.domain.MatchEntity
+import com.example.sportapp.models.soccer.domain.EventEntity
+import com.example.sportapp.models.soccer.domain.MatchEntity
 import com.example.sportapp.widgets.matchInfo.matchCard.MatchCard
 
 

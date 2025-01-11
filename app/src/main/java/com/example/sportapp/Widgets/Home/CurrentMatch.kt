@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.domain.MatchEntity
+import com.example.sportapp.models.soccer.domain.MatchEntity
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.widgets.home.currentMatchFeatures.MiddleLine
 import com.example.sportapp.widgets.home.currentMatchFeatures.Top_line

@@ -18,7 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.MatchesState
+import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.ui.theme.Blue100
 import kotlinx.coroutines.launch
 

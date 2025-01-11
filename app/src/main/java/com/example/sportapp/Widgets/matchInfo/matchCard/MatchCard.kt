@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.Log
 import androidx.media3.common.util.UnstableApi
-import com.example.sportapp.domain.EventEntity
-import com.example.sportapp.domain.MatchEntity
+import com.example.sportapp.models.soccer.domain.EventEntity
+import com.example.sportapp.models.soccer.domain.MatchEntity
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.DoubleYellowCardCard
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.GoalCard
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.PenaltyCard

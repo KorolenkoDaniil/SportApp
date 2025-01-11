@@ -1,7 +1,7 @@
-package com.example.sportapp.api.mappers
+package com.example.sportapp.models.soccer.api.mappers
 
-import com.example.sportapp.api.entities.matches.MatchItem
-import com.example.sportapp.domain.MatchEntity
+import com.example.sportapp.models.soccer.domain.MatchEntity
+import com.example.sportapp.models.soccer.api.entities.matches.MatchItem
 
 class MatchMapper {
 

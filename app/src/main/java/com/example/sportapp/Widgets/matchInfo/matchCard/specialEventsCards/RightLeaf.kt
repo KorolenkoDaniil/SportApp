@@ -24,7 +24,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.domain.EventEntity
+import com.example.sportapp.models.soccer.domain.EventEntity
 
 @Composable
 fun RightLeaf (event: EventEntity, iconId: Int, iconSize: Dp){

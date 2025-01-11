@@ -18,7 +18,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.sportapp.api.viewModels.MatchesActivityViewModel
+import com.example.sportapp.models.viewModels.MatchesActivityViewModel
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage

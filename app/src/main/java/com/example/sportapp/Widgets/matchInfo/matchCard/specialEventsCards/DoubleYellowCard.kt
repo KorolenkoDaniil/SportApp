@@ -3,7 +3,7 @@ package com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.R
-import com.example.sportapp.domain.EventEntity
+import com.example.sportapp.models.soccer.domain.EventEntity
 
 @Composable
 fun DoubleYellowCardCard (event: EventEntity, side: Boolean) {

@@ -5,10 +5,10 @@ import MatchInfoContent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.example.sportapp.api.viewModels.MatchActivityViewModel
-import com.example.sportapp.api.viewModels.MatchReportActivityViewModel
-import com.example.sportapp.api.viewModels.MatchReportState
-import com.example.sportapp.api.viewModels.MatchState
+import com.example.sportapp.models.viewModels.MatchActivityViewModel
+import com.example.sportapp.models.viewModels.MatchReportActivityViewModel
+import com.example.sportapp.models.viewModels.MatchReportState
+import com.example.sportapp.models.viewModels.MatchState
 import com.example.sportapp.shared.CommonError
 import com.example.sportapp.shared.Loading
 

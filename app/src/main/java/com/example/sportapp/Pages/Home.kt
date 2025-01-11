@@ -8,8 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.MatchesActivityViewModel
-import com.example.sportapp.api.viewModels.MatchesState
+import com.example.sportapp.models.viewModels.MatchesActivityViewModel
+import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.shared.CommonError
 import com.example.sportapp.shared.Loading
 import com.example.sportapp.ui.theme.style1
