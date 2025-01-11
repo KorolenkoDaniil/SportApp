@@ -43,7 +43,7 @@ fun RightLeaf (event: EventEntity, iconId: Int, iconSize: Dp){
             ) {
                 Image(
                     painter = painterResource(iconId),
-                    contentDescription = "greenPolygon",
+                    contentDescription = "",
                     modifier = Modifier
                         .size(iconSize)
                         .align(Alignment.CenterVertically),

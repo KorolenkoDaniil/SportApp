@@ -1,5 +1,6 @@
 package com.example.sportapp.widgets.matchInfo.matchCard
 
+import androidx.annotation.OptIn
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,12 +11,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.media3.common.util.Log
+import androidx.media3.common.util.UnstableApi
 import com.example.sportapp.domain.EventEntity
 import com.example.sportapp.domain.MatchEntity
+import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.DoubleYellowCardCard
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.GoalCard
+import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.PenaltyCard
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.PlayerSubstitution
+import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.RedCardCard
 import com.example.sportapp.widgets.matchInfo.matchCard.specialEventsCards.YellowCardCard
 
+@OptIn(UnstableApi::class)
 @Composable
 fun MatchCard(event: EventEntity, match: MatchEntity){
 
@@ -30,8 +37,14 @@ fun MatchCard(event: EventEntity, match: MatchEntity){
                 .weight(1f)
         ) {
             if (event.teamId == match.teamAId) {
+
+                Log.d("Etypettt", event.type)
                 when (event.type) {
+//                     own_goal
+                    "double_yellow_card" ->  DoubleYellowCardCard(event, true)
+                    "penalty" ->  PenaltyCard(event, true)
                     "yellow_card" ->  YellowCardCard(event, true)
+                    "red_card" ->  RedCardCard(event, true)
                     "goal" -> GoalCard(event, true)
                     "substitution_player" -> PlayerSubstitution(event, true)
                     else -> Box { Text(event.type + "--?") }
@@ -50,7 +63,10 @@ fun MatchCard(event: EventEntity, match: MatchEntity){
         ) {
             if (event.teamId == match.teamBId) {
                 when (event.type) {
+                    "double_yellow_card" ->  DoubleYellowCardCard(event, false)
+                    "penalty" ->  PenaltyCard(event, false)
                     "yellow_card" ->  YellowCardCard(event, false)
+                    "red_card" ->  RedCardCard(event, false)
                     "goal" -> GoalCard(event, false)
                     "substitution_player" -> PlayerSubstitution(event, false)
                     else -> Box { Text(event.type + "--?") }

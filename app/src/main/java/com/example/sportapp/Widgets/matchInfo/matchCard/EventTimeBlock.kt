@@ -15,12 +15,17 @@ import com.example.sportapp.domain.EventEntity
 import com.example.sportapp.ui.theme.style7
 
 @Composable
-fun EventTimeBlock (event: EventEntity){
+fun EventTimeBlock(event: EventEntity) {
     Row(
-        modifier = Modifier.size(height = 40.dp, width = 50.dp).background(color = Color(0xFF0f089e), shape = RoundedCornerShape(8.dp)),
+        modifier = Modifier
+            .size(height = 40.dp, width = 50.dp)
+            .background(color = Color(0xFF0f089e), shape = RoundedCornerShape(8.dp)),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
-    ){
-        Text(text = event.minute.toString() + "'", style = style7)
+    ) {
+        if (event.additionalMinute == 0)
+            Text(text = event.minute.toString() + "'", style = style7)
+        else
+            Text(text = event.minute.toString() + "' + " + event.additionalMinute + "'", style = style7)
     }
 }

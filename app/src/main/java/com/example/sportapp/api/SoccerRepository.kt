@@ -142,4 +142,5 @@ class SoccerRepository {
 
         return matchReportMapper.getMatchEventsList(matchEvents)
     }
+
 }
