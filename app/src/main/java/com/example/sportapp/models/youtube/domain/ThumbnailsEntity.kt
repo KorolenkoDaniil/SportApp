@@ -1,13 +1,12 @@
 package com.example.sportapp.models.youtube.domain
 
-import com.example.sportapp.models.youtube.api.entities.youtube.Thumbnail
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ThumbnailsEntity(
-    val default: Thumbnail,
-    val medium: Thumbnail,
-    val high: Thumbnail
+    val default: ThumbnailEntity,
+    val medium: ThumbnailEntity,
+    val high: ThumbnailEntity
 )
 
 @Serializable

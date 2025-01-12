@@ -1,6 +1,6 @@
 package com.example.sportapp.api.viewModels
 
-import com.example.sportapp.models.soccer.api.SoccerRepository
+import com.example.sportapp.models.soccer.SoccerRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

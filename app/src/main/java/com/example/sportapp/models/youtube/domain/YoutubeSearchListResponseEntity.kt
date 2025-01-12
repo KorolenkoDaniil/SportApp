@@ -1,7 +1,6 @@
 package com.example.sportapp.models.youtube.domain
 
-import com.example.sportapp.models.youtube.api.entities.youtube.PageInfo
-import com.example.sportapp.models.youtube.api.entities.youtube.Video
+import com.example.sportapp.models.youtube.api.youtube.PageInfo
 
 
 data class YoutubeSearchListResponseEntity(
@@ -10,6 +9,6 @@ data class YoutubeSearchListResponseEntity(
     val nextPageToken: String,
     val regionCode: String,
     val pageInfo: PageInfo,
-    val items: List<Video>
+    val items: List<VideoEntity>
 )
 

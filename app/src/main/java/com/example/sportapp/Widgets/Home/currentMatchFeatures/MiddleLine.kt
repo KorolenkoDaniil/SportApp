@@ -38,7 +38,7 @@ fun MiddleLine(
 
 
     if (nearestMatch.localDateTimeMatchStart.isBefore(currentTime) || nearestMatch.matchStatus == 1){
-        currentMatchCardText = "${nearestMatch.goalsTeamA} :  ${nearestMatch.goalsTeamB}"
+        currentMatchCardText = "${nearestMatch.goalsTeamA} : ${nearestMatch.goalsTeamB}"
         mainCardTextStyle = style5
     }
     else {

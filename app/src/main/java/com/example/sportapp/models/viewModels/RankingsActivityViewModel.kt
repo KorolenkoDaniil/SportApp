@@ -3,7 +3,7 @@ package com.example.sportapp.models.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.viewModels.ViewModelInterface
-import com.example.sportapp.models.soccer.api.SoccerRepository
+import com.example.sportapp.models.soccer.SoccerRepository
 import com.example.sportapp.models.soccer.domain.RankingEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

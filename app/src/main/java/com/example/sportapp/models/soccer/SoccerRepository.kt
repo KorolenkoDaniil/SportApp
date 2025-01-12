@@ -1,4 +1,4 @@
-package com.example.sportapp.models.soccer.api
+package com.example.sportapp.models.soccer
 
 import android.util.Log
 import com.example.sportapp.models.soccer.api.entities.matchReport.MatchReportResponse
@@ -79,6 +79,8 @@ class SoccerRepository {
             this.parameters.append("season_id", seasonId)
         }
 
+
+//        https://dev-lsa-stats.origins-digital.com/lsa/stats/api/proxy/d3/calendar?season_id=serie-a%3A%3AFootball_Season%3A%3A1e32f55e98fc408a9d1fc27c0ba43243
 
         val response = client.request(builder)
 

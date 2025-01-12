@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.api.viewModels.ViewModelInterface
-import com.example.sportapp.models.soccer.api.SoccerRepository
+import com.example.sportapp.models.soccer.SoccerRepository
 import com.example.sportapp.models.soccer.domain.MatchDayEntity
 import com.example.sportapp.models.soccer.domain.MatchEntity
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,33 +43,24 @@ class MatchesActivityViewModel : ViewModel(), ViewModelInterface<MatchesState> {
 
 
     private fun searchNearestMatch(matchDays: List<MatchDayEntity>): MatchEntity {
-
         val currentTime = ZonedDateTime.now()
         var nearestMatch = matchDays[0].matches[0]
-        var nearestTimeDifference = Long.MAX_VALUE
-        val combinedList = mutableListOf<MatchEntity>()
-
-        for (day in matchDays) {
-            combinedList += day.matches
-        }
+        var minimumTimeDifference = Long.MAX_VALUE
 
         for (day in matchDays) {
             for (match in day.matches) {
+                val matchTime = match.localDateTimeMatchStart
+                val timeDifference = java.time.Duration.between(currentTime, matchTime).toMillis()
+                val absoluteTimeDifference = kotlin.math.abs(timeDifference)
 
-                val localMatchDateTime = match.localDateTimeMatchStart
-
-                val timeDifference =
-                    java.time.Duration.between(currentTime, localMatchDateTime).toMillis()
-
-                if (timeDifference >= 0 && timeDifference < nearestTimeDifference) {
+                if (absoluteTimeDifference < minimumTimeDifference) {
                     nearestMatch = match
-                    nearestTimeDifference = timeDifference
+                    minimumTimeDifference = absoluteTimeDifference
                 }
             }
         }
 
-        Log.d("nearest Match", "${nearestMatch.teamAName}  ${nearestMatch.teamBName}")
-
+        Log.d("Nearest Match", "${nearestMatch.teamAName} vs ${nearestMatch.teamBName}")
         return nearestMatch
     }
 }
