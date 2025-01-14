@@ -9,9 +9,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.sportapp.models.viewModels.MatchesActivityViewModel
+import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
-import com.example.sportapp.models.viewModels.RankingsActivityViewModel
+import com.example.sportapp.models.viewModels.RankingsActivitySoccerViewModel
 import com.example.sportapp.widgets.matches.MatchesContent
 import com.example.sportapp.widgets.matches.MatchesPageNavigation
 import com.example.sportapp.widgets.matches.rankigs.RankingsContent
@@ -27,10 +27,10 @@ sealed class MatchesRankingsScreen(val route: String) {
 //контент страницы матчей
 @Composable
 fun MatchesPage(
-    matchesViewModel: MatchesActivityViewModel,
+    matchesViewModel: MatchesActivitySoccerViewModel,
     state: MatchesState,
     appActivity: AppActivityViewModel,
-    rankingsViewModel: RankingsActivityViewModel = viewModel(),
+    rankingsViewModel: RankingsActivitySoccerViewModel = viewModel(),
 ) {
 
     //получение состоний вьюмоделей

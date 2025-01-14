@@ -16,7 +16,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.soccer.domain.EventEntity
+import com.example.sportapp.models.soccer.api.domain.EventEntity
 
 @Composable
 fun LeftSubstitulation(event: EventEntity){

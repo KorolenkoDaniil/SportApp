@@ -47,7 +47,7 @@ val OpenSans = FontFamily(
 
 val style1 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
-val style2 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 16.sp, fontWeight = FontWeight.Normal)
+val style2 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 12.sp, fontWeight = FontWeight.Normal)
 
 val style3 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 18.sp, fontWeight = FontWeight.Bold)
 

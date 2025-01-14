@@ -14,9 +14,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.sportapp.models.viewModels.MatchActivityViewModel
-import com.example.sportapp.models.viewModels.MatchReportActivityViewModel
-import com.example.sportapp.models.viewModels.MatchesActivityViewModel
+import com.example.sportapp.models.viewModels.MatchActivitySoccerViewModel
+import com.example.sportapp.models.viewModels.MatchReportActivitySoccerViewModel
+import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.RankingsState
 import com.example.sportapp.pages.MatchInfo
@@ -41,7 +41,7 @@ fun MatchesContent(
     //состоняние загрузки ранкингов
     rankingsState: RankingsState,
     //модель матчей
-    matchesViewModel: MatchesActivityViewModel,
+    matchesViewModel: MatchesActivitySoccerViewModel,
 
     appActivity: AppActivityViewModel,
     ) {
@@ -134,8 +134,8 @@ fun MatchesContent(
                                 val matchId = backStackEntry.arguments?.getString("matchId")
 
 
-                                val matchReportViewModel: MatchReportActivityViewModel = viewModel()
-                                val matchViewModel: MatchActivityViewModel = viewModel()
+                                val matchReportViewModel: MatchReportActivitySoccerViewModel = viewModel()
+                                val matchViewModel: MatchActivitySoccerViewModel = viewModel()
 
                                 if (matchId != null) {
 

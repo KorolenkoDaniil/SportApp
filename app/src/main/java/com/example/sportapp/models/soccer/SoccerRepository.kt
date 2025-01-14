@@ -8,10 +8,10 @@ import com.example.sportapp.models.soccer.api.mappers.MatchDaysMapper
 import com.example.sportapp.models.soccer.api.mappers.MatchMapper
 import com.example.sportapp.models.soccer.api.mappers.MatchReportMapper
 import com.example.sportapp.models.soccer.api.mappers.RankingsMapper
-import com.example.sportapp.models.soccer.domain.EventEntity
-import com.example.sportapp.models.soccer.domain.MatchDayEntity
-import com.example.sportapp.models.soccer.domain.MatchEntity
-import com.example.sportapp.models.soccer.domain.RankingEntity
+import com.example.sportapp.models.soccer.api.domain.EventEntity
+import com.example.sportapp.models.soccer.api.domain.MatchDayEntity
+import com.example.sportapp.models.soccer.api.domain.MatchEntity
+import com.example.sportapp.models.soccer.api.domain.RankingEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.defaultRequest

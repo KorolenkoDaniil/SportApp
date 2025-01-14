@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.sportapp.models.soccer.domain.RankingEntity
+import com.example.sportapp.models.soccer.api.domain.RankingEntity
 
 @Composable
 fun ScorePart (modifier: Modifier,item: RankingEntity) {

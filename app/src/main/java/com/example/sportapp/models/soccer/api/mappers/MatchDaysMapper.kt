@@ -1,8 +1,8 @@
 package com.example.sportapp.models.soccer.api.mappers
 
 import android.util.Log
-import com.example.sportapp.models.soccer.domain.MatchDayEntity
-import com.example.sportapp.models.soccer.domain.MatchEntity
+import com.example.sportapp.models.soccer.api.domain.MatchDayEntity
+import com.example.sportapp.models.soccer.api.domain.MatchEntity
 import com.example.sportapp.models.soccer.api.entities.matches.MatchItem
 
 class MatchDaysMapper {

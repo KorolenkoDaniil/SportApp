@@ -1,8 +1,8 @@
 package com.example.sportapp.models.soccer.api.mappers
 
 import EventResponse
-import com.example.sportapp.models.soccer.domain.EventEntity
-import com.example.sportapp.models.soccer.domain.Replacement
+import com.example.sportapp.models.soccer.api.domain.EventEntity
+import com.example.sportapp.models.soccer.api.domain.Replacement
 
 class MatchReportMapper {
 

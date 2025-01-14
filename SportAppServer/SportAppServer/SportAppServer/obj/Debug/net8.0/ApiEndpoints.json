@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "SportAppServer.Controllers.NewsController",
+    "Method": "Get",
+    "RelativePath": "NewsController",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

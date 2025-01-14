@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.models.soccer.domain.MatchEntity
+import com.example.sportapp.models.soccer.api.domain.MatchEntity
 import com.example.sportapp.ui.theme.style4
 import com.example.sportapp.ui.theme.style5
 import com.example.sportapp.ui.theme.style6

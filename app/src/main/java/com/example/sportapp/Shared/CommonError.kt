@@ -14,7 +14,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.api.viewModels.ViewModelInterface
+import com.example.sportapp.models.viewModels.BaseViewModelInterface
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.ui.theme.style10
 import com.example.sportapp.ui.theme.style11
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun <T> CommonError(viewModel: ViewModelInterface<T>) {
+fun <T> CommonError(viewModel: BaseViewModelInterface<T>) {
 
     val coroutineScope = rememberCoroutineScope()
 

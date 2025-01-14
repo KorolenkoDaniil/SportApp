@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.soccer.domain.EventEntity
+import com.example.sportapp.models.soccer.api.domain.EventEntity
 import com.example.sportapp.ui.theme.style7
 
 @Composable

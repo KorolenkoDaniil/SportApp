@@ -18,8 +18,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.sportapp.models.viewModels.MatchesActivityViewModel
-import com.example.sportapp.models.viewModels.VideosActivityViewModel
+import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
+import com.example.sportapp.models.viewModels.NewsActivityViewModel
+import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage
@@ -44,10 +45,13 @@ class mainActivity : ComponentActivity() {
             val appActivity: AppActivityViewModel = viewModel()
 
 
-            val matchesViewModel: MatchesActivityViewModel = viewModel()
+            val newsViewModel: NewsActivityViewModel = viewModel()
+            val newsState by newsViewModel.getState().collectAsState()
+
+            val matchesViewModel: MatchesActivitySoccerViewModel = viewModel()
             val state by matchesViewModel.getState().collectAsState()
 
-            val videoViewModel: VideosActivityViewModel = viewModel()
+            val videoViewModel: YoutubeActivityViewModel = viewModel()
             val videoState by videoViewModel.getState().collectAsState()
 
 
@@ -77,7 +81,7 @@ class mainActivity : ComponentActivity() {
                         .padding(innerPadding)
                         .padding(horizontal = 8.dp)
                 ) {
-                    composable(Screen.Home.route) { HomePage(state, videoState, matchesViewModel, videoViewModel, appActivity)}
+                    composable(Screen.Home.route) { HomePage(newsState,  state, videoState, newsViewModel, matchesViewModel, videoViewModel, appActivity)}
                     composable(Screen.Matches.route) { MatchesPage(matchesViewModel, state, appActivity) }
                     composable(Screen.Video.route) { VideoPage(appActivity) }
                     composable(Screen.Like.route) { LikePage(appActivity) }

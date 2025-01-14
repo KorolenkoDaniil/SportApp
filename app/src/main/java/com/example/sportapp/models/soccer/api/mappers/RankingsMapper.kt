@@ -1,6 +1,6 @@
 package com.example.sportapp.models.soccer.api.mappers
 
-import com.example.sportapp.models.soccer.domain.RankingEntity
+import com.example.sportapp.models.soccer.api.domain.RankingEntity
 import com.example.sportapp.models.soccer.api.entities.ranking.TeamResponse
 
 class RankingsMapper {
