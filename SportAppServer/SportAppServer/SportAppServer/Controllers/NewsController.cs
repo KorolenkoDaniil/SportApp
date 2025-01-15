@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SportAppServer.Entities;
 
 namespace SportAppServer.Controllers
@@ -9,7 +10,7 @@ namespace SportAppServer.Controllers
     public class NewsController : Controller
     {
         [HttpGet]
-        public  IActionResult Get()
+        public  string Get()
         {
             using (var db = new ApplicationContext())
             {
@@ -19,8 +20,12 @@ namespace SportAppServer.Controllers
                               .Take(20)
                               .ToList();
 
-               
-                return Json(list);
+                foreach (var item in list)
+                {
+                    Console.WriteLine(item.Title);
+                }
+                
+                return JsonConvert.SerializeObject(list);
             }
         }
     }

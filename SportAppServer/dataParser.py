@@ -4,58 +4,98 @@ import time
 from datetime import datetime
 import json
 import os
-
+import requests
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import traceback
 
 class News:
-    def __init__(self, sport, date_time, text):
+    def __init__(self, sport, date_time, title, image_id):
         self.sport = sport
         self.date_time = date_time
-        self.text = text
+        self.title = title
+        self.image_id = image_id
+        
 
     def to_dict(self):
         return {
             "sport": self.sport,
-            "date_time": self.date_time, 
-            "text": self.text
+            "date_time": self.date_time,
+            "title": self.title,
+            "image_id": self.image_id,
         }
 
+def downloadImage(driver):
+    try:
+      
+        image_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "article-pic")))
+        # Прокрутка до изображения
+        driver.execute_script("arguments[0].scrollIntoView(true);", image_element)
+        image_url = image_element.get_attribute("src")
+        print(f"Ссылка на изображение: {image_url}")
+ 
+        save_folder = "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\savedImages"
+        os.makedirs(save_folder, exist_ok=True)
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            image_name = os.path.join(save_folder, image_url.split('/')[-1]) 
+            with open(image_name, "wb") as file:
+                file.write(response.content)
+            print(f"Изображение сохранено в {image_name}")
+            return image_url.split('/')[-1]
+        else:
+            print(f"Не удалось скачать изображение, код ответа: {response.status_code}")
+    except Exception as e:
+        print("Ошибка при скачивании изображения:", e)
 
-driver = webdriver.Chrome()
-driver.get("https://sport5.by/")
-driver.maximize_window()
-
-print("window is max opened")
-
-def search_news_list():
+def search_news_list(driver):
     time.sleep(3)
     news_elements = driver.find_elements(By.CLASS_NAME, "wrapper-text-news")
     print("Количество новостей:", len(news_elements))
 
     news_list = []
+    i = 0
 
-    print(len(news_elements))
     for news_element in news_elements:
         try:
-            sport = news_element.find_element(By.CLASS_NAME, "sport").text.strip()
-            time_only = news_element.find_element(By.CLASS_NAME, "time").text.strip()
-            text = news_element.find_element(By.TAG_NAME, "h5").text.strip()
 
+            news_elements = driver.find_elements(By.CLASS_NAME, "wrapper-text-news")
+
+            sport = news_elements[i].find_element(By.CLASS_NAME, "sport").text.strip()
+            time_only = news_elements[i].find_element(By.CLASS_NAME, "time").text.strip()
+            title = news_elements[i].find_element(By.TAG_NAME, "h5").text.strip()
             current_date_only = datetime.now().strftime("%Y-%m-%d")
             full_date = f"{current_date_only}T{time_only}:00"
 
-            news = News(sport=sport, date_time=full_date, text=text)
-            news_list.append(news)
-            print(len(news_list))
+           
+            WebDriverWait(driver, 10).until(EC.element_to_be_clickable(news_elements[i])).click()
 
-            print(news)
+            time.sleep(3)
+            image_id = downloadImage(driver)
 
+            print("вернулась строка " + image_id)
+
+            driver.back()
+            time.sleep(3)
+
+            new_news = News(sport=sport, date_time=full_date, title=title, image_id=image_id)
+            news_list.append(new_news)
+
+            i += 1
         except Exception as e:
+            
             print(f"Ошибка обработки элемента: {e}")
+           
+            print("Подробности ошибки:")
+            print(traceback.format_exc())
 
-    file_name = "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\news_list.json"
-
+    file_name = "C:/Users/korol/AndroidStudioProjects/SportApp/SportAppServer/news_list.json"
     with open(file_name, "w", encoding="utf-8") as file:
-       json.dump([news.to_dict() for news in news_list], file, ensure_ascii=False, indent=4)
+        json.dump([n.to_dict() for n in news_list], file, ensure_ascii=False, indent=4)
 
-search_news_list()
 
+driver = webdriver.Chrome()
+driver.get("https://sport5.by/")
+driver.maximize_window()
+print("window is max opened")
+search_news_list(driver)

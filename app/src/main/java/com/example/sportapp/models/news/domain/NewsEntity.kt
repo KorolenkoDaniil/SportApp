@@ -6,5 +6,7 @@ import kotlinx.serialization.Serializable
 data class NewsEntity(
     val dateTime: String,
     val sport: String,
-    val text: String,
+    val title: String,
+    val imageId: String,
+    val newsImage: String,
 )

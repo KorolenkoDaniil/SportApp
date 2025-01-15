@@ -12,14 +12,19 @@ namespace SportAppServer.Entities
         public DateTime DateTime { get; set; }
 
         [JsonProperty("sport")]
-        public string Sport { get; set; }
+        public required string Sport { get; set; }
 
-        [JsonProperty("text")]
-        public string Text { get; set; }
+        [JsonProperty("title")]
+        public required string Title { get; set; }
+
+        [JsonProperty("image_id")]
+        public required string ImageId { get; set; }
+
+       
 
         public override string ToString()
         {
-            return $"DateTime: {DateTime}, Sport: {Sport}, Text: {Text}";
+            return $"DateTime: {DateTime}, Sport: {Sport}, Title: {Title}, ImageId: {ImageId}";
         }
     }
 }

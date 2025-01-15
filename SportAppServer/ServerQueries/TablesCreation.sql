@@ -1,7 +1,8 @@
 use SportAppDB
 
 CREATE TABLE News (
-    Sport NVARCHAR(255) NOT NULL,         -- Вид спорта
-    DateTime DATETIME NOT NULL PRIMARY KEY, -- Дата и время события
-    Text NVARCHAR(MAX) NOT NULL           -- Текст новости
+    Sport NVARCHAR(255) NOT NULL, 
+    DateTime DATETIME NOT NULL PRIMARY KEY,
+    Title NVARCHAR(MAX) NOT NULL,
+    ImageId NVARCHAR(MAX) NOT NULL,
 );

@@ -13,10 +13,19 @@ builder.Services.AddCors(options =>
     });
 });
 
+
+
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider("C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\savedImages"),
+    RequestPath = "/images"
+});
+
 
 if (!app.Environment.IsDevelopment())
 {

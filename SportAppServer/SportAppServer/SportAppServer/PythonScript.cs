@@ -36,7 +36,7 @@ namespace SportAppServer
                         Console.WriteLine($"Python-скрипт завершён. Вывод: {output}");
                         if (!string.IsNullOrEmpty(error))
                         {
-                            Console.WriteLine($"Ошибки: {error}+ sfjsdlkfjalskdfj");
+                            Console.WriteLine($"Ошибки: {error}");
                         }
 
                         await GetNewNewsFromJSONAsync();
@@ -57,33 +57,40 @@ namespace SportAppServer
         {
             string path = "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\news_list.json";
 
-            List<News>? newsList = null;
+            List<News>? newsList;
 
-
+  
             using (StreamReader reader = new StreamReader(path))
             {
                 string text = await reader.ReadToEndAsync();
                 Console.WriteLine(text);
 
                 newsList = JsonConvert.DeserializeObject<List<News>>(text);
+            }
 
-                for (int i = 0; i < newsList.Count; i++)
+            if (newsList == null || !newsList.Any())
+            {
+                Console.WriteLine("Список новостей пуст или не удалось десериализовать данные.");
+                return;
+            }
+
+            using (var db = new ApplicationContext())
+            {
+                foreach (var newsItem in newsList)
                 {
-                    News news = newsList[i];
-                    using (var db = new ApplicationContext())
+                    var newsFound = db.News.Find(newsItem.DateTime);
+                    if (newsFound == null)
                     {
-                        var newsFound = db.News.Find(news.DateTime);
-
-                        if (newsFound == null)
-                        {
-                            Console.WriteLine(news);
-                            db.News.Add(news);
-
-                            Console.WriteLine("ДОбавили");
-                             db.SaveChanges();
-                        }
+                        db.News.Add(newsItem);
+                        Console.WriteLine($"Новость добавлена: {newsItem.Title}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Новость уже существует: {newsItem.Title}");
                     }
                 }
+
+                db.SaveChanges();
             }
         }
     }
