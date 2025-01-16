@@ -17,7 +17,7 @@ import kotlinx.serialization.json.Json
 
 class NewsRepository {
 
-    private val newsBaseUrl = "https://d9b9-51-159-14-212.ngrok-free.app"
+    private val newsBaseUrl = "https://1cad-51-159-223-134.ngrok-free.app"
     private val controllerPath = "NewsController"
 
     val newsMapper = NewsMapper()
@@ -68,7 +68,7 @@ class NewsRepository {
 
         val newsResponse: List<NewsResponse> = json.decodeFromString(responseString)
 
-        return newsMapper.getNewsEntityList(newsResponse)
+        return newsMapper.getNewsEntityList(newsResponse, newsBaseUrl)
     }
 }
 

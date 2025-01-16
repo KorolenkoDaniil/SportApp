@@ -10,11 +10,12 @@ from selenium.webdriver.support import expected_conditions as EC
 import traceback
 
 class News:
-    def __init__(self, sport, date_time, title, image_id):
+    def __init__(self, sport, date_time, title, image_id, article_texts):
         self.sport = sport
         self.date_time = date_time
         self.title = title
         self.image_id = image_id
+        self.article_texts = article_texts
         
 
     def to_dict(self):
@@ -23,13 +24,44 @@ class News:
             "date_time": self.date_time,
             "title": self.title,
             "image_id": self.image_id,
+            "article_texts": self.article_texts,
         }
+
+def copy_news_text(driver):
+    try:
+
+        article = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "mt-40"))
+        )
+        
+        driver.execute_script("arguments[0].scrollIntoView(true);", article)
+
+        texts = article.find_elements(By.TAG_NAME, "p")
+
+        print(f"---------- количество найденных текстов: {len(texts)}")
+
+        article_texts = []
+
+        print("========================")
+        for text in texts:
+            article_texts.append(text.text)
+        print("========================")
+
+        return article_texts
+
+    except Exception as e:
+        print("Ошибка при скачивании изображения22:", e)
+
+
+
+
+
 
 def downloadImage(driver):
     try:
       
         image_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "article-pic")))
-        # Прокрутка до изображения
+     
         driver.execute_script("arguments[0].scrollIntoView(true);", image_element)
         image_url = image_element.get_attribute("src")
         print(f"Ссылка на изображение: {image_url}")
@@ -47,6 +79,8 @@ def downloadImage(driver):
             print(f"Не удалось скачать изображение, код ответа: {response.status_code}")
     except Exception as e:
         print("Ошибка при скачивании изображения:", e)
+
+
 
 def search_news_list(driver):
     time.sleep(3)
@@ -72,14 +106,18 @@ def search_news_list(driver):
 
             time.sleep(3)
             image_id = downloadImage(driver)
+            if (image_id != None):
+                print("вернулась строка " + image_id)
 
-            print("вернулась строка " + image_id)
+                new_news = News(sport=sport, date_time=full_date, title=title, image_id=image_id, article_texts=copy_news_text(driver))
+                news_list.append(new_news)
 
-            driver.back()
-            time.sleep(3)
+                driver.back()
+                time.sleep(3)
+            else:
+                print("video")
+                # TODO
 
-            new_news = News(sport=sport, date_time=full_date, title=title, image_id=image_id)
-            news_list.append(new_news)
 
             i += 1
         except Exception as e:

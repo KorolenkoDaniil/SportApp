@@ -50,11 +50,11 @@ fun HomePage(
                                 item { Spacer(modifier = Modifier.height(32.dp)) }
                                 item { Text(text = "Sport news", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
-                                item { VideoCardRow(videoState.videos.items) }
+                                item { NewsCardRow(newsState.news) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
                                 item { Text(text = "Highlights", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
-                                item { NewsCardRow(newsState.news) }
+                                item { VideoCardRow(videoState.videos.items) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
                             }
                         }

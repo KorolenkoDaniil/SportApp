@@ -38,7 +38,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Используем CORS
 app.UseCors("AllowAll");
 
 app.UseAuthorization();

@@ -40,10 +40,9 @@
               "RelativeDocumentMoniker": "SportAppServer\\Program.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs",
               "RelativeToolTip": "SportAppServer\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAB8AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T19:04:19.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T19:04:19.312Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "SportAppServer\\Entities\\News.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAIwBEAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T13:46:45.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T13:46:45.815Z"
             },
             {
               "$type": "Document",
@@ -68,8 +66,7 @@
               "RelativeToolTip": "SportAppServer\\Entities\\ApplicationContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T12:30:33.759Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T12:30:33.759Z"
             },
             {
               "$type": "Document",
@@ -79,7 +76,7 @@
               "RelativeDocumentMoniker": "SportAppServer\\Controllers\\NewsController.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\NewsController.cs",
               "RelativeToolTip": "SportAppServer\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T18:23:30.434Z",
               "EditorCaption": ""
@@ -94,8 +91,7 @@
               "RelativeToolTip": "SportAppServer\\PythonScript.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAewFkAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:05:22.856Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T11:05:22.856Z"
             }
           ]
         }

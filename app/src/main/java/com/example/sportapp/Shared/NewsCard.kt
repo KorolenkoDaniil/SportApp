@@ -17,16 +17,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.R
+import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.news.domain.NewsEntity
 import com.example.sportapp.ui.theme.style2
 
-
 @Composable
 fun NewsCard(news: NewsEntity) {
+
+    val painterNewsImage = rememberAsyncImagePainter(news.newsImage)
+
     Box(
         modifier = Modifier.padding(end = 24.dp)
     ) {
@@ -37,27 +38,28 @@ fun NewsCard(news: NewsEntity) {
             colors = cardColors(
                 containerColor = Color.White
             ),
-
-            ) {
+        ) {
             Box(
                 modifier = Modifier.fillMaxSize()
             ) {
                 Column {
                     Image(
-                        painter = painterResource(R.drawable.football),
+                        painter = painterNewsImage,
                         contentDescription = "newsImage",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .fillMaxHeight(0.6f),
-                        contentScale = ContentScale.Fit
+                            .fillMaxHeight(0.6f)
+                            .clip(shape = RoundedCornerShape(16.dp)),
+                        contentScale = ContentScale.FillWidth
                     )
-                    Box (modifier = Modifier
-                        .padding(horizontal = 8.dp, vertical = 4.dp
-                        )) {
-                        Text(text = news.text, style = style2, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                    Box(modifier = Modifier
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                    ) {
+                        Text(text = news.title, style = style2, maxLines = 2, overflow = TextOverflow.Ellipsis)
                     }
                 }
             }
         }
     }
 }
+
