@@ -36,18 +36,12 @@ def copy_news_text(driver):
         
         driver.execute_script("arguments[0].scrollIntoView(true);", article)
 
-        texts = article.find_elements(By.TAG_NAME, "p")
+        texts = article.text
 
-        print(f"---------- количество найденных текстов: {len(texts)}")
+        print(f"---------- количество найденных текстов: {texts}")
 
-        article_texts = []
 
-        print("========================")
-        for text in texts:
-            article_texts.append(text.text)
-        print("========================")
-
-        return article_texts
+        return texts
 
     except Exception as e:
         print("Ошибка при скачивании изображения22:", e)

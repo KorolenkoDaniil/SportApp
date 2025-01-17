@@ -20,7 +20,10 @@ namespace SportAppServer.Entities
         [JsonProperty("image_id")]
         public required string ImageId { get; set; }
 
-       
+        [JsonProperty("article_texts")]
+        public required string ArticleText { get; set; }
+
+
 
         public override string ToString()
         {
