@@ -24,6 +24,7 @@ import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage
+import com.example.sportapp.pages.NewsPage
 import com.example.sportapp.pages.VideoPage
 
 // класс, который определяет текущий экран
@@ -33,6 +34,7 @@ sealed class Screen(val route: String) {
     object Matches : Screen("matches")
     object Video : Screen("video")
     object Like : Screen("like")
+    object News : Screen("news/{newsId}")
 }
 
 
@@ -81,10 +83,31 @@ class mainActivity : ComponentActivity() {
                         .padding(innerPadding)
                         .padding(horizontal = 8.dp)
                 ) {
-                    composable(Screen.Home.route) { HomePage(newsState,  state, videoState, newsViewModel, matchesViewModel, videoViewModel, appActivity)}
-                    composable(Screen.Matches.route) { MatchesPage(matchesViewModel, state, appActivity) }
+                    composable(Screen.Home.route) {
+                        HomePage(
+                            newsState,
+                            state,
+                            videoState,
+                            newsViewModel,
+                            matchesViewModel,
+                            videoViewModel,
+                            appActivity,
+                            navController
+                        )
+                    }
+                    composable(Screen.Matches.route) {
+                        MatchesPage(
+                            matchesViewModel,
+                            state,
+                            appActivity
+                        )
+                    }
                     composable(Screen.Video.route) { VideoPage(appActivity) }
                     composable(Screen.Like.route) { LikePage(appActivity) }
+                    composable(Screen.News.route) { backStackEntry ->
+                        val newsDateTime = backStackEntry.arguments?.getString("newsId")
+                        NewsPage(appActivity, newsDateTime!!)
+                    }
                 }
             }
         }

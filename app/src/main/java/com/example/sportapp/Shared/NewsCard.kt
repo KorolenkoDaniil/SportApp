@@ -1,5 +1,6 @@
 package com.example.sportapp.shared
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,12 +20,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.news.domain.NewsEntity
 import com.example.sportapp.ui.theme.style2
 
 @Composable
-fun NewsCard(news: NewsEntity) {
+fun NewsCard(news: NewsEntity, navController: NavHostController) {
 
     val painterNewsImage = rememberAsyncImagePainter(news.newsImage)
 
@@ -38,6 +40,13 @@ fun NewsCard(news: NewsEntity) {
             colors = cardColors(
                 containerColor = Color.White
             ),
+
+            onClick = {
+                val newsDateTime = news.dateTime
+                Log.d("ttt", "pageeee  $newsDateTime" )
+
+                navController.navigate("news/$newsDateTime")
+            }
         ) {
             Box(
                 modifier = Modifier.fillMaxSize()

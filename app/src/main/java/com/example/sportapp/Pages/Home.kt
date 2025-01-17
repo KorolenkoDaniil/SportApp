@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -30,9 +31,9 @@ fun HomePage(
     newsViewModel: NewsActivityViewModel,
     mainViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
-    appActivity: AppActivityViewModel
+    appActivity: AppActivityViewModel,
+    navController: NavHostController
 ) {
-    appActivity.changePageName("Home")
     when (state) {
 
         is MatchesState.MatchesContent -> {
@@ -45,12 +46,13 @@ fun HomePage(
 
                         is NewsSate.NewsContent -> {
 
+
                             LazyColumn {
                                 item { CurrentMatch(mainViewModel.nearestMatch) }
                                 item { Spacer(modifier = Modifier.height(32.dp)) }
                                 item { Text(text = "Sport news", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
-                                item { NewsCardRow(newsState.news) }
+                                item { NewsCardRow(newsState.news, navController) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
                                 item { Text(text = "Highlights", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
@@ -86,3 +88,76 @@ fun HomePage(
         }
     }
 }
+
+
+//
+//
+//NavHost(
+//navController = matchesMatchInfoNavController
+//
+//startDestination = MatchesMatchInfoScreen.MatchesPage.route
+//) {
+//
+//    //путь и контент списка матчей
+//    composable(MatchesMatchInfoScreen.MatchesPage.route) {
+//        Log.d("tttDebug", "NavHost: маршрут изменён")
+//
+//        appActivity.changePageName("Match schedule")
+//        //контент страницы страницы матчей
+//        Column {
+//
+//            //календарь
+//            CalendarTab(pageState, state)
+//            Spacer(Modifier.height(16.dp))
+//
+//            //список матчей
+//            MatchesList(
+//                pageState = pageState,
+//                matchDays = state.matchDays,
+//                rankings = rankingsState.rankings,
+//                matchesMatchInfoNavController
+//            )
+//
+//        }
+//    }
+//
+//
+//    composable(
+//        route = MatchesMatchInfoScreen.MatchInfoPage.route
+//    ) { backStackEntry ->
+//        Log.d("tttDebug", "NavHost: маршрут изменён")
+//        val matchId = backStackEntry.arguments?.getString("matchId")
+//
+//
+//        val matchReportViewModel: MatchReportActivitySoccerViewModel = viewModel()
+//        val matchViewModel: MatchActivitySoccerViewModel = viewModel()
+//
+//        if (matchId != null) {
+//
+//            matchReportViewModel.loadMatchReport(matchId)
+//            matchViewModel.loadMatchData(matchId)
+//
+//            MatchInfo(
+//                matchReportViewModel,
+//                matchViewModel,
+//                appActivity
+//            )
+//        }
+//    }
+//
+//}
+//}
+//}
+//
+//
+////загрузка ранкингов
+//RankingsState.Load -> {
+//    Loading()
+//}
+//
+//
+////ошибка загрузки ранкингов
+//is RankingsState.Error -> {
+//    CommonError(matchesViewModel)
+//}
+

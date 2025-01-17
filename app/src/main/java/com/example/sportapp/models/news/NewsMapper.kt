@@ -16,7 +16,8 @@ class NewsMapper {
                 sport = item.sport,
                 title = item.title,
                 imageId = item.imageId,
-                newsImage = newsBaseUrl + "/images/" + item.imageId
+                newsImage = newsBaseUrl + "/images/" + item.imageId,
+                articleText = item.articleText
             )
         }
     }

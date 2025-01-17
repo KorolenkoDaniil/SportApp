@@ -9,4 +9,9 @@ data class NewsEntity(
     val title: String,
     val imageId: String,
     val newsImage: String,
+    val articleText: String,
 )
+
+
+
+

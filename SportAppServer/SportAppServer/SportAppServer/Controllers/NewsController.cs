@@ -12,7 +12,7 @@ namespace SportAppServer.Controllers
         [HttpGet]
         public  string Get()
         {
-            using (var db = new ApplicationContext())
+            using (var db = new NewsContext())
             {
 
                 List<News> list = db.News

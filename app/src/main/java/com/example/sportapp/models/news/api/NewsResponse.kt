@@ -9,4 +9,8 @@ data class NewsResponse(
     @SerialName("sport") val sport: String,
     @SerialName("title") val title: String,
     @SerialName("image_id") val imageId: String,
+    @SerialName("article_texts") val articleText: String,
 )
+
+
+

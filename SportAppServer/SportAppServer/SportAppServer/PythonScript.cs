@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SportAppServer.Entities;
 using System.Diagnostics;
 
@@ -74,23 +75,25 @@ namespace SportAppServer
                 return;
             }
 
-            using (var db = new ApplicationContext())
+            using (var newsDB = new NewsContext())
             {
-                foreach (var newsItem in newsList)
+                try
                 {
-                    var newsFound = db.News.Find(newsItem.DateTime);
-                    if (newsFound == null)
+                    await newsDB.AddNewsToDBAsync(newsList);
+                    await newsDB.SaveChangesAsync();
+                }
+                catch (DbUpdateException ex)
+                {
+                    if (ex.InnerException != null)
                     {
-                        db.News.Add(newsItem);
-                        Console.WriteLine($"Новость добавлена: {newsItem.Title}");
+                        Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
                     }
                     else
                     {
-                        Console.WriteLine($"Новость уже существует: {newsItem.Title}");
+                        Console.WriteLine($"Error: {ex.Message}");
                     }
                 }
 
-                db.SaveChanges();
             }
         }
     }
