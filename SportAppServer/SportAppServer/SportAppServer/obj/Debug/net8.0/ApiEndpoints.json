@@ -1,12 +1,38 @@
 [
   {
-    "ContainingType": "SportAppServer.Controllers.NewsController",
+    "ContainingType": "NewsController",
     "Method": "Get",
-    "RelativePath": "NewsController",
+    "RelativePath": "NewsController/GetNews",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "NewsController",
+    "Method": "GetOneNews",
+    "RelativePath": "NewsController/GetOneNews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dateTime",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.String",

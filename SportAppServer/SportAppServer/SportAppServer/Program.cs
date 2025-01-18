@@ -45,9 +45,9 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllers();
 
-PythonScript pythonScript = new PythonScript();
+//PythonScript pythonScript = new PythonScript();
 
-Timer timer = new Timer(state => pythonScript.RunPythonScriptAsync(), null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
+//Timer timer = new Timer(state => pythonScript.RunPythonScriptAsync(), null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
 
 app.Run();
 
