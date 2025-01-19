@@ -17,7 +17,7 @@ import kotlinx.serialization.json.Json
 
 class NewsRepository {
 
-    private val newsBaseUrl = "https://b886-57-129-2-13.ngrok-free.app"
+    private val newsBaseUrl = "https://0ea5-57-129-1-101.ngrok-free.app"
     private val controllerPath = "NewsController"
     private val getNewsController = "GetNews"
     private val getOneNewsController = "GetOneNews"

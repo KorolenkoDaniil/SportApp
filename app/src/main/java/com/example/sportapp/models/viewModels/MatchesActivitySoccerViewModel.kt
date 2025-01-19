@@ -43,19 +43,19 @@ class MatchesActivitySoccerViewModel : ViewModel(), SoccerViewModelInterface<Mat
 
     private fun searchNearestMatch(matchDays: List<MatchDayEntity>): MatchEntity {
 
-        var nearestMatch: MatchEntity?
+        var nearestMatch: MatchEntity? = null
 
         val currentTime = ZonedDateTime.now()
-        nearestMatch = matchDays[0].matches[0]
         var minimumTimeDifference = Long.MAX_VALUE
 
         for (day in matchDays) {
 
-            nearestMatch = day.matches.find { it.matchStatus == 1 }
-
-            if (nearestMatch != null){
-                return  nearestMatch
+            val matchWithStatusOne = day.matches.find { it.matchStatus == 1 }
+            if (matchWithStatusOne != null) {
+                Log.d("Nearest Match", "Found match with status 1: ${matchWithStatusOne.teamAName} vs ${matchWithStatusOne.teamBName}")
+                return matchWithStatusOne
             }
+
             for (matches in day.matches) {
 
                 val matchTime = matches.localDateTimeMatchStart
@@ -69,10 +69,10 @@ class MatchesActivitySoccerViewModel : ViewModel(), SoccerViewModelInterface<Mat
             }
         }
 
-        Log.d("Nearest Match", "${nearestMatch?.teamAName} vs ${nearestMatch?.teamBName}")
+        Log.d("Nearest Match", "${nearestMatch!!.teamAName} vs ${nearestMatch.teamBName}")
 
         
-        return nearestMatch!!
+        return nearestMatch
     }
 }
 

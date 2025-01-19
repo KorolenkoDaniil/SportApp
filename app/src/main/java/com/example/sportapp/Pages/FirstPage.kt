@@ -10,7 +10,7 @@ import com.example.sportapp.models.viewModels.NewsSate
 import com.example.sportapp.models.viewModels.VideosState
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.shared.CommonError
-import com.example.sportapp.widgets.FirstPageElements
+import com.example.sportapp.widgets.first_page.FirstPageElements
 
 @Composable
 fun FirstPage(

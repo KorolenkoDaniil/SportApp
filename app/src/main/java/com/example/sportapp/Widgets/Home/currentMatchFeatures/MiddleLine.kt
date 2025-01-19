@@ -18,6 +18,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.soccer.api.domain.MatchEntity
+import com.example.sportapp.ui.theme.style12
 import com.example.sportapp.ui.theme.style4
 import com.example.sportapp.ui.theme.style5
 import com.example.sportapp.ui.theme.style6
@@ -37,8 +38,11 @@ fun MiddleLine(
     val mainCardTextStyle: TextStyle
 
 
+
     if (nearestMatch.localDateTimeMatchStart.isBefore(currentTime) || nearestMatch.matchStatus == 1){
+
         currentMatchCardText = "${nearestMatch.goalsTeamA} : ${nearestMatch.goalsTeamB}"
+
         mainCardTextStyle = style5
     }
     else {
@@ -80,11 +84,30 @@ fun MiddleLine(
             )
         }
 
-        Text(
-            text = currentMatchCardText,
-            modifier = Modifier.align(Alignment.CenterVertically),
-            style = mainCardTextStyle
-        )
+        if (nearestMatch.matchStatus == 1){
+            Column (
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = currentMatchCardText,
+                    style = mainCardTextStyle,
+                )
+                Text(
+                    text = nearestMatch.minute.toString() + "'",
+                    style = style12,
+                )
+            }
+        }
+        else {
+            Text(
+                text = currentMatchCardText,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = mainCardTextStyle
+            )
+        }
+
+
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
