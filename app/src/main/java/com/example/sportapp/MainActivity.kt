@@ -13,6 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -21,13 +22,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
+import com.example.sportapp.pages.FirstPage
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.MatchesPage
 import com.example.sportapp.pages.NewsPage
 import com.example.sportapp.pages.VideoPage
-
-// класс, который определяет текущий экран
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
@@ -35,17 +35,17 @@ sealed class Screen(val route: String) {
     object Video : Screen("video")
     object Like : Screen("like")
     object News : Screen("news/{newsId}")
+    object FirstPage : Screen("firstPage")
 }
 
 
 class mainActivity : ComponentActivity() {
-    @SuppressLint("CoroutineCreationDuringComposition")
+    @SuppressLint("CoroutineCreationDuringComposition", "StateFlowValueCalledInComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
             val appActivity: AppActivityViewModel = viewModel()
-
 
             val newsViewModel: NewsActivityViewModel = viewModel()
             val newsState by newsViewModel.getState().collectAsState()
@@ -56,36 +56,53 @@ class mainActivity : ComponentActivity() {
             val videoViewModel: YoutubeActivityViewModel = viewModel()
             val videoState by videoViewModel.getState().collectAsState()
 
-
             val navController = rememberNavController()
+
+            val showBars by appActivity.showBars.collectAsState()
 
             Scaffold(
                 containerColor = Color(0xFFF6F6F6),
 
-                //нижняяя навигационная панель
                 bottomBar = {
-                    BottomNavBar(
-                        navController = navController,
-                    )
+                    if (showBars) {
+                        BottomNavBar(navController = navController)
+                    }
                 },
 
-                //верхняя панель
-                topBar = { TopAppBar(appActivity) }
-
-
+                topBar = {
+                    if (showBars) {
+                        TopAppBar(appActivity)
+                    }
+                }
             ) { innerPadding ->
 
-                //контролер навигации в приложжениии и пути навигации
+                val paddings: Dp
+
+                if (showBars) paddings = 8.dp else paddings = 0.dp
+
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.Home.route,
+                    startDestination = Screen.FirstPage.route,
                     modifier = Modifier
                         .padding(innerPadding)
-                        .padding(horizontal = 8.dp)
+                        .padding( horizontal = paddings)
                 ) {
+
+                    composable(Screen.FirstPage.route) {
+                        FirstPage(
+                            newsState ,
+                            state,
+                            videoState,
+                            newsViewModel,
+                            matchesViewModel,
+                            videoViewModel,
+                            appActivity,
+                            navController)
+                    }
+
                     composable(Screen.Home.route) {
                         HomePage(
-                            newsState,
+                            newsState ,
                             state,
                             videoState,
                             newsViewModel,
@@ -96,17 +113,19 @@ class mainActivity : ComponentActivity() {
                         )
                     }
                     composable(Screen.Matches.route) {
-                        MatchesPage(
-                            matchesViewModel,
-                            state,
-                            appActivity
-                        )
+                        MatchesPage(matchesViewModel, state, appActivity)
                     }
                     composable(Screen.Video.route) { VideoPage(appActivity) }
                     composable(Screen.Like.route) { LikePage(appActivity) }
                     composable(Screen.News.route) { backStackEntry ->
                         val newsDateTime = backStackEntry.arguments?.getString("newsId")
-                        NewsPage(appActivity, newsDateTime!!, newsState, navController, newsViewModel)
+                        NewsPage(
+                            appActivity,
+                            newsDateTime!!,
+                            newsState,
+                            navController,
+                            newsViewModel
+                        )
                     }
                 }
             }
