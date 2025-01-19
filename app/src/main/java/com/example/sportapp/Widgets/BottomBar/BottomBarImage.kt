@@ -19,10 +19,16 @@ fun BottomBarImage(
     pictureId: Int,
     navController: NavController,
 ) {
-
-
+    val isSelected: Boolean
     val currentRoute by navController.currentBackStackEntryAsState()
-    val isSelected = currentRoute?.destination?.route == newPage
+
+    if ((currentRoute?.destination?.route?.contains("news") == true) && (newPage == "home")){
+        isSelected = true
+    }
+    else {
+        isSelected = currentRoute?.destination?.route == newPage
+    }
+
 
     Image(
         painter = painterResource(id = pictureId),

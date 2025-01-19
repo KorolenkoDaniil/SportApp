@@ -5,10 +5,7 @@ import com.example.sportapp.models.news.domain.NewsEntity
 
 class NewsMapper {
 
-    fun getNewsEntityList (response: List<NewsResponse>, newsBaseUrl: String): List<NewsEntity> {
-
-//        val newsBaseUrl = "https://d9b9-51-159-14-212.ngrok-free.app"
-
+    fun getNewsEntityList(response: List<NewsResponse>, newsBaseUrl: String): List<NewsEntity> {
         return response.map { item ->
 
             NewsEntity(
@@ -20,5 +17,17 @@ class NewsMapper {
                 articleText = item.articleText
             )
         }
+    }
+
+
+    fun getOneNewsEntity(response: NewsResponse, newsBaseUrl: String): NewsEntity {
+        return NewsEntity(
+            dateTime = response.dateTime,
+            sport = response.sport,
+            title = response.title,
+            imageId = response.imageId,
+            newsImage = newsBaseUrl + "/images/" + response.imageId,
+            articleText = response.articleText
+        )
     }
 }

@@ -9,6 +9,7 @@ import com.example.sportapp.shared.NewsCard
 @Composable
 
 fun NewsCardRow (newsList: List<NewsEntity>,  navController: NavHostController){
+
     LazyRow {
         items(newsList.size) { index ->
 

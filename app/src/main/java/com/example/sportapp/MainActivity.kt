@@ -106,7 +106,7 @@ class mainActivity : ComponentActivity() {
                     composable(Screen.Like.route) { LikePage(appActivity) }
                     composable(Screen.News.route) { backStackEntry ->
                         val newsDateTime = backStackEntry.arguments?.getString("newsId")
-                        NewsPage(appActivity, newsDateTime!!)
+                        NewsPage(appActivity, newsDateTime!!, newsState, navController, newsViewModel)
                     }
                 }
             }

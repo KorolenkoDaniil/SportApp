@@ -17,8 +17,10 @@ import kotlinx.serialization.json.Json
 
 class NewsRepository {
 
-    private val newsBaseUrl = "https://c7b3-2001-41d0-700-760d-00.ngrok-free.app"
+    private val newsBaseUrl = "https://f94e-51-159-195-47.ngrok-free.app"
     private val controllerPath = "NewsController"
+    private val getNewsController = "GetNews"
+    private val getOneNewsController = "GetOneNews"
 
     val newsMapper = NewsMapper()
 
@@ -52,7 +54,7 @@ class NewsRepository {
 
         builder.url {
             (newsBaseUrl)
-            encodedPath = "/$controllerPath"
+            encodedPath = "/$controllerPath/$getNewsController"
         }
 
         val requestUrl = builder.url.toString()
@@ -66,9 +68,38 @@ class NewsRepository {
 
         Log.d("tttNews", responseString)
 
-        val newsResponse: List<NewsResponse> = json.decodeFromString(responseString)
+        val oneNewsResponse: List<NewsResponse> = json.decodeFromString(responseString)
 
-        return newsMapper.getNewsEntityList(newsResponse, newsBaseUrl)
+        return newsMapper.getNewsEntityList(oneNewsResponse, newsBaseUrl)
+    }
+
+
+
+    suspend fun getOneNews(dateTime: String): NewsEntity {
+        val builder = HttpRequestBuilder()
+
+        builder.method = HttpMethod.Get
+
+        builder.url {
+            (newsBaseUrl)
+            encodedPath = "/$controllerPath/$getOneNewsController"
+            this.parameters.append("dateTime", dateTime)
+        }
+
+        val requestUrl = builder.url.toString()
+        Log.d("tttNews", "Request URL: $requestUrl")
+
+        val response = client.request(builder)
+
+        Log.d("tttNews", response.toString())
+
+        val responseString: String = response.body()
+
+        Log.d("tttNews", responseString)
+
+        val oneNewsResponse: NewsResponse = json.decodeFromString(responseString)
+
+        return newsMapper.getOneNewsEntity(oneNewsResponse, newsBaseUrl)
     }
 }
 
