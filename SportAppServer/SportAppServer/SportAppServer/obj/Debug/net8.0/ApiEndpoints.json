@@ -1,26 +1,27 @@
 [
   {
-    "ContainingType": "NewsController",
-    "Method": "Get",
+    "ContainingType": "SportAppServer.Controllers.NewsController",
+    "Method": "GetNews",
     "RelativePath": "NewsController/GetNews",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "NewsController",
+    "ContainingType": "SportAppServer.Controllers.NewsController",
     "Method": "GetOneNews",
     "RelativePath": "NewsController/GetOneNews",
     "HttpMethod": "GET",
@@ -33,16 +34,6 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   }
 ]

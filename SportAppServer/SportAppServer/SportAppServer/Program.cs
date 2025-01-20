@@ -1,6 +1,17 @@
+using Microsoft.EntityFrameworkCore;
 using SportAppServer;
+using SportAppServer.Entities.context;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+builder.Services.AddDbContext<NewsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); 
+
+builder.Services.AddControllers();
+
+
 
 
 builder.Services.AddCors(options =>

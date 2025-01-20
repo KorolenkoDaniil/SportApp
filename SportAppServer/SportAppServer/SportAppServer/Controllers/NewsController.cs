@@ -1,40 +1,69 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using SportAppServer.Entities;
+using Microsoft.EntityFrameworkCore;
+using SportAppServer.Entities.context;
+using SportAppServer.Entities.Pagination;
 
-[Route("NewsController")]
-[ApiController]
-public class NewsController : Controller
+namespace SportAppServer.Controllers
 {
-    [HttpGet("GetNews")]
-    public string Get()
+    [Route("NewsController")]
+    [ApiController]
+    public class NewsController : Controller
     {
-        using (var db = new NewsContext())
+        private readonly NewsContext _dbContext;
+
+        public NewsController(NewsContext dbContext)
         {
-            List<News> list = db.News
-                              .OrderByDescending(news => news.DateTime)
-                              .Take(20)
-                              .ToList();
-
-            foreach (var item in list)
-            {
-                Console.WriteLine(item.Title);
-            }
-
-            return JsonConvert.SerializeObject(list);
+            _dbContext = dbContext;
         }
-    }
 
-    [HttpGet("GetOneNews")]
-    public string GetOneNews(string dateTime)
-    {
-        using (var db = new NewsContext())
+    
+        [HttpGet("GetNews")]
+        public async Task<IActionResult> GetNews(int pageNumber = 1, int pageSize = 10)
+        {
+    
+            int totalItems = await _dbContext.News.CountAsync();
+
+            
+            var list = await _dbContext.News
+                .OrderByDescending(news => news.DateTime)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+      
+            var pageInfo = new NewsPagination
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalItems = totalItems
+            };
+
+
+            var result = new
+            {
+                PageInfo = pageInfo,
+                News = list
+            };
+
+            return Json(result); 
+        }
+
+
+
+        [HttpGet("GetOneNews")]
+        public async Task<IActionResult> GetOneNews(string dateTime)
         {
             DateTime newsDateTime = DateTime.Parse(dateTime);
 
-            News news = db.News.FirstOrDefault(item => item.DateTime == newsDateTime);
+            var news = await _dbContext.News
+                .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
 
-            return JsonConvert.SerializeObject(news);
+            if (news == null)
+            {
+                return NotFound(); 
+            }
+
+            return Json(news);
         }
     }
 }
