@@ -43,7 +43,6 @@ fun MatchesPage(
 
     Column {
 
-
         //кнопки для навигации межджду контентом, потом переделать
         MatchesPageNavigation(matchesRankingsNavController)
 

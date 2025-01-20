@@ -1,6 +1,7 @@
 package com.example.sportapp.pages
 
 import AppActivityViewModel
+import android.util.Log
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,7 +32,6 @@ fun HomePage(
     newsViewModel: NewsActivityViewModel,
     mainViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
-    appActivity: AppActivityViewModel,
     navController: NavHostController
 ) {
     when (state) {
@@ -52,7 +52,7 @@ fun HomePage(
                                 item { Spacer(modifier = Modifier.height(32.dp)) }
                                 item { Text(text = "Sport news", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
-                                item { NewsCardRow(newsState.news, navController) }
+                                item { NewsCardRow(navController,newsViewModel,newsState.news) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
                                 item { Text(text = "Highlights", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
@@ -61,9 +61,10 @@ fun HomePage(
                             }
                         }
 
-                        is NewsSate.Error ->
+                        is NewsSate.Error -> {
+                            Log.d("tttNews", "ошибка Home")
                             CommonError(newsViewModel)
-
+                        }
 
                         is NewsSate.Load -> Loading()
                     }

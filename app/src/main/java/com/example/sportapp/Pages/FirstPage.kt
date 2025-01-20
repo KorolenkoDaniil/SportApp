@@ -1,6 +1,7 @@
 package com.example.sportapp.pages
 
 import AppActivityViewModel
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
@@ -28,7 +29,10 @@ fun FirstPage(
             FirstPageElements()
         }
 
-        is NewsSate.Error -> CommonError(newsViewModel)
+        is NewsSate.Error -> {
+            Log.d("tttNews", "ошибка FirstPage")
+            CommonError(newsViewModel)
+        }
         
         is NewsSate.NewsContent -> {
             

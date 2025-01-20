@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.models.news.NewsRepository
+import com.example.sportapp.models.news.domain.NewsEntity
 import com.example.sportapp.models.news.domain.NewsListEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class NewsActivityViewModel : ViewModel(), NewsViewModelInterface<NewsSate> {
 
-    var listOfLoadedNews = null
+    var listOfLoadedNews = mutableListOf<NewsEntity>()
 
     override val state: MutableStateFlow<NewsSate> = MutableStateFlow(NewsSate.Load)
 
@@ -34,7 +35,10 @@ class NewsActivityViewModel : ViewModel(), NewsViewModelInterface<NewsSate> {
                 val pageWithNews = newsRepository.getNews(pageNumber)
                 Log.d("tttNews", "${pageWithNews.pageNumber}  ${pageWithNews.totalPages}  ${pageWithNews.news}")
 
-                state.value = NewsSate.NewsContent(pageWithNews)
+                val listOfPages = NewsSate.NewsContent(pageWithNews)
+
+                listOfLoadedNews.addAll(listOfPages.news.news)
+                state.value = listOfPages
             } catch (e: Throwable) {
                 Log.e("tttNews", "Error loading news data: ${e.message}", e)
                 state.value = NewsSate.Error(e)

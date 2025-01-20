@@ -1,6 +1,7 @@
 package com.example.sportapp.pages
 
 import AppActivityViewModel
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -92,7 +93,7 @@ fun NewsPage(
                                         .height(32.dp))
                             }
 
-                            item { NewsCardRow(newsState.news, navController) }
+                            item { NewsCardRow( navController, newsViewModel, newsState.news) }
 
                             item {
                                 Box(
@@ -104,7 +105,10 @@ fun NewsPage(
                     }
                 }
 
-                is NewsSate.Error -> CommonError(newsViewModel)
+                is NewsSate.Error -> {
+                    Log.d("tttNews", "ошибка newsPage")
+                    CommonError(newsViewModel)
+                }
 
                 is NewsSate.Load -> Loading()
 
