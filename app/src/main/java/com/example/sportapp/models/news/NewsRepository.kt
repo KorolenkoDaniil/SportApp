@@ -1,8 +1,10 @@
 package com.example.sportapp.models.news
 
 import android.util.Log
+import com.example.sportapp.models.news.api.NewsItemResponse
 import com.example.sportapp.models.news.api.NewsResponse
 import com.example.sportapp.models.news.domain.NewsEntity
+import com.example.sportapp.models.news.domain.NewsListEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpResponseValidator
@@ -17,7 +19,7 @@ import kotlinx.serialization.json.Json
 
 class NewsRepository {
 
-    private val newsBaseUrl = "https://23c7-136-244-117-221.ngrok-free.app"
+    private val newsBaseUrl = "https://6b85-136-244-117-221.ngrok-free.app"
     private val controllerPath = "NewsController"
     private val getNewsController = "GetNews"
     private val getOneNewsController = "GetOneNews"
@@ -47,7 +49,7 @@ class NewsRepository {
         }
     }
 
-    suspend fun getNews(): List<NewsEntity> {
+    suspend fun getNews(pageNumber: Int): NewsListEntity {
         val builder = HttpRequestBuilder()
 
         builder.method = HttpMethod.Get
@@ -55,6 +57,7 @@ class NewsRepository {
         builder.url {
             (newsBaseUrl)
             encodedPath = "/$controllerPath/$getNewsController"
+            this.parameters.append("pageNumber", pageNumber.toString())
         }
 
         val requestUrl = builder.url.toString()
@@ -68,7 +71,7 @@ class NewsRepository {
 
         Log.d("tttNews", responseString)
 
-        val oneNewsResponse: List<NewsResponse> = json.decodeFromString(responseString)
+        val oneNewsResponse: NewsResponse = json.decodeFromString(responseString)
 
         return newsMapper.getNewsEntityList(oneNewsResponse, newsBaseUrl)
     }
@@ -97,7 +100,7 @@ class NewsRepository {
 
         Log.d("tttNews", responseString)
 
-        val oneNewsResponse: NewsResponse = json.decodeFromString(responseString)
+        val oneNewsResponse: NewsItemResponse = json.decodeFromString(responseString)
 
         return newsMapper.getOneNewsEntity(oneNewsResponse, newsBaseUrl)
     }

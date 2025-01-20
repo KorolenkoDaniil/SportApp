@@ -31,21 +31,17 @@ namespace SportAppServer.Controllers
                 .ToListAsync();
 
       
-            var pageInfo = new NewsPagination
+            var page = new NewsPagination
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
-                TotalItems = totalItems
-            };
-
-
-            var result = new
-            {
-                PageInfo = pageInfo,
+                TotalItems = totalItems,
                 News = list
             };
 
-            return Json(result); 
+
+           
+            return Json(page); 
         }
 
 

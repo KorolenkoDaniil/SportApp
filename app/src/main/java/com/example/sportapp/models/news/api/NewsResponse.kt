@@ -5,12 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NewsResponse(
-    @SerialName("date_time") val dateTime: String,
-    @SerialName("sport") val sport: String,
-    @SerialName("title") val title: String,
-    @SerialName("image_id") val imageId: String,
-    @SerialName("article_texts") val articleText: String,
+    @SerialName("pageNumber") val pageNumber: Int,
+    @SerialName("pageSize") val pageSize: Int,
+    @SerialName("totalItems") val totalItems: Int,
+    @SerialName("totalPages") val totalPages: Int,
+    @SerialName("news") val news: List<NewsItemResponse>,
 )
-
 
 

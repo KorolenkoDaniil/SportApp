@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\entities\\context\\newscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\entities\\context\\newscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\pythonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\pythonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\entities\\pagination\\newspagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\entities\\pagination\\newspagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\entities\\context\\newscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\entities\\context\\newscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\entities\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\entities\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\entities\\pagination\\newspagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\entities\\pagination\\newspagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\pythonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\pythonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,11 +38,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\appsettings.json",
               "RelativeDocumentMoniker": "SportAppServer\\appsettings.json",
@@ -55,20 +55,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "NewsPagination.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Pagination\\NewsPagination.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Entities\\Pagination\\NewsPagination.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Pagination\\NewsPagination.cs",
               "RelativeToolTip": "SportAppServer\\Entities\\Pagination\\NewsPagination.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAhwBIAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T09:15:07.962Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Program.cs",
@@ -81,52 +81,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "News.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Models\\News.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Entities\\Models\\News.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Models\\News.cs",
               "RelativeToolTip": "SportAppServer\\Entities\\Models\\News.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T13:46:45.815Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "NewsContext.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Context\\NewsContext.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Entities\\Context\\NewsContext.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Context\\NewsContext.cs",
               "RelativeToolTip": "SportAppServer\\Entities\\Context\\NewsContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABUAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T12:30:33.759Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "NewsController.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\NewsController.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Controllers\\NewsController.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\NewsController.cs",
               "RelativeToolTip": "SportAppServer\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAUwDUAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T18:23:30.434Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "PythonScript.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\PythonScript.cs",
               "RelativeDocumentMoniker": "SportAppServer\\PythonScript.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\PythonScript.cs",
               "RelativeToolTip": "SportAppServer\\PythonScript.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAowE8AAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAcwE8AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T11:05:22.856Z",
               "EditorCaption": ""
