@@ -19,11 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.sportapp.shared.BottomBar.UserImage
+import androidx.navigation.NavHostController
+import com.example.sportapp.models.user.AuthViewModel
+import com.example.sportapp.widgets.appBar.UserImage
 import com.example.sportapp.ui.theme.Blue100
 
 @Composable
-fun TopAppBar( appActivity: AppActivityViewModel ) {
+fun TopAppBar(appActivity: AppActivityViewModel, authViewModel: AuthViewModel,  navController: NavHostController) {
 
     val pageName by appActivity.pageName.collectAsState()
 
@@ -34,13 +36,15 @@ fun TopAppBar( appActivity: AppActivityViewModel ) {
             .padding(bottom = 16.dp)
     ) {
 
-        Box(
+        Box (
             modifier = Modifier
+                .background(color = Blue100)
                 .fillMaxWidth()
                 .clip(shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
-                .background(color = Blue100)
-                .height(90.dp)
-        )
+                .height(90.dp),
+        ){
+
+        }
 
         Box(
             modifier = Modifier
@@ -62,7 +66,10 @@ fun TopAppBar( appActivity: AppActivityViewModel ) {
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            UserImage()
+            UserImage(
+                authViewModel = authViewModel,
+                navController = navController
+            )
         }
     }
 }

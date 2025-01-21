@@ -48,55 +48,6 @@ class mainActivity : ComponentActivity() {
                 matchesViewModel = matchesViewModel,
                 videoViewModel = videoViewModel
             )
-
-
-//                NavHost(
-//                    navController = navController,
-//                    startDestination = Screen.FirstPage.route,
-//                    modifier = Modifier
-//                        .padding(innerPadding)
-//                        .padding( horizontal = paddings)
-//                ) {
-//
-//                    composable(Screen.FirstPage.route) {
-//                        FirstPage(
-//                            newsState ,
-//                            state,
-//                            videoState,
-//                            newsViewModel,
-//                            matchesViewModel,
-//                            videoViewModel,
-//                            appActivity,
-//                            navController)
-//                    }
-//
-//                    composable(Screen.Home.route) {
-//                        HomePage(
-//                            newsState ,
-//                            state,
-//                            videoState,
-//                            newsViewModel,
-//                            matchesViewModel,
-//                            videoViewModel,
-//                            navController
-//                        )
-//                    }
-//                    composable(Screen.Matches.route) {
-//                        MatchesPage(matchesViewModel, state, appActivity)
-//                    }
-//                    composable(Screen.Video.route) { VideoPage(appActivity) }
-//                    composable(Screen.Like.route) { LikePage(appActivity) }
-//                    composable(Screen.News.route) { backStackEntry ->
-//                        val newsDateTime = backStackEntry.arguments?.getString("newsId")
-//                        NewsPage(
-//                            appActivity,
-//                            newsDateTime!!,
-//                            newsState,
-//                            navController,
-//                            newsViewModel
-//                        )
-//                    }
-//                }
         }
     }
 }

@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -39,17 +39,12 @@ fun HomePage(
 ) {
 
 
-    val authState = authViewModel.authState.observeAsState()
-
-//    LaunchedEffect (authState.value) {
-//
-//
+    val authState = authViewModel.authState.collectAsState()
 
     when (authState.value) {
         is AuthState.Unauthenticated -> navController.navigate("login")
         else -> Unit
     }
-//    }
 
 
     when (state) {

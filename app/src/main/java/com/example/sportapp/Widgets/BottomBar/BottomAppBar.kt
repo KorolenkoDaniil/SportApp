@@ -22,13 +22,11 @@ fun BottomNavBar(
         containerColor = Color(0xFFFFFFFF)
     ) {
 
-        //строка, содержащая навигационные иконки
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
         ) {
 
-            //навигационные иконки
             BottomBarImage("home", R.drawable.home, navController)
             BottomBarImage("matches", R.drawable.matches, navController)
             BottomBarImage("video", R.drawable.videos, navController)

@@ -10,12 +10,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.firebaseexample.pages.LoginPage
 import com.example.firebaseexample.pages.SignupPage
 import com.example.sportapp.models.user.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
@@ -27,20 +25,23 @@ import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.pages.FirstPage
 import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LikePage
+import com.example.sportapp.pages.LoginPage
 import com.example.sportapp.pages.MatchesPage
 import com.example.sportapp.pages.NewsPage
 import com.example.sportapp.pages.VideoPage
+import com.example.sportapp.shared.Loading
 
 
 sealed class Screen(val route: String) {
-    object Home : Screen("home")
-    object Matches : Screen("matches")
-    object Video : Screen("video")
-    object Like : Screen("like")
-    object News : Screen("news/{newsId}")
-    object FirstPage : Screen("firstPage")
-    object LoginPage : Screen("login")
-    object SignupPage : Screen("signup")
+    data object Home : Screen("home")
+    data object Matches : Screen("matches")
+    data object Video : Screen("video")
+    data object Like : Screen("like")
+    data object News : Screen("news/{newsId}")
+    data object FirstPage : Screen("firstPage")
+    data object LoginPage : Screen("login")
+    data object SignupPage : Screen("signup")
+    data object Loading : Screen("loading")
 }
 
 
@@ -70,19 +71,18 @@ fun MyAppNavigation(
 
         topBar = {
             if (showBars) {
-                TopAppBar(appActivity)
+                TopAppBar(appActivity, authViewModel, navController)
             }
         }
     ) { innerPadding ->
 
-        val paddings: Dp
+        val paddings = if (showBars) 8.dp else 0.dp
 
-        if (showBars) paddings = 8.dp else paddings = 0.dp
 
 
         NavHost(
             navController = navController,
-            startDestination = Screen.LoginPage.route,
+            startDestination = Screen.FirstPage.route,
             modifier = Modifier
                 .padding(innerPadding)
                 .padding(horizontal = paddings),
@@ -92,6 +92,9 @@ fun MyAppNavigation(
                 }
                 composable(Screen.SignupPage.route) {
                     SignupPage(navController, authViewModel)
+                }
+                composable(Screen.Loading.route) {
+                    Loading()
                 }
                 composable(Screen.Home.route) {
                     appActivity.changeShowBars(true)
@@ -108,15 +111,7 @@ fun MyAppNavigation(
                 }
 
                 composable(Screen.FirstPage.route) {
-                    FirstPage(
-                        newsState,
-                        state,
-                        videoState,
-                        newsViewModel,
-                        matchesViewModel,
-                        videoViewModel,
-                        navController
-                    )
+                    FirstPage(navController)
                 }
                 composable(Screen.Matches.route) {
 
