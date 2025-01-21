@@ -4,6 +4,7 @@ import AppActivityViewModel
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -21,7 +22,6 @@ fun FirstPage(
     newsViewModel: NewsActivityViewModel,
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
-    appActivity: AppActivityViewModel,
     navController: NavHostController
 ) {
     when (newsState) {
@@ -53,8 +53,8 @@ fun FirstPage(
                         is VideosState.Error -> CommonError(videoViewModel)
 
                         is VideosState.VideosContent -> {
-                            appActivity.changeShowBars(true)
-                            navController.navigate("home")
+//                            appActivity.changeShowBars(true)
+                            navController.navigate(Screen.Home.route)
                         }
                     }
 

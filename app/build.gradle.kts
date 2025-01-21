@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlinx.serialization) // Подключение плагина
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.google.gms.google.services) // Подключение плагина
 }
 
 android {
@@ -72,6 +73,9 @@ dependencies {
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.media3.common.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.androidx.runtime.livedata)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

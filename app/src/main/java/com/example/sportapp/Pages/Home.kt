@@ -1,15 +1,17 @@
 package com.example.sportapp.pages
 
-import AppActivityViewModel
 import android.util.Log
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.sportapp.models.user.AuthState
+import com.example.sportapp.models.user.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -30,10 +32,26 @@ fun HomePage(
     state: MatchesState,
     videoState: VideosState,
     newsViewModel: NewsActivityViewModel,
-    mainViewModel: MatchesActivitySoccerViewModel,
+    matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
-    navController: NavHostController
+    navController: NavHostController,
+    authViewModel: AuthViewModel
 ) {
+
+
+    val authState = authViewModel.authState.observeAsState()
+
+//    LaunchedEffect (authState.value) {
+//
+//
+
+    when (authState.value) {
+        is AuthState.Unauthenticated -> navController.navigate("login")
+        else -> Unit
+    }
+//    }
+
+
     when (state) {
 
         is MatchesState.MatchesContent -> {
@@ -48,11 +66,11 @@ fun HomePage(
 
 
                             LazyColumn {
-                                item { CurrentMatch(mainViewModel.nearestMatch) }
+                                item { CurrentMatch(matchesViewModel.nearestMatch) }
                                 item { Spacer(modifier = Modifier.height(32.dp)) }
                                 item { Text(text = "Sport news", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
-                                item { NewsCardRow(navController,newsViewModel,newsState.news) }
+                                item { NewsCardRow(navController, newsViewModel, newsState.news) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
                                 item { Text(text = "Highlights", style = style1) }
                                 item { Spacer(modifier = Modifier.height(24.dp)) }
@@ -80,7 +98,7 @@ fun HomePage(
 
         //ошибька загрузки матчей
         is MatchesState.Error -> {
-            CommonError(mainViewModel)
+            CommonError(matchesViewModel)
         }
 
         //загрузка матчей
