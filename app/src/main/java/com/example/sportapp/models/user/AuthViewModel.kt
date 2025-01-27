@@ -9,8 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 class AuthViewModel : ViewModel() {
 
-    private val auth : FirebaseAuth = FirebaseAuth.getInstance()
-
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _authState: MutableStateFlow<AuthState> = MutableStateFlow(AuthState.Loading)
 
@@ -20,55 +19,74 @@ class AuthViewModel : ViewModel() {
         checkAuthStatus()
     }
 
-
-    fun checkAuthStatus() = if(auth.currentUser==null){
-        _authState.value = AuthState.Authenticated
-    }else{
-        _authState.value = AuthState.Authenticated
+    private fun checkAuthStatus() {
+        if (auth.currentUser == null) {
+            _authState.value = AuthState.Unauthenticated
+        } else {
+            // Проверяем еще раз статус пользователя
+            auth.currentUser?.reload()?.addOnCompleteListener { task ->
+                if (task.isSuccessful && auth.currentUser != null) {
+                    _authState.value = AuthState.Authenticated
+                } else {
+                    _authState.value = AuthState.Unauthenticated
+                }
+            }
+        }
     }
 
-    fun login(email : String,password : String){
-
-        if(email.isEmpty() || password.isEmpty()){
+    fun login(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or password can't be empty")
             return
         }
         _authState.value = AuthState.Loading
-        auth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener{task->
-                if (task.isSuccessful){
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     _authState.value = AuthState.Authenticated
-                }else{
-                    _authState.value = AuthState.Error(task.exception?.message?:"Something went wrong")
+                } else {
+                    _authState.value =
+                        AuthState.Error(task.exception?.message ?: "Something went wrong")
                 }
             }
     }
 
-    fun signup(email : String,password : String){
-
-        if(email.isEmpty() || password.isEmpty()){
+    fun signup(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or password can't be empty")
             return
         }
         _authState.value = AuthState.Loading
-        auth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener{task->
-                if (task.isSuccessful){
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     _authState.value = AuthState.Authenticated
-                }else{
-                    _authState.value = AuthState.Error(task.exception?.message?:"Something went wrong")
+                } else {
+                    _authState.value =
+                        AuthState.Error(task.exception?.message ?: "Something went wrong")
                 }
             }
     }
 
-    fun signOut(navController: NavHostController){
+    fun deleteUser(navController: NavHostController) {
+        val currentUser = auth.currentUser
+        currentUser?.delete()?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                signOut(navController)
+            } else {
+                _authState.value =
+                    AuthState.Error(task.exception?.message ?: "Failed to delete user")
+            }
+        }
+    }
+
+    fun signOut(navController: NavHostController) {
         auth.signOut()
         _authState.value = AuthState.Unauthenticated
         navController.navigate(Screen.LoginPage.route)
     }
-
-
 }
+
 
 
 sealed class AuthState{

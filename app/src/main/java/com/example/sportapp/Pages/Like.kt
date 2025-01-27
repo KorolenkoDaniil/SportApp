@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 fun LikePage(
     appActivity: AppActivityViewModel
 ) {
+
+
     appActivity.changePageName("")
     Text(text = "LikePage")
 }

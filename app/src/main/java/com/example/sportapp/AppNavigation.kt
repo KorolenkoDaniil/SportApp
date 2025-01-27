@@ -88,9 +88,11 @@ fun MyAppNavigation(
                 .padding(horizontal = paddings),
             builder = {
                 composable(Screen.LoginPage.route) {
+                    appActivity.changeShowBars(false)
                     LoginPage(navController, authViewModel)
                 }
                 composable(Screen.SignupPage.route) {
+                    appActivity.changeShowBars(false)
                     SignupPage(navController, authViewModel)
                 }
                 composable(Screen.Loading.route) {

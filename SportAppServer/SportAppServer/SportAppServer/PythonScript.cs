@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using SportAppServer.Entities;
 using SportAppServer.Entities.context;
 using SportAppServer.Entities.models;
 using System.Diagnostics;
@@ -62,7 +61,7 @@ namespace SportAppServer
 
             List<News>? newsList;
 
-  
+
             using (StreamReader reader = new StreamReader(path))
             {
                 string text = await reader.ReadToEndAsync();

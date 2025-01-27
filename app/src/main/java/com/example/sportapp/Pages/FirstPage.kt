@@ -11,6 +11,7 @@ import kotlinx.coroutines.delay
 fun FirstPage(
     navController: NavHostController
 ) {
+
     LaunchedEffect(Unit) {
         delay(1000)
         navController.navigate(Screen.LoginPage.route)

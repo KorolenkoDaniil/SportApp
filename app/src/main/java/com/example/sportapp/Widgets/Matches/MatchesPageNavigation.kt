@@ -10,9 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.pages.MatchesRankingsScreen
 
-
 @Composable
-fun MatchesPageNavigation (matchesNavController: androidx.navigation.NavController) {
+fun MatchesPageNavigation(matchesNavController: androidx.navigation.NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

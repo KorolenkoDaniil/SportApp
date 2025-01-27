@@ -27,11 +27,14 @@ import com.example.sportapp.Screen
 import com.example.sportapp.models.user.AuthState
 import com.example.sportapp.models.user.AuthViewModel
 
+
 @Composable
 fun SignupPage(
     navController: NavController,
     authViewModel: AuthViewModel
 ) {
+
+
     var email by remember {
         mutableStateOf("")
     }

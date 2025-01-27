@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FirebaseAdmin.Messaging;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SportAppServer.Entities.context;
 using SportAppServer.Entities.Pagination;
@@ -16,21 +17,21 @@ namespace SportAppServer.Controllers
             _dbContext = dbContext;
         }
 
-    
+
         [HttpGet("GetNews")]
         public async Task<IActionResult> GetNews(int pageNumber = 1, int pageSize = 10)
         {
-    
+
             int totalItems = await _dbContext.News.CountAsync();
 
-            
+
             var list = await _dbContext.News
                 .OrderByDescending(news => news.DateTime)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-      
+
             var page = new NewsPagination
             {
                 PageNumber = pageNumber,
@@ -40,8 +41,8 @@ namespace SportAppServer.Controllers
             };
 
 
-           
-            return Json(page); 
+
+            return Json(page);
         }
 
 
@@ -56,10 +57,11 @@ namespace SportAppServer.Controllers
 
             if (news == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             return Json(news);
         }
+
     }
 }

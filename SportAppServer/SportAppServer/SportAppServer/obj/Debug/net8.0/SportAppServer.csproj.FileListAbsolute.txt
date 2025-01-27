@@ -90,4 +90,13 @@ C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\Spor
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.pdb
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.genruntimeconfig.cache
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\ref\SportAppServer.dll
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\news_list.json
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\FirebaseAdmin.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Google.Api.Gax.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Google.Api.Gax.Rest.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Google.Apis.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Google.Apis.Auth.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Google.Apis.Core.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\System.CodeDom.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\System.Management.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\calendar.json

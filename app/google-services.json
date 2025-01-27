@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "691650676403",
+    "project_id": "korsport-ccd21",
+    "storage_bucket": "korsport-ccd21.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691650676403:android:b6dfce83bd517abc1812c6",
+        "android_client_info": {
+          "package_name": "com.example.firebaseexample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlguLWWdoI8G6xbikRLA7zMPiRH-7akWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691650676403:android:d572375b80506ba31812c6",
+        "android_client_info": {
+          "package_name": "com.example.sportapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlguLWWdoI8G6xbikRLA7zMPiRH-7akWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

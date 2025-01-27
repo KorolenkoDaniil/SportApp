@@ -22,8 +22,8 @@ fun UserImage(authViewModel: AuthViewModel, navController: NavHostController) {
             .clip(RoundedCornerShape(50))
             .background(color = Color.Gray)
             .padding(end = 16.dp),
-//        onClick = {
-//            authViewModel.signOut(navController)
-//        }
+        onClick = {
+            authViewModel.signOut(navController)
+        }
     ) {}
 }
