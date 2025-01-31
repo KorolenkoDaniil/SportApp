@@ -108,7 +108,6 @@ fun MyAppNavigation(
                         matchesViewModel = matchesViewModel,
                         videoViewModel = videoViewModel,
                         navController = navController,
-                        authViewModel = authViewModel,
                     )
                 }
 

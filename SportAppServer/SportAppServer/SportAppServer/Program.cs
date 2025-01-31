@@ -70,6 +70,7 @@ FirebaseApp.Create(new AppOptions()
 
 
 NotificationScheduler notification = new NotificationScheduler();
+
 notification.Deserialisation();
 
 notification.CheckNearestDateAndSetNotificationAsync();
