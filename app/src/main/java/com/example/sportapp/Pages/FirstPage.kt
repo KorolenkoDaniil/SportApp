@@ -13,7 +13,7 @@ fun FirstPage(
 ) {
 
     LaunchedEffect(Unit) {
-        delay(1000)
+        delay(2000)
         navController.navigate(Screen.LoginPage.route)
     }
 

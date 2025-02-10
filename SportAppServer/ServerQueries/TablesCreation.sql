@@ -7,3 +7,9 @@ CREATE TABLE News (
     ImageId NVARCHAR(MAX) NOT NULL,
 	ArticleText NVARCHAR(MAX),
 );
+
+
+CREATE TABLE Users (
+    UserEmail NVARCHAR(255) NOT NULL, 
+	UserImage NVARCHAR(MAX),
+);

@@ -6,6 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
 import com.example.sportapp.R
 
@@ -44,6 +45,12 @@ val OpenSans = FontFamily(
     Font(R.font.open_sans_medium, FontWeight.Medium),
 )
 
+val Roboto = FontFamily(
+    Font(R.font.roboto_italic_font, FontWeight.Normal),
+    Font(R.font.roboto_variable_font, FontWeight.Normal),
+)
+
+
 
 val style1 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
@@ -68,6 +75,14 @@ val style9 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 14
 val style10 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Normal)
 
 val style11 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+
+val style12_first_page = TextStyle(fontFamily = Roboto, fontSize = 24.sp, fontWeight = FontWeight.Light, textAlign = TextAlign.Center)
+
+val style13_log_in__page = TextStyle(fontFamily = Roboto, fontSize = 32.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+
+val style14 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = blue_grey_color)
+
+val style15 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = red_accent_color, textDecoration = TextDecoration.Underline)
 
 
 

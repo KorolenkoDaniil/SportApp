@@ -16,15 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.R
-import com.example.sportapp.ui.theme.Blue100
-import com.example.sportapp.ui.theme.style12
+import com.example.sportapp.ui.theme.background_color
+import com.example.sportapp.ui.theme.style12_first_page
 
 @Composable
 fun FirstPageElements() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Blue100)
+            .background(color = background_color)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             Box(
@@ -38,13 +38,13 @@ fun FirstPageElements() {
                     verticalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.kor_sport),
+                        painter = painterResource(R.drawable.kor_sport_logo),
                         contentDescription = "",
                         modifier = Modifier.height(200.dp)
                     )
                     Text(
                         text = "KorSport — будь в курсе, \n" +
-                                "будь лидером", style = style12
+                                "будь лидером", style = style12_first_page
                     )
                 }
             }
@@ -80,3 +80,34 @@ fun FirstPageElements() {
         }
     }
 }
+
+
+
+
+//Box(
+//modifier = Modifier
+//.weight(0.15f)
+//.fillMaxWidth()
+//) {
+//    Row(
+//        modifier = Modifier.fillMaxWidth(),
+//        horizontalArrangement = Arrangement.SpaceAround,
+//        verticalAlignment = Alignment.CenterVertically
+//    ) {
+//        Image(
+//            painter = painterResource(R.drawable.kor_food),
+//            contentDescription = "",
+//            modifier = Modifier.height(36.dp)
+//        )
+//        Image(
+//            painter = painterResource(R.drawable.korcourses),
+//            contentDescription = "",
+//            modifier = Modifier.height(36.dp)
+//        )
+//        Image(
+//            painter = painterResource(R.drawable.kor_fin2),
+//            contentDescription = "",
+//            modifier = Modifier.height(36.dp)
+//        )
+//    }
+//}
