@@ -14,7 +14,7 @@ namespace SportAppServer.Controllers
         [HttpGet("GetNews")]
         public async Task<IActionResult> GetNews(int pageNumber = 1, int pageSize = 10)
         {
-            using (var _dbContext = new NewsContext())
+            using (var _dbContext = new Entities.context.DBContext())
             {
                 int totalItems = await _dbContext.News.CountAsync();
 
@@ -36,7 +36,7 @@ namespace SportAppServer.Controllers
 
 
 
-                return Json(page);
+                return base.Json(page);
             }
         }
 
@@ -47,17 +47,17 @@ namespace SportAppServer.Controllers
         {
             DateTime newsDateTime = DateTime.Parse(dateTime);
 
-            using (var _dbContext = new NewsContext())
+            using (var _dbContext = new Entities.context.DBContext())
             {
                 var news = await _dbContext.News
                 .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
 
                 if (news == null)
                 {
-                    return NotFound();
+                    return base.NotFound();
                 }
 
-                return Json(news);
+                return base.Json(news);
             }
         }
 

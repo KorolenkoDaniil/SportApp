@@ -1,19 +1,29 @@
 package com.example.sportapp.models.user
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.example.sportapp.Screen
+import com.example.sportapp.models.user.domain.UserEntity
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel() : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _authState: MutableStateFlow<AuthState> = MutableStateFlow(AuthState.Loading)
 
     val authState: StateFlow<AuthState> = _authState
+
+    var currentUser: UserEntity? = null
+
+    val userRep = UserRepository()
+
 
     init {
         checkAuthStatus()
@@ -23,10 +33,15 @@ class AuthViewModel : ViewModel() {
         if (auth.currentUser == null) {
             _authState.value = AuthState.Unauthenticated
         } else {
-            // Проверяем еще раз статус пользователя
+
             auth.currentUser?.reload()?.addOnCompleteListener { task ->
                 if (task.isSuccessful && auth.currentUser != null) {
                     _authState.value = AuthState.Authenticated
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        currentUser = userRep.getUser(auth.currentUser!!.email!!)
+                        Log.d("currentUser", currentUser.toString() )                    }
+
                 } else {
                     _authState.value = AuthState.Unauthenticated
                 }
@@ -39,6 +54,7 @@ class AuthViewModel : ViewModel() {
             _authState.value = AuthState.Error("Email or password can't be empty")
             return
         }
+
         _authState.value = AuthState.Loading
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -60,6 +76,11 @@ class AuthViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRep.putNewUser(
+                            email = auth.currentUser!!.email!!
+                        )
+                    }
                     _authState.value = AuthState.Authenticated
                 } else {
                     _authState.value =

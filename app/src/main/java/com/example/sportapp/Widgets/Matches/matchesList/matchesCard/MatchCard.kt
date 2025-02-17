@@ -26,7 +26,6 @@ fun MatchCard(
     logoURLA: String?,
     logoURLB: String?,
     item: MatchEntity,
-    //контроллер страниц матчи-информация про матчи (для перехода к информации про выбранный матч)
     matchesMatchInfoNavController: NavHostController,
     pageNumber: Int
 ) {

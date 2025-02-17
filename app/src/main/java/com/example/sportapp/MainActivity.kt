@@ -46,7 +46,8 @@ class mainActivity : ComponentActivity() {
                 appActivity = appActivity,
                 navController = navController,
                 matchesViewModel = matchesViewModel,
-                videoViewModel = videoViewModel
+                videoViewModel = videoViewModel,
+                authViewModel.currentUser
             )
         }
     }

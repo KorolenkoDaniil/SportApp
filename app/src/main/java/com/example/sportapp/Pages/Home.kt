@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.sportapp.models.user.domain.UserEntity
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -17,6 +18,7 @@ import com.example.sportapp.models.viewModels.VideosState
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.shared.CommonError
 import com.example.sportapp.shared.Loading
+import com.example.sportapp.shared.SearchLine
 import com.example.sportapp.ui.theme.style1
 import com.example.sportapp.widgets.home.CurrentMatch
 import com.example.sportapp.widgets.home.NewsCardRow
@@ -32,6 +34,7 @@ fun HomePage(
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
     navController: NavHostController,
+    user: UserEntity
 ) {
     when (state) {
 
@@ -45,8 +48,9 @@ fun HomePage(
 
                         is NewsSate.NewsContent -> {
 
-
                             LazyColumn {
+                                item { SearchLine(user)}
+                                item { Spacer(modifier = Modifier.height(32.dp)) }
                                 item { CurrentMatch(matchesViewModel.nearestMatch) }
                                 item { Spacer(modifier = Modifier.height(32.dp)) }
                                 item { Text(text = "Sport news", style = style1) }
@@ -65,7 +69,9 @@ fun HomePage(
                             CommonError(newsViewModel)
                         }
 
-                        is NewsSate.Load -> Loading()
+                        is NewsSate.Load -> {
+                            Loading()
+                        }
                     }
                 }
 

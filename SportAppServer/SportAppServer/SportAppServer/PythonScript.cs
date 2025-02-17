@@ -76,7 +76,7 @@ namespace SportAppServer
                 return;
             }
 
-            using (var newsDB = new NewsContext())
+            using (var newsDB = new Entities.context.DBContext())
             {
                 try
                 {

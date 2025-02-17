@@ -38,12 +38,12 @@ import com.example.sportapp.R
 //    */
 //)
 
-val OpenSans = FontFamily(
-    Font(R.font.open_sans_bold, FontWeight.Bold),
-    Font(R.font.open_sans_regular, FontWeight.Normal),
-    Font(R.font.open_sans_light, FontWeight.Light),
-    Font(R.font.open_sans_medium, FontWeight.Medium),
-)
+//val OpenSans = FontFamily(
+//    Font(R.font.open_sans_bold, FontWeight.Bold),
+//    Font(R.font.open_sans_regular, FontWeight.Normal),
+//    Font(R.font.open_sans_light, FontWeight.Light),
+//    Font(R.font.open_sans_medium, FontWeight.Medium),
+//)
 
 val Roboto = FontFamily(
     Font(R.font.roboto_italic_font, FontWeight.Normal),
@@ -52,29 +52,29 @@ val Roboto = FontFamily(
 
 
 
-val style1 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+val style1 = TextStyle(color = Color.Black, fontFamily = Roboto, fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
-val style2 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 12.sp, fontWeight = FontWeight.Normal)
+val style2 = TextStyle(color = Color.Black, fontFamily = Roboto, fontSize = 12.sp, fontWeight = FontWeight.Normal)
 
-val style3 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+val style3 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 18.sp, fontWeight = FontWeight.Bold)
 
-val style4 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+val style4 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Bold)
 
-val style5 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 32.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+val style5 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 24.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
 
-val style6 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 24.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+val style6 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
 
-val style12 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 18.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center)
+val style12 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 18.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center)
 
-val style7 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 12.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+val style7 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 12.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
 
-val style8 = TextStyle(color = Blue100, fontFamily = OpenSans, fontSize = 40.sp, fontWeight = FontWeight.Bold)
+val style8 = TextStyle(color = Blue100, fontFamily = Roboto, fontSize = 40.sp, fontWeight = FontWeight.Bold)
 
-val style9 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+val style9 = TextStyle(color = Color.Black, fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Bold)
 
-val style10 = TextStyle(color = Color.Black, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Normal)
+val style10 = TextStyle(color = Color.Black, fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal)
 
-val style11 = TextStyle(color = Color.White, fontFamily = OpenSans, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+val style11 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Bold)
 
 val style12_first_page = TextStyle(fontFamily = Roboto, fontSize = 24.sp, fontWeight = FontWeight.Light, textAlign = TextAlign.Center)
 

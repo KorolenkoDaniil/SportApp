@@ -1,6 +1,7 @@
 package com.example.sportapp.models.news
 
 import android.util.Log
+import com.example.sportapp.models.BaseUrl
 import com.example.sportapp.models.news.api.NewsItemResponse
 import com.example.sportapp.models.news.api.NewsResponse
 import com.example.sportapp.models.news.domain.NewsEntity
@@ -19,7 +20,7 @@ import kotlinx.serialization.json.Json
 
 class NewsRepository {
 
-    private val newsBaseUrl = "https://9514-62-210-88-65.ngrok-free.app"
+
     private val controllerPath = "NewsController"
     private val getNewsController = "GetNews"
     private val getOneNewsController = "GetOneNews"
@@ -32,7 +33,7 @@ class NewsRepository {
 
     private val client = HttpClient {
         defaultRequest {
-            this.url(newsBaseUrl)
+            this.url(BaseUrl)
         }
 
         HttpResponseValidator {
@@ -55,7 +56,7 @@ class NewsRepository {
         builder.method = HttpMethod.Get
 
         builder.url {
-            (newsBaseUrl)
+            (BaseUrl)
             encodedPath = "/$controllerPath/$getNewsController"
             this.parameters.append("pageNumber", pageNumber.toString())
         }
@@ -73,7 +74,7 @@ class NewsRepository {
 
         val oneNewsResponse: NewsResponse = json.decodeFromString(responseString)
 
-        return newsMapper.getNewsEntityList(oneNewsResponse, newsBaseUrl)
+        return newsMapper.getNewsEntityList(oneNewsResponse, BaseUrl)
     }
 
 
@@ -84,7 +85,7 @@ class NewsRepository {
         builder.method = HttpMethod.Get
 
         builder.url {
-            (newsBaseUrl)
+            (BaseUrl)
             encodedPath = "/$controllerPath/$getOneNewsController"
             this.parameters.append("dateTime", dateTime)
         }
@@ -102,7 +103,7 @@ class NewsRepository {
 
         val oneNewsResponse: NewsItemResponse = json.decodeFromString(responseString)
 
-        return newsMapper.getOneNewsEntity(oneNewsResponse, newsBaseUrl)
+        return newsMapper.getOneNewsEntity(oneNewsResponse, BaseUrl)
     }
 }
 

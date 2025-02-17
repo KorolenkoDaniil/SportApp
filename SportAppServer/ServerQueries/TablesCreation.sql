@@ -13,3 +13,7 @@ CREATE TABLE Users (
     UserEmail NVARCHAR(255) NOT NULL, 
 	UserImage NVARCHAR(MAX),
 );
+
+
+DELETE FROM Users;
+

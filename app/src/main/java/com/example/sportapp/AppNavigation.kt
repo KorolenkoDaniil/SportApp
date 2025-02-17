@@ -2,7 +2,6 @@ package com.example.sportapp
 
 import AppActivityViewModel
 import BottomNavBar
-import TopAppBar
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -16,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.firebaseexample.pages.SignupPage
 import com.example.sportapp.models.user.AuthViewModel
+import com.example.sportapp.models.user.domain.UserEntity
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -56,12 +56,13 @@ fun MyAppNavigation(
     navController: NavHostController,
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
+    user: UserEntity?
 ) {
 
     val showBars by appActivity.showBars.collectAsState()
 
     Scaffold(
-        containerColor = Color(0xFFF6F6F6),
+        containerColor = Color(0xFFEBEFF4),
 
         bottomBar = {
             if (showBars) {
@@ -69,15 +70,10 @@ fun MyAppNavigation(
             }
         },
 
-        topBar = {
-            if (showBars) {
-                TopAppBar(appActivity, authViewModel, navController)
-            }
-        }
     ) { innerPadding ->
 
         val paddings = if (showBars) 8.dp else 0.dp
-
+        val topPaddings = if (showBars) 20.dp else 0.dp
 
 
         NavHost(
@@ -85,7 +81,8 @@ fun MyAppNavigation(
             startDestination = Screen.FirstPage.route,
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(horizontal = paddings),
+                .padding(horizontal = paddings)
+                .padding(top = topPaddings),
             builder = {
                 composable(Screen.LoginPage.route) {
                     appActivity.changeShowBars(false)
@@ -108,7 +105,7 @@ fun MyAppNavigation(
                         matchesViewModel = matchesViewModel,
                         videoViewModel = videoViewModel,
                         navController = navController,
-//                        authViewModel = authViewModel,
+                        user!!
                     )
                 }
 
