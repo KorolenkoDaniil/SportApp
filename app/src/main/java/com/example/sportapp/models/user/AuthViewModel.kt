@@ -82,8 +82,13 @@ class AuthViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     CoroutineScope(Dispatchers.IO).launch {
-                        updateCurrentUser(async { userRep.putNewUser(auth.currentUser!!.email!!) }.await())
-                        Log.d("currentUser", currentUser.toString())
+                        try {
+                            val user = async { userRep.putNewUser(auth.currentUser?.email ?: "") }.await()
+                            updateCurrentUser(user)
+                            Log.d("currentUser", "User created successfully: $user")
+                        } catch (e: Exception) {
+                            Log.e("currentUser", "Failed to create user", e)
+                        }
                     }
                     _authState.value = AuthState.Authenticated
                 } else {

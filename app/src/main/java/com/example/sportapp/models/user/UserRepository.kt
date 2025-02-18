@@ -13,6 +13,7 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
@@ -43,11 +44,13 @@ class UserRepository {
             })
         }
 
-        Log.d("User response", response.bodyAsText())
-
-
-        val currentUser: UserItemResponse = json.decodeFromString(response.body())
-        return userMapper.UseResponseToEntity(currentUser)
+        Log.d("User response", "Status: ${response.status}, Body: ${response.bodyAsText()}")
+        if (response.status == HttpStatusCode.OK) {
+            val currentUser: UserItemResponse = json.decodeFromString(response.body())
+            return userMapper.UseResponseToEntity(currentUser)
+        } else {
+            throw Exception("Failed to create user: ${response.status}")
+        }
     }
 
 
