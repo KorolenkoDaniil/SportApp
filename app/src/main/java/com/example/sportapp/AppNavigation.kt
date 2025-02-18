@@ -20,6 +20,7 @@ import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.NewsSate
+import com.example.sportapp.models.viewModels.UserViewModel
 import com.example.sportapp.models.viewModels.VideosState
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.pages.FirstPage
@@ -56,7 +57,8 @@ fun MyAppNavigation(
     navController: NavHostController,
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
-    user: UserEntity?
+    user: UserEntity?,
+    userViewModel: UserViewModel
 ) {
 
     val showBars by appActivity.showBars.collectAsState()

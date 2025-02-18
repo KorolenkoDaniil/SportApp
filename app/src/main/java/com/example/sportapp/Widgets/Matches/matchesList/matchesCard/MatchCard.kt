@@ -89,28 +89,6 @@ fun MatchCard(
                         .weight(1f)
                         .fillMaxSize(), name = item.teamBShortName
                 )
-
-
-//                if (item.matchStatus == 1 || item.matchStatus == 2)
-//                Box(
-//                    modifier = Modifier
-//                        .weight(1f)
-//                        .fillMaxSize(),
-//                    contentAlignment = Alignment.Center
-//                ) {
-//                    when (item.matchStatus) {
-//                        1 -> Image(
-//                            painter = painterResource(R.drawable.live),
-//                            contentDescription = "",
-//                            modifier = Modifier.size(20.dp)
-//                        )
-//                        2 -> Image(
-//                            painter = painterResource(R.drawable.arrowtoright),
-//                            contentDescription = "",
-//                            modifier = Modifier.size(20.dp)
-//                        )
-//                    }
-//                }
             }
         }
     }

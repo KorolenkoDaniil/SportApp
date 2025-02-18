@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.models.user.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
+import com.example.sportapp.models.viewModels.UserViewModel
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 
 
@@ -36,6 +37,7 @@ class mainActivity : ComponentActivity() {
             val navController = rememberNavController()
 
             val authViewModel: AuthViewModel by viewModels()
+            val userViewModel: UserViewModel by viewModels()
 
             MyAppNavigation(
                 authViewModel = authViewModel,
@@ -47,7 +49,8 @@ class mainActivity : ComponentActivity() {
                 navController = navController,
                 matchesViewModel = matchesViewModel,
                 videoViewModel = videoViewModel,
-                authViewModel.currentUser
+                authViewModel.currentUser,
+                userViewModel
             )
         }
     }

@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -47,49 +46,52 @@ fun SearchLine(user: UserEntity) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        BasicTextField(
-            value = userSearchText,
-            onValueChange = { userSearchText = it },
-            modifier = Modifier
-                .height(48.dp)
-                .background(Color.White, RoundedCornerShape(8.dp))
-                .padding(horizontal = 8.dp, vertical = 16.dp)
+        Box(
+            Modifier
                 .fillMaxWidth()
-                .weight(0.7F),
-            singleLine = true,
-            textStyle = TextStyle(fontSize = 14.sp, color = Color.Black),
-            decorationBox = { innerTextField ->
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        modifier = Modifier.size(24.dp), // Увеличиваем размер иконки
-                        imageVector = Icons.Outlined.Search,
-                        contentDescription = "search icon"
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    innerTextField()
-                }
-            }
-        )
+                .weight(0.7F)
+                .height(36.dp)
+                .clip(RoundedCornerShape(32.dp))
+        ) {
+            BasicTextField(value = userSearchText,
+                onValueChange = { userSearchText = it },
+                modifier = Modifier
+
+                    .background(Color.White)
+                    .padding(horizontal = 8.dp, vertical = 2.dp)
+                    .fillMaxSize(),
+
+                singleLine = true,
+                textStyle = TextStyle(fontSize = 14.sp, color = Color.Black),
+                decorationBox = { innerTextField ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(24.dp),
+                            imageVector = Icons.Outlined.Search, contentDescription = "search icon"
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        innerTextField()
+                    }
+                })
+        }
 
         Spacer(Modifier.width(20.dp))
 
         val painter = rememberAsyncImagePainter(user.pictureURL)
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-            Box(
-                Modifier
-                    .size(40.dp)
-                    .clip(RoundedCornerShape(16.dp))
-            ) {
-                Image(
-                    painter = painter,
-                    contentDescription = "sadf",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
+        Box(
+            Modifier
+                .size(48.dp)
+                .clip(RoundedCornerShape(24.dp))
+        ) {
+            Image(
+                painter = painter,
+                contentDescription = "sadf",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
         }
     }
 }

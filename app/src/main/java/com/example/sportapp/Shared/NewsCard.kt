@@ -36,7 +36,7 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
         Card(
             modifier = Modifier
                 .size(height = 180.dp, width = 210.dp)
-                .clip(shape = RoundedCornerShape(16.dp)),
+                .clip(shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
             colors = cardColors(
                 containerColor = Color.White
             ),

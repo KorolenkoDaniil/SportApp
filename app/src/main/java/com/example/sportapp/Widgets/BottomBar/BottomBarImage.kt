@@ -34,7 +34,7 @@ fun BottomBarImage(
         painter = painterResource(id = pictureId),
         contentDescription = "$newPage Icon",
         modifier = Modifier
-            .size(40.dp)
+            .size(32.dp)
             .clickable(
                 indication = null,
                 interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }

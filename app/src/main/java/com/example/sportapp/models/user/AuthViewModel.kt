@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class AuthViewModel() : ViewModel() {
+class AuthViewModel : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -38,9 +38,8 @@ class AuthViewModel() : ViewModel() {
                 if (task.isSuccessful && auth.currentUser != null) {
                     _authState.value = AuthState.Authenticated
 
-                    CoroutineScope(Dispatchers.IO).launch {
-                        currentUser = userRep.getUser(auth.currentUser!!.email!!)
-                        Log.d("currentUser", currentUser.toString() )                    }
+
+                    Log.d("currentUser", currentUser.toString())
 
                 } else {
                     _authState.value = AuthState.Unauthenticated
@@ -109,10 +108,9 @@ class AuthViewModel() : ViewModel() {
 }
 
 
-
-sealed class AuthState{
+sealed class AuthState {
     data object Authenticated : AuthState()
     data object Unauthenticated : AuthState()
     data object Loading : AuthState()
-    data class Error(val message : String) : AuthState()
+    data class Error(val message: String) : AuthState()
 }

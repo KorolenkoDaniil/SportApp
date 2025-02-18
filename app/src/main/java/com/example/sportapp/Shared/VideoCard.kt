@@ -33,7 +33,7 @@ fun VideoCard(video: VideoEntity) {
         Card(
             modifier = Modifier
                 .size(height = 180.dp, width = 210.dp)
-                .clip(shape = RoundedCornerShape(16.dp)),
+                .clip(shape = RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp)),
             colors = cardColors(
                 containerColor = Color.White
             ),
@@ -49,7 +49,7 @@ fun VideoCard(video: VideoEntity) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight(0.6f),
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.FillWidth
                     )
                     Box (modifier = Modifier
                         .padding(horizontal = 8.dp, vertical = 4.dp
