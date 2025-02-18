@@ -1,0 +1,395 @@
+[33mcommit 971637db200e16cdd4a39a591a01643853b6123d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mserverBranch[m[33m, [m[1;31morigin/serverBranch[m[33m)[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Feb 18 09:24:27 2025 +0300
+
+    stable
+
+[33mcommit 1e131b1088937dc7ca3d3f9ea6590da28eafdd4c[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Feb 17 21:41:22 2025 +0300
+
+    ready saving of user to db and transferring of user image
+
+[33mcommit 2f56aa5c6fea179c724c63b7d826df95432ad6c5[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Feb 10 15:07:42 2025 +0300
+
+    commit before I will remake UI
+
+[33mcommit 140966aadb681daecefbd7e2561132883bcb8274[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Jan 27 11:29:02 2025 +0300
+
+    ready server with push notifications before match start
+
+[33mcommit ffc03ad74279c57c1efe1038edce5b93c6b68886[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 22 00:27:36 2025 +0300
+
+    something was corrected
+
+[33mcommit bf882cce9f7081545a3fc8aafec01206db1b1c6c[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Jan 21 22:38:00 2025 +0300
+
+    stable version with login but with paddings and bottomAppBar!!!!!!!
+
+[33mcommit d35f74b7503d17cb4b760808f4733e3257066ec7[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Jan 20 16:29:58 2025 +0300
+
+    stable version with ready pagination
+
+[33mcommit f126b3f3c54049ea667e16ddf320bb372b57a685[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Jan 20 16:12:26 2025 +0300
+
+    stable version
+
+[33mcommit f1180d5ca239f782d45827f40c5ec3dd1a11b1a2[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Jan 20 13:07:18 2025 +0300
+
+    ready pagination on server
+
+[33mcommit f288073833a4c2bf33930be474e6593958cd5967[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sun Jan 19 23:01:51 2025 +0300
+
+    stable version before I  will make pagination
+
+[33mcommit 8f8961d7ba6c29ad8f5e20a83b6b2795aada9f02[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sun Jan 19 21:42:30 2025 +0300
+
+    stable version with corrected some bugs
+
+[33mcommit 875429aa2aaebce5e600264da8080ca8a270d533[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sun Jan 19 18:17:15 2025 +0300
+
+    stable version with getting and viewing news
+
+[33mcommit da318b0e92c152638a083057585346ae5da122b8[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sat Jan 18 13:05:54 2025 +0300
+
+    stable version
+
+[33mcommit 1558c52958b5ff6763914409a6c2563877247d62[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Jan 17 15:55:55 2025 +0300
+
+    version before making method
+
+[33mcommit f6edec534583b409676303071748629ffe7ab64f[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Jan 17 13:31:39 2025 +0300
+
+    stable version
+
+[33mcommit cf2e53927650ce55d9dfd0c37d2ba60014f33702[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Jan 16 12:54:47 2025 +0300
+
+    ready getting article_texts in selenuim part
+
+[33mcommit 91423db8c2d739f2840d0702d04fd23ed6965747[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 15 17:37:44 2025 +0300
+
+    The server is ready, parses the data normally and sends it. The client receives and displays on the main page
+
+[33mcommit 5dd878b78e3fad4d43c1e1a13dd4de87bfd786d0[m[33m ([m[1;31morigin/TabLayoutWithText[m[33m, [m[1;32mmaster[m[33m, [m[1;32mTabLayoutWithText[m[33m)[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Jan 14 12:45:33 2025 +0300
+
+    server added
+
+[33mcommit 489428119afbe49d21520a740cfe28280172ea15[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Jan 14 12:34:19 2025 +0300
+
+    The server is ready, news data is transmitted and headlines are displayed. Next we need to expand the news class"
+
+[33mcommit 0169af6972681505c5ef2313c40cc797e8a28311[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sun Jan 12 13:01:30 2025 +0300
+
+    ready getting youtube response
+
+[33mcommit ec0d7b32459d0823d802df06450967b3d8a2ab2c[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sat Jan 11 18:40:48 2025 +0300
+
+    new stable version
+
+[33mcommit e5ad48e1cdbf9cbbe7f536724a6fd6c95bb7abe6[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sat Jan 11 18:39:44 2025 +0300
+
+    new stable version
+
+[33mcommit 045c50b62dbc23f66d42e48fc85535398f972685[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sat Jan 11 17:41:54 2025 +0300
+
+    stable version
+
+[33mcommit bde85e0771210d105e5ae07085976a1ed8614c7e[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sat Jan 11 12:18:14 2025 +0300
+
+    stable version
+
+[33mcommit dc2c82678b49bf894239720be8a52df0b80e1405[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Jan 9 16:24:02 2025 +0300
+
+    stable version with display of a tree of reports on matches, substitutions, goals
+
+[33mcommit a8061caad50e8636f9dfe778f4d6ffb100fa037d[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Jan 9 14:00:32 2025 +0300
+
+    stable version with displaying match report tree
+
+[33mcommit 145e934be67889496bff999c10247f7f823549cd[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Jan 9 13:00:45 2025 +0300
+
+    stable version with displaying match report tree
+
+[33mcommit e21cb3c22eab5fc53851043e51483ef5795ada14[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Jan 9 12:08:15 2025 +0300
+
+    stable version
+
+[33mcommit 40d4866ef9829c634730969d27f5097a8d307ca5[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 8 20:42:26 2025 +0300
+
+    the trunk of the event tree is ready
+
+[33mcommit 246022f2f294a87c1358d4200ceffb8765a36f06[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 8 15:15:37 2025 +0300
+
+    stable version witgh loading 1 match and it's report
+
+[33mcommit ae956e98ba6aaa441ed597e48422523e73b0e5ca[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 8 11:33:32 2025 +0300
+
+    stable version
+
+[33mcommit 99a0410566e7b9186793876efa2b2d7c1c246ff9[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 8 11:33:19 2025 +0300
+
+    stable version
+
+[33mcommit 604f427a1e283809042d96397c062f9b52acd985[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 8 09:29:38 2025 +0300
+
+    corrected page name
+
+[33mcommit 72ed9150a3e1f71c12dd4a7c79f403d8fd12ed7a[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Jan 6 19:01:18 2025 +0300
+
+    Colored indicators were made, dates were corrected,
+
+[33mcommit ab2dadb70080bb0aa6d55d12d2bc757d9c86865f[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Jan 6 16:30:57 2025 +0300
+
+    ready scrolling to page with current match and something else was done
+
+[33mcommit 1a3b341b2cf9325723fda06cc872ac4e2e6702c8[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Jan 3 17:05:46 2025 +0300
+
+    ready scrolling to page with current match
+
+[33mcommit 31ac814a863321cdaba520ec43bb8fea857db673[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Jan 3 16:20:36 2025 +0300
+
+    ready scrolling to page
+
+[33mcommit 9b1c8b0019d095f1d795e77eebc54c1dea686f5e[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Jan 1 18:12:01 2025 +0300
+
+    stable version
+
+[33mcommit d79fe1bd1c6821cbebe350cd16deafaf904508d4[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Dec 20 13:16:45 2024 +0300
+
+    stable version
+
+[33mcommit ab63188a62c250d6e0df508cafeab12a72857120[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Dec 20 13:07:51 2024 +0300
+
+    stable version
+
+[33mcommit e9f83cb5a1bc283038654bafc561b0f8959e6a6b[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Dec 20 12:41:20 2024 +0300
+
+    stable version with mappers
+
+[33mcommit fde313d9d1e7a4b886409b948f791170e66097e1[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Dec 19 20:00:16 2024 +0300
+
+    stable version
+
+[33mcommit 0da29f4132961189123de371e4d6fd8ff89cb46d[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Dec 19 16:02:00 2024 +0300
+
+    stable version with interfaces, and getting match report
+
+[33mcommit 8eb1180ef03a33fc5f4097a420fb80098e4db8a4[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Dec 19 15:00:57 2024 +0300
+
+    almost stable version with new interfaces, but match report dont give information
+
+[33mcommit f5a2a0d0630a2081ce8d59b1080235cc24a8e9bd[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Dec 19 14:26:06 2024 +0300
+
+    stable version
+
+[33mcommit 19a74920667a3c1e5cf4dac888c1f296d36482a2[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Dec 18 16:10:03 2024 +0300
+
+    I have added MatchInfo
+
+[33mcommit 650b3407a991b6de8ab1ce558af80b400de673fc[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Dec 18 15:06:28 2024 +0300
+
+    Rankings after restructuring
+
+[33mcommit 923b8730bf3783fabbd57e26636a159a738e8d41[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Dec 18 14:56:25 2024 +0300
+
+    ready Ranking page, but without good ui and need restructuring
+
+[33mcommit d62eca8d119f0e82ae2bcfee43b14d41419f415a[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Dec 17 14:38:27 2024 +0300
+
+    new navigation
+
+[33mcommit d7956fe5921e96a180bdeebd5fd886bf33e0eb27[m[33m ([m[1;31morigin/Navigation1[m[33m, [m[1;32mNavigation1[m[33m)[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Dec 16 23:57:40 2024 +0300
+
+    corrected dates and output of the score of the matches that have taken. MatchEntity was added
+
+[33mcommit 7ed4a87abc01c0a5a9e9add719e7668dcc9aece8[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Dec 16 15:05:28 2024 +0300
+
+    corrected dates and output of the score of the matches that have taken
+
+[33mcommit e662847e1ac9f680f4e9b16df0de262bc49facca[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Mon Dec 16 12:19:06 2024 +0300
+
+    corrected dates
+
+[33mcommit 597d8c031730fc3fcdede8f8f88052d984df5e99[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sun Dec 15 19:41:34 2024 +0300
+
+    receiving and displaying data about matches works. + made display of pictures and matches
+
+[33mcommit 1ba8c172e5670746c8b952330d5b8d5680c6e52e[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sun Dec 15 10:57:41 2024 +0300
+
+    receiving and displaying data about matches works. Need to make ui
+
+[33mcommit 39b434000e98bd7f2dd07e1928dad9748836459b[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sat Dec 14 18:07:33 2024 +0300
+
+    working viewPager with synced calendar. Also I fixed calendar animation
+
+[33mcommit 2203683455bc4b9c34a700480b15db5e10cc567b[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Sat Dec 14 01:12:47 2024 +0300
+
+    working viewPager with synced calendar
+
+[33mcommit 63a0f52df4a8e5a8a62cb1980f5ff450206d15cf[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/ViewPager[m[33m, [m[1;32mViewPager[m[33m)[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Dec 13 13:42:22 2024 +0300
+
+    worked viewPager with calendar
+
+[33mcommit 0f8d2b52febf17dbea5fd434cec459760c999681[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Fri Dec 13 11:51:14 2024 +0300
+
+    start of day 13.12.2024
+
+[33mcommit 63f3ebeb6153e08bff1af26a9273ff28794a827e[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Dec 12 15:38:15 2024 +0300
+
+    report for 14.12 and pagination
+
+[33mcommit 1379e41c3f881fd24ff4ad0921fb33cbf4354b63[m[33m ([m[1;31morigin/Navigation[m[33m, [m[1;32mNavigation[m[33m)[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Thu Dec 12 12:18:28 2024 +0300
+
+    match data is coming, we need to make a visual. ranking data is also coming, loading pages and errors are made
+
+[33mcommit c113992621a8b29dc141fdeb86db6a63e280df17[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Wed Dec 11 13:52:37 2024 +0300
+
+    something like stable version
+
+[33mcommit 7ee715fb9e49f6fdf7443e5c2219922ede0e3a30[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Dec 10 23:15:47 2024 +0300
+
+    view model example
+
+[33mcommit 304662700c64cb126abd3f44eb33ea91c33e39e1[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Dec 10 21:53:52 2024 +0300
+
+    View model example
+
+[33mcommit 7b328c35aac722497b18b889594b956318dc0d88[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Dec 10 15:35:49 2024 +0300
+
+    f
+
+[33mcommit 7cd8044d626f586eb9d789e3db20db5ab7e13848[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Dec 10 15:14:18 2024 +0300
+
+    Удален подмодуль и его следы
+
+[33mcommit 404f55004f47579d6ff3e85a7877bd0ebc85ad2e[m
+Author: Korolenko Danila <korolenko.danila1@gmail.com>
+Date:   Tue Dec 10 14:49:06 2024 +0300
+
+    Обновление удалённого репозитория содержимым локального
