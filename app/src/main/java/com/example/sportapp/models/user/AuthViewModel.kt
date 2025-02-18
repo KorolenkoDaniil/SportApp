@@ -8,11 +8,12 @@ import com.example.sportapp.models.user.domain.UserEntity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class AuthViewModel() : ViewModel() {
+class AuthViewModel : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -20,9 +21,14 @@ class AuthViewModel() : ViewModel() {
 
     val authState: StateFlow<AuthState> = _authState
 
-    var currentUser: UserEntity? = null
+    private val _currentUser = MutableStateFlow<UserEntity?>(null)
+    val currentUser: StateFlow<UserEntity?> = _currentUser
 
-    val userRep = UserRepository()
+    fun updateCurrentUser(user: UserEntity?) {
+        _currentUser.value = user
+    }
+
+    private val userRep = UserRepository()
 
 
     init {
@@ -33,14 +39,13 @@ class AuthViewModel() : ViewModel() {
         if (auth.currentUser == null) {
             _authState.value = AuthState.Unauthenticated
         } else {
-
             auth.currentUser?.reload()?.addOnCompleteListener { task ->
                 if (task.isSuccessful && auth.currentUser != null) {
-                    _authState.value = AuthState.Authenticated
-
                     CoroutineScope(Dispatchers.IO).launch {
-                        currentUser = userRep.getUser(auth.currentUser!!.email!!)
-                        Log.d("currentUser", currentUser.toString() )                    }
+                        updateCurrentUser(async { userRep.getUser(auth.currentUser!!.email!!) }.await())
+                        Log.d("currentUser", currentUser.toString())
+                    }
+                    _authState.value = AuthState.Authenticated
 
                 } else {
                     _authState.value = AuthState.Unauthenticated
@@ -77,9 +82,8 @@ class AuthViewModel() : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     CoroutineScope(Dispatchers.IO).launch {
-                        userRep.putNewUser(
-                            email = auth.currentUser!!.email!!
-                        )
+                        updateCurrentUser(async { userRep.putNewUser(auth.currentUser!!.email!!) }.await())
+                        Log.d("currentUser", currentUser.toString())
                     }
                     _authState.value = AuthState.Authenticated
                 } else {
@@ -109,10 +113,9 @@ class AuthViewModel() : ViewModel() {
 }
 
 
-
-sealed class AuthState{
+sealed class AuthState {
     data object Authenticated : AuthState()
     data object Unauthenticated : AuthState()
     data object Loading : AuthState()
-    data class Error(val message : String) : AuthState()
+    data class Error(val message: String) : AuthState()
 }

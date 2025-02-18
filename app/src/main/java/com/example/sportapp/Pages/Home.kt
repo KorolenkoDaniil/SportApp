@@ -23,6 +23,7 @@ import com.example.sportapp.ui.theme.style1
 import com.example.sportapp.widgets.home.CurrentMatch
 import com.example.sportapp.widgets.home.NewsCardRow
 import com.example.sportapp.widgets.home.VideoCardRow
+import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
@@ -34,7 +35,7 @@ fun HomePage(
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
     navController: NavHostController,
-    user: UserEntity
+    user: StateFlow<UserEntity?>
 ) {
     when (state) {
 

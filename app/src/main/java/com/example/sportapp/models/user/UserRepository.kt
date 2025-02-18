@@ -34,7 +34,7 @@ class UserRepository {
     }
 
 
-    suspend fun putNewUser(email: String) {
+    suspend fun putNewUser(email: String) : UserEntity {
 
         val response = client.post("$BaseUrl/api/users") {
             contentType(ContentType.Application.Json)
@@ -44,6 +44,10 @@ class UserRepository {
         }
 
         Log.d("User response", response.bodyAsText())
+
+
+        val currentUser: UserItemResponse = json.decodeFromString(response.body())
+        return userMapper.UseResponseToEntity(currentUser)
     }
 
 

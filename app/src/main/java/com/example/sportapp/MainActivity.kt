@@ -8,7 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.models.user.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
@@ -22,20 +21,21 @@ class mainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val appActivity: AppActivityViewModel = viewModel()
+            val appActivity: AppActivityViewModel by viewModels()
 
-            val newsViewModel: NewsActivityViewModel = viewModel()
+            val newsViewModel: NewsActivityViewModel by viewModels()
             val newsState by newsViewModel.getState().collectAsState()
 
-            val matchesViewModel: MatchesActivitySoccerViewModel = viewModel()
+            val matchesViewModel: MatchesActivitySoccerViewModel by viewModels()
             val state by matchesViewModel.getState().collectAsState()
 
-            val videoViewModel: YoutubeActivityViewModel = viewModel()
+            val videoViewModel: YoutubeActivityViewModel by viewModels()
             val videoState by videoViewModel.getState().collectAsState()
 
             val navController = rememberNavController()
 
             val authViewModel: AuthViewModel by viewModels()
+            val authState by authViewModel.authState.collectAsState()
 
             MyAppNavigation(
                 authViewModel = authViewModel,
@@ -47,7 +47,7 @@ class mainActivity : ComponentActivity() {
                 navController = navController,
                 matchesViewModel = matchesViewModel,
                 videoViewModel = videoViewModel,
-                authViewModel.currentUser
+                authState
             )
         }
     }

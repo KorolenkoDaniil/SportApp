@@ -14,8 +14,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.firebaseexample.pages.SignupPage
+import com.example.sportapp.models.user.AuthState
 import com.example.sportapp.models.user.AuthViewModel
-import com.example.sportapp.models.user.domain.UserEntity
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -56,7 +56,7 @@ fun MyAppNavigation(
     navController: NavHostController,
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
-    user: UserEntity?
+    authState: AuthState
 ) {
 
     val showBars by appActivity.showBars.collectAsState()
@@ -105,12 +105,12 @@ fun MyAppNavigation(
                         matchesViewModel = matchesViewModel,
                         videoViewModel = videoViewModel,
                         navController = navController,
-                        user!!
+                        authViewModel.currentUser
                     )
                 }
 
                 composable(Screen.FirstPage.route) {
-                    FirstPage(navController)
+                    FirstPage(navController, authState)
                 }
                 composable(Screen.Matches.route) {
 

@@ -1,5 +1,6 @@
 package com.example.sportapp.shared
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,10 +34,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.user.domain.UserEntity
+import kotlinx.coroutines.flow.StateFlow
 
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun SearchLine(user: UserEntity) {
+fun SearchLine(user: StateFlow<UserEntity?>) {
 
 
     var userSearchText by remember {
@@ -75,7 +78,7 @@ fun SearchLine(user: UserEntity) {
 
         Spacer(Modifier.width(20.dp))
 
-        val painter = rememberAsyncImagePainter(user.pictureURL)
+        val painter = rememberAsyncImagePainter(user.value!!.pictureURL)
 
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
             Box(
