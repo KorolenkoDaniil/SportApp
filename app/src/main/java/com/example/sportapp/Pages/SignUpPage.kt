@@ -40,9 +40,6 @@ import com.example.sportapp.ui.theme.red_accent_color
 import com.example.sportapp.ui.theme.style13_log_in__page
 import com.example.sportapp.ui.theme.style14
 import com.example.sportapp.ui.theme.style15
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 @Composable
@@ -139,11 +136,6 @@ fun SignupPage(navController: NavController, authViewModel: AuthViewModel) {
                     .height(40.dp),
                 onClick = {
                     authViewModel.signup(email, password)
-//                    var user = User(email, "")
-
-                    CoroutineScope(Dispatchers.IO).launch {
-//                        user = user.putNewUser()
-                    }
 
 
 
