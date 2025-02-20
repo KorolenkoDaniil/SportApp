@@ -84,6 +84,12 @@ val style14 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = Font
 
 val style15 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = red_accent_color, textDecoration = TextDecoration.Underline)
 
+val style16 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start)
+
+val style17 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start, color = red_accent_color)
+
+val style18 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start, color = blue_grey_color)
+
 
 
 

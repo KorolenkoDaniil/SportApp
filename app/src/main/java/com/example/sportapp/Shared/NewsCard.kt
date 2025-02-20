@@ -1,12 +1,15 @@
 package com.example.sportapp.shared
 
-import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,29 +26,37 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.news.domain.NewsEntity
-import com.example.sportapp.ui.theme.style2
+import com.example.sportapp.ui.theme.style16
+import com.example.sportapp.ui.theme.style17
+import com.example.sportapp.ui.theme.style18
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun NewsCard(news: NewsEntity, navController: NavHostController) {
 
     val painterNewsImage = rememberAsyncImagePainter(news.newsImage)
 
+    val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
+    val dateTime = LocalDateTime.parse(news.dateTime, formatter)
+
+    val pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy mm:HH")
+
+    val newsDateTime = dateTime.format(pattern)
+
     Box(
         modifier = Modifier.padding(end = 24.dp)
     ) {
         Card(
             modifier = Modifier
-                .size(height = 180.dp, width = 210.dp)
-                .clip(shape = RoundedCornerShape(16.dp)),
+                .size(height = 212.dp, width = 240.dp)
+                .clip(shape = RoundedCornerShape(12.dp)),
             colors = cardColors(
                 containerColor = Color.White
             ),
 
             onClick = {
-                val newsDateTime = news.dateTime
-                Log.d("ttt", "pageeee  $newsDateTime" )
-
-                navController.navigate("news/$newsDateTime")
+                navController.navigate("news/${news.dateTime}")
             }
         ) {
             Box(
@@ -58,13 +69,19 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight(0.6f)
-                            .clip(shape = RoundedCornerShape(16.dp)),
+                            .clip(shape = RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp)),
                         contentScale = ContentScale.FillWidth
                     )
-                    Box(modifier = Modifier
+                    Spacer(Modifier.height(12.dp))
+                    Column (modifier = Modifier
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                     ) {
-                        Text(text = news.title, style = style2, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                        Text(text = news.title, style = style16, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                        Spacer(Modifier.height(12.dp))
+                        Row (Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text(text = news.sport, style = style17, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                            Text(text = newsDateTime , style = style18, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                        }
                     }
                 }
             }

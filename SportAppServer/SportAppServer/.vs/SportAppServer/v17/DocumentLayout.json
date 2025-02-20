@@ -62,8 +62,7 @@
               "RelativeToolTip": "SportAppServer\\Entities\\Models\\dto\\EmailDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T15:22:27.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T15:22:27.35Z"
             },
             {
               "$type": "Document",
@@ -87,8 +86,7 @@
               "RelativeToolTip": "SportAppServer\\Entities\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAwwBQAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T13:02:15.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T13:02:15.642Z"
             },
             {
               "$type": "Document",
@@ -98,7 +96,7 @@
               "RelativeDocumentMoniker": "SportAppServer\\Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\UsersController.cs",
               "RelativeToolTip": "SportAppServer\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAkwC8AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAYwCEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-17T13:01:55.863Z",
               "EditorCaption": ""
@@ -113,8 +111,7 @@
               "RelativeToolTip": "SportAppServer\\Program.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAQwDEAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T15:28:25.733Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T15:28:25.733Z"
             },
             {
               "$type": "Document",
@@ -126,8 +123,7 @@
               "RelativeToolTip": "SportAppServer\\PythonScript.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T15:28:33.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T15:28:33.699Z"
             },
             {
               "$type": "Document",
@@ -139,8 +135,7 @@
               "RelativeToolTip": "SportAppServer\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-17T14:26:35.09Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T14:26:35.09Z"
             },
             {
               "$type": "Document",
@@ -152,8 +147,7 @@
               "RelativeToolTip": "SportAppServer\\Entities\\Models\\News.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T13:38:21.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T13:38:21.52Z"
             },
             {
               "$type": "Document",
@@ -165,8 +159,7 @@
               "RelativeToolTip": "SportAppServer\\Entities\\Models\\SportMatch.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T14:02:58.795Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T14:02:58.795Z"
             },
             {
               "$type": "Document",
@@ -178,8 +171,7 @@
               "RelativeToolTip": "SportAppServer\\NotificationScheduler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T15:28:36.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T15:28:36.593Z"
             }
           ]
         }
