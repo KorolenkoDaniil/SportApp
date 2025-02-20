@@ -107,7 +107,7 @@ fun NewsPage(
 
                 is NewsSate.Error -> {
                     Log.d("tttNews", "ошибка newsPage")
-                    CommonError(newsViewModel)
+                    CommonError(newsViewModel, "ошибка загрузки новости ")
                 }
 
                 is NewsSate.Load -> Loading()
@@ -116,7 +116,7 @@ fun NewsPage(
         }
 
 
-        is OneNewsSate.Error -> CommonError(oneNewsViewModel)
+        is OneNewsSate.Error -> CommonError(oneNewsViewModel, "ошибка загрузки 1 новости")
 
         is OneNewsSate.Load -> Loading()
     }

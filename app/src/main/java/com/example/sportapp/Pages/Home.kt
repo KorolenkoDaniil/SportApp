@@ -67,7 +67,7 @@ fun HomePage(
 
                         is NewsSate.Error -> {
                             Log.d("tttNews", "ошибка Home")
-                            CommonError(newsViewModel)
+                            CommonError(newsViewModel, "ошибка загрузки новостей")
                         }
 
                         is NewsSate.Load -> {
@@ -77,7 +77,7 @@ fun HomePage(
                 }
 
                 is VideosState.Error ->
-                    CommonError(videoViewModel)
+                    CommonError(videoViewModel, "ошибка загрузки видео")
 
 
                 is VideosState.Load -> Loading()
@@ -86,7 +86,7 @@ fun HomePage(
 
         //ошибька загрузки матчей
         is MatchesState.Error -> {
-            CommonError(matchesViewModel)
+            CommonError(matchesViewModel, "ошибка загрузки матчей")
         }
 
         //загрузка матчей

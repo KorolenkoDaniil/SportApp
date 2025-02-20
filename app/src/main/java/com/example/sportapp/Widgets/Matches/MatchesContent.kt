@@ -54,7 +54,7 @@ fun MatchesContent(
 
         //ошибька загрузки матчей
         is MatchesState.Error -> {
-            CommonError(matchesViewModel)
+            CommonError(matchesViewModel, "ошибка загрузки матчей11")
         }
 
         //загрузка матчей
@@ -162,7 +162,7 @@ fun MatchesContent(
 
                 //ошибка загрузки ранкингов
                 is RankingsState.Error -> {
-                    CommonError(matchesViewModel)
+                    CommonError(matchesViewModel, "ошибка загрузки ранкингов")
                 }
 
             }

@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun <T> CommonError(viewModel: BaseViewModelInterface<T>) {
+fun <T> CommonError(viewModel: BaseViewModelInterface<T>, str: String) {
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -43,7 +43,7 @@ fun <T> CommonError(viewModel: BaseViewModelInterface<T>) {
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = "Either the internet has broken or we couldn't loading matches",
+                text = "Either the internet has broken or we couldn't loading matches $str",
                 style = style10,
                 modifier = Modifier.width(200.dp)
             )

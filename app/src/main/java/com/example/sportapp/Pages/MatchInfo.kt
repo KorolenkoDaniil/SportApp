@@ -31,7 +31,7 @@ fun MatchInfo(
                 }
 
                 is MatchState.Error -> {
-                    CommonError(matchViewModel)
+                    CommonError(matchViewModel, "ошибка загрузки матча")
                 }
 
                 is MatchState.Load -> {
@@ -41,7 +41,7 @@ fun MatchInfo(
         }
 
         is MatchReportState.Error -> {
-            CommonError(matchReportViewModel)
+            CommonError(matchReportViewModel, "ошибка загрузки репорта матча")
         }
 
         is MatchReportState.Load -> {
