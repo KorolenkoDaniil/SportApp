@@ -17,27 +17,34 @@ data class YoutubeSearchListResponse(
 ) {
 
     fun VideoToVideoEntity(): List<VideoEntity> {
-        return items.map { item ->
-            VideoEntity(
-                kind = item.kind,
-                etag = item.etag,
-                id = VideoIdEntity(
-                    kind = item.id.kind,
-                    videoId = item.id.videoId
-                ),
-                snippet = SnippetEntity(
-                    publishedAt = item.snippet.publishedAt,
-                    channelId = item.snippet.channelId,
-                    title = item.snippet.title,
-                    description = item.snippet.description,
-                    thumbnails = item.snippet.VideoIDToVideoIdEntity(),
-                    channelTitle = item.snippet.channelTitle,
-                    liveBroadcastContent = item.snippet.liveBroadcastContent,
-                    publishTime = item.snippet.publishTime
+        return items.mapNotNull { item ->
+            // Проверяем, что id и videoId не null
+            val videoId = item.id?.videoId
+            if (item.id != null && videoId != null) {
+                VideoEntity(
+                    kind = item.kind,
+                    etag = item.etag,
+                    id = VideoIdEntity(
+                        kind = item.id.kind,
+                        videoId = videoId
+                    ),
+                    snippet = SnippetEntity(
+                        publishedAt = item.snippet.publishedAt,
+                        channelId = item.snippet.channelId,
+                        title = item.snippet.title,
+                        description = item.snippet.description,
+                        thumbnails = item.snippet.VideoIDToVideoIdEntity(),
+                        channelTitle = item.snippet.channelTitle,
+                        liveBroadcastContent = item.snippet.liveBroadcastContent,
+                        publishTime = item.snippet.publishTime
+                    )
                 )
-            )
+            } else {
+                null
+            }
         }
     }
+
 }
 
 

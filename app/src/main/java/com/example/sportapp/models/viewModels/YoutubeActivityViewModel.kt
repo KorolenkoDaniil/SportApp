@@ -24,8 +24,12 @@ class YoutubeActivityViewModel : ViewModel(), YoutubeViewModelInterface<VideosSt
     override fun loadData() {
         viewModelScope.launch {
             try {
-                val videos = youtubeRepository.getVideos() // Assuming this returns List<VideoEntity>
-                state.value = VideosState.VideosContent(videos)
+                val videos: YoutubeSearchListResponseEntity? = youtubeRepository.getVideos()
+                if (videos != null) {
+                    state.value = VideosState.VideosContent(videos)
+                } else {
+                    state.value = VideosState.Error(Exception("Failed to load videos"))
+                }
             } catch (e: Throwable) {
                 state.value = VideosState.Error(e)
             }

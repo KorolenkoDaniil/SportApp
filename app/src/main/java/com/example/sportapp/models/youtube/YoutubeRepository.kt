@@ -5,56 +5,64 @@ import com.example.sportapp.models.youtube.api.youtube.YoutubeSearchListResponse
 import com.example.sportapp.models.youtube.domain.YoutubeSearchListResponseEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.request
-import io.ktor.http.HttpMethod
-import io.ktor.http.path
+import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.URLBuilder
+import io.ktor.http.URLProtocol
+import io.ktor.http.appendPathSegments
 import kotlinx.serialization.json.Json
 
 class YoutubeRepository {
 
-    private val youtubeBaseUrl = "https://www.googleapis.com/youtube/v3/"
     private val apiKey = "AIzaSyDW4nt60Fz-opw2g8iz8ZuulYWYO-Ar7ME"
     private val channelId = "UCxfPjORdISQSn2fV8tcVmgA"
 
-
-    val youtubeMapper = YoutubeMapper()
-
+    private val youtubeMapper = YoutubeMapper()
 
     private val json = Json {
         ignoreUnknownKeys = true
     }
 
-    private val client = HttpClient {
-        defaultRequest {
-            this.url(youtubeBaseUrl)
+    private val client = HttpClient()
+
+    suspend fun getVideos(): YoutubeSearchListResponseEntity? {
+        // Формирование URL запроса
+        val url = URLBuilder().apply {
+            protocol = URLProtocol.HTTPS
+            host = "www.googleapis.com"
+            appendPathSegments("youtube", "v3", "search")
+            parameters.append("key", apiKey)
+            parameters.append("channelId", channelId)
+            parameters.append("part", "snippet,id")
+            parameters.append("order", "date")
+            parameters.append("maxResults", "20")
+        }.buildString()
+
+        Log.d("tttVideos", "Request URL: $url")  // Логируем URL
+
+        return try {
+            // Выполнение запроса
+            val response: HttpResponse = client.get(url)
+
+            // Логируем статус-код
+            Log.d("tttVideos", "Response status: ${response.status.value}")
+
+            if (response.status.value == 200) {
+                val responseString: String = response.body()
+                Log.d("tttVideos", "Response: $responseString")  // Логируем ответ
+
+                // Десериализация ответа
+                val youtubeResponse: YoutubeSearchListResponse = json.decodeFromString(responseString)
+
+                // Преобразование в доменный объект и возврат
+                youtubeMapper.getListVideo(youtubeResponse)
+            } else {
+                Log.e("tttVideos", "Request failed with status: ${response.status.value}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("tttVideos", "Error fetching videos: ${e.message}", e)
+            null
         }
-    }
-
-
-    suspend fun getVideos (): YoutubeSearchListResponseEntity {
-        val builder = HttpRequestBuilder()
-        builder.method = HttpMethod.Get
-
-        builder.url {
-            this.path("search")
-            this.parameters.append("key", apiKey)
-            this.parameters.append("channelId", channelId)
-            this.parameters.append("part", "snippet,id")
-            this.parameters.append("order", "date")
-            this.parameters.append("maxResults", "20")
-        }
-
-
-        val response = client.request(builder)
-
-        val responseString: String = response.body()
-
-        Log.d("tttVideos", responseString)
-
-        val youtubeResponse: YoutubeSearchListResponse = json.decodeFromString(responseString)
-
-        return youtubeMapper.getListVideo(youtubeResponse)
     }
 }

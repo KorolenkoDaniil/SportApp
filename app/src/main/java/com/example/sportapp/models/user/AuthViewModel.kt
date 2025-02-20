@@ -43,7 +43,7 @@ class AuthViewModel : ViewModel() {
                 if (task.isSuccessful && auth.currentUser != null) {
                     CoroutineScope(Dispatchers.IO).launch {
                         updateCurrentUser(async { userRep.getUser(auth.currentUser!!.email!!) }.await())
-                        Log.d("currentUser", currentUser.toString())
+                        Log.d("currentUser", currentUser.value.toString())
                     }
                     _authState.value = AuthState.Authenticated
 
