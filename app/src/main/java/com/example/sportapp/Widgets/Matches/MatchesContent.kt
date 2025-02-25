@@ -11,9 +11,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.MatchActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
@@ -42,8 +44,8 @@ fun MatchesContent(
     rankingsState: RankingsState,
     //модель матчей
     matchesViewModel: MatchesActivitySoccerViewModel,
-
     appActivity: AppActivityViewModel,
+    navController: NavHostController,
     ) {
 
     //контроллер страниц матчи-информация про матчи
@@ -54,7 +56,7 @@ fun MatchesContent(
 
         //ошибька загрузки матчей
         is MatchesState.Error -> {
-            CommonError(matchesViewModel, "ошибка загрузки матчей11")
+            CommonError(matchesViewModel,  Screen.Matches.route, navController)
         }
 
         //загрузка матчей
@@ -145,7 +147,8 @@ fun MatchesContent(
                                     MatchInfo(
                                         matchReportViewModel,
                                         matchViewModel,
-                                        appActivity
+                                        appActivity,
+                                        navController
                                     )
                                 }
                             }
@@ -162,7 +165,7 @@ fun MatchesContent(
 
                 //ошибка загрузки ранкингов
                 is RankingsState.Error -> {
-                    CommonError(matchesViewModel, "ошибка загрузки ранкингов")
+                    CommonError(matchesViewModel, Screen.Matches.route, navController)
                 }
 
             }

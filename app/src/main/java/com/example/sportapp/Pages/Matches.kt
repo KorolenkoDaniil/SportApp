@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -30,6 +31,7 @@ fun MatchesPage(
     matchesViewModel: MatchesActivitySoccerViewModel,
     state: MatchesState,
     appActivity: AppActivityViewModel,
+    navController: NavHostController,
     rankingsViewModel: RankingsActivitySoccerViewModel = viewModel(),
 ) {
 
@@ -54,7 +56,7 @@ fun MatchesPage(
 
             composable(MatchesRankingsScreen.MatchesPage.route) {
                 //экран с матчами
-                MatchesContent(state, rankingsState, matchesViewModel, appActivity)
+                MatchesContent(state, rankingsState, matchesViewModel, appActivity, navController)
             }
 
             composable(MatchesRankingsScreen.RankingsPage.route) {

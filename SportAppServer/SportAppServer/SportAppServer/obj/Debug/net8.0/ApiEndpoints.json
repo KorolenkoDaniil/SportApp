@@ -32,6 +32,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SportAppServer.Controllers.GeminiController",
+    "Method": "AskGemini",
+    "RelativePath": "gemini/ask",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prompt",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SportAppServer.Controllers.NewsController",
     "Method": "GetNews",
     "RelativePath": "NewsController/GetNews",

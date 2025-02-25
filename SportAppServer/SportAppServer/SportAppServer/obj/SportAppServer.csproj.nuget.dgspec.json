@@ -67,6 +67,10 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "System.ComponentModel.Annotations": {
               "target": "Package",
               "version": "[5.0.0, )"

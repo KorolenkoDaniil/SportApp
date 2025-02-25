@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.NewsSate
 import com.example.sportapp.models.viewModels.OneNewsActivityViewModel
@@ -35,7 +36,8 @@ fun NewsPage(
     newsDateTime: String,
     newsState: NewsSate,
     navController: NavHostController,
-    newsViewModel: NewsActivityViewModel
+    newsViewModel: NewsActivityViewModel,
+
 ) {
 
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
@@ -107,7 +109,7 @@ fun NewsPage(
 
                 is NewsSate.Error -> {
                     Log.d("tttNews", "ошибка newsPage")
-                    CommonError(newsViewModel, "ошибка загрузки новости ")
+                    CommonError(newsViewModel, Screen.News.route, navController)
                 }
 
                 is NewsSate.Load -> Loading()
@@ -116,7 +118,7 @@ fun NewsPage(
         }
 
 
-        is OneNewsSate.Error -> CommonError(oneNewsViewModel, "ошибка загрузки 1 новости")
+        is OneNewsSate.Error -> CommonError(oneNewsViewModel, Screen.News.route, navController)
 
         is OneNewsSate.Load -> Loading()
     }

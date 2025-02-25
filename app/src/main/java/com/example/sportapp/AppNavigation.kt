@@ -114,7 +114,7 @@ fun MyAppNavigation(
                 }
                 composable(Screen.Matches.route) {
 
-                    MatchesPage(matchesViewModel, state, appActivity)
+                    MatchesPage(matchesViewModel, state, appActivity, navController)
                 }
                 composable(Screen.Video.route) { VideoPage(appActivity) }
 

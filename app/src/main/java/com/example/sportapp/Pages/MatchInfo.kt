@@ -5,6 +5,8 @@ import MatchInfoContent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.navigation.NavHostController
+import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.MatchActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportState
@@ -18,6 +20,7 @@ fun MatchInfo(
     matchReportViewModel: MatchReportActivitySoccerViewModel,
     matchViewModel: MatchActivitySoccerViewModel,
     appActivity: AppActivityViewModel,
+    navController: NavHostController,
 ) {
     appActivity.changePageName("Match center")
     val matchReportState by matchReportViewModel.getState().collectAsState()
@@ -31,7 +34,7 @@ fun MatchInfo(
                 }
 
                 is MatchState.Error -> {
-                    CommonError(matchViewModel, "ошибка загрузки матча")
+                    CommonError(matchViewModel, Screen.Matches.route, navController)
                 }
 
                 is MatchState.Load -> {
@@ -41,7 +44,7 @@ fun MatchInfo(
         }
 
         is MatchReportState.Error -> {
-            CommonError(matchReportViewModel, "ошибка загрузки репорта матча")
+            CommonError(matchReportViewModel,  Screen.Matches.route, navController)
         }
 
         is MatchReportState.Load -> {

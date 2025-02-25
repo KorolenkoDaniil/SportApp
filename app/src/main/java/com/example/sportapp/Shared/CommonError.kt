@@ -14,6 +14,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.BaseViewModelInterface
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.ui.theme.style10
@@ -24,7 +26,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun <T> CommonError(viewModel: BaseViewModelInterface<T>, str: String) {
+fun <T> CommonError(viewModel: BaseViewModelInterface<T>, route: String, navController: NavHostController,) {
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -43,7 +45,7 @@ fun <T> CommonError(viewModel: BaseViewModelInterface<T>, str: String) {
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = "Either the internet has broken or we couldn't loading matches $str",
+                text = "Either the internet has broken or we couldn't loading matches",
                 style = style10,
                 modifier = Modifier.width(200.dp)
             )
@@ -59,6 +61,10 @@ fun <T> CommonError(viewModel: BaseViewModelInterface<T>, str: String) {
             ), onClick = {
                 coroutineScope.launch {
                     viewModel.loadData()
+                    navController.navigate(route) {
+                        launchSingleTop = true
+                        popUpTo(Screen.FirstPage.route) { inclusive = true }
+                    }
                 }
             }) {
                 Text(text = "Try again", style = style11)

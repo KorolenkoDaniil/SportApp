@@ -102,7 +102,7 @@ fun SearchLine(user: StateFlow<UserEntity?>) {
         ) {
             Box(
                 Modifier
-                    .size(40.dp)
+                    .size(48.dp)
                     .clip(RoundedCornerShape(24.dp))
             ) {
                 Image(

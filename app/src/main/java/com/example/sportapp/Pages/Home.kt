@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.sportapp.Screen
 import com.example.sportapp.models.user.domain.UserEntity
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
@@ -67,7 +68,7 @@ fun HomePage(
 
                         is NewsSate.Error -> {
                             Log.d("tttNews", "ошибка Home")
-                            CommonError(newsViewModel, "ошибка загрузки новостей")
+                            CommonError(newsViewModel, Screen.Home.route, navController)
                         }
 
                         is NewsSate.Load -> {
@@ -77,19 +78,17 @@ fun HomePage(
                 }
 
                 is VideosState.Error ->
-                    CommonError(videoViewModel, "ошибка загрузки видео")
+                    CommonError(videoViewModel, Screen.Home.route, navController)
 
 
                 is VideosState.Load -> Loading()
             }
         }
 
-        //ошибька загрузки матчей
         is MatchesState.Error -> {
-            CommonError(matchesViewModel, "ошибка загрузки матчей")
+            CommonError(matchesViewModel, Screen.Home.route, navController)
         }
 
-        //загрузка матчей
         MatchesState.Load -> {
             Loading()
         }
