@@ -80,11 +80,13 @@ val style12_first_page = TextStyle(fontFamily = Roboto, fontSize = 24.sp, fontWe
 
 val style13_log_in__page = TextStyle(fontFamily = Roboto, fontSize = 32.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
 
-val style14 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = blue_grey_color)
+val style14 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start)
 
-val style15 = TextStyle(fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = red_accent_color, textDecoration = TextDecoration.Underline)
+val style16 = TextStyle(fontFamily = Roboto, fontSize = 12.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = blue_grey_color)
 
+val style15 = TextStyle(fontFamily = Roboto, fontSize = 12.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = red_accent_color, textDecoration = TextDecoration.Underline)
 
+val style17 = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start)
 
 
 

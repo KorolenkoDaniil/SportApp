@@ -4,6 +4,7 @@ import com.example.sportapp.models.news.api.NewsItemResponse
 import com.example.sportapp.models.news.api.NewsResponse
 import com.example.sportapp.models.news.domain.NewsEntity
 import com.example.sportapp.models.news.domain.NewsListEntity
+import java.time.LocalDateTime
 
 class NewsMapper {
 
@@ -15,7 +16,7 @@ class NewsMapper {
             totalPages = response.totalPages,
             news = response.news.map { item ->
                 NewsEntity(
-                    dateTime = item.dateTime,
+                    dateTime = StringToDateTime(item.dateTime),
                     sport = item.sport,
                     title = item.title,
                     imageId = item.imageId,
@@ -28,12 +29,17 @@ class NewsMapper {
 
     fun getOneNewsEntity(response: NewsItemResponse, newsBaseUrl: String): NewsEntity {
         return NewsEntity(
-            dateTime = response.dateTime,
+            dateTime = StringToDateTime(response.dateTime),
             sport = response.sport,
             title = response.title,
             imageId = response.imageId,
             newsImage = newsBaseUrl + "/images/" + response.imageId,
             articleText = response.articleText
         )
+    }
+
+
+    fun StringToDateTime(date: String): LocalDateTime {
+        return LocalDateTime.parse(date)
     }
 }
