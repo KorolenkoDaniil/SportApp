@@ -11,7 +11,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.models.user.AuthViewModel
+import com.example.sportapp.models.viewModels.AuthViewModel
 
 
 @Composable

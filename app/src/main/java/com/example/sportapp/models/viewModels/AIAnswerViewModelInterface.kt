@@ -1,13 +1,13 @@
 package com.example.sportapp.models.viewModels
 
-import com.example.sportapp.models.news.NewsRepository
+import com.example.sportapp.models.news.AIAnswerRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-interface NewsViewModelInterface <T> : BaseViewModelInterface<T> {
+interface AIAnswerViewModelInterface <T> : BaseViewModelInterface<T> {
     override val state: MutableStateFlow<T>
 
-    val NewsRepository: NewsRepository
+    val AIAnswerRepository: AIAnswerRepository
 
     override fun getState(): StateFlow<T>
 

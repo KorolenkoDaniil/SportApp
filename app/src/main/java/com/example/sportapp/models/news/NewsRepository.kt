@@ -72,9 +72,9 @@ class NewsRepository {
 
         Log.d("tttNews", responseString)
 
-        val oneNewsResponse: NewsResponse = json.decodeFromString(responseString)
+        val newsResponse: NewsResponse = json.decodeFromString(responseString)
 
-        return newsMapper.getNewsEntityList(oneNewsResponse, BaseUrl)
+        return newsMapper.getNewsEntityList(newsResponse, BaseUrl)
     }
 
 

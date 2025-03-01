@@ -14,8 +14,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.firebaseexample.pages.SignupPage
-import com.example.sportapp.models.user.AuthState
-import com.example.sportapp.models.user.AuthViewModel
+import com.example.sportapp.models.viewModels.AIAnswerViewModel
+import com.example.sportapp.models.viewModels.AnswerState
+import com.example.sportapp.models.viewModels.AuthState
+import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -56,7 +58,9 @@ fun MyAppNavigation(
     navController: NavHostController,
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
-    authState: AuthState
+    authState: AuthState,
+    AIViewModel: AIAnswerViewModel,
+    answerState: AnswerState
 ) {
 
     val showBars by appActivity.showBars.collectAsState()
@@ -118,7 +122,7 @@ fun MyAppNavigation(
                 }
                 composable(Screen.Video.route) { VideoPage(appActivity) }
 
-                composable(Screen.Like.route) { LikePage(appActivity) }
+                composable(Screen.Like.route) { LikePage(appActivity, AIViewModel, answerState) }
 
                 composable(Screen.News.route) { backStackEntry ->
                     val newsDateTime = backStackEntry.arguments?.getString("newsId")

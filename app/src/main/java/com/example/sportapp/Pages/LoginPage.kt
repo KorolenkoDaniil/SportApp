@@ -35,8 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.sportapp.R
 import com.example.sportapp.Screen
-import com.example.sportapp.models.user.AuthState
-import com.example.sportapp.models.user.AuthViewModel
+import com.example.sportapp.models.viewModels.AuthState
+import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.pages.requests.NotificationPermissionRequest
 import com.example.sportapp.ui.theme.red_accent_color
 import com.example.sportapp.ui.theme.style13_log_in__page

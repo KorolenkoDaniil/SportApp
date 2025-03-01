@@ -35,14 +35,14 @@
     "ContainingType": "SportAppServer.Controllers.GeminiController",
     "Method": "AskGemini",
     "RelativePath": "gemini/ask",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "prompt",
-        "Type": "System.String",
-        "IsRequired": false
+        "Type": "SportAppServer.Entities.Models.dto.PromptDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

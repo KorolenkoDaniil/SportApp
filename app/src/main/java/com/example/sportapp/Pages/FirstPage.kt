@@ -5,7 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import com.example.sportapp.Screen
-import com.example.sportapp.models.user.AuthState
+import com.example.sportapp.models.viewModels.AuthState
+
 import com.example.sportapp.widgets.first_page.FirstPageElements
 
 @Composable

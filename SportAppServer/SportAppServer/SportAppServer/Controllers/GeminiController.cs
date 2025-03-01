@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using SportAppServer.Entities.Models.dto;
+using SportAppServer.Entities.Models;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
-using static Google.Apis.Requests.BatchRequest;
 
 namespace SportAppServer.Controllers
 {
@@ -13,30 +15,48 @@ namespace SportAppServer.Controllers
         private static readonly string apiKey = Environment.GetEnvironmentVariable("GEMINI_API_KEY")!;
         private static readonly string apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
-        [HttpGet("ask")]
-        public async Task<IActionResult> AskGemini([FromQuery] string prompt)
+
+        //[HttpPost]
+        //public async Task<IActionResult> PutUser([FromBody] EmailDto email)
+        //{
+        //    Debug.WriteLine(email.Email);
+        //    if (string.IsNullOrEmpty(email.Email))
+        //    {
+        //        return BadRequest("Email is required.");
+        //    }
+
+        //    var newUser = new User(email.Email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg");
+        //    _dbContext.Users.Add(newUser);
+        //    await _dbContext.SaveChangesAsync();
+
+        //    return Ok(newUser);
+        //}
+
+        [HttpPost("ask")]
+        public async Task<IActionResult> AskGemini([FromBody] PromptDto prompt)
         {
             if (string.IsNullOrEmpty(apiKey))
                 return StatusCode(500, "API Key is missing!");
 
-            if (string.IsNullOrEmpty(prompt))
-                return BadRequest("Введите текст запроса в параметре 'prompt'.");
+            if (string.IsNullOrEmpty(prompt.Prompt))
+                return BadRequest("Введите текст запроса");
 
-            bool isSportsRequest = await CheckIfSportsRelated(prompt);
+            bool isSportsRequest = await CheckIfSportsRelated(prompt.Prompt);
 
             if (!isSportsRequest)
                 return Ok("Я могу отвечать только на вопросы по спорту.");
 
-       
-            string response = await SendRequestToGemini(prompt);
+
+            string response = await SendRequestToGemini(prompt.Prompt);
 
             JObject json = JObject.Parse(response);
-            string text = (string)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"];
+            string text = (string)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"]!;
+  
 
-            return Ok(text);
+            return Ok(new { answer = text });
         }
 
-  
+
         private async Task<bool> CheckIfSportsRelated(string prompt)
         {
             using HttpClient client = new HttpClient();
@@ -62,7 +82,7 @@ namespace SportAppServer.Controllers
             return answer?.Trim().ToLower() == "да";
         }
 
- 
+
         private async Task<string> SendRequestToGemini(string prompt)
         {
             using HttpClient client = new HttpClient();

@@ -16,7 +16,7 @@ class NewsActivityViewModel : ViewModel(), NewsViewModelInterface<NewsSate> {
 
     override val state: MutableStateFlow<NewsSate> = MutableStateFlow(NewsSate.Load)
 
-    override val newsRepository = NewsRepository()
+    override val NewsRepository: NewsRepository = NewsRepository()
 
     override fun getState(): StateFlow<NewsSate> {
         return state
@@ -32,7 +32,7 @@ class NewsActivityViewModel : ViewModel(), NewsViewModelInterface<NewsSate> {
     fun loadNewsData(pageNumber: Int) {
         viewModelScope.launch {
             try {
-                val pageWithNews = newsRepository.getNews(pageNumber)
+                val pageWithNews = NewsRepository.getNews(pageNumber)
                 Log.d("tttNews", "${pageWithNews.pageNumber}  ${pageWithNews.totalPages}  ${pageWithNews.news}")
 
                 val listOfPages = NewsSate.NewsContent(pageWithNews)

@@ -12,9 +12,7 @@ import kotlinx.coroutines.launch
 class OneNewsActivityViewModel : ViewModel(), NewsViewModelInterface<OneNewsSate> {
     override val state: MutableStateFlow<OneNewsSate> = MutableStateFlow(OneNewsSate.Load)
 
-    override val newsRepository = NewsRepository()
-
-//    lateinit var loadedNews: NewsEntity/**/
+    override val NewsRepository = NewsRepository()
 
     override fun getState(): StateFlow<OneNewsSate> {
         return state
@@ -25,7 +23,7 @@ class OneNewsActivityViewModel : ViewModel(), NewsViewModelInterface<OneNewsSate
     fun loadOneNewsData(dateTime: String) {
         viewModelScope.launch {
             try {
-                val oneNews = newsRepository.getOneNews(dateTime)
+                val oneNews = NewsRepository.getOneNews(dateTime)
                 state.value = OneNewsSate.OneNewsContent(oneNews)
             } catch (e: Throwable) {
                 state.value = OneNewsSate.Error(e)
