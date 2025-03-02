@@ -36,15 +36,15 @@ namespace SportAppServer.Controllers
         public async Task<IActionResult> AskGemini([FromBody] PromptDto prompt)
         {
             if (string.IsNullOrEmpty(apiKey))
-                return StatusCode(500, "API Key is missing!");
+                return StatusCode(500, new { answer = "AI на данный момент не доступен" });
 
             if (string.IsNullOrEmpty(prompt.Prompt))
-                return BadRequest("Введите текст запроса");
+                return BadRequest(new { answer = "Введите текст запроса"} );
 
             bool isSportsRequest = await CheckIfSportsRelated(prompt.Prompt);
 
             if (!isSportsRequest)
-                return Ok("Я могу отвечать только на вопросы по спорту.");
+                return Ok(new { answer = "Я могу отвечать только на вопросы по спорту." });
 
 
             string response = await SendRequestToGemini(prompt.Prompt);
