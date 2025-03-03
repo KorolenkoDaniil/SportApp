@@ -109,6 +109,8 @@ dependencies {
     // Google Fonts
     implementation(libs.googleFonts)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
 
     // Тестирование
     testImplementation(libs.junit)

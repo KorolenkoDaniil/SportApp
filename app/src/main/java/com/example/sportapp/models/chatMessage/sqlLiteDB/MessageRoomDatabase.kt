@@ -1,0 +1,36 @@
+package com.example.sportapp.models.chatMessage.sqlLiteDB
+
+import Converters
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.sportapp.models.chatMessage.MessageEntity
+
+@Database(entities = [MessageEntity::class], version = 1)
+@TypeConverters(Converters::class)  // Добавили поддержку LocalDateTime
+
+abstract class MessageRoomDatabase : RoomDatabase() {
+
+    abstract fun messageDao(): MessagesDAO
+
+    companion object {
+        @Volatile
+        private var INSTANCE: MessageRoomDatabase? = null
+
+        fun getInstance(context: Context): MessageRoomDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MessageRoomDatabase::class.java,
+                    "Messages"
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}

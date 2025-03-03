@@ -3,7 +3,7 @@ package com.example.sportapp.models.viewModels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sportapp.models.aiAnswer.AIAnswerEntity
+import com.example.sportapp.models.chatMessage.MessageEntity
 import com.example.sportapp.models.news.AIAnswerRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,7 +25,7 @@ class AIAnswerViewModel : ViewModel(), AIAnswerViewModelInterface<AnswerState> {
         viewModelScope.launch {
             try {
                 val AIanswer = AIAnswerRepository.askIA(prompt)
-                Log.d("tttAIAnswer", AIanswer.answer)
+                Log.d("tttAIAnswer", AIanswer.text)
 
                 state.value = AnswerState.AIAnswerContent(AIanswer)
 
@@ -40,5 +40,5 @@ class AIAnswerViewModel : ViewModel(), AIAnswerViewModelInterface<AnswerState> {
 sealed interface AnswerState : BaseState {
     data object Load : AnswerState
     data class Error(val e: Throwable) : AnswerState
-    data class AIAnswerContent(val answer: AIAnswerEntity) : AnswerState
+    data class AIAnswerContent(val answer: MessageEntity) : AnswerState
 }

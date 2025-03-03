@@ -2,8 +2,8 @@ package com.example.sportapp.models.news
 
 import android.util.Log
 import com.example.sportapp.models.BaseUrl
-import com.example.sportapp.models.aiAnswer.AIAnswerEntity
 import com.example.sportapp.models.aiAnswer.AIAnswerResponse
+import com.example.sportapp.models.chatMessage.MessageEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -33,7 +33,7 @@ class AIAnswerRepository {
     }
 
 
-    suspend fun askIA(prompt: String): AIAnswerEntity {
+    suspend fun askIA(prompt: String): MessageEntity {
         val requestBody = Json.encodeToString(mapOf("prompt" to prompt))
 
         val response = client.post("$BaseUrl/gemini/ask") {
