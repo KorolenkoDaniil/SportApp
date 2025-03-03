@@ -3,27 +3,27 @@ package com.example.sportapp.models.chatMessage
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.time.LocalDateTime
+import java.util.Date
 
-@Entity(tableName = "Messages")
+@Entity(tableName = "messages")
 data class MessageEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "messageId")
+    @ColumnInfo(name = "message_id")
     val id: Int = 0,
 
-    @ColumnInfo(name = "messageText")
+    @ColumnInfo(name = "message_text")
     val text: String,
 
-    @ColumnInfo(name = "messageTime")
-    val time: LocalDateTime,
+    @ColumnInfo(name = "message_time")
+    val time: Date,
 
-    @ColumnInfo(name = "messageSender")
+    @ColumnInfo(name = "message_sender")
     val sender: String
 ) {
     constructor(text: String, sender: String) : this(
-        id = 0,  // Room сам установит правильный автоинкрементный ID
+        id = 0,
         text = text,
         sender = sender,
-        time = LocalDateTime.now()
+        time = Date() // Используем текущее время
     )
 }

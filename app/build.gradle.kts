@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp") version "2.0.0-1.0.21" // Используем правильную версию ksp
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.google.gms.google.services)
@@ -33,74 +34,73 @@ android {
         }
     }
 
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
 }
 
-
 dependencies {
+    // Room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler) // Используем ksp вместо kapt
+    implementation(libs.androidx.room.ktx) // Поддержка корутин
 
+    // Kotlin Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
+    // Lifecycle (для Flow)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Ktor (HTTP-клиент)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.jsonlib)
 
-
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
-
-
+    // Retrofit
     implementation(libs.retrofit2.retrofit)
     implementation(libs.converter.gson)
-    implementation(libs.accompanist.permissions)
+
+    // Accompanist (Permissions)
     implementation(libs.accompanist.permissions)
 
-
-    implementation(libs.firebase.analytics)
+    // Firebase
     implementation(platform(libs.firebase.bom))
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.messaging)
 
+    // Compose
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity.compose)
     implementation(libs.compose.ui)
     implementation(libs.compose.runtime)
     implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.support.annotations)
-    implementation(libs.firebase.messaging)
-    implementation(libs.androidx.annotation)
-
     implementation(libs.androidx.material3)
     implementation(libs.androidx.foundation.layout.android)
 
-    // Работа с изображениями (Coil)
+    // Coil (Работа с изображениями)
     implementation(libs.coil.compose)
-
-    // Ktor (HTTP-клиент)
-
 
     // JSON-сериализация
     implementation(libs.kotlinx.serialization.json)
-
-    // Firebase
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.crashlytics.buildtools)
 
     // Видео и медиаконтент
     implementation(libs.android.youtube.player)
@@ -108,15 +108,10 @@ dependencies {
 
     // Google Fonts
     implementation(libs.googleFonts)
-    implementation(libs.firebase.firestore.ktx)
-    implementation(libs.androidx.room.common)
-    implementation(libs.androidx.room.ktx)
 
     // Тестирование
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-
 }
-

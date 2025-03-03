@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MessagesDAO {
-    @Query("SELECT * FROM Messages ORDER BY messageId ASC")
+    @Query("SELECT * FROM messages ORDER BY message_id ASC")
     fun getAllMessages(): Flow<List<MessageEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
