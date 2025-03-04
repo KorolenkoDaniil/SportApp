@@ -48,6 +48,8 @@ import com.example.sportapp.models.chatMessage.sqlLiteDB.MessageRoomDatabase
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.models.viewModels.AnswerState
 import com.example.sportapp.ui.theme.Blue100
+import com.example.sportapp.ui.theme.companion_messages
+import com.example.sportapp.ui.theme.my_messages
 import com.example.sportapp.ui.theme.red_accent_color
 import com.example.sportapp.widgets.messages.Message
 import kotlinx.coroutines.CoroutineScope
@@ -92,8 +94,10 @@ fun LikePage(
                                     topStart = 16.dp,
                                     topEnd = 16.dp,
                                     bottomStart = 16.dp,
-                                    bottomEnd = 0.dp
-                                )
+                                    bottomEnd = 0.dp,
+                                ),
+                                false,
+                                my_messages
                             )
                         }
                     } else {
@@ -106,7 +110,9 @@ fun LikePage(
                                     topEnd = 16.dp,
                                     bottomStart = 0.dp,
                                     bottomEnd = 16.dp
-                                )
+                                ),
+                                true,
+                                companion_messages
                             )
                         }
                     }
@@ -159,10 +165,12 @@ fun LikePage(
 
                     Button(
                         onClick = {
-                            AIViewModel.loadAIAnswer(prompt)
                             CoroutineScope(Dispatchers.IO).launch {
                                 repository.addMessage(MessageEntity(text = prompt, sender = "User"))
                             }
+
+                            AIViewModel.loadAIAnswer(prompt, repository)
+
                         },
                         modifier = Modifier.size(32.dp),
                         shape = RoundedCornerShape(24.dp),

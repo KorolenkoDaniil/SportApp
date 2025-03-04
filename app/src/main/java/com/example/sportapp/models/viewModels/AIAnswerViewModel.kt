@@ -1,10 +1,13 @@
 package com.example.sportapp.models.viewModels
 
+import ChatRepository
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.models.chatMessage.MessageEntity
 import com.example.sportapp.models.news.AIAnswerRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -21,13 +24,17 @@ class AIAnswerViewModel : ViewModel(), AIAnswerViewModelInterface<AnswerState> {
 
     override fun loadData() {}
 
-    fun loadAIAnswer(prompt: String) {
+    fun loadAIAnswer(prompt: String,  repository: ChatRepository) {
         viewModelScope.launch {
             try {
                 val AIanswer = AIAnswerRepository.askIA(prompt)
                 Log.d("tttAIAnswer", AIanswer.text)
 
                 state.value = AnswerState.AIAnswerContent(AIanswer)
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    repository.addMessage(MessageEntity(text = AIanswer.text, sender = "AI"))
+                }
 
             } catch (e: Throwable) {
                 Log.e("tttAIAnswer", "Error loading news data: ${e.message}", e)

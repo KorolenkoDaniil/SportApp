@@ -88,6 +88,10 @@ val style15 = TextStyle(fontFamily = Roboto, fontSize = 12.sp, fontWeight = Font
 
 val style17 = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start)
 
+val my_messages = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.End)
+
+val companion_messages = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start, color = Color.White)
+
 
 
 

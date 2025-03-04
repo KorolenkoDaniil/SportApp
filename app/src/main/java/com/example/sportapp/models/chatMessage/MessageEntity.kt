@@ -24,6 +24,6 @@ data class MessageEntity(
         id = 0,
         text = text,
         sender = sender,
-        time = Date() // Используем текущее время
+        time = Date()
     )
 }
