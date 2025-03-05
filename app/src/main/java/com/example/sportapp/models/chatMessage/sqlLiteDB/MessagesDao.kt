@@ -14,4 +14,10 @@ interface MessagesDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMessage(message: MessageEntity)
+
+    @Query("DELETE FROM messages " +
+            "WHERE ROWID NOT IN " +
+            "( SELECT ROWID FROM messages " +
+            "ORDER BY ROWID DESC LIMIT :limit);")
+    fun deleteExtraMessages(limit: Int)
 }

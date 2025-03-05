@@ -24,9 +24,9 @@ import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.NewsSate
 import com.example.sportapp.models.viewModels.VideosState
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
+import com.example.sportapp.pages.AIChatPage
 import com.example.sportapp.pages.FirstPage
 import com.example.sportapp.pages.HomePage
-import com.example.sportapp.pages.LikePage
 import com.example.sportapp.pages.LoginPage
 import com.example.sportapp.pages.MatchesPage
 import com.example.sportapp.pages.NewsPage
@@ -64,20 +64,22 @@ fun MyAppNavigation(
 ) {
 
     val showBars by appActivity.showBars.collectAsState()
+    val AIChatPagePaddings by appActivity.AIChatPagePaddings.collectAsState()
 
     Scaffold(
         containerColor = Color(0xFFEBEFF4),
 
         bottomBar = {
             if (showBars) {
-                BottomNavBar(navController = navController)
+                BottomNavBar(navController = navController, appActivity)
             }
         },
 
     ) { innerPadding ->
 
-        val paddings = if (showBars) 8.dp else 0.dp
+//        val paddings = if (showBars) 8.dp else 0.dp
         val topPaddings = if (showBars) 20.dp else 0.dp
+        val horizontalPaddings = if (AIChatPagePaddings) 0.dp else 8.dp
 
 
         NavHost(
@@ -85,7 +87,7 @@ fun MyAppNavigation(
             startDestination = Screen.FirstPage.route,
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(horizontal = paddings)
+                .padding(horizontal = horizontalPaddings)
                 .padding(top = topPaddings),
             builder = {
                 composable(Screen.LoginPage.route) {
@@ -122,7 +124,7 @@ fun MyAppNavigation(
                 }
                 composable(Screen.Video.route) { VideoPage(appActivity) }
 
-                composable(Screen.Like.route) { LikePage(appActivity, AIViewModel, answerState) }
+                composable(Screen.Like.route) { AIChatPage(AIViewModel) }
 
                 composable(Screen.News.route) { backStackEntry ->
                     val newsDateTime = backStackEntry.arguments?.getString("newsId")

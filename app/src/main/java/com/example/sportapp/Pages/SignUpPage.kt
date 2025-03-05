@@ -45,7 +45,6 @@ import com.example.sportapp.ui.theme.style15
 @Composable
 fun SignupPage(navController: NavController, authViewModel: AuthViewModel) {
 
-
     var email by remember {
         mutableStateOf("")
     }
@@ -135,7 +134,7 @@ fun SignupPage(navController: NavController, authViewModel: AuthViewModel) {
                     .width(270.dp)
                     .height(40.dp),
                 onClick = {
-                    authViewModel.signup(email, password)
+                    authViewModel.signup(email, password, context)
 
 
 

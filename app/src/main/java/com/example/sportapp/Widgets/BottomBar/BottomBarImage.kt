@@ -1,5 +1,6 @@
 package com.example.sportapp.widgets.bottomBar
 
+import AppActivityViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
@@ -18,6 +19,7 @@ fun BottomBarImage(
     newPage: String,
     pictureId: Int,
     navController: NavController,
+    appActivity: AppActivityViewModel,
 ) {
     val isSelected: Boolean
     val currentRoute by navController.currentBackStackEntryAsState()
@@ -27,6 +29,14 @@ fun BottomBarImage(
     }
     else {
         isSelected = currentRoute?.destination?.route == newPage
+    }
+
+
+    if (currentRoute?.destination?.route?.contains("like") == true){
+        appActivity.changeAIChat(true)
+    }
+    else {
+        appActivity.changeAIChat(false)
     }
 
 

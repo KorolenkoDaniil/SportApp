@@ -1,9 +1,11 @@
 package com.example.sportapp.models.viewModels
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.example.sportapp.Screen
+import com.example.sportapp.models.preferencesManager.PreferencesManager
 import com.example.sportapp.models.user.UserRepository
 import com.example.sportapp.models.user.domain.UserEntity
 import com.google.firebase.auth.FirebaseAuth
@@ -14,7 +16,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class AuthViewModel : ViewModel() {
+
+class AuthViewModel() : ViewModel() {
+
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -73,7 +77,7 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    fun signup(email: String, password: String) {
+    fun signup(email: String, password: String, context: Context) {
         if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or password can't be empty")
             return
@@ -87,6 +91,10 @@ class AuthViewModel : ViewModel() {
                             val user = async { userRep.putNewUser(auth.currentUser?.email ?: "") }.await()
                             updateCurrentUser(user)
                             Log.d("currentUser", "User created successfully: $user")
+                            val sharedPrefManager = PreferencesManager(context)
+
+                            sharedPrefManager.saveLimit(10)
+
                         } catch (e: Exception) {
                             Log.e("currentUser", "Failed to create user", e)
                         }

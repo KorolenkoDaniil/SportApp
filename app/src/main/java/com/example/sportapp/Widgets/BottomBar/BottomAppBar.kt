@@ -14,7 +14,8 @@ import com.example.sportapp.widgets.bottomBar.BottomBarImage
 
 @Composable
 fun BottomNavBar(
-    navController: NavController
+    navController: NavController,
+    appActivity: AppActivityViewModel,
 ) {
 
     BottomAppBar(
@@ -28,11 +29,10 @@ fun BottomNavBar(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
         ) {
-
-            BottomBarImage("home", R.drawable.home, navController)
-            BottomBarImage("matches", R.drawable.matches, navController)
-            BottomBarImage("video", R.drawable.videos, navController)
-            BottomBarImage("like", R.drawable.like, navController)
+            BottomBarImage("home", R.drawable.home, navController, appActivity)
+            BottomBarImage("matches", R.drawable.matches, navController, appActivity)
+            BottomBarImage("video", R.drawable.videos, navController, appActivity)
+            BottomBarImage("like", R.drawable.ai, navController, appActivity)
         }
     }
 }

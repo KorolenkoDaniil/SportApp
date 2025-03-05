@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 class AppActivityViewModel : ViewModel() {
     private val _pageName = MutableStateFlow("Home")
 
-    val pageName: StateFlow<String> get() = _pageName
+//    val pageName: StateFlow<String> get() = _pageName
 
     fun changePageName(newPageName: String) {
         _pageName.value = newPageName
@@ -18,5 +18,14 @@ class AppActivityViewModel : ViewModel() {
 
     fun changeShowBars(showBars: Boolean) {
         _showBars.value = showBars
+    }
+
+
+    private val _aiChatPagePaddings = MutableStateFlow(false)
+
+    val AIChatPagePaddings: StateFlow<Boolean> get() = _aiChatPagePaddings
+
+    fun changeAIChat(showBars: Boolean) {
+        _aiChatPagePaddings.value = showBars
     }
 }

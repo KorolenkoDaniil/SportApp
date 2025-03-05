@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp") version "2.0.0-1.0.21" // Используем правильную версию ksp
+    id("com.google.devtools.ksp") version "2.1.10-1.0.31" // Используем правильную версию ksp
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.google.gms.google.services)
@@ -53,6 +53,9 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.androidx.datastore.preferences)
+
     // Room
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler) // Используем ksp вместо kapt
