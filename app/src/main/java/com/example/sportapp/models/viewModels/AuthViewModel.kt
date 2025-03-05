@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 
-class AuthViewModel() : ViewModel() {
+class AuthViewModel : ViewModel() {
 
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -29,7 +29,7 @@ class AuthViewModel() : ViewModel() {
     private val _currentUser = MutableStateFlow<UserEntity?>(null)
     val currentUser: StateFlow<UserEntity?> = _currentUser
 
-    fun updateCurrentUser(user: UserEntity?) {
+    private fun updateCurrentUser(user: UserEntity?) {
         _currentUser.value = user
     }
 

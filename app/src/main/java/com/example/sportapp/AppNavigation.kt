@@ -77,9 +77,10 @@ fun MyAppNavigation(
 
     ) { innerPadding ->
 
-//        val paddings = if (showBars) 8.dp else 0.dp
         val topPaddings = if (showBars) 20.dp else 0.dp
-        val horizontalPaddings = if (AIChatPagePaddings) 0.dp else 8.dp
+        val horizontalPaddings = if (AIChatPagePaddings) 0.dp else 16.dp
+
+
 
 
         NavHost(

@@ -54,7 +54,7 @@ val Roboto = FontFamily(
 
 val style1 = TextStyle(color = Color.Black, fontFamily = Roboto, fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
-val style2 = TextStyle(color = Color.Black, fontFamily = Roboto, fontSize = 12.sp, fontWeight = FontWeight.Normal)
+val style2 = TextStyle(color = Color.Black, fontFamily = Roboto, fontSize = 14.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start)
 
 val style3 = TextStyle(color = Color.White, fontFamily = Roboto, fontSize = 18.sp, fontWeight = FontWeight.Bold)
 
@@ -86,7 +86,7 @@ val style16 = TextStyle(fontFamily = Roboto, fontSize = 12.sp, fontWeight = Font
 
 val style15 = TextStyle(fontFamily = Roboto, fontSize = 12.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Center, color = red_accent_color, textDecoration = TextDecoration.Underline)
 
-val style17 = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start)
+val style17 = TextStyle(fontFamily = Roboto, fontSize = 1.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.End)
 
 val my_messages = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.End)
 
