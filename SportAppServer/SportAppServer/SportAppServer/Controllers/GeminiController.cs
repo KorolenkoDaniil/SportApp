@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using SportAppServer.Entities.Models.dto;
-using SportAppServer.Entities.Models;
-using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -15,22 +13,6 @@ namespace SportAppServer.Controllers
         private static readonly string apiKey = Environment.GetEnvironmentVariable("GEMINI_API_KEY")!;
         private static readonly string apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
-
-        //[HttpPost]
-        //public async Task<IActionResult> PutUser([FromBody] EmailDto email)
-        //{
-        //    Debug.WriteLine(email.Email);
-        //    if (string.IsNullOrEmpty(email.Email))
-        //    {
-        //        return BadRequest("Email is required.");
-        //    }
-
-        //    var newUser = new User(email.Email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg");
-        //    _dbContext.Users.Add(newUser);
-        //    await _dbContext.SaveChangesAsync();
-
-        //    return Ok(newUser);
-        //}
 
         [HttpPost("ask")]
         public async Task<IActionResult> AskGemini([FromBody] PromptDto prompt)
@@ -99,6 +81,17 @@ namespace SportAppServer.Controllers
             HttpResponseMessage response = await client.PostAsync(requestUrl, content);
             return await response.Content.ReadAsStringAsync();
         }
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

@@ -75,12 +75,13 @@ fun MyAppNavigation(
             }
         },
 
-    ) { innerPadding ->
+        ) { innerPadding ->
 
-        val topPaddings = if (showBars) 20.dp else 0.dp
-        val horizontalPaddings = if (AIChatPagePaddings) 0.dp else 16.dp
+//        val topPaddings = if (showBars) 20.dp else 0.dp
+//        val horizontalPaddings = if (AIChatPagePaddings) 0.dp else 16.dp
 
-
+        val topPaddings = 20.dp
+        val horizontalPaddings = 16.dp
 
 
         NavHost(
@@ -88,8 +89,9 @@ fun MyAppNavigation(
             startDestination = Screen.FirstPage.route,
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(horizontal = horizontalPaddings)
-                .padding(top = topPaddings),
+//                .padding(horizontal = horizontalPaddings)
+//                .padding(top = topPaddings),
+            ,
             builder = {
                 composable(Screen.LoginPage.route) {
                     appActivity.changeShowBars(false)
@@ -112,7 +114,9 @@ fun MyAppNavigation(
                         matchesViewModel = matchesViewModel,
                         videoViewModel = videoViewModel,
                         navController = navController,
-                        authViewModel.currentUser
+                        authViewModel.currentUser,
+                        topPaddings,
+                        horizontalPaddings,
                     )
                 }
 
@@ -121,11 +125,24 @@ fun MyAppNavigation(
                 }
                 composable(Screen.Matches.route) {
 
-                    MatchesPage(matchesViewModel, state, appActivity, navController)
+                    MatchesPage(
+                        matchesViewModel, state, appActivity, navController, topPaddings,
+                        horizontalPaddings,
+                    )
                 }
-                composable(Screen.Video.route) { VideoPage(appActivity) }
+                composable(Screen.Video.route) {
+                    VideoPage(
+                        appActivity, topPaddings,
+                        horizontalPaddings,
+                    )
+                }
 
-                composable(Screen.Like.route) { AIChatPage(AIViewModel) }
+                composable(Screen.Like.route) {
+                    AIChatPage(
+                        AIViewModel, topPaddings,
+                        horizontalPaddings,
+                    )
+                }
 
                 composable(Screen.News.route) { backStackEntry ->
                     val newsDateTime = backStackEntry.arguments?.getString("newsId")
@@ -134,7 +151,9 @@ fun MyAppNavigation(
                         newsDateTime!!,
                         newsState,
                         navController,
-                        newsViewModel
+                        newsViewModel,
+                        topPaddings,
+                        horizontalPaddings,
                     )
                 }
             }

@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.Dp
 import com.example.sportapp.models.chatMessage.sqlLiteDB.MessageRoomDatabase
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.widgets.aiChat.MessagesColumn
@@ -19,6 +20,8 @@ import com.example.sportapp.widgets.aiChat.RowToSendPrompt
 @Composable
 fun AIChatPage(
     AIViewModel: AIAnswerViewModel,
+    topPaddings: Dp,
+    horizontalPaddings: Dp,
 ) {
 
 

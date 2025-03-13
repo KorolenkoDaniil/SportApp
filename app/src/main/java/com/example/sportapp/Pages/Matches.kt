@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -32,8 +33,10 @@ fun MatchesPage(
     state: MatchesState,
     appActivity: AppActivityViewModel,
     navController: NavHostController,
+    topPaddings: Dp,
+    horizontalPaddings: Dp,
     rankingsViewModel: RankingsActivitySoccerViewModel = viewModel(),
-) {
+    ) {
 
     //получение состоний вьюмоделей
 

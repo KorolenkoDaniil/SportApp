@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -37,8 +38,10 @@ fun NewsPage(
     newsState: NewsSate,
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
+    topPaddings: Dp,
+    horizontalPaddings: Dp,
 
-) {
+    ) {
 
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
     oneNewsViewModel.loadOneNewsData(newsDateTime)

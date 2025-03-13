@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.Screen
@@ -36,7 +37,9 @@ fun HomePage(
     matchesViewModel: MatchesActivitySoccerViewModel,
     videoViewModel: YoutubeActivityViewModel,
     navController: NavHostController,
-    user: StateFlow<UserEntity?>
+    user: StateFlow<UserEntity?>,
+    topPaddings: Dp,
+    horizontalPaddings: Dp,
 ) {
     when (state) {
 

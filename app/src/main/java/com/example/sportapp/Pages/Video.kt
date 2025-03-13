@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.LifecycleOwner
@@ -18,7 +19,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 @Composable
 fun VideoPage(
-    appActivity: AppActivityViewModel
+    appActivity: AppActivityViewModel,
+    topPaddings: Dp,
+    horizontalPaddings: Dp,
 ) {
     Text(text = "VideoPage")
     YouTubePlayer("7rWzhoa3Pbc", LocalLifecycleOwner.current)
