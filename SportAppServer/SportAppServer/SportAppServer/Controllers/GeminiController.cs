@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using SportAppServer.Entities.Models.dto;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -21,7 +22,7 @@ namespace SportAppServer.Controllers
                 return StatusCode(500, new { answer = "AI на данный момент не доступен" });
 
             if (string.IsNullOrEmpty(prompt.Prompt))
-                return BadRequest(new { answer = "Введите текст запроса"} );
+                return BadRequest(new { answer = "Введите текст запроса" });
 
             bool isSportsRequest = await CheckIfSportsRelated(prompt.Prompt);
 
@@ -33,7 +34,7 @@ namespace SportAppServer.Controllers
 
             JObject json = JObject.Parse(response);
             string text = (string)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"]!;
-  
+
 
             return Ok(new { answer = text });
         }
@@ -85,13 +86,6 @@ namespace SportAppServer.Controllers
 
 
 
-
-
-
-
-
-
-
-
+      
     }
 }

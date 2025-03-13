@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SportAppServer.Entities.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,6 +23,8 @@ namespace SportAppServer.Entities.models
 
         [JsonProperty("article_texts")]
         public required string ArticleText { get; set; }
+
+        public List<NewsTag> NewsTags { get; set; } = new List<NewsTag>();
 
 
 

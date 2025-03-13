@@ -84,9 +84,18 @@ def search_news_list(driver):
     news_list = []
     i = 0
 
+    # Попробовать закрыть уведомление о cookies
+    try:
+        cookie_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CLASS_NAME, "cookies__close"))
+        )
+        cookie_button.click()
+        print("Уведомление о cookies закрыто")
+    except Exception as e:
+        print("Уведомление о cookies не найдено или не удалось закрыть:", e)
+
     for news_element in news_elements:
         try:
-
             news_elements = driver.find_elements(By.CLASS_NAME, "wrapper-text-news")
 
             sport = news_elements[i].find_element(By.CLASS_NAME, "sport").text.strip()
@@ -95,12 +104,16 @@ def search_news_list(driver):
             current_date_only = datetime.now().strftime("%Y-%m-%d")
             full_date = f"{current_date_only}T{time_only}:00"
 
-           
-            WebDriverWait(driver, 10).until(EC.element_to_be_clickable(news_elements[i])).click()
+            # Проскроллить страницу до элемента
+            driver.execute_script("arguments[0].scrollIntoView(true);", news_elements[i])
+            time.sleep(1)  # Дать время для прокрутки
+
+            # Кликнуть с помощью JavaScript
+            driver.execute_script("arguments[0].click();", news_elements[i])
 
             time.sleep(3)
             image_id = downloadImage(driver)
-            if (image_id != None):
+            if image_id is not None:
                 print("вернулась строка " + image_id)
 
                 new_news = News(sport=sport, date_time=full_date, title=title, image_id=image_id, article_texts=copy_news_text(driver))
@@ -112,12 +125,9 @@ def search_news_list(driver):
                 print("video")
                 # TODO
 
-
             i += 1
         except Exception as e:
-            
             print(f"Ошибка обработки элемента: {e}")
-           
             print("Подробности ошибки:")
             print(traceback.format_exc())
 

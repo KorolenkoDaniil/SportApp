@@ -17,6 +17,9 @@ namespace SportAppServer.Entities.context
 
         public DbSet<User> Users { get; set; } = null!;
 
+        public DbSet<NewsTag> Tags { get; set; } = null!;
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=Karalenka;Database=SportAppDB;Trusted_Connection=True;TrustServerCertificate=True");
@@ -34,6 +37,14 @@ namespace SportAppServer.Entities.context
                         if (newsItem.Title != null)
                         {
                             await News.AddAsync(newsItem);
+
+                            var tags = await Gemini.CreateTags(newsItem.ArticleText);
+
+                            foreach (var item in tags)
+                            {
+                                await Tags.AddAsync(new NewsTag(item, newsItem.DateTime));
+                            }
+
                             Console.WriteLine($"Новость добавлена: {newsItem.Title}");
                         }
                     }
@@ -55,3 +66,8 @@ namespace SportAppServer.Entities.context
         }
     }
 }
+
+
+
+
+

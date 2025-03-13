@@ -70,13 +70,13 @@ namespace SportAppServer
                 newsList = JsonConvert.DeserializeObject<List<News>>(text);
             }
 
-            if (newsList == null || !newsList.Any())
+            if (newsList == null || newsList.Count == 0)
             {
                 Console.WriteLine("Список новостей пуст или не удалось десериализовать данные.");
                 return;
             }
 
-            using (var newsDB = new Entities.context.DBContext())
+            using (var newsDB = new DBContext())
             {
                 try
                 {
