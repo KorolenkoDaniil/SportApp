@@ -9,6 +9,7 @@ data class NewsEntity(
     val imageId: String,
     val newsImage: String,
     val articleText: String,
+    val tags: List<NewsTagItem>
 )
 
 

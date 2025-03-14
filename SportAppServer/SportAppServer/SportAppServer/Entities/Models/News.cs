@@ -24,6 +24,7 @@ namespace SportAppServer.Entities.models
         [JsonProperty("article_texts")]
         public required string ArticleText { get; set; }
 
+        [JsonProperty("tags")]
         public List<NewsTag> NewsTags { get; set; } = new List<NewsTag>();
 
 

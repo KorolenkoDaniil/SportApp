@@ -22,8 +22,24 @@ namespace SportAppServer.Entities.context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=Karalenka;Database=SportAppDB;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=Karalenka;Database=KorSport;Trusted_Connection=True;TrustServerCertificate=True");
         }
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<News>()
+                .HasMany(n => n.NewsTags)
+                .WithOne(nt => nt.News)
+                .HasForeignKey(nt => nt.NewsDateTime);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+
+
+
 
         public async Task AddNewsToDBAsync(List<News> newsList)
         {
@@ -31,19 +47,28 @@ namespace SportAppServer.Entities.context
             {
                 foreach (var newsItem in newsList)
                 {
-                    var newsFound = await News.FindAsync(newsItem.DateTime);
+                    var newsFound = await News
+                    .Include(n => n.NewsTags)
+                    .FirstOrDefaultAsync(n => n.DateTime == newsItem.DateTime);
+
                     if (newsFound == null)
                     {
                         if (newsItem.Title != null)
                         {
-                            await News.AddAsync(newsItem);
-
+                            
                             var tags = await Gemini.CreateTags(newsItem.ArticleText);
+                            List<NewsTag> emptyTags = new List<NewsTag>();
 
                             foreach (var item in tags)
                             {
-                                await Tags.AddAsync(new NewsTag(item, newsItem.DateTime));
+                                var newTag = new NewsTag(item, newsItem.DateTime);
+                                await Tags.AddAsync(newTag);
+                                emptyTags.Add(newTag);
                             }
+
+                            newsItem.NewsTags = emptyTags;
+
+                            await News.AddAsync(newsItem);
 
                             Console.WriteLine($"Новость добавлена: {newsItem.Title}");
                         }

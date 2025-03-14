@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NewsResponse(
-    @SerialName("pageNumber") val pageNumber: Int,
-    @SerialName("pageSize") val pageSize: Int,
-    @SerialName("totalItems") val totalItems: Int,
-    @SerialName("totalPages") val totalPages: Int,
-    @SerialName("news") val news: List<NewsItemResponse>,
+    @SerialName("PageNumber") val pageNumber: Int,
+    @SerialName("PageSize") val pageSize: Int,
+    @SerialName("TotalItems") val totalItems: Int,
+    @SerialName("TotalPages") val totalPages: Int,
+    @SerialName("News") val news: List<NewsItemResponse>,
 )
 
 

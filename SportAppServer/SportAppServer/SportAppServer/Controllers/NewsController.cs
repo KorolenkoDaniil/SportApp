@@ -1,7 +1,10 @@
 ﻿using FirebaseAdmin.Messaging;
+using Google.Apis.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SportAppServer.Entities.context;
+using SportAppServer.Entities.models;
 using SportAppServer.Entities.Pagination;
 
 namespace SportAppServer.Controllers
@@ -20,6 +23,7 @@ namespace SportAppServer.Controllers
 
 
                 var list = await _dbContext.News
+                    .Include(n =>  n.NewsTags)
                     .OrderByDescending(news => news.DateTime)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
@@ -34,9 +38,13 @@ namespace SportAppServer.Controllers
                     News = list
                 };
 
+                string json = JsonConvert.SerializeObject(page, new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
 
-
-                return base.Json(page);
+                return Content(json, "application/json");
             }
         }
 
@@ -50,16 +58,24 @@ namespace SportAppServer.Controllers
             using (var _dbContext = new DBContext())
             {
                 var news = await _dbContext.News
-                .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
+                    .Include(n => n.NewsTags)
+                    .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
 
                 if (news == null)
                 {
-                    return base.NotFound();
+                    return NotFound();
                 }
 
-                return base.Json(news);
+                string json = JsonConvert.SerializeObject(news, new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                return Content(json, "application/json");
             }
         }
+
 
     }
 }
