@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.Screen
 import com.example.sportapp.models.user.domain.UserEntity
+import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -38,6 +39,7 @@ fun HomePage(
     videoViewModel: YoutubeActivityViewModel,
     navController: NavHostController,
     user: StateFlow<UserEntity?>,
+    authViewModel: AuthViewModel,
     topPaddings: Dp,
     horizontalPaddings: Dp,
 ) {
@@ -54,7 +56,7 @@ fun HomePage(
                         is NewsSate.NewsContent -> {
 
                             LazyColumn {
-                                item { SearchLine(user)}
+                                item { SearchLine(user, authViewModel, navController) }
                                 item { Spacer(modifier = Modifier.height(32.dp)) }
                                 item { CurrentMatch(matchesViewModel.nearestMatch) }
                                 item { Spacer(modifier = Modifier.height(32.dp)) }

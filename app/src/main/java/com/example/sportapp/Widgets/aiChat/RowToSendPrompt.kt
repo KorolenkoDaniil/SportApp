@@ -24,7 +24,7 @@ import com.example.sportapp.widgets.aiChat.rowToSendPrompt.PromptTextField
 import com.example.sportapp.widgets.aiChat.rowToSendPrompt.SendButton
 
 @Composable
-fun RowToSendPrompt(repository: ChatRepository, AIViewModel: AIAnswerViewModel) {
+fun RowToSendPrompt(repository: ChatRepository, AIViewModel: AIAnswerViewModel, user: String) {
     var prompt by remember { mutableStateOf("") }
 
     Box(Modifier.padding(top = 4.dp, bottom = 8.dp)) {
@@ -49,7 +49,9 @@ fun RowToSendPrompt(repository: ChatRepository, AIViewModel: AIAnswerViewModel) 
 
                 Spacer(Modifier.width(12.dp))
 
-                SendButton(repository, AIViewModel, prompt, onPromptClear = { prompt = "" })
+                SendButton(
+                    repository, AIViewModel, prompt, user, onPromptClear = { prompt = "" },
+                )
             }
         }
     }

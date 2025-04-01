@@ -21,14 +21,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun SendButton(repository: ChatRepository, AIViewModel: AIAnswerViewModel, prompt: String, onPromptClear: () -> Unit){
+fun SendButton(repository: ChatRepository, AIViewModel: AIAnswerViewModel, prompt: String, user: String, onPromptClear: () -> Unit){
     Button(
         onClick = {
             CoroutineScope(Dispatchers.IO).launch {
-                repository.addMessage(MessageEntity(text = prompt, sender = "User"))
+                repository.addMessage(MessageEntity(text = prompt, sender = "User", user), user)
             }
 
-            AIViewModel.loadAIAnswer(prompt, repository)
+            AIViewModel.loadAIAnswer(prompt, repository, user = user)
 
             onPromptClear()
 

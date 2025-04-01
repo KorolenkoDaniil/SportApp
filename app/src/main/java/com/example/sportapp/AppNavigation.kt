@@ -135,6 +135,7 @@ fun MyAppNavigation(
                     VideoPage(
                         appActivity, topPaddings,
                         horizontalPaddings,
+                        videoViewModel
                     )
                 }
 

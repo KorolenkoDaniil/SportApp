@@ -3,6 +3,7 @@ package com.example.sportapp.shared
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,14 +35,16 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.user.domain.UserEntity
+import com.example.sportapp.models.viewModels.AuthViewModel
 import kotlinx.coroutines.flow.StateFlow
 
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun SearchLine(user: StateFlow<UserEntity?>) {
+fun SearchLine(user: StateFlow<UserEntity?>, authViewModel: AuthViewModel, navController: NavHostController) {
 
 
     var textState by remember { mutableStateOf(TextFieldValue("")) }
@@ -109,7 +112,11 @@ fun SearchLine(user: StateFlow<UserEntity?>) {
                     painter = painter,
                     contentDescription = "sadf",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clickable {
+                            authViewModel.signOut(navController)
+                        }
                 )
             }
         }

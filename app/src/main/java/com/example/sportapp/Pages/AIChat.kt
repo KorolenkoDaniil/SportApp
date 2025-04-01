@@ -1,6 +1,7 @@
 package com.example.sportapp.pages
 
 import ChatRepository
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -14,14 +15,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import com.example.sportapp.models.chatMessage.sqlLiteDB.MessageRoomDatabase
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
+import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.widgets.aiChat.MessagesColumn
 import com.example.sportapp.widgets.aiChat.RowToSendPrompt
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun AIChatPage(
     AIViewModel: AIAnswerViewModel,
     topPaddings: Dp,
     horizontalPaddings: Dp,
+    authViewModel: AuthViewModel
 ) {
 
 
@@ -30,7 +34,7 @@ fun AIChatPage(
     val context = LocalContext.current
     val messageDb = remember { MessageRoomDatabase.getInstance(context) }
     val messageDao = remember { messageDb.messageDao() }
-    val repository = remember { ChatRepository(messageDao, context) }
+    val repository = remember { ChatRepository(messageDao, context, authViewModel.currentUser.value!!.email) }
     val messagesState by remember { repository.messagesList }.collectAsState(initial = emptyList())
 
     LaunchedEffect(messagesState.size) {
@@ -43,7 +47,7 @@ fun AIChatPage(
 
         MessagesColumn(listState, messagesState, modifier = Modifier.weight(1f))
 
-        RowToSendPrompt(repository, AIViewModel)
+        RowToSendPrompt(repository, AIViewModel,  authViewModel.currentUser.value!!.email)
     }
 }
 
