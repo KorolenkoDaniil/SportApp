@@ -7,22 +7,22 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ChatRepository(private val messagesDao: MessagesDAO, context: Context) {
+class ChatRepository(private val messagesDao: MessagesDAO, context: Context, user: String) {
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-    val messagesList = messagesDao.getAllMessages()
+    val messagesList = messagesDao.getAllMessages(user)
     private val sharedPrefManager = PreferencesManager(context)
 
-    fun addMessage(message: MessageEntity) {
+    fun addMessage(message: MessageEntity, user: String) {
         coroutineScope.launch(Dispatchers.IO) {
             messagesDao.insertMessage(message)
         }
-        deleteExtraMessages(sharedPrefManager.getData())
+        deleteExtraMessages(sharedPrefManager.getData(), user)
     }
 
-    fun deleteExtraMessages(limit: Int){
+    fun deleteExtraMessages(limit: Int, user: String){
         coroutineScope.launch(Dispatchers.IO) {
-            messagesDao.deleteExtraMessages(limit)
+            messagesDao.deleteExtraMessages(user, limit)
         }
     }
 }

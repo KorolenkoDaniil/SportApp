@@ -18,12 +18,16 @@ data class MessageEntity(
     val time: Date,
 
     @ColumnInfo(name = "message_sender")
-    val sender: String
+    val sender: String,
+
+    @ColumnInfo(name = "user")
+    val user: String
 ) {
-    constructor(text: String, sender: String) : this(
+    constructor(text: String, sender: String, user: String) : this(
         id = 0,
         text = text,
         sender = sender,
-        time = Date()
+        time = Date(),
+        user = user
     )
 }

@@ -33,7 +33,7 @@ class AIAnswerRepository {
     }
 
 
-    suspend fun askIA(prompt: String): MessageEntity {
+    suspend fun askIA(prompt: String, user: String): MessageEntity {
         val requestBody = Json.encodeToString(mapOf("prompt" to prompt))
 
         val response = client.post("$BaseUrl/gemini/ask") {
@@ -44,7 +44,7 @@ class AIAnswerRepository {
         Log.d("AIAnswer", "Status: ${response.status}, Body: ${response.bodyAsText()}")
         if (response.status == HttpStatusCode.OK) {
             val answer: AIAnswerResponse = json.decodeFromString(response.body())
-            return answerMapper.getAIAnswerEntity(answer)
+            return answerMapper.getAIAnswerEntity(answer, user)
         } else {
             throw Exception("Failed to ask AI: ${response.status}")
         }

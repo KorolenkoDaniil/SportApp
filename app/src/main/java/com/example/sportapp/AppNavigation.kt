@@ -115,6 +115,7 @@ fun MyAppNavigation(
                         videoViewModel = videoViewModel,
                         navController = navController,
                         authViewModel.currentUser,
+                        authViewModel,
                         topPaddings,
                         horizontalPaddings,
                     )
@@ -141,6 +142,7 @@ fun MyAppNavigation(
                     AIChatPage(
                         AIViewModel, topPaddings,
                         horizontalPaddings,
+                        authViewModel
                     )
                 }
 

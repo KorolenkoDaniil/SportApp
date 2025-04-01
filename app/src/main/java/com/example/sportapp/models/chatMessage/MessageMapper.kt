@@ -5,10 +5,11 @@ import com.example.sportapp.models.chatMessage.MessageEntity
 
 class AIAnswerMapper {
 
-    fun getAIAnswerEntity(response: AIAnswerResponse): MessageEntity {
+    fun getAIAnswerEntity(response: AIAnswerResponse, user: String ): MessageEntity {
         return MessageEntity(
             text = response.answer,
-            sender = "AI"
+            sender = "AI",
+            user = user
         )
     }
 }

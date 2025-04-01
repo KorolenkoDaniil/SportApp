@@ -17,6 +17,9 @@ class YoutubeRepository {
     private val apiKey = "AIzaSyDW4nt60Fz-opw2g8iz8ZuulYWYO-Ar7ME"
     private val channelId = "UCxfPjORdISQSn2fV8tcVmgA"
 
+
+//    https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=$channelId&key=$IzaSyDW4nt60Fz-opw2g8iz8ZuulYWYO-Ar7ME
+
     private val youtubeMapper = YoutubeMapper()
 
     private val json = Json {

@@ -53,26 +53,40 @@ def copy_news_text(driver):
 
 def downloadImage(driver):
     try:
-      
         image_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "article-pic")))
-     
         driver.execute_script("arguments[0].scrollIntoView(true);", image_element)
         image_url = image_element.get_attribute("src")
         print(f"Ссылка на изображение: {image_url}")
- 
+
+        # *** ДОБАВЬТЕ ЗАГОЛОВКИ ЗДЕСЬ ***
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            # Вы можете попробовать и другие строки User-Agent
+        }
+
         save_folder = "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\savedImages"
         os.makedirs(save_folder, exist_ok=True)
-        response = requests.get(image_url)
+
+        # *** Используйте заголовки в запросе ***
+        response = requests.get(image_url, headers=headers, timeout=15) # Добавлены заголовки и таймаут
+
         if response.status_code == 200:
-            image_name = os.path.join(save_folder, image_url.split('/')[-1]) 
+            # Убедимся, что имя файла корректно (удалим возможные параметры запроса и т.д.)
+            image_filename = image_url.split('/')[-1].split('?')[0]
+            image_name = os.path.join(save_folder, image_filename)
             with open(image_name, "wb") as file:
                 file.write(response.content)
             print(f"Изображение сохранено в {image_name}")
-            return image_url.split('/')[-1]
+            return image_filename # Возвращаем только имя файла
         else:
             print(f"Не удалось скачать изображение, код ответа: {response.status_code}")
+            # Можно распечатать содержимое ответа для отладки (может показать страницу с ошибкой)
+            # print(f"Содержимое ответа: {response.text[:500]}")
+            return None # Явно возвращаем None при ошибке
     except Exception as e:
-        print("Ошибка при скачивании изображения:", e)
+        print(f"Ошибка при скачивании изображения: {e}")
+        print(traceback.format_exc()) # Печатаем полный traceback для исключений
+        return None # Явно возвращаем None при исключении
 
 
 

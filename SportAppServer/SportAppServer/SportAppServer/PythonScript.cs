@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using SportAppServer.Entities.context;
 using SportAppServer.Entities.models;
 using System.Diagnostics;
+using System.Text;
 
 namespace SportAppServer
 {
@@ -62,17 +63,27 @@ namespace SportAppServer
             List<News>? newsList;
 
 
-            using (StreamReader reader = new StreamReader(path))
+            using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
             {
                 string text = await reader.ReadToEndAsync();
-                Console.WriteLine(text);
+                Console.WriteLine("--- JSON content read by C# ---");
+                Console.WriteLine(text); 
+                Console.WriteLine("--- End JSON content ---");
 
-                newsList = JsonConvert.DeserializeObject<List<News>>(text);
+                try
+                {
+                    newsList = JsonConvert.DeserializeObject<List<News>>(text);
+                }
+                catch (JsonException jsonEx)
+                {
+                    Console.WriteLine($"JSON Deserialization Error: {jsonEx.Message}");
+                    newsList = null; 
+                }
             }
 
             if (newsList == null || newsList.Count == 0)
             {
-                Console.WriteLine("Список новостей пуст или не удалось десериализовать данные.");
+                Console.WriteLine("Список новостей пуст или не удалось десериализовать данные. Check the JSON file and Python script output.");
                 return;
             }
 

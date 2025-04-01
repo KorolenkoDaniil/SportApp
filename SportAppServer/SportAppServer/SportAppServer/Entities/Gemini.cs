@@ -47,3 +47,9 @@ namespace SportAppServer.Entities
         }
     }
 }
+
+
+
+//System.NullReferenceException: "Object reference not set to an instance of an object."
+
+//responseWithTags было null.

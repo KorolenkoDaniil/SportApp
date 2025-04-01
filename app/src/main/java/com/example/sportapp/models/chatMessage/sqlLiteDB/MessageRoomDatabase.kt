@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.sportapp.models.chatMessage.MessageEntity
 
-@Database(entities = [MessageEntity::class], version = 1)
+@Database(entities = [MessageEntity::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class MessageRoomDatabase : RoomDatabase() {
 

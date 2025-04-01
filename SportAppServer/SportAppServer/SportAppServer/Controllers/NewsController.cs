@@ -17,35 +17,33 @@ namespace SportAppServer.Controllers
         [HttpGet("GetNews")]
         public async Task<IActionResult> GetNews(int pageNumber = 1, int pageSize = 10)
         {
-            using (var _dbContext = new DBContext())
+            using var _dbContext = new DBContext();
+            int totalItems = await _dbContext.News.CountAsync();
+
+
+            var list = await _dbContext.News
+                .Include(n => n.NewsTags)
+                .OrderByDescending(news => news.DateTime)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+
+            var page = new NewsPagination
             {
-                int totalItems = await _dbContext.News.CountAsync();
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                News = list
+            };
 
+            string json = JsonConvert.SerializeObject(page, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
 
-                var list = await _dbContext.News
-                    .Include(n =>  n.NewsTags)
-                    .OrderByDescending(news => news.DateTime)
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToListAsync();
-
-
-                var page = new NewsPagination
-                {
-                    PageNumber = pageNumber,
-                    PageSize = pageSize,
-                    TotalItems = totalItems,
-                    News = list
-                };
-
-                string json = JsonConvert.SerializeObject(page, new JsonSerializerSettings
-                {
-                    Formatting = Formatting.Indented,
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });
-
-                return Content(json, "application/json");
-            }
+            return Content(json, "application/json");
         }
 
 

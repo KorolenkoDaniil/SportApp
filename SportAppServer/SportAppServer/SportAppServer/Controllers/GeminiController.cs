@@ -24,10 +24,10 @@ namespace SportAppServer.Controllers
             if (string.IsNullOrEmpty(prompt.Prompt))
                 return BadRequest(new { answer = "Введите текст запроса" });
 
-            bool isSportsRequest = await CheckIfSportsRelated(prompt.Prompt);
+            //bool isSportsRequest = await CheckIfSportsRelated(prompt.Prompt);
 
-            if (!isSportsRequest)
-                return Ok(new { answer = "Я могу отвечать только на вопросы по спорту." });
+            //if (!isSportsRequest)
+            //    return Ok(new { answer = "Я могу отвечать только на вопросы по спорту." });
 
 
             string response = await SendRequestToGemini(prompt.Prompt);
@@ -40,30 +40,30 @@ namespace SportAppServer.Controllers
         }
 
 
-        private async Task<bool> CheckIfSportsRelated(string prompt)
-        {
-            using HttpClient client = new HttpClient();
-            string requestUrl = $"{apiUrl}?key={apiKey}";
+        //private async Task<bool> CheckIfSportsRelated(string prompt)
+        //{
+        //    using HttpClient client = new HttpClient();
+        //    string requestUrl = $"{apiUrl}?key={apiKey}";
 
-            var requestBody = new
-            {
-                contents = new[]
-                {
-                    new { parts = new[] { new { text = $"Этот вопрос связан со спортом? Ответь только 'да' или 'нет'. Вопрос: {prompt}" } } }
-                }
-            };
+        //    var requestBody = new
+        //    {
+        //        contents = new[]
+        //        {
+        //            new { parts = new[] { new { text = $"Этот вопрос связан со спортом? Ответь только 'да' или 'нет'. Вопрос: {prompt}" } } }
+        //        }
+        //    };
 
-            string jsonRequest = JsonSerializer.Serialize(requestBody);
-            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+        //    string jsonRequest = JsonSerializer.Serialize(requestBody);
+        //    var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync(requestUrl, content);
-            string jsonResponse = await response.Content.ReadAsStringAsync();
+        //    HttpResponseMessage response = await client.PostAsync(requestUrl, content);
+        //    string jsonResponse = await response.Content.ReadAsStringAsync();
 
-            JObject json = JObject.Parse(jsonResponse);
-            string answer = (string)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"];
+        //    JObject json = JObject.Parse(jsonResponse);
+        //    string answer = (string)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"];
 
-            return answer?.Trim().ToLower() == "да";
-        }
+        //    return answer?.Trim().ToLower() == "да";
+        //}
 
 
         private async Task<string> SendRequestToGemini(string prompt)

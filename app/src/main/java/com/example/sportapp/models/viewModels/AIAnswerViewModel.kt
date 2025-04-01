@@ -24,16 +24,17 @@ class AIAnswerViewModel : ViewModel(), AIAnswerViewModelInterface<AnswerState> {
 
     override fun loadData() {}
 
-    fun loadAIAnswer(prompt: String,  repository: ChatRepository) {
+    fun loadAIAnswer(prompt: String,  repository: ChatRepository, user: String) {
         viewModelScope.launch {
             try {
-                val AIanswer = AIAnswerRepository.askIA(prompt)
+                val AIanswer = AIAnswerRepository.askIA(prompt, user)
                 Log.d("tttAIAnswer", AIanswer.text)
 
                 state.value = AnswerState.AIAnswerContent(AIanswer)
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    repository.addMessage(MessageEntity(text = AIanswer.text, sender = "AI"))
+                    repository.addMessage(
+                        MessageEntity(text = AIanswer.text, sender = "AI", user = user), user )
                 }
 
             } catch (e: Throwable) {
