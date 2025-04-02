@@ -1,0 +1,53 @@
+package com.example.sportapp.pagesAndWidgets.pages
+
+import AppActivityViewModel
+import MatchInfoContent
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.navigation.NavHostController
+import com.example.sportapp.models.viewModels.MatchActivitySoccerViewModel
+import com.example.sportapp.models.viewModels.MatchReportActivitySoccerViewModel
+import com.example.sportapp.models.viewModels.MatchReportState
+import com.example.sportapp.models.viewModels.MatchState
+import com.example.sportapp.pagesAndWidgets.widgets.shared.CommonError
+import com.example.sportapp.pagesAndWidgets.widgets.shared.Loading
+
+
+@Composable
+fun MatchInfo(
+    matchReportViewModel: MatchReportActivitySoccerViewModel,
+    matchViewModel: MatchActivitySoccerViewModel,
+    appActivity: AppActivityViewModel,
+    navController: NavHostController,
+) {
+    appActivity.changePageName("Match center")
+    val matchReportState by matchReportViewModel.getState().collectAsState()
+    val matchState by matchViewModel.getState().collectAsState()
+
+    when (matchReportState) {
+        is MatchReportState.RankingsContent -> {
+            when (matchState) {
+                is MatchState.MatchContent -> {
+                    MatchInfoContent((matchReportState as MatchReportState.RankingsContent).rankings, (matchState as MatchState.MatchContent).match)
+                }
+
+                is MatchState.Error -> {
+                    CommonError(matchViewModel, Screen.Matches.route, navController)
+                }
+
+                is MatchState.Load -> {
+                    Loading()
+                }
+            }
+        }
+
+        is MatchReportState.Error -> {
+            CommonError(matchReportViewModel,  Screen.Matches.route, navController)
+        }
+
+        is MatchReportState.Load -> {
+            Loading()
+        }
+    }
+}

@@ -10,15 +10,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class NewsActivityViewModel : ViewModel(), NewsViewModelInterface<NewsSate> {
+class NewsActivityViewModel : ViewModel(), NewsViewModelInterface<NewsState> {
 
     var listOfLoadedNews = mutableListOf<NewsEntity>()
 
-    override val state: MutableStateFlow<NewsSate> = MutableStateFlow(NewsSate.Load)
+    override val state: MutableStateFlow<NewsState> = MutableStateFlow(NewsState.Load)
 
     override val NewsRepository: NewsRepository = NewsRepository()
 
-    override fun getState(): StateFlow<NewsSate> {
+    override fun getState(): StateFlow<NewsState> {
         return state
     }
 
@@ -35,20 +35,20 @@ class NewsActivityViewModel : ViewModel(), NewsViewModelInterface<NewsSate> {
                 val pageWithNews = NewsRepository.getNews(pageNumber)
                 Log.d("tttNews", "${pageWithNews.pageNumber}  ${pageWithNews.totalPages}  ${pageWithNews.news}")
 
-                val listOfPages = NewsSate.NewsContent(pageWithNews)
+                val listOfPages = NewsState.NewsContent(pageWithNews)
 
                 listOfLoadedNews.addAll(listOfPages.news.news)
                 state.value = listOfPages
             } catch (e: Throwable) {
                 Log.e("tttNews", "Error loading news data: ${e.message}", e)
-                state.value = NewsSate.Error(e)
+                state.value = NewsState.Error(e)
             }
         }
     }
 }
 
-sealed interface NewsSate : BaseState {
-    data object Load : NewsSate
-    data class Error(val e: Throwable) : NewsSate
-    data class NewsContent(val news: NewsListEntity) : NewsSate
+sealed interface NewsState : BaseState {
+    data object Load : NewsState
+    data class Error(val e: Throwable) : NewsState
+    data class NewsContent(val news: NewsListEntity) : NewsState
 }

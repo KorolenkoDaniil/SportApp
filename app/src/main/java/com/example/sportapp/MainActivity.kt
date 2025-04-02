@@ -14,7 +14,7 @@ import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
-import com.example.sportapp.pages.MyAppNavigation as MyAppNavigation1
+import com.example.sportapp.pagesAndWidgets.pages.MyAppNavigation as MyAppNavigation1
 
 
 class mainActivity : ComponentActivity() {
