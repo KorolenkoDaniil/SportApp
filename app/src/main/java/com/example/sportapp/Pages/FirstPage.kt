@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
-import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.AuthState
-
-import com.example.sportapp.widgets.first_page.FirstPageElements
+import com.example.sportapp.pages.widgets.first_page.FirstPageElements
 
 @Composable
 fun FirstPage(

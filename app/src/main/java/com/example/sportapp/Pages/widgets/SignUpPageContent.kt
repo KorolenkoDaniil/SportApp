@@ -1,7 +1,6 @@
-package com.example.sportapp.pages
+package com.example.sportapp.pages.widgets
 
-import android.util.Log
-import android.widget.Toast
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,60 +19,32 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.sportapp.R
 import com.example.sportapp.models.viewModels.AuthState
 import com.example.sportapp.models.viewModels.AuthViewModel
-import com.example.sportapp.pages.widgets.requests.NotificationPermissionRequest
+import com.example.sportapp.pages.Screen
 import com.example.sportapp.ui.theme.red_accent_color
 import com.example.sportapp.ui.theme.style13_log_in__page
 import com.example.sportapp.ui.theme.style14
 import com.example.sportapp.ui.theme.style15
 
 @Composable
-fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    val authState by authViewModel.authState.collectAsState()
-    val context = LocalContext.current
-
-    LaunchedEffect(authState) {
-
-        Log.d("tttt", authState.toString())
-
-        when (authState) {
-            is AuthState.Authenticated -> {
-                navController.navigate(Screen.Home.route) {
-                    popUpTo(Screen.LoginPage.route) { inclusive = true }
-                }
-            }
-
-            is AuthState.Unauthenticated -> {}
-            is AuthState.Error -> {
-                Toast.makeText(
-                    context,
-                    (authState as AuthState.Error).message,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            else -> Unit
-        }
-    }
-
-    NotificationPermissionRequest()
+fun SignupPageContent(
+    email: MutableState<String>,
+    password: MutableState<String>,
+    authViewModel: AuthViewModel,
+    authState: State<AuthState>,
+    navController: NavController,
+    context: Context
+){
 
     Box(modifier = Modifier.padding(20.dp)) {
         Column(
@@ -87,7 +58,7 @@ fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
                 modifier = Modifier.height(200.dp)
             )
             Text(
-                text = "Log In", style = style13_log_in__page
+                text = "Sign up", style = style13_log_in__page
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -95,8 +66,8 @@ fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
 
             OutlinedTextField(
                 modifier = Modifier.width(270.dp),
-                value = email,
-                onValueChange = { email = it },
+                value = email.value,
+                onValueChange = { email.value = it },
                 label = { Text(text = "Email") },
                 singleLine = true,
                 colors = TextFieldDefaults.colors(
@@ -104,9 +75,9 @@ fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
                     unfocusedTextColor = Color.Black,
                     focusedContainerColor = Color.White,
                     focusedTextColor = Color.Black,
-                    unfocusedIndicatorColor = Color.Transparent, // Убираем обводку
-                    focusedIndicatorColor = Color.Transparent,   // Убираем обводку
-                    disabledIndicatorColor = Color.Transparent   // Убираем обводку
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(8.dp)
             )
@@ -115,8 +86,8 @@ fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
 
             OutlinedTextField(
                 modifier = Modifier.width(270.dp),
-                value = password,
-                onValueChange = { password = it },
+                value = password.value,
+                onValueChange = { password.value = it },
                 label = { Text(text = "Password") },
                 singleLine = true,
                 colors = TextFieldDefaults.colors(
@@ -124,9 +95,9 @@ fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
                     unfocusedTextColor = Color.Black,
                     focusedContainerColor = Color.White,
                     focusedTextColor = Color.Black,
-                    unfocusedIndicatorColor = Color.Transparent, // Убираем обводку
-                    focusedIndicatorColor = Color.Transparent,   // Убираем обводку
-                    disabledIndicatorColor = Color.Transparent   // Убираем обводку
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(8.dp)
             )
@@ -135,26 +106,39 @@ fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
 
 
             Button(
-                modifier = Modifier.width(270.dp).height(40.dp),
-                onClick = { authViewModel.login(email, password) },
-                enabled = authState != AuthState.Loading,
+                modifier = Modifier
+                    .width(270.dp)
+                    .height(40.dp),
+                onClick = {
+                    authViewModel.signup(email.value, password.value, context)
+
+
+
+
+
+
+
+                }, enabled = authState.value != AuthState.Loading,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = red_accent_color,
                     contentColor = Color.White
                 )
             ) {
-                Text(text = "Войти")
+                Text(text = "Создать аккаунт")
             }
+
+
+
 
             Spacer(Modifier.height(24.dp))
 
             Row {
-                Text("Еще нет аккаунта?", style = style14)
+                Text("Уже есть аккаунт?", style = style14)
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = "Зарегистрируйся",
+                    text = "Авторизуйся",
                     style = style15,
-                    modifier = Modifier.clickable { navController.navigate(Screen.SignupPage.route) }
+                    modifier = Modifier.clickable { navController.navigate(Screen.LoginPage.route) }
                 )
             }
 

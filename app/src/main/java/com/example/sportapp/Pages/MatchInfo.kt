@@ -6,13 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
-import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.MatchActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportState
 import com.example.sportapp.models.viewModels.MatchState
-import com.example.sportapp.shared.CommonError
-import com.example.sportapp.shared.Loading
+import com.example.sportapp.pages.widgets.shared.CommonError
+import com.example.sportapp.pages.widgets.shared.Loading
 
 
 @Composable

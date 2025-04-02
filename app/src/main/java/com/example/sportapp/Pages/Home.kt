@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.Screen
 import com.example.sportapp.models.user.domain.UserEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
@@ -19,13 +18,13 @@ import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.NewsSate
 import com.example.sportapp.models.viewModels.VideosState
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
-import com.example.sportapp.shared.CommonError
-import com.example.sportapp.shared.Loading
-import com.example.sportapp.shared.SearchLine
+import com.example.sportapp.pages.widgets.home.CurrentMatch
+import com.example.sportapp.pages.widgets.home.NewsCardRow
+import com.example.sportapp.pages.widgets.home.VideoCardRow
+import com.example.sportapp.pages.widgets.shared.CommonError
+import com.example.sportapp.pages.widgets.shared.Loading
+import com.example.sportapp.pages.widgets.shared.SearchLine
 import com.example.sportapp.ui.theme.style1
-import com.example.sportapp.widgets.home.CurrentMatch
-import com.example.sportapp.widgets.home.NewsCardRow
-import com.example.sportapp.widgets.home.VideoCardRow
 import kotlinx.coroutines.flow.StateFlow
 
 

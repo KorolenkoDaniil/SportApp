@@ -17,19 +17,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.Screen
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.NewsSate
 import com.example.sportapp.models.viewModels.OneNewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
-import com.example.sportapp.shared.CommonError
-import com.example.sportapp.shared.Loading
-import com.example.sportapp.widgets.home.NewsCardRow
+import com.example.sportapp.pages.widgets.home.NewsCardRow
+import com.example.sportapp.pages.widgets.shared.CommonError
+import com.example.sportapp.pages.widgets.shared.Loading
 
 @Composable
 fun NewsPage(
@@ -38,10 +36,7 @@ fun NewsPage(
     newsState: NewsSate,
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
-    topPaddings: Dp,
-    horizontalPaddings: Dp,
-
-    ) {
+) {
 
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
     oneNewsViewModel.loadOneNewsData(newsDateTime)
@@ -83,7 +78,8 @@ fun NewsPage(
                                 Box(
                                     Modifier
                                         .fillMaxWidth()
-                                        .height(32.dp))
+                                        .height(32.dp)
+                                )
                             }
                             item {
                                 Box {
@@ -95,16 +91,18 @@ fun NewsPage(
                                 Box(
                                     Modifier
                                         .fillMaxWidth()
-                                        .height(32.dp))
+                                        .height(32.dp)
+                                )
                             }
 
-                            item { NewsCardRow( navController, newsViewModel, newsState.news) }
+                            item { NewsCardRow(navController, newsViewModel, newsState.news) }
 
                             item {
                                 Box(
                                     Modifier
                                         .fillMaxWidth()
-                                        .height(32.dp))
+                                        .height(32.dp)
+                                )
                             }
                         }
                     }

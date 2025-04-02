@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
-import com.example.sportapp.Screen
+import com.example.sportapp.pages.Screen
 import com.example.sportapp.models.preferencesManager.PreferencesManager
 import com.example.sportapp.models.user.UserRepository
 import com.example.sportapp.models.user.domain.UserEntity
