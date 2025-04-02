@@ -2,7 +2,7 @@ package com.example.sportapp.models.youtube
 
 import android.util.Log
 import com.example.sportapp.models.youtube.api.youtube.YoutubeSearchListResponse
-import com.example.sportapp.models.youtube.domain.YoutubeSearchListResponseEntity
+import com.example.sportapp.models.youtube.domain.VideoPlayListResponseEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -16,21 +16,14 @@ class YoutubeRepository {
 
     private val apiKey = "AIzaSyDW4nt60Fz-opw2g8iz8ZuulYWYO-Ar7ME"
     private val channelId = "UCxfPjORdISQSn2fV8tcVmgA"
-
-
-//    https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=$channelId&key=$IzaSyDW4nt60Fz-opw2g8iz8ZuulYWYO-Ar7ME
+    private var nextPageToken: String? = null
 
     private val youtubeMapper = YoutubeMapper()
-
-    private val json = Json {
-        ignoreUnknownKeys = true
-    }
-
+    private val json = Json { ignoreUnknownKeys = true }
     private val client = HttpClient()
 
-    suspend fun getVideos(): YoutubeSearchListResponseEntity? {
-        // Формирование URL запроса
-        val url = URLBuilder().apply {
+    suspend fun getVideos(): VideoPlayListResponseEntity? {
+        val urlBuilder = URLBuilder().apply {
             protocol = URLProtocol.HTTPS
             host = "www.googleapis.com"
             appendPathSegments("youtube", "v3", "search")
@@ -39,25 +32,28 @@ class YoutubeRepository {
             parameters.append("part", "snippet,id")
             parameters.append("order", "date")
             parameters.append("maxResults", "20")
-        }.buildString()
 
-        Log.d("tttVideos", "Request URL: $url")  // Логируем URL
+            nextPageToken?.let {
+                parameters.append("pageToken", it)
+            }
+        }
+
+        val url = urlBuilder.buildString()
+        Log.d("tttVideos", "Request URL: $url")
 
         return try {
-            // Выполнение запроса
             val response: HttpResponse = client.get(url)
 
-            // Логируем статус-код
             Log.d("tttVideos", "Response status: ${response.status.value}")
 
             if (response.status.value == 200) {
                 val responseString: String = response.body()
-                Log.d("tttVideos", "Response: $responseString")  // Логируем ответ
+                Log.d("tttVideos", "Response: $responseString")
 
-                // Десериализация ответа
                 val youtubeResponse: YoutubeSearchListResponse = json.decodeFromString(responseString)
 
-                // Преобразование в доменный объект и возврат
+                nextPageToken = youtubeResponse.nextPageToken
+
                 youtubeMapper.getListVideo(youtubeResponse)
             } else {
                 Log.e("tttVideos", "Request failed with status: ${response.status.value}")
@@ -67,5 +63,9 @@ class YoutubeRepository {
             Log.e("tttVideos", "Error fetching videos: ${e.message}", e)
             null
         }
+    }
+
+    fun resetPagination() {
+        nextPageToken = null // Сбрасываем пагинацию (например, при новом поиске)
     }
 }

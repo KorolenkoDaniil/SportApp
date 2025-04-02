@@ -1,12 +1,12 @@
 package com.example.sportapp.models.youtube
 
 import com.example.sportapp.models.youtube.api.youtube.YoutubeSearchListResponse
-import com.example.sportapp.models.youtube.domain.YoutubeSearchListResponseEntity
+import com.example.sportapp.models.youtube.domain.VideoPlayListResponseEntity
 
 class YoutubeMapper {
 
-    fun getListVideo(response: YoutubeSearchListResponse): YoutubeSearchListResponseEntity {
-        return YoutubeSearchListResponseEntity(
+    fun getListVideo(response: YoutubeSearchListResponse): VideoPlayListResponseEntity {
+        return VideoPlayListResponseEntity(
             kind = response.kind,
             etag = response.etag,
             nextPageToken = response.nextPageToken,

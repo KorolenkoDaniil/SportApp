@@ -62,7 +62,7 @@ fun MyAppNavigation(
     videoViewModel: YoutubeActivityViewModel,
     authState: AuthState,
     AIViewModel: AIAnswerViewModel,
-    answerState: AnswerState
+    answerState: AnswerState,
 ) {
 
     val showBars by appActivity.showBars.collectAsState()
@@ -138,7 +138,7 @@ fun MyAppNavigation(
                         appActivity, topPaddings,
                         horizontalPaddings,
                         videoViewModel,
-                        navController
+                        navController,
                     )
                 }
 

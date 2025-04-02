@@ -3,7 +3,7 @@ package com.example.sportapp.models.youtube.domain
 import com.example.sportapp.models.youtube.api.youtube.PageInfo
 
 
-data class YoutubeSearchListResponseEntity(
+data class VideoPlayListResponseEntity(
     val kind: String,
     val etag: String,
     val nextPageToken: String,
