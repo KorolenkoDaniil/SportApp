@@ -33,7 +33,7 @@ data class YoutubeSearchListResponse(
                         channelId = item.snippet.channelId,
                         title = item.snippet.title,
                         description = item.snippet.description,
-                        thumbnails = item.snippet.VideoIDToVideoIdEntity(),
+                        thumbnailUrl =  "https://i.ytimg.com/vi/" + videoId + "/maxresdefault.jpg",
                         channelTitle = item.snippet.channelTitle,
                         liveBroadcastContent = item.snippet.liveBroadcastContent,
                         publishTime = item.snippet.publishTime

@@ -30,20 +30,22 @@ import com.example.sportapp.pages.HomePage
 import com.example.sportapp.pages.LoginPage
 import com.example.sportapp.pages.MatchesPage
 import com.example.sportapp.pages.NewsPage
-import com.example.sportapp.pages.VideoPage
+import com.example.sportapp.pages.VideoListPage
+import com.example.sportapp.pages.VideoPlayerPage
 import com.example.sportapp.shared.Loading
 
 
 sealed class Screen(val route: String) {
     data object Home : Screen("home")
     data object Matches : Screen("matches")
-    data object Video : Screen("video")
+    data object VideoListPage : Screen("video")
     data object Like : Screen("like")
     data object News : Screen("news/{newsId}")
     data object FirstPage : Screen("firstPage")
     data object LoginPage : Screen("login")
     data object SignupPage : Screen("signup")
     data object Loading : Screen("loading")
+    data object VideoPlayerPage : Screen("videoPlayer")
 }
 
 
@@ -131,11 +133,12 @@ fun MyAppNavigation(
                         horizontalPaddings,
                     )
                 }
-                composable(Screen.Video.route) {
-                    VideoPage(
+                composable(Screen.VideoListPage.route) {
+                    VideoListPage(
                         appActivity, topPaddings,
                         horizontalPaddings,
-                        videoViewModel
+                        videoViewModel,
+                        navController
                     )
                 }
 
@@ -158,6 +161,10 @@ fun MyAppNavigation(
                         topPaddings,
                         horizontalPaddings,
                     )
+                }
+
+                composable (Screen.VideoPlayerPage.route) {
+                    VideoPlayerPage(videoViewModel)
                 }
             }
         )

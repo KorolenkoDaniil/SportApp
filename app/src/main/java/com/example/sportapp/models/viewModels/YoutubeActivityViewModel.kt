@@ -3,6 +3,7 @@ package com.example.sportapp.models.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.models.youtube.YoutubeRepository
+import com.example.sportapp.models.youtube.domain.VideoEntity
 import com.example.sportapp.models.youtube.domain.YoutubeSearchListResponseEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,6 +17,16 @@ class YoutubeActivityViewModel : ViewModel(), YoutubeViewModelInterface<VideosSt
     override fun getState(): StateFlow<VideosState> {
         return state
     }
+
+    private var _selectedVideo = selectedVideo
+
+    var selectedVideo: VideoEntity
+        get() = _selectedVideo
+        set(value) {
+            _selectedVideo = value
+        }
+
+
 
     init {
         loadData()
@@ -36,6 +47,7 @@ class YoutubeActivityViewModel : ViewModel(), YoutubeViewModelInterface<VideosSt
         }
     }
 }
+
 
 sealed interface VideosState : BaseState {
     data object Load : VideosState

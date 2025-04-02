@@ -5,7 +5,7 @@ data class SnippetEntity(
     val channelId: String,
     val title: String,
     val description: String,
-    val thumbnails: ThumbnailsEntity,
+    val thumbnailUrl: String,
     val channelTitle: String,
     val liveBroadcastContent: String,
     val publishTime: String
