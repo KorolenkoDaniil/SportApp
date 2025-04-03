@@ -9,6 +9,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -46,6 +47,7 @@ fun MatchesContent(
     matchesViewModel: MatchesActivitySoccerViewModel,
     appActivity: AppActivityViewModel,
     navController: NavHostController,
+    horizontalPaddings: Dp
     ) {
 
     //контроллер страниц матчи-информация про матчи
@@ -148,7 +150,8 @@ fun MatchesContent(
                                         matchReportViewModel,
                                         matchViewModel,
                                         appActivity,
-                                        navController
+                                        navController,
+                                        horizontalPaddings
                                     )
                                 }
                             }

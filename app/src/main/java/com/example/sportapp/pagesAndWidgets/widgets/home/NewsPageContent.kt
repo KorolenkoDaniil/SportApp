@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
@@ -22,7 +23,8 @@ fun NewsPageContent(
     oneNewsState: OneNewsSate,
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
-    newsList: NewsListEntity
+    newsList: NewsListEntity,
+    horizontalPaddings: Dp
 ) {
     val currentNews = (oneNewsState as OneNewsSate.OneNewsContent).news
     val painterNewsImage = rememberAsyncImagePainter(currentNews.newsImage)
@@ -40,7 +42,7 @@ fun NewsPageContent(
     Spacer(Modifier.height(32.dp))
     Text(text = currentNews.articleText)
     Spacer(Modifier.height(32.dp))
-    NewsCardRow(navController, newsViewModel, newsList)
+    NewsCardRow(navController, newsViewModel, newsList, horizontalPaddings)
     Spacer(Modifier.height(32.dp))
 }
 

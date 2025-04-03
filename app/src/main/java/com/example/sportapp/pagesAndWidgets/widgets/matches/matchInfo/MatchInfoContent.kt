@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.models.soccer.api.domain.EventEntity
 import com.example.sportapp.models.soccer.api.domain.MatchEntity
@@ -28,7 +29,7 @@ import com.example.sportapp.pagesAndWidgets.widgets.matches.matchInfo.PhaseNameL
 import com.example.sportapp.ui.theme.Blue100
 
 @Composable
-fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity) {
+fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity, horizontalPaddings: Dp) {
 
 
     val lazyListState = rememberLazyListState()
@@ -71,7 +72,7 @@ fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity) {
                             .background(color = Blue100)
                             .fillMaxWidth()
                     ) {
-                        CurrentMatch(match)
+                        CurrentMatch(match, horizontalPaddings)
                     }
                 }
             }

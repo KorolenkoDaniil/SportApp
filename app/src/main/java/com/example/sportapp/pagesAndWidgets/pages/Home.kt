@@ -2,6 +2,7 @@ package com.example.sportapp.pagesAndWidgets.pages
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.models.user.domain.UserEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
@@ -28,6 +29,7 @@ fun HomePage(
     navController: NavHostController,
     user: StateFlow<UserEntity?>,
     authViewModel: AuthViewModel,
+    horizontalPaddings: Dp
 ) {
     when (state) {
 
@@ -40,7 +42,6 @@ fun HomePage(
                     when (newsState) {
 
                         is NewsState.NewsContent -> {
-
                             HomePageContent(
                                 user = user,
                                 authViewModel = authViewModel,
@@ -48,7 +49,8 @@ fun HomePage(
                                 matchesViewModel = matchesViewModel,
                                 navController = navController,
                                 news = newsState.news,
-                                videoViewModel = videoViewModel
+                                videoViewModel = videoViewModel,
+                                horizontalPaddings
                             )
                         }
 

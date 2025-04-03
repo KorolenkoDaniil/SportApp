@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -25,6 +26,7 @@ fun NewsPage(
     newsState: NewsState,
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
+    horizontalPaddings: Dp
 ) {
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
     oneNewsViewModel.loadOneNewsData(newsDateTime)
@@ -40,7 +42,8 @@ fun NewsPage(
                             oneNewsState = oneNewsState,
                             navController = navController,
                             newsViewModel = newsViewModel,
-                            newsList = newsState.news
+                            newsList = newsState.news,
+                            horizontalPaddings
                         )
                     }
                 }

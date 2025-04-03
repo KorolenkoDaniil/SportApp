@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
@@ -24,9 +25,11 @@ import com.example.sportapp.pagesAndWidgets.widgets.shared.VideoCard
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun VideoCardRow (videoViewModel: YoutubeActivityViewModel,
-                  navController: NavHostController
-){
+fun VideoCardRow(
+    videoViewModel: YoutubeActivityViewModel,
+    navController: NavHostController,
+    horizontalPaddings: Dp
+) {
 
     val page = remember { mutableStateOf(1) }
     val loading = remember { mutableStateOf(false) }
@@ -48,7 +51,7 @@ fun VideoCardRow (videoViewModel: YoutubeActivityViewModel,
             }
     }
 
-    LazyRow (state = listState, modifier = Modifier.fillMaxSize()) {
+    LazyRow(state = listState, modifier = Modifier.fillMaxSize().padding(start = horizontalPaddings)) {
         items(itemList.size) { index ->
 
             val video = itemList[index]

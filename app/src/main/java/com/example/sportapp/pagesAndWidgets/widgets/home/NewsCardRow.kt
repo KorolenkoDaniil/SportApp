@@ -1,11 +1,14 @@
 package com.example.sportapp.pagesAndWidgets.widgets.home
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.models.news.domain.NewsListEntity
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -16,6 +19,7 @@ fun NewsCardRow(
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
     news: NewsListEntity,
+    horizontalPaddings: Dp
 ) {
     val lazyRowState = rememberLazyListState()
 
@@ -33,7 +37,8 @@ fun NewsCardRow(
         }
     }
 
-    LazyRow(state = lazyRowState) {
+
+    LazyRow(modifier = Modifier.padding(start = horizontalPaddings), state = lazyRowState) {
         items( newsViewModel.listOfLoadedNews.size) { index ->
             NewsCard( newsViewModel.listOfLoadedNews[index], navController)
         }

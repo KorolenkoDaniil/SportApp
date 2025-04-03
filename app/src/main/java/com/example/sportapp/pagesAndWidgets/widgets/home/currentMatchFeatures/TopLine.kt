@@ -14,7 +14,7 @@ import com.example.sportapp.pagesAndWidgets.widgets.shared.LiveTranslationFlag
 import com.example.sportapp.ui.theme.style3
 
 @Composable
-fun Top_line(nearestMatch: MatchEntity) {
+fun TopLine(nearestMatch: MatchEntity) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

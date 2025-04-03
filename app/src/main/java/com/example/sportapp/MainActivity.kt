@@ -1,7 +1,6 @@
 package com.example.sportapp
 
 import AppActivityViewModel
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,7 +17,6 @@ import com.example.sportapp.pagesAndWidgets.pages.MyAppNavigation as MyAppNaviga
 
 
 class mainActivity : ComponentActivity() {
-    @SuppressLint("CoroutineCreationDuringComposition", "StateFlowValueCalledInComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

@@ -33,6 +33,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -44,14 +45,15 @@ import kotlinx.coroutines.flow.StateFlow
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun SearchLine(user: StateFlow<UserEntity?>, authViewModel: AuthViewModel, navController: NavHostController) {
+fun SearchLine(user: StateFlow<UserEntity?>, authViewModel: AuthViewModel, navController: NavHostController,  horizontalPaddings: Dp) {
 
 
     var textState by remember { mutableStateOf(TextFieldValue("")) }
 
     Row(
+        Modifier.padding(horizontal =  horizontalPaddings),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(
             Modifier

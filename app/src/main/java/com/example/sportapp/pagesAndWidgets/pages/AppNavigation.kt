@@ -69,11 +69,9 @@ fun MyAppNavigation(
 
         ) { innerPadding ->
 
-//        val topPaddings = if (showBars) 20.dp else 0.dp
-//        val horizontalPaddings = if (AIChatPagePaddings) 0.dp else 16.dp
 
-        val topPaddings = 20.dp
-        val horizontalPaddings = 16.dp
+        val topPaddings = 14.dp
+        val horizontalPaddings = 12.dp
 
 
         NavHost(
@@ -81,9 +79,7 @@ fun MyAppNavigation(
             startDestination = Screen.FirstPage.route,
             modifier = Modifier
                 .padding(innerPadding)
-//                .padding(horizontal = horizontalPaddings)
-//                .padding(top = topPaddings),
-            ,
+                .padding(top = topPaddings),
             builder = {
                 composable(Screen.LoginPage.route) {
                     appActivity.changeShowBars(false)
@@ -108,6 +104,7 @@ fun MyAppNavigation(
                         navController = navController,
                         authViewModel.currentUser,
                         authViewModel,
+                        horizontalPaddings
                     )
                 }
 
@@ -117,7 +114,7 @@ fun MyAppNavigation(
                 composable(Screen.Matches.route) {
 
                     MatchesPage(
-                        matchesViewModel, state, appActivity, navController )
+                        matchesViewModel, state, appActivity, navController, horizontalPaddings)
                 }
                 composable(Screen.VideoListPage.route) {
                     VideoListPage(
@@ -140,6 +137,7 @@ fun MyAppNavigation(
                         newsState,
                         navController,
                         newsViewModel,
+                        horizontalPaddings
                     )
                 }
 

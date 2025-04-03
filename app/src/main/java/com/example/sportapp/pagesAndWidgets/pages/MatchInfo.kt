@@ -5,6 +5,7 @@ import MatchInfoContent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.models.viewModels.MatchActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportActivitySoccerViewModel
@@ -20,6 +21,7 @@ fun MatchInfo(
     matchViewModel: MatchActivitySoccerViewModel,
     appActivity: AppActivityViewModel,
     navController: NavHostController,
+    horizontalPaddings: Dp
 ) {
     appActivity.changePageName("Match center")
     val matchReportState by matchReportViewModel.getState().collectAsState()
@@ -29,7 +31,7 @@ fun MatchInfo(
         is MatchReportState.RankingsContent -> {
             when (matchState) {
                 is MatchState.MatchContent -> {
-                    MatchInfoContent((matchReportState as MatchReportState.RankingsContent).rankings, (matchState as MatchState.MatchContent).match)
+                    MatchInfoContent((matchReportState as MatchReportState.RankingsContent).rankings, (matchState as MatchState.MatchContent).match, horizontalPaddings)
                 }
 
                 is MatchState.Error -> {
