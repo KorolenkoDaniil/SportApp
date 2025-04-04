@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp") version "2.1.10-1.0.31" // Используем правильную версию ksp
+    id("com.google.devtools.ksp") version "2.1.10-1.0.31"
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.google.gms.google.services)
@@ -20,6 +20,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("sport") {
+            keyAlias = "sport"
+            keyPassword = "456123123DKa"
+            storeFile = file("../KorSport.jks")
+            storePassword = "456123123DKa"
+        }
+    }
+//    keytool -list -v -alias sport -keystore KorSport.jks
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -28,9 +37,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("sport")
         }
         debug {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("sport")
         }
     }
 
@@ -54,10 +65,17 @@ android {
 
 dependencies {
 
+    implementation (libs.androidx.credentials.vlatestversion)
+    implementation (libs.androidx.credentials.play.services.auth.vlatestversion)
+
+
     implementation(libs.androidx.datastore.preferences)
 
     // Room
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     ksp(libs.androidx.room.compiler) // Используем ksp вместо kapt
     implementation(libs.androidx.room.ktx) // Поддержка корутин
 

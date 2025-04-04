@@ -1,8 +1,10 @@
 [versions]
 accompanistPermissions = "0.30.1"
 agp = "8.7.3"
+androidxCredentials = "<latest version>"
 coilCompose = "2.4.0"
 converterGson = "2.5.0"
+credentialsPlayServicesAuthVersion = "<latest version>"
 datastorePreferences = "1.1.3"
 firebaseBom = "33.10.0"
 kotlin = "2.1.0"
@@ -33,8 +35,13 @@ roomCompiler = "2.6.1"
 firebaseMessaging = "24.1.0"
 firebaseFirestoreKtx = "25.1.2"
 roomKtx = "2.6.1"
+credentials = "1.5.0"
+credentialsPlayServicesAuth = "1.5.0"
+googleid = "1.1.1"
 
 [libraries]
+androidx-credentials-play-services-auth-vlatestversion = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentialsPlayServicesAuthVersion" }
+androidx-credentials-vlatestversion = { module = "androidx.credentials:credentials", version.ref = "androidxCredentials" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
@@ -72,6 +79,9 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+androidx-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
+androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
+googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

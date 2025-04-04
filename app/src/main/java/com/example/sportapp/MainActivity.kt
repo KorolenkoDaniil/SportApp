@@ -23,14 +23,15 @@ class mainActivity : ComponentActivity() {
 
             val appActivity: AppActivityViewModel by viewModels()
 
+            val videoViewModel: YoutubeActivityViewModel by viewModels()
+            val videoState by videoViewModel.getState().collectAsState()
+
             val newsViewModel: NewsActivityViewModel by viewModels()
             val newsState by newsViewModel.getState().collectAsState()
 
             val matchesViewModel: MatchesActivitySoccerViewModel by viewModels()
             val state by matchesViewModel.getState().collectAsState()
 
-            val videoViewModel: YoutubeActivityViewModel by viewModels()
-            val videoState by videoViewModel.getState().collectAsState()
 
             val navController = rememberNavController()
 

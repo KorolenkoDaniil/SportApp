@@ -31,7 +31,7 @@ class YoutubeRepository {
             parameters.append("channelId", channelId)
             parameters.append("part", "snippet,id")
             parameters.append("order", "date")
-            parameters.append("maxResults", "20")
+            parameters.append("maxResults", "10")
 
             nextPageToken?.let {
                 parameters.append("pageToken", it)

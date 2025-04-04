@@ -12,12 +12,7 @@
           "package_name": "com.example.firebaseexample"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "691650676403-esjn9e7j70frjv0en25f9g9ain0ltl33.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyAlguLWWdoI8G6xbikRLA7zMPiRH-7akWk"
@@ -25,12 +20,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "691650676403-esjn9e7j70frjv0en25f9g9ain0ltl33.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     },
@@ -41,12 +31,7 @@
           "package_name": "com.example.sportapp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "691650676403-esjn9e7j70frjv0en25f9g9ain0ltl33.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyAlguLWWdoI8G6xbikRLA7zMPiRH-7akWk"
@@ -54,12 +39,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "691650676403-esjn9e7j70frjv0en25f9g9ain0ltl33.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
