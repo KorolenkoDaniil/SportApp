@@ -92,6 +92,8 @@ val my_messages = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = 
 
 val companion_messages = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start, color = Color.White)
 
+val News_title_style = TextStyle(fontFamily = Roboto, fontSize = 24.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Start, color = Color.Black)
+
 
 
 
