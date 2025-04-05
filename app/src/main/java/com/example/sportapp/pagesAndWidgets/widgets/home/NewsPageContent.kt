@@ -20,6 +20,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.news.domain.NewsListEntity
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
+import com.example.sportapp.pagesAndWidgets.widgets.home.newsPageWidgets.Comments
 import com.example.sportapp.pagesAndWidgets.widgets.home.newsPageWidgets.NewsPageHeader
 
 @Composable
@@ -50,6 +51,7 @@ fun NewsPageContent(
             item { Spacer(Modifier.height(20.dp)) }
             item { Text(text = "\t\t\t" + currentNews.articleText) }
             item { Spacer(Modifier.height(20.dp)) }
+            item { Comments() }
         }
     }
     NewsCardRow(navController, newsViewModel, newsList, horizontalPaddings)
