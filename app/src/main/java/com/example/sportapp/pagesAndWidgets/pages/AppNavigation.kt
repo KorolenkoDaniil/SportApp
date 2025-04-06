@@ -24,6 +24,7 @@ import com.example.sportapp.models.viewModels.NewsState
 import com.example.sportapp.models.viewModels.VideosState
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.pagesAndWidgets.widgets.shared.Loading
+import java.time.LocalDateTime
 
 
 sealed class Screen(val route: String) {
@@ -54,6 +55,8 @@ fun MyAppNavigation(
     authState: AuthState,
     AIViewModel: AIAnswerViewModel,
     answerState: AnswerState,
+    startDestination: String,
+    openingViaDeepLink: Boolean
 ) {
 
     val showBars by appActivity.showBars.collectAsState()
@@ -76,7 +79,7 @@ fun MyAppNavigation(
 
         NavHost(
             navController = navController,
-            startDestination = Screen.FirstPage.route,
+            startDestination = startDestination,
             modifier = Modifier
                 .padding(innerPadding)
                 .padding(top = topPaddings),
@@ -130,10 +133,14 @@ fun MyAppNavigation(
                 }
 
                 composable(Screen.News.route) { backStackEntry ->
+
                     val newsDateTime = backStackEntry.arguments?.getString("newsId")
+
+                    val parsedDateTime = LocalDateTime.parse(newsDateTime!!)
+
                     NewsPage(
                         appActivity,
-                        newsDateTime!!,
+                        parsedDateTime.toString(),
                         newsState,
                         navController,
                         newsViewModel,

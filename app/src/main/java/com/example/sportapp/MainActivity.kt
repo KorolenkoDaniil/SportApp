@@ -13,6 +13,7 @@ import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
+import com.example.sportapp.pagesAndWidgets.pages.Screen
 import com.example.sportapp.pagesAndWidgets.pages.MyAppNavigation as MyAppNavigation1
 
 
@@ -41,6 +42,21 @@ class mainActivity : ComponentActivity() {
             val AIViewModel: AIAnswerViewModel by viewModels()
             val answerState by AIViewModel.getState().collectAsState()
 
+
+            val url = intent.data
+
+            var openingViaDeepLink = false;
+
+            val startDestination = if (url != null && url.scheme == "korsport" && url.host == "news") {
+                openingViaDeepLink = true
+
+                val newsId = url.lastPathSegment ?: ""
+                "news/$newsId"
+            } else {
+                Screen.FirstPage.route
+            }
+
+
             MyAppNavigation1(
                 authViewModel = authViewModel,
                 newsState = newsState,
@@ -54,6 +70,8 @@ class mainActivity : ComponentActivity() {
                 authState = authState,
                 AIViewModel,
                 answerState,
+                startDestination,
+                openingViaDeepLink
             )
         }
     }

@@ -20,6 +20,7 @@ class OneNewsActivityViewModel : ViewModel(), NewsViewModelInterface<OneNewsSate
 
     override fun loadData() {}
 
+
     fun loadOneNewsData(dateTime: String) {
         viewModelScope.launch {
             try {

@@ -74,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 365,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -91,6 +91,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Gemini.cs",
+              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Gemini.cs",
+              "RelativeDocumentMoniker": "SportAppServer\\Entities\\Gemini.cs",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Gemini.cs",
+              "RelativeToolTip": "SportAppServer\\Entities\\Gemini.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T13:48:27.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "GeminiController.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\GeminiController.cs",
@@ -99,8 +112,7 @@
               "RelativeToolTip": "SportAppServer\\Controllers\\GeminiController.cs",
               "ViewState": "AgIAAEMAAAAAAAAAAAAmwFoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T16:51:52.621Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T16:51:52.621Z"
             },
             {
               "$type": "Document",
@@ -112,8 +124,7 @@
               "RelativeToolTip": "SportAppServer\\Controllers\\UsersController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T13:01:55.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T13:01:55.863Z"
             },
             {
               "$type": "Document",
@@ -125,8 +136,7 @@
               "RelativeToolTip": "SportAppServer\\Program.cs",
               "ViewState": "AgIAAEYAAAAAAAAAAAAcwFMAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T15:28:25.733Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T15:28:25.733Z"
             },
             {
               "$type": "Document",
@@ -150,21 +160,7 @@
               "RelativeToolTip": "SportAppServer\\Entities\\Context\\DBContext.cs",
               "ViewState": "AgIAACsAAAAAAAAAAAA6wDoAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T09:39:52.161Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Gemini.cs",
-              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Gemini.cs",
-              "RelativeDocumentMoniker": "SportAppServer\\Entities\\Gemini.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Entities\\Gemini.cs",
-              "RelativeToolTip": "SportAppServer\\Entities\\Gemini.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T13:48:27.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-13T09:39:52.161Z"
             },
             {
               "$type": "Document",
@@ -176,8 +172,7 @@
               "RelativeToolTip": "SportAppServer\\NotificationScheduler.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T15:28:36.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T15:28:36.593Z"
             },
             {
               "$type": "Document",

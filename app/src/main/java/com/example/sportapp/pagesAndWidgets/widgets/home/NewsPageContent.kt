@@ -36,7 +36,7 @@ fun NewsPageContent(
 
     Box(Modifier.padding(horizontalPaddings)) {
         LazyColumn {
-            item { NewsPageHeader(currentNews.title, navController) }
+            item { NewsPageHeader(currentNews.title, navController, currentNews.dateTime) }
             item { Spacer(Modifier.height(12.dp)) }
             item { Image(
                     painter = painterNewsImage,

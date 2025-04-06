@@ -37,7 +37,7 @@ fun NewsPage(
         is OneNewsSate.OneNewsContent -> {
             when (newsState) {
                 is NewsState.NewsContent -> {
-                    Column(Modifier.fillMaxSize()) { // Используем Column вместо LazyColumn
+                    Column(Modifier.fillMaxSize()) {
                         NewsPageContent(
                             oneNewsState = oneNewsState,
                             navController = navController,
@@ -56,7 +56,10 @@ fun NewsPage(
                 }
             }
         }
-        is OneNewsSate.Error -> CommonError(oneNewsViewModel, Screen.News.route, navController)
+        is OneNewsSate.Error -> {
+            Log.d("newsPage", newsDateTime)
+            CommonError(oneNewsViewModel, Screen.News.route, navController)
+        }
         is OneNewsSate.Load -> Loading()
     }
 }
