@@ -1,4 +1,4 @@
-package com.example.sportapp.models.news.api
+package com.example.sportapp.models.news.api.internalNewsModels
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

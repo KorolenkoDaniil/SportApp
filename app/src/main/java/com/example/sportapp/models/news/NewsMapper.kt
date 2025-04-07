@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 class NewsMapper {
 
     val tagsMapper = TagsMapper()
-
+    val commentsMapper = CommentsMapper()
 
     fun getNewsEntityList(response: NewsResponse, newsBaseUrl: String): NewsListEntity {
 
@@ -27,6 +27,9 @@ class NewsMapper {
                     newsImage = newsBaseUrl + "/images/" + item.imageId,
                     articleText = item.articleText,
                     tags = tagsMapper.tagResponseToItems(item.newsTags),
+                    comments = commentsMapper.CommentsResponseToItems(
+                        CommentsResponse = item.comments
+                    )
                 )
             }
         )
@@ -40,7 +43,10 @@ class NewsMapper {
             imageId = response.imageId,
             newsImage = newsBaseUrl + "/images/" + response.imageId,
             articleText = response.articleText,
-            tags = tagsMapper.tagResponseToItems(response.newsTags)
+            tags = tagsMapper.tagResponseToItems(response.newsTags),
+            comments = commentsMapper.CommentsResponseToItems(
+                CommentsResponse = response.comments
+            )
         )
     }
 

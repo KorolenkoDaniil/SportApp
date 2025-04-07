@@ -1,4 +1,4 @@
-package com.example.sportapp.models.news.domain
+package com.example.sportapp.models.news.domain.internalNewsModels
 
 data class NewsTagItem(
     val tagId: Int,

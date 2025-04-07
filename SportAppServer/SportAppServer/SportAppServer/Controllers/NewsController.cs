@@ -55,6 +55,7 @@ namespace SportAppServer.Controllers
             {
                 var news = await _dbContext.News
                     .Include(n => n.NewsTags)
+                    .Include(n => n.NewsComments)
                     .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
 
                 if (news == null)

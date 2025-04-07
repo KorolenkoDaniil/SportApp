@@ -1,5 +1,6 @@
 package com.example.sportapp.pagesAndWidgets.widgets.home
 
+import Comments
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -20,7 +21,6 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.news.domain.NewsListEntity
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
-import com.example.sportapp.pagesAndWidgets.widgets.home.newsPageWidgets.Comments
 import com.example.sportapp.pagesAndWidgets.widgets.home.newsPageWidgets.NewsPageHeader
 
 @Composable
@@ -51,7 +51,7 @@ fun NewsPageContent(
             item { Spacer(Modifier.height(20.dp)) }
             item { Text(text = "\t\t\t" + currentNews.articleText) }
             item { Spacer(Modifier.height(20.dp)) }
-            item { Comments() }
+            item { Box (Modifier.fillMaxWidth().height(200.dp)) { Comments(currentNews) } }
         }
     }
     NewsCardRow(navController, newsViewModel, newsList, horizontalPaddings)
