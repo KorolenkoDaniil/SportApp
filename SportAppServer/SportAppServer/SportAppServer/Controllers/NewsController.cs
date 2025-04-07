@@ -1,10 +1,7 @@
-﻿using FirebaseAdmin.Messaging;
-using Google.Apis.Json;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SportAppServer.Entities.context;
-using SportAppServer.Entities.models;
 using SportAppServer.Entities.Pagination;
 
 namespace SportAppServer.Controllers
@@ -21,20 +18,21 @@ namespace SportAppServer.Controllers
             int totalItems = await _dbContext.News.CountAsync();
 
 
-            var list = await _dbContext.News
+            var newsList = await _dbContext.News
                 .Include(n => n.NewsTags)
+                .Include(n => n.NewsComments)
                 .OrderByDescending(news => news.DateTime)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-
+          
             var page = new NewsPagination
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 TotalItems = totalItems,
-                News = list
+                News = newsList
             };
 
             string json = JsonConvert.SerializeObject(page, new JsonSerializerSettings

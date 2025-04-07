@@ -27,6 +27,9 @@ namespace SportAppServer.Entities.models
         [JsonProperty("tags")]
         public List<NewsTag> NewsTags { get; set; } = new List<NewsTag>();
 
+        [JsonProperty("comments")]
+        public List<NewsComments> NewsComments { get; set; } = new List<NewsComments>();
+
 
 
         public override string ToString()

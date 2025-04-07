@@ -9,15 +9,11 @@ namespace SportAppServer.Entities.context
 
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
-        public DBContext()
-        {
-        }
-
+        public DBContext() { }
         public DbSet<News> News { get; set; } = null!;
-
         public DbSet<User> Users { get; set; } = null!;
-
         public DbSet<NewsTag> Tags { get; set; } = null!;
+        public DbSet<NewsComments> NewsComments { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,12 +23,19 @@ namespace SportAppServer.Entities.context
 
 
 
+      
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<News>()
                 .HasMany(n => n.NewsTags)
                 .WithOne(nt => nt.News)
                 .HasForeignKey(nt => nt.NewsDateTime);
+
+            modelBuilder.Entity<News>()
+                .HasMany(n => n.NewsComments)
+                .WithOne(nc => nc.News)
+                .HasForeignKey(nc => nc.NewsDateTime);
 
             base.OnModelCreating(modelBuilder);
         }

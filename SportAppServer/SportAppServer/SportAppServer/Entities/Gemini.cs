@@ -16,7 +16,7 @@ namespace SportAppServer.Entities
             if (string.IsNullOrEmpty(newsText))
                 throw new ArgumentException("Текст новости не может быть пустым");
 
-            using HttpClient client = new HttpClient();
+            using HttpClient client = new();
             string requestUrl = $"{apiUrl}?key={apiKey}";
 
             var requestBody = new
