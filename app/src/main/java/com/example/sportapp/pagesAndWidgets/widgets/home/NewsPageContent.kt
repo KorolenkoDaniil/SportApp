@@ -29,32 +29,47 @@ fun NewsPageContent(
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
     newsList: NewsListEntity,
-    horizontalPaddings: Dp
+    horizontalPaddings: Dp,
 ) {
     val currentNews = (oneNewsState as OneNewsSate.OneNewsContent).news
     val painterNewsImage = rememberAsyncImagePainter(currentNews.newsImage)
 
-    Box(Modifier.padding(horizontalPaddings)) {
-        LazyColumn {
-            item { NewsPageHeader(currentNews.title, navController, currentNews.dateTime) }
-            item { Spacer(Modifier.height(12.dp)) }
-            item { Image(
-                    painter = painterNewsImage,
-                    contentDescription = "newsImage",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(shape = RoundedCornerShape(16.dp))
-                        .height(200.dp),
-                    contentScale = ContentScale.Crop )
-            }
+    LazyColumn {
+        item {
+            Box(Modifier.padding(horizontalPaddings)) {
+                LazyColumn {
+                    item { NewsPageHeader(currentNews.title, navController, currentNews.dateTime) }
+                    item { Spacer(Modifier.height(12.dp)) }
+                    item {
+                        Image(
+                            painter = painterNewsImage,
+                            contentDescription = "newsImage",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(shape = RoundedCornerShape(16.dp))
+                                .height(200.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
 
-            item { Spacer(Modifier.height(20.dp)) }
-            item { Text(text = "\t\t\t" + currentNews.articleText) }
-            item { Spacer(Modifier.height(20.dp)) }
-            item { Box (Modifier.fillMaxWidth().height(200.dp)) { Comments(currentNews) } }
+                    item { Spacer(Modifier.height(20.dp)) }
+                    item { Text(text = "\t\t\t" + currentNews.articleText) }
+                    item { Spacer(Modifier.height(20.dp)) }
+                }
+            }
+        }
+
+        item {
+            NewsCardRow(navController, newsViewModel, newsList, horizontalPaddings)
+            Spacer(Modifier.height(20.dp))
+        }
+        item {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+            ) { Comments(currentNews) }
         }
     }
-    NewsCardRow(navController, newsViewModel, newsList, horizontalPaddings)
-    Spacer(Modifier.height(32.dp))
 }
 
