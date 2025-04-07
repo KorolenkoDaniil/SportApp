@@ -3,6 +3,8 @@ using Google.Apis.Auth.OAuth2;
 using Microsoft.EntityFrameworkCore;
 using SportAppServer;
 using SportAppServer.Entities.context;
+using SportAppServer.Repositories;
+using SportAppServer.Services;
 
 internal class Program
 {
@@ -15,8 +17,14 @@ internal class Program
         builder.Services.AddDbContext<DBContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-        builder.Services.AddControllers();
 
+        builder.Services.AddDbContext<DBContext>(options =>
+            options.UseSqlServer("Server=Karalenka;Database=KorSport;Trusted_Connection=True;TrustServerCertificate=True"));
+
+
+        builder.Services.AddControllers();
+        builder.Services.AddScoped<INewsRepository, NewsRepository>();
+        builder.Services.AddScoped<INewsService, NewsService>();
 
 
 

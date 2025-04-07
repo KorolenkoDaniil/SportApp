@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportAppServer.Entities.context;
-using SportAppServer.Entities.Models;
 using SportAppServer.Entities.Models.dto;
+using SportAppServer.Models.Entities;
 using System.Diagnostics;
 
 namespace SportAppServer.Controllers

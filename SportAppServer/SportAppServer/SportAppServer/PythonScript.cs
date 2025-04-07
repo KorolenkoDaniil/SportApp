@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SportAppServer.Entities.context;
-using SportAppServer.Entities.models;
+using SportAppServer.Entities.Models;
+using SportAppServer.Models.Entities;
 using System.Diagnostics;
 using System.Text;
 
@@ -87,26 +88,26 @@ namespace SportAppServer
                 return;
             }
 
-            using (var newsDB = new DBContext())
-            {
-                try
-                {
-                    await newsDB.AddNewsToDBAsync(newsList);
-                    await newsDB.SaveChangesAsync();
-                }
-                catch (DbUpdateException ex)
-                {
-                    if (ex.InnerException != null)
-                    {
-                        Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Error: {ex.Message}");
-                    }
-                }
+            //using (var newsDB = new DBContext())
+            //{
+            //    try
+            //    {
+            //        //await newsDB.AddNewsToDBAsync(newsList);
+            //        await newsDB.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateException ex)
+            //    {
+            //        if (ex.InnerException != null)
+            //        {
+            //            Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine($"Error: {ex.Message}");
+            //        }
+            //    }
 
-            }
+            //}
         }
     }
 }

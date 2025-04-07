@@ -71,7 +71,6 @@ C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\Spor
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.RazorAssemblyInfo.cache
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.RazorAssemblyInfo.cs
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.sourcelink.json
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\scopedcss\bundle\SportAppServer.styles.css
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\scopedcss\projectbundle\SportAppServer.bundle.scp.css
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.build.json
@@ -101,3 +100,4 @@ C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\Spor
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\calendar.json
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\OpenAI.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
