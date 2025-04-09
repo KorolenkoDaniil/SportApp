@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SportAppServer.Entities.context;
-using SportAppServer.Entities.Models.dto;
-using SportAppServer.Models.Entities;
+using SportAppServer.Models.DTOs;
+using SportAppServer.Models.DTOs.Requests;
+using SportAppServer.Services;
 using System.Diagnostics;
+
 
 namespace SportAppServer.Controllers
 {
@@ -10,27 +11,26 @@ namespace SportAppServer.Controllers
     [ApiController]
     public class UsersController : Controller
     {
-        private readonly DBContext _dbContext;
+        private readonly IUserService _userService;
 
-        public UsersController(DBContext dbContext)
+        public UsersController(IUserService userService)
         {
-            _dbContext = dbContext;
+            _userService = userService;
         }
+
 
         [HttpPost]
         public async Task<IActionResult> PutUser([FromBody] EmailDto email)
         {
             Debug.WriteLine(email.Email);
-            if (string.IsNullOrEmpty(email.Email))
-            {
-                return BadRequest("Email is required.");
-            }
 
-            var newUser = new User(email.Email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg");
-            _dbContext.Users.Add(newUser);
-            await _dbContext.SaveChangesAsync();
+            UserDTO user = await _userService.PutUser(email);
 
-            return Ok(newUser);
+            if (user != null)
+                return Ok(user);
+            else
+                return BadRequest();
+            
         }
 
 
@@ -38,23 +38,21 @@ namespace SportAppServer.Controllers
         [HttpGet("GetUser")]
         public async Task<IActionResult> GetUserData(string email)
         {
-            if (string.IsNullOrEmpty(email))
-            {
-                return BadRequest("Email is required.");
-            }
+            //if (string.IsNullOrEmpty(email))
+            //{
+            //    return BadRequest("Email is required.");
+            //}
 
-            var user = await _dbContext.Users.FindAsync(email);
-            if (user == null)
-            {
-                return NotFound("User not found.");
-            }
+            //var user = await _dbContext.Users.FindAsync(email);
+            //if (user == null)
+            //{
+            //    return NotFound("User not found.");
+            //}
 
-            return Ok(user);
+            return Ok(_userService.GetUserData());
         }
     }
 
   
 }
 
-
-//AIzaSyDPL0vKJ - JcFSGjF2jPcQabpTkx7zBMyYQ

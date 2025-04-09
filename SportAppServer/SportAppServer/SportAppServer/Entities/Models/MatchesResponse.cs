@@ -17,7 +17,7 @@ namespace SportAppServer.Entities.Models
         public bool IsLastPage { get; set; }
 
         [JsonProperty("items")]
-        public List<SportMatch> Items { get; set; }
+        public required List<SportMatch> Items { get; set; }
 
     }
 }

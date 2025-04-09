@@ -1,6 +1,7 @@
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SportAppServer;
 using SportAppServer.Entities.context;
 using SportAppServer.Repositories;
@@ -22,9 +23,10 @@ internal class Program
             options.UseSqlServer("Server=Karalenka;Database=KorSport;Trusted_Connection=True;TrustServerCertificate=True"));
 
 
-        builder.Services.AddControllers();
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
         builder.Services.AddScoped<INewsService, NewsService>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IUserService, UserService>();
 
 
 

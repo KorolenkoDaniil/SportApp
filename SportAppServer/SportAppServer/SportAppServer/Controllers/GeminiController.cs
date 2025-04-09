@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using SportAppServer.Entities.Models.dto;
+using SportAppServer.Models.DTOs.Requests;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;

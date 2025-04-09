@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SportAppServer.Models.DTOs;
+using SportAppServer.Models.Pagination;
 using SportAppServer.Services;
 
 namespace SportAppServer.Controllers
@@ -18,46 +20,34 @@ namespace SportAppServer.Controllers
         }
 
 
-
         [HttpGet("GetNews")]
         public async Task<IActionResult> GetNews(int pageNumber = 1, int pageSize = 10)
         {
-            string json = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
+            NewsPagination paginatedNews = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
 
-            return Content(json, "application/json");
+            if (paginatedNews.News.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(paginatedNews);
         }
+
 
 
 
         [HttpGet("GetOneNews")]
         public async Task<IActionResult> GetOneNews(string dateTime)
         {
-            //DateTime newsDateTime = DateTime.Parse(dateTime);
+            NewsDTO? news = await _newsService.GetNewsByDateAsync(dateTime);
 
-            //using (var _dbContext = new DBContext())
-            //{
-            //    var news = await _dbContext.News
-            //        .Include(n => n.NewsTags)
-            //        .Include(n => n.NewsComments)
-            //        .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
+            if (news == null)
+            {
+                return NotFound();
+            }
 
-            //    if (news == null)
-            //    {
-            //        return NotFound();
-            //    }
-
-            //    string json = JsonConvert.SerializeObject(news, new JsonSerializerSettings
-            //    {
-            //        Formatting = Formatting.Indented,
-            //        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            //    });
-
-            //    return Content(json, "application/json");
-            //}
-
-            return Ok();
+            return Ok(news);
         }
-
-
     }
 }
+

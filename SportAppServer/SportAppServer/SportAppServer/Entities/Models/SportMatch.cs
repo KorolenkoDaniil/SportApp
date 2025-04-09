@@ -9,15 +9,15 @@ namespace SportAppServer.Entities.Models
 
 
         [JsonProperty("season_id")]
-        public string SeasonId { get; set; }
+        public required string SeasonId { get; set; }
 
 
         [JsonProperty("match_id")]
-        public string MatchId { get; set; }
+        public required string MatchId { get; set; }
 
 
         [JsonProperty("match_unique_code")]
-        public string MatchUniqueCode { get; set; }
+        public required string MatchUniqueCode { get; set; }
 
 
         [JsonProperty("date")]
@@ -25,51 +25,51 @@ namespace SportAppServer.Entities.Models
 
 
         [JsonProperty("match_day_id")]
-        public string MatcDayId { get; set; }
+        public required string MatcDayId { get; set; }
 
 
         [JsonProperty("match_day_name")]
-        public string MatchDayName { get; set; }
+        public required string MatchDayName { get; set; }
 
 
         [JsonProperty("match_day_short_name")]
-        public string MatchDayShortName { get; set; }
+        public required string MatchDayShortName { get; set; }
 
 
         [JsonProperty("date_order")]
-        public string DateOrder { get; set; }
+        public required string DateOrder { get; set; }
 
 
         [JsonProperty("team_a_id")]
-        public string TeamAId { get; set; }
+        public required string TeamAId { get; set; }
 
 
         [JsonProperty("teamAName")]
-        public string TeamAName { get; set; }
+        public required string TeamAName { get; set; }
 
 
         [JsonProperty("team_a_short_name")]
-        public string TeamAShortName { get; set; }
+        public required string TeamAShortName { get; set; }
 
 
         [JsonProperty("team_a_acronym")]
-        public string TeamAAcronym { get; set; }
+        public required string TeamAAcronym { get; set; }
 
 
         [JsonProperty("team_b_id")]
-        public string TeamBId { get; set; }
+        public required string TeamBId { get; set; }
 
 
         [JsonProperty("team_b_name")]
-        public string TeamBName { get; set; }
+        public required string TeamBName { get; set; }
 
 
         [JsonProperty("team_b_short_name")]
-        public string TeamBShortName { get; set; }
+        public required string TeamBShortName { get; set; }
 
 
         [JsonProperty("team_b_acronym")]
-        public string TeamBAcronym { get; set; }
+        public required string TeamBAcronym { get; set; }
 
 
         [JsonProperty("goals_team_a")]
@@ -81,11 +81,11 @@ namespace SportAppServer.Entities.Models
 
 
         [JsonProperty("stadium_name")]
-        public string StadiumName { get; set; }
+        public required string StadiumName { get; set; }
 
 
         [JsonProperty("stadium_city")]
-        public string StadiumCity { get; set; }
+        public required string StadiumCity { get; set; }
 
 
         [JsonProperty("match_status")]
@@ -105,19 +105,19 @@ namespace SportAppServer.Entities.Models
 
 
         [JsonProperty("broadcaster")]
-        public string Broadcaster { get; set; }
+        public required string Broadcaster { get; set; }
 
 
         [JsonProperty("match_start_time")]
-        public string MatchStartTime { get; set; }
+        public required string MatchStartTime { get; set; }
 
 
         [JsonProperty("match_phase")]
-        public string MatchPhase { get; set; }
+        public required string MatchPhase { get; set; }
 
 
         [JsonProperty("opta_id")]
-        public string OptaId { get; set; }
+        public required string OptaId { get; set; }
 
 
         [JsonProperty("is_forfeit_win")]

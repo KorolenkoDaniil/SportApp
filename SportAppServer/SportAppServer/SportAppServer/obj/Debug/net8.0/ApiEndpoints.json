@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "email",
-        "Type": "SportAppServer.Entities.Models.dto.EmailDto",
+        "Type": "SportAppServer.Models.DTOs.Requests.EmailDto",
         "IsRequired": true
       }
     ],
@@ -41,7 +41,7 @@
     "Parameters": [
       {
         "Name": "prompt",
-        "Type": "SportAppServer.Entities.Models.dto.PromptDto",
+        "Type": "SportAppServer.Models.DTOs.Requests.PromptDto",
         "IsRequired": true
       }
     ],
