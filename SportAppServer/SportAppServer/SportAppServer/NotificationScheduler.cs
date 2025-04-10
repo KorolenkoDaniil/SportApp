@@ -1,6 +1,6 @@
 ﻿using FirebaseAdmin.Messaging;
 using Newtonsoft.Json;
-using SportAppServer.Entities.Models;
+using SportAppServer.Models.DTOs.Requests;
 
 namespace SportAppServer
 {

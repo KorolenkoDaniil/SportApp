@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SportAppServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d58ad33ace8497843989ecba3a72a07567907628")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1509caf2abde5aeaacfe54bddf438b438bf65e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("SportAppServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SportAppServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

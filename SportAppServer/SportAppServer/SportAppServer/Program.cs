@@ -1,9 +1,9 @@
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using SportAppServer;
-using SportAppServer.Entities.context;
+using SportAppServer.Context;
+using SportAppServer.Gemini;
 using SportAppServer.Repositories;
 using SportAppServer.Services;
 
@@ -27,6 +27,10 @@ internal class Program
         builder.Services.AddScoped<INewsService, NewsService>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
+        builder.Services.AddScoped<ICommentsService, CommentsService>();
+        builder.Services.AddScoped<IGeminiService, GeminiService>();
+  
 
 
 

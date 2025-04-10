@@ -38,18 +38,12 @@ namespace SportAppServer.Controllers
         [HttpGet("GetUser")]
         public async Task<IActionResult> GetUserData(string email)
         {
-            //if (string.IsNullOrEmpty(email))
-            //{
-            //    return BadRequest("Email is required.");
-            //}
+            UserDTO user = await _userService.GetUserData(email);
 
-            //var user = await _dbContext.Users.FindAsync(email);
-            //if (user == null)
-            //{
-            //    return NotFound("User not found.");
-            //}
-
-            return Ok(_userService.GetUserData());
+            if (user != null)
+                return Ok(user);
+            else
+                return BadRequest(); 
         }
     }
 

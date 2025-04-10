@@ -1,6 +1,6 @@
 use KorSport
 
-DROP TABLE IF EXISTS NewsCommets;
+DROP TABLE IF EXISTS NewsComments;
 DROP TABLE IF EXISTS news_tags;
 DROP TABLE IF EXISTS News;
 DROP TABLE IF EXISTS Users;
@@ -25,7 +25,7 @@ CREATE TABLE news_tags (
     Tag NVARCHAR(50) NOT NULL
 );
 
-CREATE TABLE NewsCommets (
+CREATE TABLE NewsComments (
     CommentId INT IDENTITY(1,1) PRIMARY KEY,
     NewsDateTime DATETIME NOT NULL,
     CommentDateTime DATETIME NOT NULL,
@@ -138,7 +138,7 @@ VALUES
 
 
 -- Вставка комментариев к новостям
-INSERT INTO NewsCommets (NewsDateTime, CommentDateTime, CommentText, UserEmail)
+INSERT INTO NewsComments (NewsDateTime, CommentDateTime, CommentText, UserEmail)
 VALUES
 (CONVERT(DATETIME, '2024-04-05 14:00:00', 120), CONVERT(DATETIME, '2024-04-05 14:15:00', 120), 'Отличная игра, Зенит победил!', 'ddddddd@gmail.com'),
 (CONVERT(DATETIME, '2024-04-06 19:00:00', 120), CONVERT(DATETIME, '2024-04-06 19:30:00', 120), 'Ливерпуль показал отличный футбол!', 'dddddd@gmail.com'),

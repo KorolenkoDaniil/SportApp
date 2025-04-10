@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using SportAppServer.Entities.context;
-using SportAppServer.Entities.Models;
+﻿using Newtonsoft.Json;
 using SportAppServer.Models.Entities;
 using System.Diagnostics;
 using System.Text;

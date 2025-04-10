@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Открытие приложения</title>
+    <script>
+        // Получаем параметр id из URL (это дата)
+        const params = new URLSearchParams(window.location.search);
+        const newsId = params.get("id");
+
+        if (newsId) {
+            // Делаем редирект на кастомную схему
+            setTimeout(() => {
+                window.location.href = `korsport://news/${encodeURIComponent(newsId)}`;
+            }, 100); // можно увеличить задержку, если нужно
+        } else {
+            document.write("Ошибка: не передан параметр id.");
+        }
+    </script>
+</head>
+<body>
+    <p>Открываем новость в приложении...</p>
+    <a href="korsport://news/2024-04-08T23%3A30%3A00">Открыть новость в приложении</a>
+</body>
+</html>
