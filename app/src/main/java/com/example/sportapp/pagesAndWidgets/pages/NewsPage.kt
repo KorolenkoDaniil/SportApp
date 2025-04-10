@@ -2,12 +2,9 @@ package com.example.sportapp.pagesAndWidgets.pages
 
 import AppActivityViewModel
 import android.util.Log
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -26,7 +23,7 @@ fun NewsPage(
     newsState: NewsState,
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
-    horizontalPaddings: Dp
+    horizontalPaddings: Dp,
 ) {
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
     oneNewsViewModel.loadOneNewsData(newsDateTime)
@@ -37,29 +34,31 @@ fun NewsPage(
         is OneNewsSate.OneNewsContent -> {
             when (newsState) {
                 is NewsState.NewsContent -> {
-                    Column(Modifier.fillMaxSize()) {
-                        NewsPageContent(
-                            oneNewsState = oneNewsState,
-                            navController = navController,
-                            newsViewModel = newsViewModel,
-                            newsList = newsState.news,
-                            horizontalPaddings
-                        )
-                    }
+                    NewsPageContent(
+                        oneNewsState = oneNewsState,
+                        navController = navController,
+                        newsViewModel = newsViewModel,
+                        newsList = newsState.news,
+                        horizontalPaddings
+                    )
                 }
+
                 is NewsState.Error -> {
                     Log.d("tttNews", "ошибка newsPage")
                     CommonError(newsViewModel, Screen.News.route, navController)
                 }
+
                 is NewsState.Load -> {
                     Loading()
                 }
             }
         }
+
         is OneNewsSate.Error -> {
             Log.d("newsPage", newsDateTime)
             CommonError(oneNewsViewModel, Screen.News.route, navController)
         }
+
         is OneNewsSate.Load -> Loading()
     }
 }

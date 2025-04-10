@@ -20,16 +20,20 @@ namespace SportAppServer.Models.DTOs
         [JsonProperty("article_texts")]
         public string ArticleText { get; set; }
 
-     
+        [JsonProperty("tags")]
+        public List<NewsTagDTO> Tags { get; set; }
 
 
-        public NewsDTO(DateTime dateTime, string sport, string title, string imageId, string articleText)
+
+
+        public NewsDTO(DateTime dateTime, string sport, string title, string imageId, string articleText, List<NewsTagDTO> tags)
         {
             DateTime = dateTime;
             Sport = sport;
             Title = title;
             ImageId = imageId;
             ArticleText = articleText;
+            Tags = tags;
         }
 
         public override string ToString()

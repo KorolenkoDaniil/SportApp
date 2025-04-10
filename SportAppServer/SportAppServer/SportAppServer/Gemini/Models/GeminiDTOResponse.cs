@@ -1,12 +1,16 @@
-﻿namespace SportAppServer.Gemini.Models
+﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+
+namespace SportAppServer.Gemini.Models
 {
     public class GeminiDTOResponse
     {
-        public string Prompt { get; set; }
+        [JsonProperty("answer")]
+        public string response { get; set; }
 
         public GeminiDTOResponse(string prompt)
         {
-            Prompt = prompt;
+            response = prompt;
         }   
     }
 }

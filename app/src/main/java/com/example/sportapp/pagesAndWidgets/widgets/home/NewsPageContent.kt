@@ -3,6 +3,7 @@ package com.example.sportapp.pagesAndWidgets.widgets.home
 import Comments
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,25 +37,32 @@ fun NewsPageContent(
 
     LazyColumn {
         item {
-            Box(Modifier.padding(horizontalPaddings)) {
-                LazyColumn {
-                    item { NewsPageHeader(currentNews.title, navController, currentNews.dateTime) }
-                    item { Spacer(Modifier.height(12.dp)) }
-                    item {
-                        Image(
-                            painter = painterNewsImage,
-                            contentDescription = "newsImage",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clip(shape = RoundedCornerShape(16.dp))
-                                .height(200.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
 
-                    item { Spacer(Modifier.height(20.dp)) }
-                    item { Text(text = "\t\t\t" + currentNews.articleText) }
-                    item { Spacer(Modifier.height(20.dp)) }
+            Box(Modifier.padding(horizontal = horizontalPaddings)) {
+
+                Column {
+
+                    NewsPageHeader(currentNews.title, navController, currentNews.dateTime)
+
+                    Spacer(Modifier.height(12.dp))
+
+
+                    Image(
+                        painter = painterNewsImage,
+                        contentDescription = "newsImage",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(16.dp))
+                            .height(200.dp),
+                        contentScale = ContentScale.Crop
+                    )
+
+                    Spacer(Modifier.height(20.dp))
+
+
+                    Text(text = "\t\t\t" + currentNews.articleText)
+
+                    Spacer(Modifier.height(20.dp))
                 }
             }
         }
@@ -63,13 +71,19 @@ fun NewsPageContent(
             NewsCardRow(navController, newsViewModel, newsList, horizontalPaddings)
             Spacer(Modifier.height(20.dp))
         }
+
         item {
             Box(
                 Modifier
                     .fillMaxWidth()
                     .height(200.dp)
-            ) { Comments(currentNews) }
+                    .padding(horizontal = horizontalPaddings) // Здесь тоже используем паддинг
+            ) {
+                Comments(currentNews)
+            }
         }
     }
 }
+
+
 

@@ -22,16 +22,12 @@ namespace SportAppServer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<News>()
-            //    .HasMany(n => n.NewsTags)
-            //    .WithOne(nt => nt.News)
-            //    .HasForeignKey(nt => nt.NewsDateTime);
+            modelBuilder.Entity<News>()
+                .HasMany(n => n.tags)
+                .WithOne(nt => nt.news)
+                .HasForeignKey(nt => nt.NewsDateTime);
 
-            //modelBuilder.Entity<News>()
-            //    .HasMany(n => n.Comments)
-            //    .WithOne(nc => nc.News)
-            //    .HasForeignKey(nc => nc.NewsDateTime);
-
+          
             base.OnModelCreating(modelBuilder);
         }
     }

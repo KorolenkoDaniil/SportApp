@@ -12,7 +12,8 @@ namespace SportAppServer.Models.Mappers
                 news.Sport,
                 news.Title,
                 news.ImageId,
-                news.ArticleText
+                news.ArticleText,
+                NewsTagMapper.ConvertToListOfDTO(news.tags)
             );
         }
 
@@ -28,7 +29,8 @@ namespace SportAppServer.Models.Mappers
                         item.Sport,
                         item.Title,
                         item.ImageId,
-                        item.ArticleText
+                        item.ArticleText,
+                        NewsTagMapper.ConvertToListOfDTO(item.tags)
                     )
                 );
             };

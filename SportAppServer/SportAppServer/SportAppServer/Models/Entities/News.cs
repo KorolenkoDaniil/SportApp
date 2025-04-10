@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using SportAppServer.Entities.Models;
+﻿using SportAppServer.Entities.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using SportAppServer.Models.DTOs;
 
 namespace SportAppServer.Models.Entities
 {

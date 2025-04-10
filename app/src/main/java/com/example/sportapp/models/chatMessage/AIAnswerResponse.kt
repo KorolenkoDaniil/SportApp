@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AIAnswerResponse(
-    @SerialName("answer") val answer: String,
+    @SerialName("response") val answer: String,
 )
 
 
