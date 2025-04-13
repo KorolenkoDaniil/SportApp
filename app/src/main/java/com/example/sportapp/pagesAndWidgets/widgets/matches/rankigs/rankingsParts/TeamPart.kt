@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.models.soccer.api.domain.RankingEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.RankingEntity
 
 @Composable
 fun TeamPart (modifier: Modifier, item: RankingEntity, index: Int){

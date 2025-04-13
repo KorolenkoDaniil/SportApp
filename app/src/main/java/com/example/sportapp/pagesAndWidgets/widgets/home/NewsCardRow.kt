@@ -10,7 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.models.news.domain.NewsListEntity
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsListEntity
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.pagesAndWidgets.widgets.shared.NewsCard
 

@@ -45,10 +45,7 @@ class mainActivity : ComponentActivity() {
 
             val url = intent.data
 
-            var openingViaDeepLink = false;
-
             val startDestination = if (url != null && url.scheme == "korsport" && url.host == "news") {
-                openingViaDeepLink = true
 
                 val newsId = url.lastPathSegment ?: ""
                 "news/$newsId"
@@ -71,7 +68,6 @@ class mainActivity : ComponentActivity() {
                 AIViewModel,
                 answerState,
                 startDestination,
-                openingViaDeepLink
             )
         }
     }

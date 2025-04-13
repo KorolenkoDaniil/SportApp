@@ -13,7 +13,8 @@ namespace SportAppServer.Models.Entities
         public required DateTime CommentDateTime { get; set; }
         public required string CommentText { get; set; }
         public required string UserEmail { get; set; }
-       
+        public User User { get; set; }
+
         public override string ToString()
         {
             return $"CommentId: {CommentId}, NewsDateTime: {NewsDateTime}, CommentDateTime: {CommentDateTime}, CommentText: {CommentText}, UserEmail: {UserEmail}";

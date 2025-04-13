@@ -1,4 +1,5 @@
-﻿using SportAppServer.Models.Entities;
+﻿using SportAppServer.Models.DTOs;
+using SportAppServer.Models.Entities;
 using System.Diagnostics;
 
 namespace SportAppServer.Models.Mappers
@@ -7,19 +8,25 @@ namespace SportAppServer.Models.Mappers
     {
         public static CommentDTO ConvertToDTO(Comment comment)
         {
-            return new CommentDTO(
-                comment.CommentId,
-                comment.NewsDateTime,
-                comment.CommentDateTime,
-                comment.CommentText,
-                comment.UserEmail
-            );
+            return new CommentDTO
+            {
+                CommentId = comment.CommentId,
+                CommentText = comment.CommentText,
+                CommentDateTime = comment.CommentDateTime,
+                NewsDateTime = comment.NewsDateTime,
+                UserEmail = comment.UserEmail,
+                User = comment.User != null ? new UserDTO
+                {
+                    UserEmail = comment.User.UserEmail,
+                    UserImage = comment.User.UserImage
+                } : null
+            };
         }
+
 
         public static List<CommentDTO> ConvertToListOfDTO(List<Comment> comments)
         {
             List<CommentDTO> newsCommentsDTOs = new List<CommentDTO>();
-
 
             foreach (var item in comments)
             {
@@ -28,10 +35,10 @@ namespace SportAppServer.Models.Mappers
                     item.NewsDateTime,
                     item.CommentDateTime,
                     item.CommentText,
-                    item.UserEmail
+                    item.UserEmail,
+                    item.User != null ? UserMapper.ConvertToDTO(item.User) : null 
                 ));
-
-            };
+            }
 
             foreach (var item in newsCommentsDTOs)
             {
@@ -44,3 +51,4 @@ namespace SportAppServer.Models.Mappers
         }
     }
 }
+

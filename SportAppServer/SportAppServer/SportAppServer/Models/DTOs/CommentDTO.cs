@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SportAppServer.Models.DTOs;
 
 
 namespace SportAppServer.Models.Entities
@@ -12,24 +13,28 @@ namespace SportAppServer.Models.Entities
         public DateTime NewsDateTime { get; set; }
 
         [JsonProperty("comment_date_time")]
-        public  DateTime CommentDateTime { get; set; }
+        public DateTime CommentDateTime { get; set; }
 
         [JsonProperty("comment_text")]
-        public  string CommentText { get; set; }
+        public string CommentText { get; set; }
 
-        [JsonProperty("user_email")]
-        public  string UserEmail { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public string UserEmail { get; set; }
+
+        [JsonProperty("user")]
+        public UserDTO User { get; set; }  // Включаем данные пользователя
 
 
+        public CommentDTO() { }
 
-        public CommentDTO(
-            int commentId, DateTime newsDateTime, DateTime commentDateTime, string commentText, string userEmail)
+        public CommentDTO(int commentId, DateTime newsDateTime, DateTime commentDateTime, string commentText, string userEmail, UserDTO user)
         {
             CommentId = commentId;
             NewsDateTime = newsDateTime;
             CommentDateTime = commentDateTime;
             CommentText = commentText;
             UserEmail = userEmail;
+            User = user;
         }
 
         public override string ToString()

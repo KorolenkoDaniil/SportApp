@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.chatMessage.MessageEntity
+import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.MessageEntity
 
 @Composable
 fun Message (message: MessageEntity, color: Color, shape: RoundedCornerShape, paddingSide: Boolean, textStyle: TextStyle) {

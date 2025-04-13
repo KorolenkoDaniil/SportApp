@@ -1,6 +1,6 @@
 ﻿using SportAppServer.Entities.Models;
 using SportAppServer.Models.DTOs;
-using SportAppServer.Models.Entities;
+
 
 namespace SportAppServer.Models.Mappers
 {

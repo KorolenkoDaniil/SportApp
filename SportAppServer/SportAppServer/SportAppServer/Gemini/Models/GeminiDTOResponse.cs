@@ -6,11 +6,11 @@ namespace SportAppServer.Gemini.Models
     public class GeminiDTOResponse
     {
         [JsonProperty("answer")]
-        public string response { get; set; }
+        public string Response { get; set; }
 
         public GeminiDTOResponse(string prompt)
         {
-            response = prompt;
+            Response = prompt;
         }   
     }
 }

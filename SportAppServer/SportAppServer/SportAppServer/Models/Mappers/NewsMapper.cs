@@ -13,7 +13,7 @@ namespace SportAppServer.Models.Mappers
                 news.Title,
                 news.ImageId,
                 news.ArticleText,
-                NewsTagMapper.ConvertToListOfDTO(news.tags)
+                NewsTagMapper.ConvertToListOfDTO(news.Tags)
             );
         }
 
@@ -30,7 +30,7 @@ namespace SportAppServer.Models.Mappers
                         item.Title,
                         item.ImageId,
                         item.ArticleText,
-                        NewsTagMapper.ConvertToListOfDTO(item.tags)
+                        NewsTagMapper.ConvertToListOfDTO(item.Tags)
                     )
                 );
             };

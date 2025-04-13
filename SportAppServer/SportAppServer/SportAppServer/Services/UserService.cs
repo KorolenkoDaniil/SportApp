@@ -19,7 +19,7 @@ namespace SportAppServer.Services
  
         public async Task<UserDTO> GetUserData(string email)
         {
-            return await checkEmail(email, async (emailToCheck) =>
+            return await CheckEmail(email, async (emailToCheck) =>
             {
                 return UserMapper.ConvertToDTO(await _newsRepository.GetUserData(emailToCheck));
             });
@@ -28,12 +28,12 @@ namespace SportAppServer.Services
 
         public async Task<UserDTO> PutUser(EmailDto email)
         {
-            return await checkEmail(email.Email, async (emailToCheck) => 
+            return await CheckEmail(email.Email, async (emailToCheck) => 
             { 
                 return UserMapper.ConvertToDTO(await _newsRepository.PutUser(emailToCheck));  
             });
         }
-        private async Task<UserDTO> checkEmail(string email, MyAsyncDelegate methodToExecute)
+        private async Task<UserDTO> CheckEmail(string email, MyAsyncDelegate methodToExecute)
         {
             if (string.IsNullOrEmpty(email))
             {

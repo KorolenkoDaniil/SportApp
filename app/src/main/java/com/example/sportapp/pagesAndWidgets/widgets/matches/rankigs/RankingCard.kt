@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.soccer.api.domain.RankingEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.RankingEntity
 import com.example.sportapp.pagesAndWidgets.widgets.matches.rankigs.rankingsParts.ScorePart
 import com.example.sportapp.pagesAndWidgets.widgets.matches.rankigs.rankingsParts.TeamPart
 

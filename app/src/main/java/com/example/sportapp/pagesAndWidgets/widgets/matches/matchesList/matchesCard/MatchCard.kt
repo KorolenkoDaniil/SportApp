@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.models.soccer.api.domain.MatchEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.MatchEntity
 import com.example.sportapp.pagesAndWidgets.widgets.matches.matchesList.matchesCard.cardParts.DatePart
 import com.example.sportapp.pagesAndWidgets.widgets.matches.matchesList.matchesCard.cardParts.ImagePart
 import com.example.sportapp.pagesAndWidgets.widgets.matches.matchesList.matchesCard.cardParts.ScorePart

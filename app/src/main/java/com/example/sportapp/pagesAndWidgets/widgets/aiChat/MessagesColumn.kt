@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.chatMessage.MessageEntity
+import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.MessageEntity
 import com.example.sportapp.pagesAndWidgets.widgets.aiChat.messagesColumn.Message
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.ui.theme.companion_messages

@@ -5,8 +5,8 @@ import BottomNavBar
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -56,16 +56,15 @@ fun MyAppNavigation(
     AIViewModel: AIAnswerViewModel,
     answerState: AnswerState,
     startDestination: String,
-    openingViaDeepLink: Boolean
 ) {
 
-    val showBars by appActivity.showBars.collectAsState()
+    val showBar = remember { mutableStateOf(false)}
 
     Scaffold(
         containerColor = Color(0xFFEBEFF4),
 
         bottomBar = {
-            if (showBars) {
+            if (showBar.value) {
                 BottomNavBar(navController = navController, appActivity)
             }
         },
@@ -85,18 +84,18 @@ fun MyAppNavigation(
                 .padding(top = topPaddings),
             builder = {
                 composable(Screen.LoginPage.route) {
-                    appActivity.changeShowBars(false)
+                    showBar.value = false
                     LoginPage(navController, authViewModel)
                 }
                 composable(Screen.SignupPage.route) {
-                    appActivity.changeShowBars(false)
+                    showBar.value = false
                     SignupPage(navController, authViewModel)
                 }
                 composable(Screen.Loading.route) {
                     Loading()
                 }
                 composable(Screen.Home.route) {
-                    appActivity.changeShowBars(true)
+                    showBar.value = true
                     HomePage(
                         newsState = newsState,
                         state = state,
@@ -144,7 +143,9 @@ fun MyAppNavigation(
                         newsState,
                         navController,
                         newsViewModel,
-                        horizontalPaddings
+                        horizontalPaddings,
+                        authViewModel,
+                        showBar
                     )
                 }
 

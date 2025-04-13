@@ -36,12 +36,16 @@ namespace SportAppServer.Repositories
                 )
                 .OrderByDescending(comment => comment.CommentDateTime)
                 .Skip((pageNumber - 1) * pageSize)
+                .Include(comment => comment.User)
                 .Take(pageSize)
                 .ToListAsync();
 
+            foreach (var item in commentsList)
+            {
+                Debug.WriteLine(commentsList);
+            }
 
 
-  
             return commentsList;
         }
 

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.models.user.domain.UserEntity
+import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchesState

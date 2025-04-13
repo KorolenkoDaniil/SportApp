@@ -21,8 +21,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.soccer.api.domain.EventEntity
-import com.example.sportapp.models.soccer.api.domain.MatchEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.EventEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.MatchEntity
 import com.example.sportapp.pagesAndWidgets.widgets.home.CurrentMatch
 import com.example.sportapp.pagesAndWidgets.widgets.matches.matchInfo.MatchEventItem
 import com.example.sportapp.pagesAndWidgets.widgets.matches.matchInfo.PhaseNameLine

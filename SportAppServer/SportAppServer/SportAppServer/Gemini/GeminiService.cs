@@ -14,9 +14,9 @@ namespace SportAppServer.Gemini
 
         public async Task<GeminiDTOResponse> AskGemini(GeminiDTORequest prompt)
         {
-            var requestBody = _BuildRequestBody(prompt.Prompt);
+            var requestBody = BuildRequestBody(prompt.Prompt);
 
-            string response = await _SendRequestToGemini(requestBody);
+            string response = await SendRequestToGemini(requestBody);
 
             JObject json = JObject.Parse(response);
             string text = (string?)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"] ?? "Ответ не найден";
@@ -29,11 +29,11 @@ namespace SportAppServer.Gemini
             if (string.IsNullOrWhiteSpace(newsText))
                 throw new ArgumentException("Текст новости не может быть пустым");
 
-            var requestBody = _BuildRequestBody($"придумай 5 коротких тегов для этой новости, разделённых %, без хэштегов. Новость: {newsText}");
+            var requestBody = BuildRequestBody($"придумай 5 коротких тегов для этой новости, разделённых %, без хэштегов. Новость: {newsText}");
 
 
 
-            string response = await _SendRequestToGemini(requestBody);
+            string response = await SendRequestToGemini(requestBody);
 
             JObject json = JObject.Parse(response);
             string tagResponse = (string?)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"] ?? "";
@@ -47,7 +47,7 @@ namespace SportAppServer.Gemini
             return tags;
         }
 
-        private async Task<string> _SendRequestToGemini(object requestBody)
+        private async Task<string> SendRequestToGemini(object requestBody)
         {
             using HttpClient client = new HttpClient();
             string requestUrl = $"{apiUrl}?key={apiKey}";
@@ -62,7 +62,7 @@ namespace SportAppServer.Gemini
         }
 
 
-        private object _BuildRequestBody(string text)
+        private object BuildRequestBody(string text)
         {
             return new
             {

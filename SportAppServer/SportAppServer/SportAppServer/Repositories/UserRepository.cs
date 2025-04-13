@@ -1,5 +1,4 @@
 ﻿using SportAppServer.Context;
-using SportAppServer.Models.DTOs.Requests;
 using SportAppServer.Models.Entities;
 
 namespace SportAppServer.Repositories
@@ -22,7 +21,9 @@ namespace SportAppServer.Repositories
 
         public async Task<User> PutUser(string email)
         {
-            var newUser = new User(email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg");
+            List<Comment> comments = new List<Comment>();
+
+            var newUser = new User(email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg", comments);
 
             _context.Users.Add(newUser);
 

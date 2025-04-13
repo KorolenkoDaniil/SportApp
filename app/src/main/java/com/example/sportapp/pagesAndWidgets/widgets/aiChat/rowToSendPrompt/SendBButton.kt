@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.R
-import com.example.sportapp.models.chatMessage.MessageEntity
+import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.MessageEntity
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.ui.theme.red_accent_color
 import kotlinx.coroutines.CoroutineScope

@@ -16,7 +16,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.soccer.api.domain.EventEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.EventEntity
 
 @Composable
 fun LeftSubstitulation(event: EventEntity){
@@ -40,7 +40,7 @@ fun LeftSubstitulation(event: EventEntity){
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(event.playerFullName, modifier = Modifier.padding(bottom = 4.dp))
-                    Text(event.replacement.playerFullName)
+                    Text(event.replacementEntity.playerFullName)
                 }
 
                 ColumnOfPolygons()

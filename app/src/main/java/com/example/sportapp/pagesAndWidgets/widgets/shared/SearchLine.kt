@@ -38,14 +38,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.models.user.domain.UserEntity
+import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
 import kotlinx.coroutines.flow.StateFlow
 
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun SearchLine(user: StateFlow<UserEntity?>, authViewModel: AuthViewModel, navController: NavHostController,  horizontalPaddings: Dp) {
+fun SearchLine(user: StateFlow<UserEntity?>, authViewModel: AuthViewModel, navController: NavHostController, horizontalPaddings: Dp) {
 
 
     var textState by remember { mutableStateOf(TextFieldValue("")) }

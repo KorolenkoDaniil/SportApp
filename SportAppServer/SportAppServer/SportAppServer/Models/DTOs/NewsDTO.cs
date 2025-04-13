@@ -20,7 +20,7 @@ namespace SportAppServer.Models.DTOs
         [JsonProperty("article_texts")]
         public string ArticleText { get; set; }
 
-        [JsonProperty("tags")]
+        [JsonProperty("Tags")]
         public List<NewsTagDTO> Tags { get; set; }
 
 

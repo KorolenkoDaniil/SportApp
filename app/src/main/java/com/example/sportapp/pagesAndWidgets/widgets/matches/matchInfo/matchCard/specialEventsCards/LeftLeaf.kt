@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.models.soccer.api.domain.EventEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.EventEntity
 
 @Composable
 fun LeftLeaf (event: EventEntity, iconId: Int, iconSize: Dp){

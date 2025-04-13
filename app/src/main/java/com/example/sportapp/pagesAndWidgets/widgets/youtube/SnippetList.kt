@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
-import com.example.sportapp.models.youtube.domain.VideoEntity
+import com.example.sportapp.CleanArchitexture.domain.models.youTube.VideoEntity
 import com.example.sportapp.pagesAndWidgets.pages.Screen
 import kotlinx.coroutines.flow.collectLatest
 

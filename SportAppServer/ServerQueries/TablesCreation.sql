@@ -141,16 +141,13 @@ VALUES
 INSERT INTO NewsComments (NewsDateTime, CommentDateTime, CommentText, UserEmail)
 VALUES
 (CONVERT(DATETIME, '2024-04-05 14:00:00', 120), CONVERT(DATETIME, '2024-04-05 14:15:00', 120), 'Отличная игра, Зенит победил!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-06 19:00:00', 120), CONVERT(DATETIME, '2024-04-06 19:30:00', 120), 'Ливерпуль показал отличный футбол!', 'dddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-07 16:30:00', 120), CONVERT(DATETIME, '2024-04-07 17:00:00', 120), 'Ювентус был на высоте!', '5ftdtde@gmail.com'),
-(CONVERT(DATETIME, '2024-04-08 18:00:00', 120), CONVERT(DATETIME, '2024-04-08 18:30:00', 120), 'Хорошая игра ПСЖ!', 'hhhhhh@gmail.com'),
-(CONVERT(DATETIME, '2024-04-05 20:00:00', 120), CONVERT(DATETIME, '2024-04-05 20:30:00', 120), 'Никс хороши в атаке!', 'fffffffff@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 19:00:00', 120), CONVERT(DATETIME, '2024-04-06 19:30:00', 120), 'Ливерпуль показал отличный футбол!', 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-07 16:30:00', 120), CONVERT(DATETIME, '2024-04-07 17:00:00', 120), 'Ювентус был на высоте!', 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-08 18:00:00', 120), CONVERT(DATETIME, '2024-04-08 18:30:00', 120), 'Хорошая игра ПСЖ!', 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-05 20:00:00', 120), CONVERT(DATETIME, '2024-04-05 20:30:00', 120), 'Никс хороши в атаке!', 'ddddddd@gmail.com'),
 (CONVERT(DATETIME, '2024-04-06 21:30:00', 120), CONVERT(DATETIME, '2024-04-06 22:00:00', 120), 'Даллас будет в плей-офф!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-07 22:00:00', 120), CONVERT(DATETIME, '2024-04-07 22:30:00', 120), 'Милуоки Бакс не оставили шансов Индиане!', 'dddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-08 23:30:00', 120), CONVERT(DATETIME, '2024-04-08 23:45:00', 120), 'Бостон уверенно побеждает!', '5ftdtde@gmail.com'),
-(CONVERT(DATETIME, '2024-04-05 17:00:00', 120), CONVERT(DATETIME, '2024-04-05 17:30:00', 120), 'Федерер на высоте!', 'hhhhhh@gmail.com'),
-(CONVERT(DATETIME, '2024-04-06 14:30:00', 120), CONVERT(DATETIME, '2024-04-06 14:45:00', 120), 'Бертенс показала класс!', 'fffffffff@gmail.com'),
-(CONVERT(DATETIME, '2024-04-07 16:00:00', 120), CONVERT(DATETIME, '2024-04-07 16:30:00', 120), 'Кербер выиграла заслуженно!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-08 18:45:00', 120), CONVERT(DATETIME, '2024-04-08 19:00:00', 120), 'Джокович и Надаль — это всегда интересно!', 'dddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-05 19:15:00', 120), CONVERT(DATETIME, '2024-04-05 19:45:00', 120), 'Сибирь сегодня была лучше!', '5ftdtde@gmail.com'),
-(CONVERT(DATETIME, '2024-04-06 21:00:00', 120), CONVERT(DATETIME, '2024-04-06 21:30:00', 120), 'ЦСКА выиграл в овертайме!', 'hhhhhh@gmail.com');
+(CONVERT(DATETIME, '2024-04-07 22:00:00', 120), CONVERT(DATETIME, '2024-04-07 22:30:00', 120), 'Милуоки Бакс не оставили шансов Индиане!', 'ddddddd@gmail.com')
+
+
+
+

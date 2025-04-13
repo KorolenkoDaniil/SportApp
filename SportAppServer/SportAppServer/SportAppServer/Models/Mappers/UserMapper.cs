@@ -5,12 +5,16 @@ namespace SportAppServer.Models.Mappers
 {
     public static class UserMapper
     {
-        public static UserDTO ConvertToDTO(User user)
+        public static UserDTO ConvertToDTO(User user, bool includeComments = false)
         {
             return new UserDTO(
                 user.UserEmail,
-                user.UserImage
+                user.UserImage,
+                includeComments ? CommentMapper.ConvertToListOfDTO(user.Comments) : new List<CommentDTO>()
             );
         }
+
+
     }
 }
+

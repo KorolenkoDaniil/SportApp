@@ -11,8 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.example.sportapp.models.soccer.api.domain.MatchDayEntity
-import com.example.sportapp.models.soccer.api.domain.RankingEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.MatchDayEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.RankingEntity
 import com.example.sportapp.pagesAndWidgets.widgets.matches.matchesList.matchesCard.MatchCard
 
 

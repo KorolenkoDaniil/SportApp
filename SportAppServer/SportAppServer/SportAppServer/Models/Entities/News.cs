@@ -1,4 +1,5 @@
-﻿using SportAppServer.Entities.Models;
+﻿using Newtonsoft.Json;
+using SportAppServer.Entities.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,7 +15,7 @@ namespace SportAppServer.Models.Entities
         public required string Title { get; set; }
         public required string ImageId { get; set; }
         public required string ArticleText { get; set; }
-        public required List<NewsTag> tags { get; set; }
+        public required List<NewsTag> Tags { get; set; }
 
 
         public override string ToString()

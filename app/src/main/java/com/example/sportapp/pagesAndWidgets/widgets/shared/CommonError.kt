@@ -15,8 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.pagesAndWidgets.pages.Screen
 import com.example.sportapp.models.viewModels.BaseViewModelInterface
+import com.example.sportapp.pagesAndWidgets.pages.Screen
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.ui.theme.style10
 import com.example.sportapp.ui.theme.style11
@@ -24,10 +24,12 @@ import com.example.sportapp.ui.theme.style8
 import com.example.sportapp.ui.theme.style9
 import kotlinx.coroutines.launch
 
-
 @Composable
-fun <T> CommonError(viewModel: BaseViewModelInterface<T>, route: String, navController: NavHostController,) {
-
+fun <TState, TRepository> CommonError(
+    viewModel: BaseViewModelInterface<TState, TRepository>,
+    route: String,
+    navController: NavHostController,
+) {
     val coroutineScope = rememberCoroutineScope()
 
     Column(

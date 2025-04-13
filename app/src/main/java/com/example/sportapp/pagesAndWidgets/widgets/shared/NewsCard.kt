@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.models.news.domain.NewsEntity
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.ui.theme.style15
 import com.example.sportapp.ui.theme.style16
 import com.example.sportapp.ui.theme.style2

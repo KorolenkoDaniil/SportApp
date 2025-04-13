@@ -23,7 +23,7 @@ namespace SportAppServer.Controllers
 
             if (paginatedComments.Comments.Count() == 0)
             {
-                return NotFound(new { message = $"No comments found for itemId {itemId}" });
+                return NotFound(new { message = $"No Comments found for itemId {itemId}" });
             }
 
             return Ok(paginatedComments);

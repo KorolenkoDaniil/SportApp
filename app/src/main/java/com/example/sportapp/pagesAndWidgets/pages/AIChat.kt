@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.example.sportapp.models.chatMessage.sqlLiteDB.MessageRoomDatabase
+import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.sqlLiteDB.MessageRoomDatabase
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.pagesAndWidgets.widgets.aiChat.MessagesColumn

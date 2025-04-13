@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.sportapp.models.soccer.api.domain.MatchEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.MatchEntity
 
 @Composable
 fun ScorePart(modifier: Modifier, item: MatchEntity) {

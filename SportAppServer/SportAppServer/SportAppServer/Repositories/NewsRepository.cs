@@ -34,7 +34,7 @@ namespace SportAppServer.Repositories
 
 
             var newsList = await _context.NewsList
-                .Include(n => n.tags)
+                .Include(n => n.Tags)
                 .OrderByDescending(news => news.DateTime)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -51,7 +51,7 @@ namespace SportAppServer.Repositories
             DateTime newsDateTime = DateTime.Parse(dateTime);
 
             var news = await _context.NewsList
-                .Include(n => n.tags)
+                .Include(n => n.Tags)
                 .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
 
             return news;
@@ -67,7 +67,7 @@ namespace SportAppServer.Repositories
                 foreach (var newsItem in newsList)
                 {
                     var newsFound = await _context.NewsList
-                    .Include(n => n.tags)
+                    .Include(n => n.Tags)
                     .FirstOrDefaultAsync(n => n.DateTime == newsItem.DateTime);
 
                     if (newsFound == null)

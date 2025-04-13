@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
-import com.example.sportapp.models.youtube.domain.VideoEntity
+import com.example.sportapp.CleanArchitexture.domain.models.youTube.VideoEntity
 import com.example.sportapp.pagesAndWidgets.widgets.shared.VideoCard
 import kotlinx.coroutines.flow.collectLatest
 

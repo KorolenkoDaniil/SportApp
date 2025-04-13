@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.example.sportapp.models.soccer.api.domain.MatchEntity
+import com.example.sportapp.CleanArchitexture.domain.models.match.MatchEntity
 import com.example.sportapp.pagesAndWidgets.widgets.shared.LiveTranslationFlag
 import com.example.sportapp.ui.theme.style3
 

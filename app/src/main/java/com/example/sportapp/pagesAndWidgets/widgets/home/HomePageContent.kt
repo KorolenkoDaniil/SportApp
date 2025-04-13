@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.models.news.domain.NewsListEntity
-import com.example.sportapp.models.user.domain.UserEntity
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsListEntity
+import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel

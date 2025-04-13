@@ -11,7 +11,7 @@ namespace SportAppServer.Entities.Models
         public int TagId { get; set; }
         public string Tag { get; set; }
         public DateTime NewsDateTime { get; set; }
-        public News news { get; set; }
+        public News News { get; set; }
 
 
         public NewsTag(string tag, DateTime newsDateTime)
