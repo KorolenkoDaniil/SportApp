@@ -1,0 +1,24 @@
+package com.example.sportapp.presentation.widgets.screens.matches.matches.matchInfo.matchCard.specialEventsCards
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
+import com.example.sportapp.R
+import com.example.sportapp.CleanArchitexture.domain.models.match.EventEntity
+
+@Composable
+fun GoalCard (event: EventEntity, side: Boolean) {
+    if (side) {
+        LeftLeaf(
+            event = event,
+            iconId = R.drawable.ball,
+            iconSize = 15.dp
+        )
+    }
+    else {
+        RightLeaf(
+            event = event,
+            iconId = R.drawable.ball,
+            iconSize = 15.dp
+        )
+    }
+}

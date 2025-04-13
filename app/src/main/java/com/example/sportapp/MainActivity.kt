@@ -8,13 +8,15 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.compose.rememberNavController
+import com.example.sportapp.containers.StatesContainer
+import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
-import com.example.sportapp.pagesAndWidgets.pages.Screen
-import com.example.sportapp.pagesAndWidgets.pages.MyAppNavigation as MyAppNavigation1
+import com.example.sportapp.presentation.navigation.Screen
+import com.example.sportapp.presentation.navigation.MyAppNavigation as MyAppNavigation1
 
 
 class mainActivity : ComponentActivity() {
@@ -31,17 +33,32 @@ class mainActivity : ComponentActivity() {
             val newsState by newsViewModel.getState().collectAsState()
 
             val matchesViewModel: MatchesActivitySoccerViewModel by viewModels()
-            val state by matchesViewModel.getState().collectAsState()
-
-
-            val navController = rememberNavController()
+            val matchesState by matchesViewModel.getState().collectAsState()
 
             val authViewModel: AuthViewModel by viewModels()
             val authState by authViewModel.authState.collectAsState()
 
-            val AIViewModel: AIAnswerViewModel by viewModels()
-            val answerState by AIViewModel.getState().collectAsState()
+            val aiViewModel: AIAnswerViewModel by viewModels()
+            val answerState by aiViewModel.getState().collectAsState()
 
+            val viewModels = ViewModelContainer(
+                appActivity,
+                videoViewModel,
+                newsViewModel,
+                matchesViewModel,
+                authViewModel,
+                aiViewModel
+            )
+
+            val states = StatesContainer(
+                videoState,
+                newsState,
+                matchesState,
+                authState,
+                answerState
+            )
+
+            val navController = rememberNavController()
 
             val url = intent.data
 
@@ -55,18 +72,9 @@ class mainActivity : ComponentActivity() {
 
 
             MyAppNavigation1(
-                authViewModel = authViewModel,
-                newsState = newsState,
-                state = state,
-                videoState = videoState,
-                newsViewModel = newsViewModel,
-                appActivity = appActivity,
+                viewModels,
+                states,
                 navController = navController,
-                matchesViewModel = matchesViewModel,
-                videoViewModel = videoViewModel,
-                authState = authState,
-                AIViewModel,
-                answerState,
                 startDestination,
             )
         }
