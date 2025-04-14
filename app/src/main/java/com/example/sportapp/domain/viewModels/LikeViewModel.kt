@@ -7,28 +7,27 @@ import com.example.sportapp.CleanArchitexture.data.repositories.LikeRepository
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.models.viewModels.BaseState
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
-class LikeViewModel: ViewModel() {
+class LikeViewModel : ViewModel() {
+
+    val state: MutableStateFlow<LikeState> = MutableStateFlow(LikeState.NotLiked)
 
     val repository = LikeRepository()
 
     fun putLike(newsDateTime: LocalDateTime, userEmail: String) {
         viewModelScope.launch {
-            repository.putLike(
-                newsDateTime = newsDateTime,
-                userEmail = userEmail
-            )
+            state.value = LikeState.Liked
+            repository.putLike(newsDateTime, userEmail)
         }
     }
 
     fun removeLike(newsDateTime: LocalDateTime, userEmail: String) {
         viewModelScope.launch {
-            repository.removeLike(
-                newsDateTime = newsDateTime,
-                userEmail = userEmail
-            )
+            state.value = LikeState.NotLiked
+            repository.removeLike(newsDateTime, userEmail)
         }
     }
 
@@ -36,32 +35,36 @@ class LikeViewModel: ViewModel() {
         return repository.LikeExist(newsDateTime, userEmail)
     }
 
+
     fun toggleLike(
         likeCoolDown: Long,
         lastLikeTime: MutableState<Long>,
         likeCount: MutableState<Int>,
         currentNews: NewsEntity,
         user: UserEntity,
-        isLiked: MutableState<Boolean>
     ) {
         val currentTime = System.currentTimeMillis()
+
         if (currentTime - lastLikeTime.value >= likeCoolDown) {
             viewModelScope.launch {
-                if (isLiked.value) {
+                if (state.value == LikeState.Liked) {
                     removeLike(currentNews.dateTime, user.email)
                     likeCount.value -= 1
+                    state.value = LikeState.NotLiked
                 } else {
                     putLike(currentNews.dateTime, user.email)
                     likeCount.value += 1
+                    state.value = LikeState.Liked
                 }
-                isLiked.value = !isLiked.value
                 lastLikeTime.value = currentTime
             }
         }
     }
+
 }
 
-sealed interface LikeState : BaseState {
-    data object Load : LikeState
-    data class Error(val e: Throwable) : LikeState
+    sealed interface LikeState : BaseState {
+    data object Liked : LikeState
+    data object NotLiked : LikeState
+
 }

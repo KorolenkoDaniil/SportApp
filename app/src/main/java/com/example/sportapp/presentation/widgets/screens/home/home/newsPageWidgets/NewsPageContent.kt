@@ -1,6 +1,5 @@
 package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsListEntity
+import com.example.sportapp.domain.viewModels.LikeViewModel
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
@@ -33,7 +33,7 @@ import com.example.sportapp.presentation.widgets.screens.home.home.NewsCardRow
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.CommentsOverlay
 import java.time.format.DateTimeFormatter
 
-@SuppressLint("StateFlowValueCalledInComposition")
+
 @Composable
 fun NewsPageContent(
     oneNewsState: OneNewsSate,
@@ -88,7 +88,7 @@ fun NewsPageContent(
 
                     val user = authModel.currentUser.collectAsState().value ?: return@Box
 
-                    InteractiveButtons(overlayVisible, currentNews, user)
+                    InteractiveButtons(overlayVisible, currentNews, user, )
 
                     Spacer(Modifier.height(20.dp))
                 }
