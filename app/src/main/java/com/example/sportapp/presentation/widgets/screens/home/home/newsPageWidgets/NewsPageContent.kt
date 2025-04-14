@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -41,21 +42,18 @@ fun NewsPageContent(
     newsList: NewsListEntity,
     horizontalPaddings: Dp,
     authModel: AuthViewModel,
-    showBar: MutableState<Boolean>
+    showBar: MutableState<Boolean>,
 ) {
     val currentNews = (oneNewsState as OneNewsSate.OneNewsContent).news
     val painterNewsImage = rememberAsyncImagePainter(currentNews.newsImage)
 
     val overlayVisible = remember { mutableStateOf(false) }
 
-    val format = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")
+    val format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
     val formattedDate = currentNews.dateTime.format(format)
-
-
 
     LazyColumn {
         item {
-
             Box(Modifier.padding(horizontal = horizontalPaddings)) {
 
                 Column {
@@ -64,7 +62,11 @@ fun NewsPageContent(
 
                     Spacer(Modifier.height(4.dp))
 
-                    Text(text = formattedDate, style = TextStyle(textAlign = TextAlign.End), modifier = Modifier.fillMaxWidth())
+                    Text(
+                        text = formattedDate,
+                        style = TextStyle(textAlign = TextAlign.End),
+                        modifier = Modifier.fillMaxWidth()
+                    )
 
                     Spacer(Modifier.height(2.dp))
 
@@ -80,12 +82,13 @@ fun NewsPageContent(
 
                     Spacer(Modifier.height(20.dp))
 
-
                     Text(text = "\t\t\t" + currentNews.articleText)
 
                     Spacer(Modifier.height(20.dp))
 
-                    InteractiveButtons(currentNews.dateTime, overlayVisible)
+                    val user = authModel.currentUser.collectAsState().value ?: return@Box
+
+                    InteractiveButtons(overlayVisible, currentNews, user)
 
                     Spacer(Modifier.height(20.dp))
                 }
@@ -98,10 +101,5 @@ fun NewsPageContent(
         }
     }
 
-    CommentsOverlay(showBar, overlayVisible,  authModel, currentNews)
+    CommentsOverlay(showBar, overlayVisible, authModel, currentNews)
 }
-
-
-
-
-

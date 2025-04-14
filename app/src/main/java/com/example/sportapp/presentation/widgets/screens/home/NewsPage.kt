@@ -28,7 +28,10 @@ fun NewsPage(
     showBar: MutableState<Boolean>
 ) {
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
+
     oneNewsViewModel.loadOneNewsData(newsDateTime)
+
+
     val oneNewsState by oneNewsViewModel.getState().collectAsState()
     viewModels.appActivity.changePageName("One News")
 

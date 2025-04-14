@@ -8,47 +8,73 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
+import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.R
-import java.time.LocalDateTime
+import com.example.sportapp.domain.viewModels.LikeViewModel
 
 @Composable
-fun InteractiveButtons(dateTime: LocalDateTime, overlay: MutableState<Boolean>) {
+fun InteractiveButtons(
+    overlay: MutableState<Boolean>,
+    currentNews: NewsEntity,
+    user: UserEntity,
+) {
+    val likeViewModel = LikeViewModel()
     val context = LocalContext.current
+    val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
 
-    val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=$dateTime"
+    val lastLikeTime = remember { mutableStateOf(0L) }
+    val likeCoolDown = 2000L
+    val likeCount = remember { mutableStateOf(currentNews.likesCount) }
+    val isLiked = remember { mutableStateOf(false) }
 
-    Row(verticalAlignment = Alignment.CenterVertically){
+    LaunchedEffect(currentNews.dateTime, user.email) {
+        isLiked.value = likeViewModel.LikeExist(currentNews.dateTime, user.email)
+    }
+
+
+
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        val likeRes = if (isLiked.value) R.drawable.red_heart else R.drawable.like
+
         Image(
-            painter = painterResource(R.drawable.like),
+            painter = painterResource(likeRes),
             contentDescription = null,
-        )
-
-        Spacer(Modifier.width(8.dp))
-
-        Text(text = "560")
-
-        Spacer(Modifier.width(16.dp))
-
-        Image(
-            painter = painterResource(R.drawable.comment),
-            contentDescription = null,
-            Modifier.clickable {
-                overlay.value = true
+            modifier = Modifier.clickable {
+                likeViewModel.toggleLike(
+                    likeCoolDown,
+                    lastLikeTime,
+                    likeCount,
+                    currentNews,
+                    user,
+                    isLiked
+                )
             }
         )
 
         Spacer(Modifier.width(8.dp))
-
-        Text(text = "560")
+        Text(text = likeCount.value.toString())
 
         Spacer(Modifier.width(16.dp))
+        Image(
+            painter = painterResource(R.drawable.comment),
+            contentDescription = null,
+            Modifier.clickable { overlay.value = true }
+        )
 
+        Spacer(Modifier.width(8.dp))
+        Text(text = currentNews.commentsCount.toString())
+
+        Spacer(Modifier.width(16.dp))
         Image(
             painter = painterResource(R.drawable.send),
             contentDescription = null,
@@ -63,7 +89,6 @@ fun InteractiveButtons(dateTime: LocalDateTime, overlay: MutableState<Boolean>) 
         )
 
         Spacer(Modifier.width(8.dp))
-
         Text(text = "560")
     }
 }

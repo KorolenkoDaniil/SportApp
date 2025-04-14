@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportAppServer.Models.DTOs;
+using SportAppServer.Models.Entities;
 using SportAppServer.Models.Pagination;
+using SportAppServer.Repositories;
 using SportAppServer.Services;
+using System.Diagnostics;
 
 namespace SportAppServer.Controllers
 {
@@ -11,12 +14,13 @@ namespace SportAppServer.Controllers
     {
 
         private readonly INewsService _newsService;
+        private readonly ILikeServise _likeService;
 
-   
-        public NewsController(INewsService newsService)
+
+        public NewsController(INewsService newsService, ILikeServise likeServise)
         {
             _newsService = newsService;
-          
+            _likeService = likeServise;
         }
 
 
@@ -47,6 +51,56 @@ namespace SportAppServer.Controllers
             }
 
             return Ok(news);
+        }
+
+
+        [HttpPost("AddLike")]
+        public async Task<IActionResult> AddLike ([FromBody] LikeDto like)
+        {
+            if (like == null)
+                return BadRequest();
+
+            int likesCount = await _likeService.AddLikeAsync(like);
+
+            if (likesCount < 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+
+        [HttpPost("RemoveLike")]
+        public async Task<IActionResult> RemoveLike([FromBody] LikeDto like)
+        {
+            if (like == null)
+                return BadRequest();
+
+            int likesCount = await _likeService.RemoveLikeAsync(like);
+
+            if (likesCount < 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+
+
+        [HttpPost("ExistLike")]
+        public async Task<IActionResult> ExistLike([FromBody] LikeDto like)
+        {
+            if (like == null)
+                return BadRequest();
+
+
+            bool LikeExist = await _likeService.LikeExist(like);
+
+            Debug.WriteLine(LikeExist + "dfsdfsdfsdfsdfsdfsdffsdffd");
+
+            return Ok(LikeExist);
         }
     }
 }

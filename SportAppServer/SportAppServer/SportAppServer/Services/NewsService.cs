@@ -43,7 +43,11 @@ namespace SportAppServer.Services
 
             if (searchResult != null)
             {
-                var newsDto = NewsMapper.ConvertToDTO(searchResult);
+                NewsDTO newsDto = NewsMapper.ConvertToDTO(searchResult);
+
+                newsDto.Comments_count = await _newsRepository.CountComments(newsDto.DateTime);
+                newsDto.Likes_count = await _newsRepository.CountLikes(newsDto.DateTime);
+
                 return newsDto;
             }
 

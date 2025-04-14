@@ -14,6 +14,7 @@ namespace SportAppServer.Models.Mappers
                 news.ImageId,
                 news.ArticleText,
                 NewsTagMapper.ConvertToListOfDTO(news.Tags)
+
             );
         }
 

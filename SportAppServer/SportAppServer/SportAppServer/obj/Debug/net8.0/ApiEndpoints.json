@@ -75,6 +75,38 @@
   },
   {
     "ContainingType": "SportAppServer.Controllers.NewsController",
+    "Method": "AddLike",
+    "RelativePath": "NewsController/AddLike",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "like",
+        "Type": "SportAppServer.Models.Entities.LikeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.NewsController",
+    "Method": "ExistLike",
+    "RelativePath": "NewsController/ExistLike",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "like",
+        "Type": "SportAppServer.Models.Entities.LikeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.NewsController",
     "Method": "GetNews",
     "RelativePath": "NewsController/GetNews",
     "HttpMethod": "GET",
@@ -106,6 +138,22 @@
         "Name": "dateTime",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.NewsController",
+    "Method": "RemoveLike",
+    "RelativePath": "NewsController/RemoveLike",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "like",
+        "Type": "SportAppServer.Models.Entities.LikeDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

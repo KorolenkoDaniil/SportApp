@@ -1,6 +1,7 @@
 use KorSport
 
 DROP TABLE IF EXISTS NewsComments;
+DROP TABLE IF EXISTS NewsLikes;
 DROP TABLE IF EXISTS news_tags;
 DROP TABLE IF EXISTS News;
 DROP TABLE IF EXISTS Users;
@@ -34,6 +35,21 @@ CREATE TABLE NewsComments (
     FOREIGN KEY (NewsDateTime) REFERENCES News(DateTime) ON DELETE CASCADE,
     FOREIGN KEY (UserEmail) REFERENCES Users(UserEmail) ON DELETE CASCADE
 );
+
+CREATE TABLE NewsLike (
+    LikeId INT IDENTITY(1,1) PRIMARY KEY,
+    NewsDateTime DATETIME NOT NULL,
+    UserEmail NVARCHAR(255) NOT NULL,
+    FOREIGN KEY (NewsDateTime) REFERENCES News(DateTime) ON DELETE CASCADE,
+    FOREIGN KEY (UserEmail) REFERENCES Users(UserEmail) 
+);
+
+
+create index NewCommentsIndex on NewsComments (NewsDateTime)
+create index NewLikesIndex on NewsLike (NewsDateTime)
+
+--drop index if exists NewCommentsIndex on NewsComments
+
 
 
 alter table news_tags 
@@ -103,7 +119,7 @@ VALUES
 
 
 
--- Вставка тегов для новостей
+
 INSERT INTO news_tags (NewsDateTime, Tag) 
 VALUES
 (CONVERT(DATETIME, '2024-04-05 14:00:00', 120), 'футбол'),
@@ -134,9 +150,6 @@ VALUES
 
 
 
-
-
-
 -- Вставка комментариев к новостям
 INSERT INTO NewsComments (NewsDateTime, CommentDateTime, CommentText, UserEmail)
 VALUES
@@ -146,8 +159,45 @@ VALUES
 (CONVERT(DATETIME, '2024-04-08 18:00:00', 120), CONVERT(DATETIME, '2024-04-08 18:30:00', 120), 'Хорошая игра ПСЖ!', 'ddddddd@gmail.com'),
 (CONVERT(DATETIME, '2024-04-05 20:00:00', 120), CONVERT(DATETIME, '2024-04-05 20:30:00', 120), 'Никс хороши в атаке!', 'ddddddd@gmail.com'),
 (CONVERT(DATETIME, '2024-04-06 21:30:00', 120), CONVERT(DATETIME, '2024-04-06 22:00:00', 120), 'Даллас будет в плей-офф!', 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), CONVERT(DATETIME, '2024-04-06 22:00:00', 120), 'Даллас будет в плей-офф!', 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), CONVERT(DATETIME, '2024-04-06 22:00:00', 120), 'Даллас будет в плей-офф!', 'ddddddd@gmail.com'),
 (CONVERT(DATETIME, '2024-04-07 22:00:00', 120), CONVERT(DATETIME, '2024-04-07 22:30:00', 120), 'Милуоки Бакс не оставили шансов Индиане!', 'ddddddd@gmail.com')
 
 
 
+
+
+INSERT INTO NewsLike (NewsDateTime, UserEmail)
+VALUES
+(CONVERT(DATETIME, '2024-04-05 14:00:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 19:00:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-07 16:30:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-08 18:00:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-05 20:00:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-07 22:00:00', 120), 'ddddddd@gmail.com')
+
+
+
+go
+CREATE OR ALTER PROCEDURE [dbo].[LikesCount]
+    @newsDateTime DATETIME,
+    @LikesCount INT OUTPUT
+AS
+BEGIN
+    SELECT @LikesCount = COUNT(*)
+    FROM NewsLike
+    WHERE NewsDateTime = @newsDateTime;
+END
+GO
+
+
+DECLARE @date DATETIME = CONVERT(DATETIME, '2024-04-06 21:30:00', 120);
+DECLARE @LikeCount INT;
+
+EXEC [dbo].[LikesCount] @newsDateTime = @date, @LikesCount = @LikeCount OUTPUT;
+
+SELECT @LikeCount AS LikeCount;
 

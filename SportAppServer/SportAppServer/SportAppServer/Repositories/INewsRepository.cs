@@ -9,5 +9,8 @@ namespace SportAppServer.Repositories
         Task AddNewsToDBAsync(List<News> newsList);
         Task<List<News>> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10);
         Task<int> CountItems();
+        Task<int> CountComments(DateTime newsDateTime);
+        Task<int> CountLikes(DateTime newsDateTime);
+    
     }
 }

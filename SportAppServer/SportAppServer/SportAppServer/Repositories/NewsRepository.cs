@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SportAppServer.Context;
 using SportAppServer.Entities.Models;
 using SportAppServer.Gemini;
 using SportAppServer.Models.Entities;
+using System.Data;
+using System.Diagnostics;
 
 
 namespace SportAppServer.Repositories
@@ -110,6 +113,60 @@ namespace SportAppServer.Repositories
             return await _context.NewsList.CountAsync();
         }
 
-       
+
+        public async Task<int> CountComments(DateTime newsDateTime)
+        {
+            Debug.WriteLine($"CountComments: {newsDateTime}");
+
+            var param = new SqlParameter("@newsDateTime", newsDateTime);
+            var outputParam = new SqlParameter("@OutputCount", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output
+            };
+
+            
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC [dbo].[CountComments] @newsDateTime, @OutputCount OUT",
+                param, outputParam
+            );
+
+            var result = (int)outputParam.Value;
+
+            Debug.WriteLine($"CountComments: {result}");
+
+            return result; 
+        }
+
+
+
+
+
+        public async Task<int> CountLikes(DateTime newsDateTime)
+        {
+            Debug.WriteLine($"CountLikes: {newsDateTime}");
+
+            var param = new SqlParameter("@newsDateTime", newsDateTime);
+            var outputParam = new SqlParameter("@OutputCount", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output
+            };
+
+
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC [dbo].[LikesCount] @newsDateTime, @OutputCount OUT",
+                param, outputParam
+            );
+
+            var result = (int)outputParam.Value;
+
+            Debug.WriteLine($"CountLikes: {result}");
+
+            return result;
+        }
+
+
+
+
+
     }
 }

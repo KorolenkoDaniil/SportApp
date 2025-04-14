@@ -12,6 +12,7 @@ namespace SportAppServer.Context
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<NewsTag> Tags { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
+        public DbSet<Like> Likes { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,6 +32,11 @@ namespace SportAppServer.Context
                .HasOne(c => c.User)
                .WithMany(user => user.Comments)
                .HasForeignKey(c => c.UserEmail);
+
+            //modelBuilder.Entity<Like>()
+            //  .HasOne(c => c.User)
+            //  .WithMany(user => user.Likes)
+            //  .HasForeignKey(c => c.UserEmail);
 
 
             base.OnModelCreating(modelBuilder);

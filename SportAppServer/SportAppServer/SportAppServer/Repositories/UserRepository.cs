@@ -22,6 +22,7 @@ namespace SportAppServer.Repositories
         public async Task<User> PutUser(string email)
         {
             List<Comment> comments = new List<Comment>();
+            List<Like> likes = new List<Like>();
 
             var newUser = new User(email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg", comments);
 

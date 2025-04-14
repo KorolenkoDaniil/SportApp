@@ -20,7 +20,7 @@ namespace SportAppServer.Models.DTOs
         {
             this.UserEmail = UserEmail;
             this.UserImage = UserImage;
-            this.Comments = comments;
+            Comments = comments;
         }
 
         public UserDTO() { }

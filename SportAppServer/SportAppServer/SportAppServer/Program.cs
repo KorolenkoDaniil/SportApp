@@ -30,7 +30,8 @@ internal class Program
         builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
         builder.Services.AddScoped<ICommentsService, CommentsService>();
         builder.Services.AddScoped<IGeminiService, GeminiService>();
-  
+        builder.Services.AddScoped<ILikeServise, LikeServise>();
+        builder.Services.AddScoped<ILikeRepository, LikeRepository>();
 
 
 

@@ -20,6 +20,12 @@ namespace SportAppServer.Models.DTOs
         [JsonProperty("article_texts")]
         public string ArticleText { get; set; }
 
+        [JsonProperty("comments_count")]
+        public int Comments_count { get; set; }
+
+        [JsonProperty("likes_count")]
+        public int Likes_count { get; set; }
+
         [JsonProperty("Tags")]
         public List<NewsTagDTO> Tags { get; set; }
 
