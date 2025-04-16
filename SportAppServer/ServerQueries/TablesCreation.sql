@@ -1,10 +1,11 @@
 use KorSport
 
 DROP TABLE IF EXISTS NewsComments;
-DROP TABLE IF EXISTS NewsLikes;
+DROP TABLE IF EXISTS NewsLike;
 DROP TABLE IF EXISTS news_tags;
 DROP TABLE IF EXISTS News;
 DROP TABLE IF EXISTS Users;
+
 
 CREATE TABLE News (
     Sport NVARCHAR(255) NOT NULL, 
@@ -12,6 +13,7 @@ CREATE TABLE News (
     Title NVARCHAR(MAX) NOT NULL,
     ImageId NVARCHAR(MAX) NOT NULL,
 	ArticleText NVARCHAR(MAX),
+	--SharingCount Int not null 
 );
 
 CREATE TABLE Users (
@@ -150,20 +152,13 @@ VALUES
 
 
 
--- Вставка комментариев к новостям
 INSERT INTO NewsComments (NewsDateTime, CommentDateTime, CommentText, UserEmail)
 VALUES
-(CONVERT(DATETIME, '2024-04-05 14:00:00', 120), CONVERT(DATETIME, '2024-04-05 14:15:00', 120), 'Отличная игра, Зенит победил!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-06 19:00:00', 120), CONVERT(DATETIME, '2024-04-06 19:30:00', 120), 'Ливерпуль показал отличный футбол!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-07 16:30:00', 120), CONVERT(DATETIME, '2024-04-07 17:00:00', 120), 'Ювентус был на высоте!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-08 18:00:00', 120), CONVERT(DATETIME, '2024-04-08 18:30:00', 120), 'Хорошая игра ПСЖ!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-05 20:00:00', 120), CONVERT(DATETIME, '2024-04-05 20:30:00', 120), 'Никс хороши в атаке!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), CONVERT(DATETIME, '2024-04-06 22:00:00', 120), 'Даллас будет в плей-офф!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), CONVERT(DATETIME, '2024-04-06 22:00:00', 120), 'Даллас будет в плей-офф!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-06 21:30:00', 120), CONVERT(DATETIME, '2024-04-06 22:00:00', 120), 'Даллас будет в плей-офф!', 'ddddddd@gmail.com'),
-(CONVERT(DATETIME, '2024-04-07 22:00:00', 120), CONVERT(DATETIME, '2024-04-07 22:30:00', 120), 'Милуоки Бакс не оставили шансов Индиане!', 'ddddddd@gmail.com')
-
-
+(CONVERT(DATETIME, '2024-04-05 14:00:00', 120), GETDATE(), 'Крутая победа Зенита!', 'ddddddd@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 19:00:00', 120), GETDATE(), 'Ливерпуль просто уничтожил Сити!', '5ftdtde@gmail.com'),
+(CONVERT(DATETIME, '2024-04-07 22:30:00', 120), GETDATE(), 'Металлург красавчики!', 'hhhhhh@gmail.com'),
+(CONVERT(DATETIME, '2024-04-08 18:00:00', 120), GETDATE(), 'ПСЖ снова в деле.', 'fffffffff@gmail.com'),
+(CONVERT(DATETIME, '2024-04-06 20:00:00', 120), GETDATE(), 'Бразильцы не оставили шансов.', 'dddddd@gmail.com');
 
 
 
@@ -201,3 +196,39 @@ EXEC [dbo].[LikesCount] @newsDateTime = @date, @LikesCount = @LikeCount OUTPUT;
 
 SELECT @LikeCount AS LikeCount;
 
+USE [KorSport]
+GO
+/****** Object:  StoredProcedure [dbo].[CountComments]    Script Date: 15.04.2025 15:49:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[CountComments]
+    @newsDateTime DATETIME,
+    @CommentCount INT OUTPUT
+AS
+BEGIN
+    SELECT @CommentCount = COUNT(*)
+    FROM NewsComments 
+    WHERE NewsDateTime = @newsDateTime;
+END
+
+
+
+USE [KorSport]
+GO
+/****** Object:  StoredProcedure [dbo].[LikesCount]    Script Date: 15.04.2025 15:49:38 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER   PROCEDURE [dbo].[LikesCount]
+    @newsDateTime DATETIME,
+    @LikesCount INT OUTPUT
+AS
+BEGIN
+    SELECT @LikesCount = COUNT(*)
+    FROM NewsLike
+    WHEфRE NewsDateTime = @newsDateTime;
+END

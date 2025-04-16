@@ -4,7 +4,7 @@ using SportAppServer.Models.Entities;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
 using SportAppServer.Services;
-using System.Diagnostics;
+
 
 namespace SportAppServer.Controllers
 {
@@ -41,14 +41,9 @@ namespace SportAppServer.Controllers
 
 
         [HttpGet("GetOneNews")]
-        public async Task<IActionResult> GetOneNews(string dateTime)
+        public async Task<IActionResult> GetOneNews(string dateTime, string userEmail)
         {
-            NewsDTO? news = await _newsService.GetNewsByDateAsync(dateTime);
-
-            if (news == null)
-            {
-                return NotFound();
-            }
+            NewsDTO news = await _newsService.GetNewsByDateAsync(dateTime, userEmail);
 
             return Ok(news);
         }
@@ -89,19 +84,19 @@ namespace SportAppServer.Controllers
 
 
 
-        [HttpPost("ExistLike")]
-        public async Task<IActionResult> ExistLike([FromBody] LikeDto like)
-        {
-            if (like == null)
-                return BadRequest();
+        //[HttpPost("ExistLike")]
+        //public async Task<IActionResult> ExistLike([FromBody] LikeDto like)
+        //{
+        //    if (like == null)
+        //        return BadRequest();
 
 
-            bool LikeExist = await _likeService.LikeExist(like);
+        //    bool LikeExist = await _likeService.LikeExist(like);
 
-            Debug.WriteLine(LikeExist + "dfsdfsdfsdfsdfsdfsdffsdffd");
+        //    Debug.WriteLine(LikeExist + "dfsdfsdfsdfsdfsdfsdffsdffd");
 
-            return Ok(LikeExist);
-        }
+        //    return Ok(LikeExist);
+        //}
     }
 }
 

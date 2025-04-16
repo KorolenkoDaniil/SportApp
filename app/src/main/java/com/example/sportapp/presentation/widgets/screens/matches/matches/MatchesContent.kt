@@ -58,7 +58,7 @@ fun MatchesContent(
 
         //ошибька загрузки матчей
         is MatchesState.Error -> {
-            CommonError(matchesViewModel,  Screen.Matches.route, navController)
+            CommonError(matchesViewModel,  Screen.Matches.route, navController, "матч контент")
         }
 
         //загрузка матчей
@@ -168,7 +168,7 @@ fun MatchesContent(
 
                 //ошибка загрузки ранкингов
                 is RankingsState.Error -> {
-                    CommonError(matchesViewModel, Screen.Matches.route, navController)
+                    CommonError(matchesViewModel, Screen.Matches.route, navController, "ранкинги")
                 }
 
             }

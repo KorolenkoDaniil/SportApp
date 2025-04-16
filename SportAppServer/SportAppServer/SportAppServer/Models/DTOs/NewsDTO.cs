@@ -26,6 +26,9 @@ namespace SportAppServer.Models.DTOs
         [JsonProperty("likes_count")]
         public int Likes_count { get; set; }
 
+        [JsonProperty("is_liked")]
+        public bool Is_Liked { get; set; }
+
         [JsonProperty("Tags")]
         public List<NewsTagDTO> Tags { get; set; }
 

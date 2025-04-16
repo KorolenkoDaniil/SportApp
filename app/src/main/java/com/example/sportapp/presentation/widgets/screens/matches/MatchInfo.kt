@@ -11,9 +11,9 @@ import com.example.sportapp.models.viewModels.MatchActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.MatchReportState
 import com.example.sportapp.models.viewModels.MatchState
+import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.presentation.widgets.common.shared.CommonError
 import com.example.sportapp.presentation.widgets.common.shared.Loading
-import com.example.sportapp.presentation.navigation.Screen
 
 
 @Composable
@@ -36,7 +36,7 @@ fun MatchInfo(
                 }
 
                 is MatchState.Error -> {
-                    CommonError(matchViewModel, Screen.Matches.route, navController)
+                    CommonError(matchViewModel, Screen.Matches.route, navController, "матчи инфо")
                 }
 
                 is MatchState.Load -> {
@@ -46,7 +46,7 @@ fun MatchInfo(
         }
 
         is MatchReportState.Error -> {
-            CommonError(matchReportViewModel,  Screen.Matches.route, navController)
+            CommonError(matchReportViewModel,  Screen.Matches.route, navController, "матч репорт")
         }
 
         is MatchReportState.Load -> {

@@ -47,7 +47,7 @@ fun HomePage(
 
                         is NewsState.Error -> {
                             Log.d("tttNews", "ошибка Home")
-                            CommonError(viewModels.newsViewModel, Screen.Home.route, navController)
+                            CommonError(viewModels.newsViewModel, Screen.Home.route, navController, "статитистика")
                         }
 
                         is NewsState.Load -> {
@@ -57,7 +57,7 @@ fun HomePage(
                 }
 
                 is VideosState.Error ->
-                    CommonError(viewModels.videoViewModel, Screen.Home.route, navController)
+                    CommonError(viewModels.videoViewModel, Screen.Home.route, navController, "видео")
 
 
                 is VideosState.Load -> Loading()
@@ -65,7 +65,7 @@ fun HomePage(
         }
 
         is MatchesState.Error -> {
-            CommonError(viewModels.matchesViewModel, Screen.Home.route, navController)
+            CommonError(viewModels.matchesViewModel, Screen.Home.route, navController, "матчи")
         }
 
         MatchesState.Load -> {

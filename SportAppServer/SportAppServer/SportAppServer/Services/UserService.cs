@@ -2,6 +2,7 @@
 using SportAppServer.Models.DTOs.Requests;
 using SportAppServer.Models.Mappers;
 using SportAppServer.Repositories;
+using System.Diagnostics;
 
 namespace SportAppServer.Services
 {
@@ -19,6 +20,9 @@ namespace SportAppServer.Services
  
         public async Task<UserDTO> GetUserData(string email)
         {
+
+            Debug.WriteLine("--------------------111");
+            
             return await CheckEmail(email, async (emailToCheck) =>
             {
                 return UserMapper.ConvertToDTO(await _newsRepository.GetUserData(emailToCheck));
@@ -40,7 +44,7 @@ namespace SportAppServer.Services
                 return null;
             }
 
-     
+
             return await methodToExecute(email);
         }
     }

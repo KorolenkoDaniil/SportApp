@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -22,7 +20,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.R
-import com.example.sportapp.domain.viewModels.LikeState
 import com.example.sportapp.domain.viewModels.LikeViewModel
 
 @Composable
@@ -33,22 +30,13 @@ fun InteractiveButtons(
 ) {
     val likeViewModel: LikeViewModel = viewModel()
 
-    val likeState = likeViewModel.state.collectAsState()
-
-    LaunchedEffect(currentNews.dateTime, user.email) {
-        val liked = likeViewModel.LikeExist(currentNews.dateTime, user.email)
-        likeViewModel.state.value = if (liked) LikeState.Liked else LikeState.NotLiked
-    }
-
-    val likeRes = if (likeState.value == LikeState.Liked) R.drawable.red_heart else R.drawable.like
-
+    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else R.drawable.like
 
 
     val context = LocalContext.current
     val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
 
     val lastLikeTime = remember { mutableStateOf(0L) }
-    val likeCoolDown = 2000L
     val likeCount = remember { mutableStateOf(currentNews.likesCount) }
 
 
@@ -60,11 +48,10 @@ fun InteractiveButtons(
             contentDescription = null,
             modifier = Modifier.clickable {
                 likeViewModel.toggleLike(
-                    likeCoolDown,
-                    lastLikeTime,
-                    likeCount,
-                    currentNews,
-                    user,
+                    lastLikeTime = lastLikeTime,
+                    likeCount = likeCount,
+                    currentNews = currentNews,
+                    user = user
                 )
             }
         )
@@ -95,8 +82,5 @@ fun InteractiveButtons(
                 context.startActivity(shareIntent)
             }
         )
-
-        Spacer(Modifier.width(8.dp))
-        Text(text = "560")
     }
 }

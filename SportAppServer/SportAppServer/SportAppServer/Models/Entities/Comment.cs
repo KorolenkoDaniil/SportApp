@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportAppServer.Models.Entities
 {
@@ -8,10 +8,13 @@ namespace SportAppServer.Models.Entities
     {
         [Key]
         public int CommentId { get; set; }
-        public required DateTime NewsDateTime { get; set; }
-        public required DateTime CommentDateTime { get; set; }
-        public required string CommentText { get; set; }
-        public required string UserEmail { get; set; }
+
+        public DateTime NewsDateTime { get; set; }
+        public DateTime CommentDateTime { get; set; }
+        public string CommentText { get; set; }
+        public string UserEmail { get; set; }
+
+        [ForeignKey("UserEmail")]
         public User User { get; set; }
 
         public override string ToString()
