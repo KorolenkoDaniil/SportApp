@@ -2,18 +2,20 @@
 using SportAppServer.Models.Mappers;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
-using System.Diagnostics;
+
 
 namespace SportAppServer.Services
 {
-    public class CommentsService: ICommentsService
+    public class CommentsService : ICommentsService
 
     {
         private readonly ICommentsRepository _commentRepository;
+        private readonly IUserRepository _userRepository;
 
-        public CommentsService(ICommentsRepository newsRepository)
+        public CommentsService(ICommentsRepository newsRepository, IUserRepository userRepository)
         {
             _commentRepository = newsRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<CommentsPagination> GetPaginatedCommentsList(DateTime itemId, int pageNumber = 1, int pageSize = 10)
@@ -27,17 +29,33 @@ namespace SportAppServer.Services
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 TotalItems = totalItems,
-                Comments  = CommentMapper.ConvertToListOfDTO(commmentsList)
+                Comments = CommentMapper.ConvertToListOfDTO(commmentsList)
             };
-
-            foreach (var item in page.Comments)
-            {
-                Debug.WriteLine(item);
-            }
-
-            Debug.WriteLine("-------------------------");
 
             return page;
         }
+
+
+        public async Task<CommentDTO> PutCommment(CommentDTO comment)
+        {
+            
+            var existingUser = await _userRepository.GetUserData(comment.UserEmail);
+
+            if (existingUser == null)
+            {
+                existingUser = new User { UserEmail = comment.UserEmail, UserImage = comment.User.UserImage };
+                await _userRepository.PutUser(existingUser.UserEmail);
+            }
+
+            Comment newComment = CommentMapper.ConvertToEntity(comment);
+            newComment.User = existingUser; 
+
+            Comment savedComment = await _commentRepository.PutCommment(newComment);
+
+            CommentDTO returnedComment = CommentMapper.ConvertToDTO(savedComment);
+
+            return returnedComment;
+        }
+
     }
 }

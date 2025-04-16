@@ -29,6 +29,7 @@ fun <TState, TRepository> CommonError(
     viewModel: BaseViewModelInterface<TState, TRepository>,
     route: String,
     navController: NavHostController,
+    a: String
 ) {
     val coroutineScope = rememberCoroutineScope()
 
@@ -47,7 +48,8 @@ fun <TState, TRepository> CommonError(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = "Either the internet has broken or we couldn't loading matches",
+//                text = "Either the internet has broken or we couldn't loading matches",
+                text = a,
                 style = style10,
                 modifier = Modifier.width(200.dp)
             )

@@ -3360,7 +3360,6 @@
       "FirebaseAdmin >= 3.1.0",
       "Microsoft.EntityFrameworkCore >= 9.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.1",
-      "Newtonsoft.Json >= 13.0.3",
       "OpenAI >= 2.1.0",
       "System.ComponentModel.Annotations >= 5.0.0"
     ]
@@ -3427,10 +3426,6 @@
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[9.0.1, )"
-          },
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "[13.0.3, )"
           },
           "OpenAI": {
             "target": "Package",

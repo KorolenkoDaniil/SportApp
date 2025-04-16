@@ -76,6 +76,7 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.androidx.ui.test.android)
     ksp(libs.androidx.room.compiler) // Используем ksp вместо kapt
     implementation(libs.androidx.room.ktx) // Поддержка корутин
 

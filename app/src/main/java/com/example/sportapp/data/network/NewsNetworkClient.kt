@@ -1,7 +1,7 @@
 package com.example.sportapp.data.network
 
 import android.util.Log
-import com.example.sportapp.CleanArchitexture.BaseUrl
+import com.example.sportapp.data.BaseUrl
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.defaultRequest

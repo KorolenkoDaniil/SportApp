@@ -14,6 +14,15 @@ namespace SportAppServer.Models.Mappers
             );
         }
 
+        public static User ConvertToEntity(UserDTO user)
+        {
+            return new User(
+                user.UserEmail,
+                user.UserImage,
+                new List<Comment>()
+            );
+        }
+
 
     }
 }

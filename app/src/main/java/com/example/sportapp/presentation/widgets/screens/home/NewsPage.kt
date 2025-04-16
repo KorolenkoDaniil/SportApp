@@ -11,7 +11,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
-import com.example.sportapp.domain.viewModels.LikeViewModel
 import com.example.sportapp.models.viewModels.NewsState
 import com.example.sportapp.models.viewModels.OneNewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
@@ -31,7 +30,7 @@ fun NewsPage(
     showBar: MutableState<Boolean>,
 ) {
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
-    oneNewsViewModel.loadOneNewsData(newsDateTime)
+    oneNewsViewModel.loadOneNewsData(newsDateTime, viewModels.authViewModel.currentUser.value!!.email)
 
     val oneNewsState by oneNewsViewModel.getState().collectAsState()
     viewModels.appActivity.changePageName("One News")
@@ -55,7 +54,7 @@ fun NewsPage(
 
                 is NewsState.Error -> {
                     Log.d("tttNews", "ошибка newsPage")
-                    CommonError(viewModels.newsViewModel, Screen.News.route, navController)
+                    CommonError(viewModels.newsViewModel, Screen.News.route, navController, "новости")
                 }
 
                 is NewsState.Load -> {
@@ -66,7 +65,7 @@ fun NewsPage(
 
         is OneNewsSate.Error -> {
             Log.d("newsPage", newsDateTime)
-            CommonError(oneNewsViewModel, Screen.News.route, navController)
+            CommonError(oneNewsViewModel, Screen.News.route, navController, "1 новость")
         }
 
         is OneNewsSate.Load -> Loading()

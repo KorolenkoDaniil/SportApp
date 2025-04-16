@@ -1,5 +1,4 @@
-﻿using SportAppServer.Models.DTOs;
-using SportAppServer.Models.Entities;
+﻿using SportAppServer.Models.Entities;
 using System.Diagnostics;
 
 namespace SportAppServer.Models.Mappers
@@ -15,11 +14,21 @@ namespace SportAppServer.Models.Mappers
                 CommentDateTime = comment.CommentDateTime,
                 NewsDateTime = comment.NewsDateTime,
                 UserEmail = comment.UserEmail,
-                User = comment.User != null ? new UserDTO
-                {
-                    UserEmail = comment.User.UserEmail,
-                    UserImage = comment.User.UserImage
-                } : null
+                User = UserMapper.ConvertToDTO(comment.User)
+            };
+        }
+
+
+        public static Comment ConvertToEntity(CommentDTO comment)
+        {
+            return new Comment
+            {
+                CommentId = comment.CommentId,
+                CommentText = comment.CommentText,
+                CommentDateTime = comment.CommentDateTime,
+                NewsDateTime = comment.NewsDateTime,
+                UserEmail = comment.UserEmail,
+                User = UserMapper.ConvertToEntity(comment.User)
             };
         }
 

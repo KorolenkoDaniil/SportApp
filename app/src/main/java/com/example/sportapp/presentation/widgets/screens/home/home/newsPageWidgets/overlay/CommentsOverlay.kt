@@ -1,80 +1,93 @@
 package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay
 
-import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.example.sportapp.CleanArchitexture.domain.models.comments.CommentEntity
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.models.viewModels.CommentsViewModel
+import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.overlayElements.Comments
+import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.overlayElements.SendCommentRow
 
-@SuppressLint("StateFlowValueCalledInComposition")
+
 @Composable
-fun CommentsOverlay(showBar: MutableState<Boolean>, overlayVisible: MutableState<Boolean>, authModel: AuthViewModel, currentNews: NewsEntity){
+fun CommentsOverlay(
+    showBar: MutableState<Boolean>,
+    overlayVisible: MutableState<Boolean>,
+    authModel: AuthViewModel,
+    currentNews: NewsEntity,
+) {
 
-    val userPhoto = rememberAsyncImagePainter(authModel.currentUser.value?.pictureURL)
+    val commentsViewModel = CommentsViewModel()
+    val page = remember { mutableStateOf(1) }
+
+
+    val itemList = remember { mutableStateListOf<CommentEntity>() }
+
+
+
 
     if (overlayVisible.value) {
 
         showBar.value = false
 
 
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = 4.dp)
-                .background(Color.White, shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-                .clickable { onDismiss(overlayVisible, showBar) }
-
+                .background(
+                    Color.White,
+                    shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
+                )
+                .clickable { onDismiss(overlayVisible, showBar) },
         ) {
-            Column (verticalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxSize()) {
-                Text(text = "комментарии", style = TextStyle (textAlign = TextAlign.Center), modifier =  Modifier.fillMaxWidth(),)
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxSize()
+                    .padding(horizontal = 16.dp)
+            ) {
+                Text(
+                    text = "комментарии",
+                    style = TextStyle(textAlign = TextAlign.Center),
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(bottom = 12.dp)
+                )
 
 
                 Comments(
-                    currentNews = currentNews
+                    currentNews = currentNews,
+                    commentsViewModel,
+                    page,
+                    itemList,
+                    Modifier.weight(1F)
                 )
 
-                Box(Modifier.height(60.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxSize()) {
-                        Image(
-                            painter = userPhoto,
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .size(40.dp)
-                                .clip(RoundedCornerShape(20.dp))
-                        )
-                    }
-                }
-
+                SendCommentRow(authModel, commentsViewModel ,currentNews, itemList)
             }
+
         }
     }
 }
 
-fun onDismiss(overlay: MutableState<Boolean>, showBar: MutableState<Boolean>){
+fun onDismiss(overlay: MutableState<Boolean>, showBar: MutableState<Boolean>) {
     overlay.value = false
     showBar.value = true
 }

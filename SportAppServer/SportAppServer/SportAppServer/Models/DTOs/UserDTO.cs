@@ -1,30 +1,28 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using SportAppServer.Models.Entities;
+using System.Text.Json.Serialization;
 
 namespace SportAppServer.Models.DTOs
 {
     public class UserDTO
     {
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string UserEmail { get; set; }
 
-        [JsonProperty("pictureId")]
+        [JsonPropertyName("pictureId")]
         public string UserImage { get; set; } = "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg";
 
-        [System.Text.Json.Serialization.JsonIgnore]
+        [JsonIgnore]
+        [ValidateNever]
         public List<CommentDTO> Comments { get; set; }
 
-
-
-        public UserDTO(string UserEmail, string UserImage, List<CommentDTO> comments)
+        public UserDTO(string userEmail, string userImage, List<CommentDTO> comments)
         {
-            this.UserEmail = UserEmail;
-            this.UserImage = UserImage;
+            UserEmail = userEmail;
+            UserImage = userImage;
             Comments = comments;
         }
 
         public UserDTO() { }
-       
-
     }
 }

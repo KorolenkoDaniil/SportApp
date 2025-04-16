@@ -6,5 +6,6 @@ namespace SportAppServer.Repositories
     {
         Task<List<Comment>> GetPaginatedCommentsList(DateTime itemId, int pageNumber = 1, int pageSize = 10);
         Task<int> CountItems(DateTime itemId);
+        Task<Comment> PutCommment(Comment comment);
     }
 }

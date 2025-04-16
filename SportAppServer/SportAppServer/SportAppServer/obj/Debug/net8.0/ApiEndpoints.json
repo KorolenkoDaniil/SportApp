@@ -58,6 +58,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SportAppServer.Controllers.CommentsController",
+    "Method": "PutComment",
+    "RelativePath": "Comments/PutComment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "comment",
+        "Type": "SportAppServer.Models.Entities.CommentDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SportAppServer.Controllers.GeminiController",
     "Method": "AskGemini",
     "RelativePath": "gemini/ask",
@@ -77,22 +93,6 @@
     "ContainingType": "SportAppServer.Controllers.NewsController",
     "Method": "AddLike",
     "RelativePath": "NewsController/AddLike",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "like",
-        "Type": "SportAppServer.Models.Entities.LikeDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SportAppServer.Controllers.NewsController",
-    "Method": "ExistLike",
-    "RelativePath": "NewsController/ExistLike",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -136,6 +136,11 @@
     "Parameters": [
       {
         "Name": "dateTime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userEmail",
         "Type": "System.String",
         "IsRequired": false
       }

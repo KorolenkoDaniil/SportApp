@@ -1,7 +1,7 @@
 package com.example.sportapp.CleanArchitexture.data.repositories
 
 import android.util.Log
-import com.example.sportapp.CleanArchitexture.BaseUrl
+import com.example.sportapp.data.BaseUrl
 import com.example.sportapp.data.dto.news.LikeDto
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO

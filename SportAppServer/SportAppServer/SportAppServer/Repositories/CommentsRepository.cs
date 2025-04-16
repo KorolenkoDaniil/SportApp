@@ -49,5 +49,12 @@ namespace SportAppServer.Repositories
             return commentsList;
         }
 
+        public async Task<Comment> PutCommment(Comment comment)
+        {
+            await _context.Comments.AddAsync(comment);
+            await _context.SaveChangesAsync();
+            return comment;
+        }
+
     }
 }

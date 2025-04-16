@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SportAppServer.Models.Entities;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Services;
 
@@ -15,18 +16,25 @@ namespace SportAppServer.Controllers
             _commentsService = commentsService;
         }
 
-     
+
         [HttpGet("GetComments")]
-        public async Task<IActionResult> GetComments([FromQuery] DateTime itemId, int pageNumber = 1, int pageSize = 50)
+        public async Task<IActionResult> GetComments([FromQuery] DateTime itemId, int pageNumber = 1, int pageSize = 10)
         {
             CommentsPagination paginatedComments = await _commentsService.GetPaginatedCommentsList(itemId, pageNumber, pageSize);
 
-            if (paginatedComments.Comments.Count() == 0)
-            {
-                return NotFound(new { message = $"No Comments found for itemId {itemId}" });
-            }
-
             return Ok(paginatedComments);
         }
+
+
+
+        [HttpPost("PutComment")]
+        public async Task<IActionResult> PutComment ([FromBody] CommentDTO comment)
+        {
+            CommentDTO commentDTO = await _commentsService.PutCommment(comment);
+
+            return Ok(commentDTO);
+        }
+
+
     }
 }

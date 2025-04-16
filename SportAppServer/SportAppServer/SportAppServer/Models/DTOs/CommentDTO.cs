@@ -1,29 +1,27 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using SportAppServer.Models.DTOs;
-
 
 namespace SportAppServer.Models.Entities
 {
     public class CommentDTO
     {
-        [JsonProperty("comment_id")]
+        [JsonPropertyName("comment_id")]
         public int CommentId { get; set; }
 
-        [JsonProperty("news_date_time")]
+        [JsonPropertyName("news_date_time")]
         public DateTime NewsDateTime { get; set; }
 
-        [JsonProperty("comment_date_time")]
+        [JsonPropertyName("comment_date_time")]
         public DateTime CommentDateTime { get; set; }
 
-        [JsonProperty("comment_text")]
+        [JsonPropertyName("comment_text")]
         public string CommentText { get; set; }
 
-        [System.Text.Json.Serialization.JsonIgnore]
+        [JsonPropertyName("email")]
         public string UserEmail { get; set; }
 
-        [JsonProperty("user")]
-        public UserDTO User { get; set; }  // Включаем данные пользователя
-
+        [JsonPropertyName("user")]
+        public UserDTO User { get; set; }
 
         public CommentDTO() { }
 

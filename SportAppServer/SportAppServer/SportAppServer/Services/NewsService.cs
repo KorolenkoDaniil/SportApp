@@ -3,6 +3,7 @@ using SportAppServer.Models.Entities;
 using SportAppServer.Models.Mappers;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
+using System.Diagnostics;
 
 namespace SportAppServer.Services
 {
@@ -10,10 +11,12 @@ namespace SportAppServer.Services
     {
 
         private readonly INewsRepository _newsRepository;
+        private readonly ILikeRepository _likeRepository;
 
-        public NewsService(INewsRepository newsRepository)
+        public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository)
         {
             _newsRepository = newsRepository;
+            _likeRepository = likeRepository;
         }
 
         public Task<string> GetAllNews()
@@ -36,7 +39,7 @@ namespace SportAppServer.Services
             throw new NotImplementedException();
         }
 
-        public async Task<NewsDTO> GetNewsByDateAsync(string dateTime)
+        public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
         {
             var searchResult = await _newsRepository.GetByDateAsync(dateTime);
 
@@ -47,6 +50,8 @@ namespace SportAppServer.Services
 
                 newsDto.Comments_count = await _newsRepository.CountComments(newsDto.DateTime);
                 newsDto.Likes_count = await _newsRepository.CountLikes(newsDto.DateTime);
+
+                newsDto.Is_Liked = await LikeExist(newsDto.DateTime, userEmail);
 
                 return newsDto;
             }
@@ -71,6 +76,13 @@ namespace SportAppServer.Services
 
             return page;
 
+        }
+
+        private Task<bool> LikeExist(DateTime newsDateTime, string email)
+        {
+            Debug.WriteLine(newsDateTime.ToString());
+            Debug.WriteLine(email);
+            return _likeRepository.LikeExist(newsDateTime, email);
         }
 
         Task<List<NewsDTO>> INewsService.GetAllNews()
