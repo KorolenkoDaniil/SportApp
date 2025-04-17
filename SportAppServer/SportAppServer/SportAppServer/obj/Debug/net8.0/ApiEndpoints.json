@@ -33,6 +33,22 @@
   },
   {
     "ContainingType": "SportAppServer.Controllers.CommentsController",
+    "Method": "AddLike",
+    "RelativePath": "Comments/AddLike",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "likeData",
+        "Type": "SportAppServer.Models.DTOs.Requests.AddCommentLike",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.CommentsController",
     "Method": "GetComments",
     "RelativePath": "Comments/GetComments",
     "HttpMethod": "GET",

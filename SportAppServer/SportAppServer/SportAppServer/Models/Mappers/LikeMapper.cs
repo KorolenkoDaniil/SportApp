@@ -8,7 +8,6 @@ namespace SportAppServer.Models.Mappers
         {
             return new LikeDto
             {
-                //User = like.User,
                 UserEmail = like.UserEmail,
                 NewsDateTime = like.NewsDateTime
             };
@@ -18,10 +17,8 @@ namespace SportAppServer.Models.Mappers
         {
             return new Like
             {
-                //User = like.User,
                 NewsDateTime = like.NewsDateTime,
                 UserEmail = like.UserEmail
-
             };
         }
     }

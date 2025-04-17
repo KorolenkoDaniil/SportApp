@@ -1,10 +1,13 @@
 use KorSport
 
+DROP TABLE IF EXISTS CommentLike;
 DROP TABLE IF EXISTS NewsComments;
 DROP TABLE IF EXISTS NewsLike;
 DROP TABLE IF EXISTS news_tags;
 DROP TABLE IF EXISTS News;
 DROP TABLE IF EXISTS Users;
+
+
 
 
 CREATE TABLE News (
@@ -13,7 +16,6 @@ CREATE TABLE News (
     Title NVARCHAR(MAX) NOT NULL,
     ImageId NVARCHAR(MAX) NOT NULL,
 	ArticleText NVARCHAR(MAX),
-	--SharingCount Int not null 
 );
 
 CREATE TABLE Users (
@@ -34,6 +36,7 @@ CREATE TABLE NewsComments (
     CommentDateTime DATETIME NOT NULL,
     CommentText NVARCHAR(max) NOT NULL,
     UserEmail NVARCHAR(255) NOT NULL,
+	LikesCount Int not null default 0
     FOREIGN KEY (NewsDateTime) REFERENCES News(DateTime) ON DELETE CASCADE,
     FOREIGN KEY (UserEmail) REFERENCES Users(UserEmail) ON DELETE CASCADE
 );
@@ -45,6 +48,20 @@ CREATE TABLE NewsLike (
     FOREIGN KEY (NewsDateTime) REFERENCES News(DateTime) ON DELETE CASCADE,
     FOREIGN KEY (UserEmail) REFERENCES Users(UserEmail) 
 );
+
+
+
+CREATE TABLE CommentLikes (
+    CommentLikeId INT IDENTITY(1,1) PRIMARY KEY,                  -- Уникальный ID лайка
+    CommentId INT NOT NULL,                                       -- Ссылка на комментарий
+    LikedByUserEmail NVARCHAR(255) NOT NULL,                      -- Кто лайкнул
+
+    FOREIGN KEY (CommentId) REFERENCES NewsComments (CommentId) ON DELETE CASCADE,
+    FOREIGN KEY (LikedByUserEmail) REFERENCES Users(UserEmail),
+
+    CONSTRAINT UQ_CommentLikes_CommentUser UNIQUE (CommentId, LikedByUserEmail)
+);
+
 
 
 create index NewCommentsIndex on NewsComments (NewsDateTime)
@@ -196,39 +213,58 @@ EXEC [dbo].[LikesCount] @newsDateTime = @date, @LikesCount = @LikeCount OUTPUT;
 
 SELECT @LikeCount AS LikeCount;
 
-USE [KorSport]
+USE KorSport
 GO
+
 /****** Object:  StoredProcedure [dbo].[CountComments]    Script Date: 15.04.2025 15:49:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[CountComments]
+-- Правильно изменяем процедуру, если она существует или создаем, если её нет
+CREATE OR ALTER PROCEDURE [dbo].[CountComments]
     @newsDateTime DATETIME,
     @CommentCount INT OUTPUT
 AS
 BEGIN
+    -- Подсчет комментариев по NewsDateTime
     SELECT @CommentCount = COUNT(*)
     FROM NewsComments 
     WHERE NewsDateTime = @newsDateTime;
 END
+GO
 
 
-
-USE [KorSport]
-GO
-/****** Object:  StoredProcedure [dbo].[LikesCount]    Script Date: 15.04.2025 15:49:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER   PROCEDURE [dbo].[LikesCount]
+-- Правильно изменяем процедуру LikesCount, исправив связь с таблицей News
+CREATE OR ALTER PROCEDURE [dbo].[LikesCount]
     @newsDateTime DATETIME,
     @LikesCount INT OUTPUT
 AS
 BEGIN
+    -- Подсчет лайков для новости по NewsDateTime
     SELECT @LikesCount = COUNT(*)
-    FROM NewsLike
-    WHEфRE NewsDateTime = @newsDateTime;
+    FROM NewsLike nl
+    JOIN News n ON nl.NewsDateTime = n.DateTime
+    WHERE n.DateTime = @newsDateTime;
 END
+GO
+
+
+-- Пример выполнения процедуры для подсчета лайков
+DECLARE @date DATETIME = CONVERT(DATETIME, '2024-04-06 21:30:00', 120);
+DECLARE @LikeCount INT;
+
+-- Вызов процедуры LikesCount
+EXEC [dbo].[LikesCount] @newsDateTime = @date, @LikesCount = @LikeCount OUTPUT;
+
+SELECT @LikeCount AS LikeCount;
+
+
+-- Пример выполнения процедуры для подсчета комментариев
+DECLARE @CommentCount INT;
+
+-- Вызов процедуры CountComments
+EXEC [dbo].[CountComments] @newsDateTime = @date, @CommentCount = @CommentCount OUTPUT;
+
+SELECT @CommentCount AS CommentCount;

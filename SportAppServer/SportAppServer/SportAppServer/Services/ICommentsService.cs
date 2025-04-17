@@ -7,5 +7,6 @@ namespace SportAppServer.Services
     {
         Task<CommentsPagination> GetPaginatedCommentsList(DateTime itemId, int pageNumber = 1, int pageSize = 10);
         Task<CommentDTO> PutCommment(CommentDTO comment);
+        Task<int> AddLike(string LikeAuthor, int CommentId);
     }
 }

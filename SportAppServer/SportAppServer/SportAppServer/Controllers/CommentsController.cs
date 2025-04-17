@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SportAppServer.Models.DTOs.Requests;
 using SportAppServer.Models.Entities;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Services;
@@ -34,6 +35,42 @@ namespace SportAppServer.Controllers
 
             return Ok(commentDTO);
         }
+
+
+
+
+        [HttpPost("AddLike")]
+        public async Task<IActionResult> AddLike([FromBody] AddCommentLike likeData)
+        {
+            if (string.IsNullOrEmpty(likeData.LikeAuthor))
+                return BadRequest();
+
+            int likesCount = await _commentsService.AddLike(likeData.LikeAuthor, likeData.CommentId);
+
+            if (likesCount < 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok(likesCount);
+        }
+
+
+        //[HttpPost("RemoveLike")]
+        //public async Task<IActionResult> RemoveLike([FromBody] LikeDto like)
+        //{
+        //    if (like == null)
+        //        return BadRequest();
+
+        //    int likesCount = await _likeService.RemoveLikeAsync(like);
+
+        //    if (likesCount < 0)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    return Ok();
+        //}
 
 
     }

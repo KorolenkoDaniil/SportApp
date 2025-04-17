@@ -27,12 +27,12 @@ namespace SportAppServer.Repositories
 
         public async Task<List<Comment>> GetPaginatedCommentsList(DateTime itemId, int pageNumber, int pageSize)
         {
-          
+
             Debug.WriteLine(itemId.ToString());
 
 
             var commentsList = await _context.Comments
-                .Where(comment =>  comment.NewsDateTime == itemId
+                .Where(comment => comment.NewsDateTime == itemId
                 )
                 .OrderByDescending(comment => comment.CommentDateTime)
                 .Skip((pageNumber - 1) * pageSize)
@@ -54,6 +54,33 @@ namespace SportAppServer.Repositories
             await _context.Comments.AddAsync(comment);
             await _context.SaveChangesAsync();
             return comment;
+        }
+
+
+        public async Task<int> AddLike(string LikeAuthor, int CommentId)
+        {
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == CommentId);
+
+            bool alreadyLiked = await _context.CommentsLikes
+                .AnyAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
+
+            if (comment == null || alreadyLiked)
+                return -1;
+
+            var like = new CommentLike(CommentId, LikeAuthor, comment, comment.User);
+            await _context.CommentsLikes.AddAsync(like);
+
+            comment.LikesCount++;
+
+            await _context.SaveChangesAsync();
+
+            // Сразу проверим, что реально видим 3 лайка
+            var count = await _context.CommentsLikes
+                .CountAsync(cl => cl.CommentId == CommentId);
+
+            Console.WriteLine($"Сейчас лайков к комменту {CommentId}: {count}");
+
+            return count;
         }
 
     }

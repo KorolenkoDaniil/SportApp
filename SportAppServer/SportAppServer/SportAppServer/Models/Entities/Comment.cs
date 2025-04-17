@@ -13,6 +13,7 @@ namespace SportAppServer.Models.Entities
         public DateTime CommentDateTime { get; set; }
         public string CommentText { get; set; }
         public string UserEmail { get; set; }
+        public int LikesCount { get; set; }
 
         [ForeignKey("UserEmail")]
         public User User { get; set; }

@@ -95,5 +95,10 @@ namespace SportAppServer.Services
             return returnedComment;
         }
 
+
+        public async Task<int> AddLike(string LikeAuthor, int CommentId)
+        {
+           return await _commentRepository.AddLike(LikeAuthor, CommentId);
+        }
     }
 }
