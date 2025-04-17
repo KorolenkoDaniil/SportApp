@@ -6,6 +6,8 @@ namespace SportAppServer.Context
 {
     public class DBContext : DbContext
     {
+        public DBContext() { }
+
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
         public DbSet<News> NewsList { get; set; } = null!;

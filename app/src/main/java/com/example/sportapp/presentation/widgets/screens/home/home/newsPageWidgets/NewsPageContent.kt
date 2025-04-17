@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsListEntity
-import com.example.sportapp.domain.viewModels.LikeViewModel
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
@@ -51,6 +50,8 @@ fun NewsPageContent(
 
     val format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
     val formattedDate = currentNews.dateTime.format(format)
+
+    val CommentsCount = remember { mutableStateOf(currentNews.commentsCount) }
 
     LazyColumn {
         item {
@@ -88,7 +89,7 @@ fun NewsPageContent(
 
                     val user = authModel.currentUser.collectAsState().value ?: return@Box
 
-                    InteractiveButtons(overlayVisible, currentNews, user, )
+                    InteractiveButtons(overlayVisible, currentNews, user, CommentsCount)
 
                     Spacer(Modifier.height(20.dp))
                 }
@@ -101,5 +102,5 @@ fun NewsPageContent(
         }
     }
 
-    CommentsOverlay(showBar, overlayVisible, authModel, currentNews)
+    CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
 }

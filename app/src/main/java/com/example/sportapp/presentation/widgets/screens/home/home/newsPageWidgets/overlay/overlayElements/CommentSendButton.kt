@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,12 +27,13 @@ import java.time.LocalDateTime
 
 @SuppressLint("NewApi")
 @Composable
-fun CommentSendButton(commentsViewModel: CommentsViewModel, authViewModel: AuthViewModel, message: String, newsDateTime: LocalDateTime, itemList: SnapshotStateList<CommentEntity>,
+fun CommentSendButton(commentsViewModel: CommentsViewModel, authViewModel: AuthViewModel, message: String, newsDateTime: LocalDateTime, itemList: SnapshotStateList<CommentEntity>,  CommentsCount: MutableState<Int>,
                       onPromptClear: () -> Unit){
     Button(
         onClick = {
 
             CoroutineScope(Dispatchers.IO).launch {
+                CommentsCount.value += 1
                 val newComment = commentsViewModel.putComment(
                     comment = CommentEntity(
                         newsDateTime = newsDateTime.toString(),

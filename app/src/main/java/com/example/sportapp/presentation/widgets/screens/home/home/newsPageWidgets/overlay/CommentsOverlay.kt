@@ -33,6 +33,7 @@ fun CommentsOverlay(
     overlayVisible: MutableState<Boolean>,
     authModel: AuthViewModel,
     currentNews: NewsEntity,
+    CommentsCount: MutableState<Int>
 ) {
 
     val commentsViewModel = CommentsViewModel()
@@ -68,7 +69,7 @@ fun CommentsOverlay(
                     text = "комментарии",
                     style = TextStyle(textAlign = TextAlign.Center),
                     modifier = Modifier.fillMaxWidth()
-                        .padding(bottom = 12.dp)
+                        .padding(vertical = 12.dp)
                 )
 
 
@@ -80,7 +81,7 @@ fun CommentsOverlay(
                     Modifier.weight(1F)
                 )
 
-                SendCommentRow(authModel, commentsViewModel ,currentNews, itemList)
+                SendCommentRow(authModel, commentsViewModel ,currentNews, itemList, CommentsCount)
             }
 
         }

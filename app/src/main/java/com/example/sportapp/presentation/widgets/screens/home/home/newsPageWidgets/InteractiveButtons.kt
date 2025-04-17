@@ -27,6 +27,7 @@ fun InteractiveButtons(
     overlay: MutableState<Boolean>,
     currentNews: NewsEntity,
     user: UserEntity,
+    CommentsCount: MutableState<Int>
 ) {
     val likeViewModel: LikeViewModel = viewModel()
 
@@ -67,7 +68,7 @@ fun InteractiveButtons(
         )
 
         Spacer(Modifier.width(8.dp))
-        Text(text = currentNews.commentsCount.toString())
+        Text(text = CommentsCount.value.toString())
 
         Spacer(Modifier.width(16.dp))
         Image(

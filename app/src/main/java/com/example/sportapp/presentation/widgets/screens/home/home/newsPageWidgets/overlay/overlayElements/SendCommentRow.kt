@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,6 +47,7 @@ fun SendCommentRow(
     commentsViewModel: CommentsViewModel,
     currentNews: NewsEntity,
     itemList: SnapshotStateList<CommentEntity>,
+    CommentsCount: MutableState<Int>
 ) {
 
     val userPhoto = rememberAsyncImagePainter(authModel.currentUser.value?.pictureURL)
@@ -113,6 +115,7 @@ fun SendCommentRow(
                     message = comment,
                     newsDateTime = currentNews.dateTime,
                     itemList,
+                    CommentsCount,
                     onPromptClear = {
                         comment = ""
                         isFocused = false

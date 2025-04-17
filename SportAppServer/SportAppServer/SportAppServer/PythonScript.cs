@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using SportAppServer.Context;
 using SportAppServer.Models.Entities;
 using System.Diagnostics;
 using System.Text;
@@ -85,26 +87,38 @@ namespace SportAppServer
                 return;
             }
 
-            //using (var newsDB = new DBContext())
-            //{
-            //    try
-            //    {
-            //        //await newsDB.AddNewsToDBAsync(newsList);
-            //        await newsDB.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateException ex)
-            //    {
-            //        if (ex.InnerException != null)
-            //        {
-            //            Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine($"Error: {ex.Message}");
-            //        }
-            //    }
+            using (var newsDB = new DBContext())
+            {
+                try
+                {
+                    List<News> newNews = newsList
+                        .Where(n => !newsDB.NewsList.Any(existingNews => existingNews.DateTime == n.DateTime))
+                        .ToList();
 
-            //}
+                    if (newsList.Count == 0)
+                    {
+                        Console.WriteLine("Нет новых новостей для добавления.");
+                        return;
+                    }
+
+                    await newsDB.NewsList.AddRangeAsync(newsList);
+                    await newsDB.SaveChangesAsync();
+
+                    Console.WriteLine($"Успешно добавлено {newsList.Count} новостей в базу данных.");
+                }
+                catch (DbUpdateException ex)
+                {
+                    if (ex.InnerException != null)
+                    {
+                        Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                    }
+                }
+            }
+
         }
     }
 }
