@@ -2,6 +2,7 @@
 using SportAppServer.Models.Mappers;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
+using System.Diagnostics;
 
 
 namespace SportAppServer.Services
@@ -20,7 +21,44 @@ namespace SportAppServer.Services
 
         public async Task<CommentsPagination> GetPaginatedCommentsList(DateTime itemId, int pageNumber = 1, int pageSize = 10)
         {
-            List<Comment> commmentsList = await _commentRepository.GetPaginatedCommentsList(itemId, pageNumber, pageSize);
+            List<CommentDTO> commmentsList = CommentMapper.ConvertToListOfDTO( await _commentRepository.GetPaginatedCommentsList(itemId, pageNumber, pageSize));
+
+            foreach (var item in commmentsList)
+            {
+
+                Debug.WriteLine($"{DateTime.UtcNow} {item.CommentDateTime}");
+
+                var elapsedTime = DateTime.UtcNow - item.CommentDateTime.ToUniversalTime();
+
+                if (elapsedTime.TotalDays >= 365)
+                {
+                    int years = (int)(elapsedTime.TotalDays / 365);
+                    item.ElapsedTime = years == 1 ? "1 year ago" : $"{years} years ago";
+                }
+                else if (elapsedTime.TotalDays >= 30)
+                {
+                    int months = (int)(elapsedTime.TotalDays / 30);
+                    item.ElapsedTime = months == 1 ? "1 month ago" : $"{months} months ago";
+                }
+                else if (elapsedTime.TotalDays >= 7)
+                {
+                    int weeks = (int)(elapsedTime.TotalDays / 7);
+                    item.ElapsedTime = weeks == 1 ? "1 week ago" : $"{weeks} weeks ago";
+                }
+                else if (elapsedTime.Days > 0)
+                {
+                    item.ElapsedTime = elapsedTime.Days == 1 ? "1 day ago" : $"{elapsedTime.Days} days ago";
+                }
+                else if (elapsedTime.Hours > 0)
+                {
+                    item.ElapsedTime = elapsedTime.Hours == 1 ? "1 hour ago" : $"{elapsedTime.Hours} hours ago";
+                }
+                else if (elapsedTime.Minutes > 0)
+                {
+                    item.ElapsedTime = elapsedTime.Minutes == 1 ? "1 minute ago" : $"{elapsedTime.Minutes} minutes ago";
+                }
+            }
+
 
             int totalItems = await _commentRepository.CountItems(itemId);
 
@@ -29,7 +67,7 @@ namespace SportAppServer.Services
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 TotalItems = totalItems,
-                Comments = CommentMapper.ConvertToListOfDTO(commmentsList)
+                Comments = commmentsList
             };
 
             return page;

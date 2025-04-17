@@ -1,0 +1,35 @@
+package com.example.sportapp.CleanArchitexture.domain.models.match
+
+import com.example.sportapp.CleanArchitexture.data.dto.match.LastMatchResultDto
+
+data class RankingEntity(
+    val id: String,
+    val logoUrl: String,
+    val name: String,
+    val fullName: String,
+    val shortName: String,
+    val teamId: String,
+    val ranking: Int,
+    val points: Int,
+    val gamesPlayed: Int,
+    val won: Int,
+    val draws: Int,
+    val lost: Int,
+    val goalsMade: Int,
+    val goalsConceeded: Int,
+    val pointsHome: Int,
+    val playedHome: Int,
+    val winHome: Int,
+    val drawsHome: Int,
+    val lostHome: Int,
+    val goalsMadeHome: Int,
+    val goalsConceededHome: Int,
+    val pointsAway: Int,
+    val playedAway: Int,
+    val wonAway: Int,
+    val drawsAway: Int,
+    val lostAway: Int,
+    val goalsMadeAway: Int,
+    val goalsConceededAway: Int,
+    val lastMatchesResults: List<LastMatchResultDto>,
+)

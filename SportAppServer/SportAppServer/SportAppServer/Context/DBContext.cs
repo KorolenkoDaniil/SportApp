@@ -15,6 +15,7 @@ namespace SportAppServer.Context
         public DbSet<NewsTag> Tags { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<Like> Likes { get; set; } = null!;
+        public DbSet<CommentLike> Likes { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

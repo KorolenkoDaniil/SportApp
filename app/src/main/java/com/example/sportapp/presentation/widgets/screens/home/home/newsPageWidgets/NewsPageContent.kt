@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsListEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
@@ -38,7 +37,6 @@ fun NewsPageContent(
     oneNewsState: OneNewsSate,
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
-    newsList: NewsListEntity,
     horizontalPaddings: Dp,
     authModel: AuthViewModel,
     showBar: MutableState<Boolean>,
@@ -97,7 +95,7 @@ fun NewsPageContent(
         }
 
         item {
-            NewsCardRow(navController, newsViewModel, newsList, horizontalPaddings)
+            NewsCardRow(navController, newsViewModel, horizontalPaddings)
             Spacer(Modifier.height(20.dp))
         }
     }

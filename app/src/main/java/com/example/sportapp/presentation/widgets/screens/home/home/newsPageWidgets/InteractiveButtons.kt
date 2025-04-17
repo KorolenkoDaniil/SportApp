@@ -33,7 +33,6 @@ fun InteractiveButtons(
 
     val likeRes = if (currentNews.isLiked) R.drawable.red_heart else R.drawable.like
 
-
     val context = LocalContext.current
     val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
 

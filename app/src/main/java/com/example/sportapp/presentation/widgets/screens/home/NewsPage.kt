@@ -45,7 +45,6 @@ fun NewsPage(
                         oneNewsState = oneNewsState,
                         navController = navController,
                         newsViewModel = viewModels.newsViewModel,
-                        newsList = states.newsState.news,
                         horizontalPaddings,
                         viewModels.authViewModel,
                         showBar

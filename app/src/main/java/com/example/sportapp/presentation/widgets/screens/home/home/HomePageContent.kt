@@ -32,7 +32,7 @@ fun HomePageContent(
         item { Spacer(modifier = Modifier.height(16.dp)) }
         item { Text(text = "Sport news", style = style1, modifier = Modifier.padding(horizontal = horizontalPaddings) ) }
         item { Spacer(modifier = Modifier.height(20.dp)) }
-        item { NewsCardRow(navController, viewModels.newsViewModel, news, horizontalPaddings) }
+        item { NewsCardRow(navController, viewModels.newsViewModel, horizontalPaddings) }
         item { Spacer(modifier = Modifier.height(20.dp)) }
         item { Text(text = "Recommended videos", style = style1, modifier = Modifier.padding(horizontal = horizontalPaddings) ) }
         item { Spacer(modifier = Modifier.height(20.dp)) }

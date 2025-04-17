@@ -1,0 +1,186 @@
+[33mb8ebe1a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mAI[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m6a588df[m[33m ([m[1;31morigin/AI[m[33m)[m HEAD@{1}: commit: stable version
+[33mb8ebe1a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mAI[m[33m)[m HEAD@{2}: commit: stable version
+[33mbae200f[m HEAD@{3}: commit: stable version
+[33md47106e[m HEAD@{4}: commit: stable version
+[33m68f81c1[m HEAD@{5}: commit: stable version
+[33m9ffc39a[m HEAD@{6}: commit: ready refactoring server
+[33md1509ca[m HEAD@{7}: commit: ready function putNewUser after refactoring
+[33md58ad33[m HEAD@{8}: commit: version after big refactoring but not finished
+[33m76def85[m HEAD@{9}: commit: stable version before server refactoring
+[33m76ad70e[m HEAD@{10}: commit: stable version with sending news comments
+[33mb5503e0[m HEAD@{11}: commit: stable version with sending news comments
+[33m1c7ac2c[m HEAD@{12}: commit: stable version with the ability to share news
+[33mc43a2e2[m HEAD@{13}: reset: moving to HEAD
+[33mc43a2e2[m HEAD@{14}: checkout: moving from c43a2e2428ae43fb5ac3ad6add6973ee4b661938 to AI
+[33mc43a2e2[m HEAD@{15}: checkout: moving from AI to c43a2e2428ae43fb5ac3ad6add6973ee4b661938
+[33mc43a2e2[m HEAD@{16}: commit: stable version
+[33m86d92bf[m HEAD@{17}: commit: stable version
+[33m04480de[m HEAD@{18}: commit: stable version
+[33m078b0aa[m HEAD@{19}: commit: stable version after refactoring home UI
+[33m3b6aaf2[m HEAD@{20}: commit: stable version
+[33m7b6dc53[m HEAD@{21}: commit: stable version
+[33meb6515c[m HEAD@{22}: commit: stable version
+[33mf0afb5f[m HEAD@{23}: commit: stable version after small refactoring but need python script fixing
+[33m09c0cf9[m HEAD@{24}: commit: stable version with working videos, but need python script fixing
+[33m5d48ac5[m HEAD@{25}: commit: stable version with worked list, but need python script fixing
+[33m5f940a0[m HEAD@{26}: commit: stable version with connected video list, but need python script fixing
+[33m10e98b0[m HEAD@{27}: commit: stable version but need python script fixing
+[33mdcbfc0e[m HEAD@{28}: checkout: moving from dcbfc0e50513f77d7b7a11d6a7200e7dd9e6882a to AI
+[33mdcbfc0e[m HEAD@{29}: checkout: moving from AI to dcbfc0e50513f77d7b7a11d6a7200e7dd9e6882a
+[33mdcbfc0e[m HEAD@{30}: checkout: moving from AI2 to AI
+[33m77d0e72[m[33m ([m[1;32mAI2[m[33m)[m HEAD@{31}: commit: Сохранение перед переключением
+[33m6e146ff[m HEAD@{32}: checkout: moving from 6e146ff568c3f37d3e944c2bcccb5b2e1a26dea0 to AI2
+[33m6e146ff[m HEAD@{33}: checkout: moving from AI1 to 6e146ff568c3f37d3e944c2bcccb5b2e1a26dea0
+[33mc5da8f0[m[33m ([m[1;32mAI1[m[33m)[m HEAD@{34}: commit: Сохранение изменений в news_list.json
+[33mf9332a7[m HEAD@{35}: commit: Сохранение текущих изменений
+[33m0a36c1a[m HEAD@{36}: commit: Сохранение текущих изменений
+[33mdcbfc0e[m HEAD@{37}: checkout: moving from dcbfc0e50513f77d7b7a11d6a7200e7dd9e6882a to AI1
+[33mdcbfc0e[m HEAD@{38}: checkout: moving from AI to dcbfc0e50513f77d7b7a11d6a7200e7dd9e6882a
+[33mdcbfc0e[m HEAD@{39}: commit: tags creation, saving and transfer already done
+[33m6e146ff[m HEAD@{40}: commit: tags creation and saving already
+[33m4e71360[m HEAD@{41}: commit: tags creation and saving already
+[33m2fa41cf[m HEAD@{42}: commit: tags creation
+[33m4cd5422[m HEAD@{43}: commit: stable version
+[33m95dc482[m HEAD@{44}: commit: version in which I refactored AI chat
+[33m233bbc8[m HEAD@{45}: commit: user and bots comments are working
+[33m2e6bc4a[m HEAD@{46}: commit: user comments are working
+[33m565f881[m HEAD@{47}: reset: moving to HEAD
+[33m565f881[m HEAD@{48}: reset: moving to HEAD
+[33m565f881[m HEAD@{49}: commit: not stable version? but I did a lot
+[33m09c8f17[m HEAD@{50}: commit: stable version with prompt enter string
+[33mbffb66c[m HEAD@{51}: commit: stable version with prompt enter string
+[33mca57d08[m HEAD@{52}: commit: stable version in which I receive a message from gemini as a client
+[33m52ba700[m[33m ([m[1;31morigin/uiBranch[m[33m, [m[1;32muiBranch[m[33m)[m HEAD@{53}: checkout: moving from 52ba7008df2a6fa9d30554b9b44dd516f229e177 to AI
+[33m52ba700[m[33m ([m[1;31morigin/uiBranch[m[33m, [m[1;32muiBranch[m[33m)[m HEAD@{54}: checkout: moving from uiBranch to 52ba7008df2a6fa9d30554b9b44dd516f229e177
+[33m52ba700[m[33m ([m[1;31morigin/uiBranch[m[33m, [m[1;32muiBranch[m[33m)[m HEAD@{55}: reset: moving to HEAD
+[33m52ba700[m[33m ([m[1;31morigin/uiBranch[m[33m, [m[1;32muiBranch[m[33m)[m HEAD@{56}: checkout: moving from AI to uiBranch
+[33m52ba700[m[33m ([m[1;31morigin/uiBranch[m[33m, [m[1;32muiBranch[m[33m)[m HEAD@{57}: checkout: moving from 52ba7008df2a6fa9d30554b9b44dd516f229e177 to AI
+[33m52ba700[m[33m ([m[1;31morigin/uiBranch[m[33m, [m[1;32muiBranch[m[33m)[m HEAD@{58}: checkout: moving from uiBranch to 52ba7008df2a6fa9d30554b9b44dd516f229e177
+[33m52ba700[m[33m ([m[1;31morigin/uiBranch[m[33m, [m[1;32muiBranch[m[33m)[m HEAD@{59}: commit: stable version in which a was added gemini controller
+[33m7405fd2[m HEAD@{60}: commit: stable version in which a was added gemini controller
+[33md4d6f76[m HEAD@{61}: commit: stable version with normal request of video
+[33md79a2ab[m HEAD@{62}: commit: stable version with normal request of video
+[33m0c41bcd[m HEAD@{63}: checkout: moving from 0c41bcdf438150040a214acf5b21bf81eee0d0c2 to uiBranch
+[33m0c41bcd[m HEAD@{64}: checkout: moving from newBracnh to 0c41bcdf438150040a214acf5b21bf81eee0d0c2
+[33mede1b97[m[33m ([m[1;31morigin/newServerBranch[m[33m, [m[1;32mnewBracnh[m[33m)[m HEAD@{65}: reset: moving to HEAD
+[33mede1b97[m[33m ([m[1;31morigin/newServerBranch[m[33m, [m[1;32mnewBracnh[m[33m)[m HEAD@{66}: checkout: moving from ede1b97665e935f4e127c6862c250387766e063b to newBracnh
+[33mede1b97[m[33m ([m[1;31morigin/newServerBranch[m[33m, [m[1;32mnewBracnh[m[33m)[m HEAD@{67}: checkout: moving from newServerBranch to ede1b97665e935f4e127c6862c250387766e063b
+[33ma04a72b[m[33m ([m[1;32mnewServerBranch[m[33m)[m HEAD@{68}: commit: sdafSDF
+[33m811a5ad[m HEAD@{69}: commit: ssdaf
+[33mede1b97[m[33m ([m[1;31morigin/newServerBranch[m[33m, [m[1;32mnewBracnh[m[33m)[m HEAD@{70}: commit: stable version
+[33m04cd782[m HEAD@{71}: commit: stable version
+[33m0c41bcd[m HEAD@{72}: commit: stable version
+[33m010d20f[m HEAD@{73}: commit: stable version with correct user entry
+[33m0e49466[m HEAD@{74}: checkout: moving from 0e49466860f03f0946ac9dbd20fbd4fcfa5e6bc2 to newServerBranch
+[33m0e49466[m HEAD@{75}: checkout: moving from serverBranch to 0e49466860f03f0946ac9d
+[33m65a9371[m[33m ([m[1;32mserverBranch[m[33m)[m HEAD@{76}: commit: sdfds
+[33mbf38ff0[m HEAD@{77}: commit (merge): Save changes before merge
+[33m0e49466[m HEAD@{78}: commit: stable version with correct authenticated user input
+[33me8a7eb8[m HEAD@{79}: reset: moving to HEAD
+[33me8a7eb8[m HEAD@{80}: commit: stable version with correct entry
+[33m1e131b1[m HEAD@{81}: reset: moving to HEAD~1
+[33m971637d[m[33m ([m[1;31morigin/serverBranch[m[33m)[m HEAD@{82}: commit: stable
+[33m1e131b1[m HEAD@{83}: commit: ready saving of user to db and transferring of user image
+[33m2f56aa5[m HEAD@{84}: commit: commit before I will remake UI
+[33m140966a[m HEAD@{85}: checkout: moving from BD to serverBranch
+[33m5f1b83c[m HEAD@{86}: commit: sdgf
+[33mcfbc754[m[33m ([m[1;31morigin/BD[m[33m)[m HEAD@{87}: commit: BD branch was added
+[33m140966a[m HEAD@{88}: checkout: moving from serverBranch to BD
+[33m140966a[m HEAD@{89}: commit: ready server with push notifications before match start
+[33mffc03ad[m HEAD@{90}: commit: something was corrected
+[33mbf882cc[m HEAD@{91}: commit: stable version with login but with paddings and bottomAppBar!!!!!!!
+[33md35f74b[m HEAD@{92}: reset: moving to d35f74b7503d17cb4b760808f4733e3257066ec7
+[33md35f74b[m HEAD@{93}: reset: moving to d35f74b7503d17cb4b760808f4733e3257066ec7
+[33md35f74b[m HEAD@{94}: commit: stable version with ready pagination
+[33mf126b3f[m HEAD@{95}: commit: stable version
+[33mf1180d5[m HEAD@{96}: commit: ready pagination on server
+[33mf288073[m HEAD@{97}: commit: stable version before I will make pagination
+[33m8f8961d[m HEAD@{98}: commit: stable version with corrected some bugs
+[33m875429a[m HEAD@{99}: commit: stable version with getting and viewing news
+[33mda318b0[m HEAD@{100}: commit: stable version
+[33m1558c52[m HEAD@{101}: commit: version before making method
+[33mf6edec5[m HEAD@{102}: commit: stable version
+[33mcf2e539[m HEAD@{103}: reset: moving to HEAD
+[33mcf2e539[m HEAD@{104}: commit: ready getting article_texts in selenuim part
+[33m91423db[m HEAD@{105}: commit: The server is ready, parses the data normally and sends it. The client receives and displays on the main page
+[33m5dd878b[m[33m ([m[1;31morigin/TabLayoutWithText[m[33m, [m[1;32mmaster[m[33m, [m[1;32mTabLayoutWithText[m[33m)[m HEAD@{106}: reset: moving to HEAD
+[33m5dd878b[m[33m ([m[1;31morigin/TabLayoutWithText[m[33m, [m[1;32mmaster[m[33m, [m[1;32mTabLayoutWithText[m[33m)[m HEAD@{107}: checkout: moving from master to serverBranch
+[33m5dd878b[m[33m ([m[1;31morigin/TabLayoutWithText[m[33m, [m[1;32mmaster[m[33m, [m[1;32mTabLayoutWithText[m[33m)[m HEAD@{108}: merge TabLayoutWithText: Fast-forward
+[33m63a0f52[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/ViewPager[m[33m, [m[1;32mViewPager[m[33m)[m HEAD@{109}: checkout: moving from TabLayoutWithText to master
+[33m5dd878b[m[33m ([m[1;31morigin/TabLayoutWithText[m[33m, [m[1;32mmaster[m[33m, [m[1;32mTabLayoutWithText[m[33m)[m HEAD@{110}: commit: server added
+[33m4894281[m HEAD@{111}: commit: The server is ready, news data is transmitted and headlines are displayed. Next we need to expand the news class"
+[33m0169af6[m HEAD@{112}: commit: ready getting youtube response
+[33mec0d7b3[m HEAD@{113}: commit: new stable version
+[33me5ad48e[m HEAD@{114}: commit: new stable version
+[33m045c50b[m HEAD@{115}: checkout: moving from bde85e0771210d105e5ae07085976a1ed8614c7e to TabLayoutWithText
+[33mbde85e0[m HEAD@{116}: checkout: moving from TabLayoutWithText to bde85e0
+[33m045c50b[m HEAD@{117}: reset: moving to HEAD
+[33m045c50b[m HEAD@{118}: reset: moving to HEAD
+[33m045c50b[m HEAD@{119}: commit: stable version
+[33mbde85e0[m HEAD@{120}: commit: stable version
+[33mdc2c826[m HEAD@{121}: commit: stable version with display of a tree of reports on matches, substitutions, goals
+[33ma8061ca[m HEAD@{122}: commit: stable version with displaying match report tree
+[33m145e934[m HEAD@{123}: commit: stable version with displaying match report tree
+[33me21cb3c[m HEAD@{124}: commit: stable version
+[33m40d4866[m HEAD@{125}: commit: the trunk of the event tree is ready
+[33m246022f[m HEAD@{126}: commit: stable version witgh loading 1 match and it's report
+[33mae956e9[m HEAD@{127}: commit: stable version
+[33m99a0410[m HEAD@{128}: commit: stable version
+[33m604f427[m HEAD@{129}: commit: corrected page name
+[33m72ed915[m HEAD@{130}: reset: moving to 72ed915
+[33m72ed915[m HEAD@{131}: reset: moving to HEAD
+[33m72ed915[m HEAD@{132}: checkout: moving from 72ed9150a3e1f71c12dd4a7c79f403d8fd12ed7a to TabLayoutWithText
+[33m72ed915[m HEAD@{133}: checkout: moving from TabLayoutWithText to 72ed9150a3e1f71c12dd4a7c79f403d8fd12ed7a
+[33m72ed915[m HEAD@{134}: commit: Colored indicators were made, dates were corrected,
+[33mab2dadb[m HEAD@{135}: commit: ready scrolling to page with current match and something else was done
+[33m1a3b341[m HEAD@{136}: commit: ready scrolling to page with current match
+[33m31ac814[m HEAD@{137}: commit: ready scrolling to page
+[33m9b1c8b0[m HEAD@{138}: commit: stable version
+[33md79fe1b[m HEAD@{139}: commit: stable version
+[33mab63188[m HEAD@{140}: commit: stable version
+[33me9f83cb[m HEAD@{141}: commit: stable version with mappers
+[33mfde313d[m HEAD@{142}: reset: moving to HEAD
+[33mfde313d[m HEAD@{143}: commit: stable version
+[33m0da29f4[m HEAD@{144}: commit: stable version with interfaces, and getting match report
+[33m8eb1180[m HEAD@{145}: commit: almost stable version with new interfaces, but match report dont give information
+[33mf5a2a0d[m HEAD@{146}: commit: stable version
+[33m19a7492[m HEAD@{147}: commit: I have added MatchInfo
+[33m650b340[m HEAD@{148}: commit: Rankings after restructuring
+[33m923b873[m HEAD@{149}: commit: ready Ranking page, but without good ui and need restructuring
+[33md62eca8[m HEAD@{150}: commit: new navigation
+[33md7956fe[m[33m ([m[1;31morigin/Navigation1[m[33m, [m[1;32mNavigation1[m[33m)[m HEAD@{151}: checkout: moving from Navigation1 to TabLayoutWithText
+[33md7956fe[m[33m ([m[1;31morigin/Navigation1[m[33m, [m[1;32mNavigation1[m[33m)[m HEAD@{152}: reset: moving to HEAD
+[33md7956fe[m[33m ([m[1;31morigin/Navigation1[m[33m, [m[1;32mNavigation1[m[33m)[m HEAD@{153}: checkout: moving from TabLayoutWithText to Navigation1
+[33md7956fe[m[33m ([m[1;31morigin/Navigation1[m[33m, [m[1;32mNavigation1[m[33m)[m HEAD@{154}: commit: corrected dates and output of the score of the matches that have taken. MatchEntity was added
+[33m7ed4a87[m HEAD@{155}: reset: moving to HEAD
+[33m7ed4a87[m HEAD@{156}: commit: corrected dates and output of the score of the matches that have taken
+[33me662847[m HEAD@{157}: commit: corrected dates
+[33m597d8c0[m HEAD@{158}: commit: receiving and displaying data about matches works. + made display of pictures and matches
+[33m1ba8c17[m HEAD@{159}: commit: receiving and displaying data about matches works. Need to make ui
+[33m39b4340[m HEAD@{160}: commit: working viewPager with synced calendar. Also I fixed calendar animation
+[33m2203683[m HEAD@{161}: checkout: moving from 2203683455bc4b9c34a700480b15db5e10cc567b to TabLayoutWithText
+[33m2203683[m HEAD@{162}: checkout: moving from TabLayoutWithText to 2203683455bc4b9c34a700480b15db5e10cc567b
+[33m2203683[m HEAD@{163}: commit: working viewPager with synced calendar
+[33m63a0f52[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/ViewPager[m[33m, [m[1;32mViewPager[m[33m)[m HEAD@{164}: checkout: moving from master to TabLayoutWithText
+[33m63a0f52[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/ViewPager[m[33m, [m[1;32mViewPager[m[33m)[m HEAD@{165}: checkout: moving from TabLayout to master
+[33m63a0f52[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/ViewPager[m[33m, [m[1;32mViewPager[m[33m)[m HEAD@{166}: checkout: moving from master to TabLayout
+[33m63a0f52[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/ViewPager[m[33m, [m[1;32mViewPager[m[33m)[m HEAD@{167}: merge ViewPager: Fast-forward
+[33m7ee715f[m HEAD@{168}: checkout: moving from ViewPager to master
+[33m63a0f52[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/ViewPager[m[33m, [m[1;32mViewPager[m[33m)[m HEAD@{169}: commit: worked viewPager with calendar
+[33m0f8d2b5[m HEAD@{170}: commit: start of day 13.12.2024
+[33m63f3ebe[m HEAD@{171}: commit: report for 14.12 and pagination
+[33m1379e41[m[33m ([m[1;31morigin/Navigation[m[33m, [m[1;32mNavigation[m[33m)[m HEAD@{172}: checkout: moving from Navigation to ViewPager
+[33m1379e41[m[33m ([m[1;31morigin/Navigation[m[33m, [m[1;32mNavigation[m[33m)[m HEAD@{173}: commit: match data is coming, we need to make a visual. ranking data is also coming, loading pages and errors are made
+[33mc113992[m HEAD@{174}: commit: something like stable version
+[33m7ee715f[m HEAD@{175}: checkout: moving from master to Navigation
+[33m7ee715f[m HEAD@{176}: commit: view model example
+[33m3046627[m HEAD@{177}: checkout: moving from Navigation to master
+[33m3046627[m HEAD@{178}: checkout: moving from master to Navigation
+[33m3046627[m HEAD@{179}: checkout: moving from Navigation to master
+[33m3046627[m HEAD@{180}: checkout: moving from master to Navigation
+[33m3046627[m HEAD@{181}: commit: View model example
+[33m7b328c3[m HEAD@{182}: commit: f
+[33m7cd8044[m HEAD@{183}: commit: Удален подмодуль и его следы
+[33m404f550[m HEAD@{184}: checkout: moving from master to master
+[33m404f550[m HEAD@{185}: commit (initial): Обновление удалённого репозитория содержимым локального

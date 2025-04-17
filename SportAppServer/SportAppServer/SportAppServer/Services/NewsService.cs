@@ -50,6 +50,7 @@ namespace SportAppServer.Services
 
                 newsDto.Comments_count = await _newsRepository.CountComments(newsDto.DateTime);
                 newsDto.Likes_count = await _newsRepository.CountLikes(newsDto.DateTime);
+                
 
                 newsDto.Is_Liked = await LikeExist(newsDto.DateTime, userEmail);
 
