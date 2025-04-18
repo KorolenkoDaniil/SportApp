@@ -23,12 +23,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sportapp.CleanArchitexture.domain.models.comments.CommentEntity
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
+import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.models.viewModels.CommentsViewModel
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.comments.commentItem.CommentItem
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun Comments(currentNews: NewsEntity, commentsViewModel: CommentsViewModel, page: MutableState<Int>, itemList: SnapshotStateList<CommentEntity>, modifier: Modifier) {
+fun Comments(currentNews: NewsEntity, commentsViewModel: CommentsViewModel, page: MutableState<Int>, itemList: SnapshotStateList<CommentEntity>, currentUser: UserEntity, modifier: Modifier) {
 
     val loading = remember { mutableStateOf(false) }
     val isLoaded = remember { mutableStateOf(false) }
@@ -40,7 +41,8 @@ fun Comments(currentNews: NewsEntity, commentsViewModel: CommentsViewModel, page
             loading.value = true
             val comments = commentsViewModel.loadComments(
                 newsDateTime = currentNews.dateTime,
-                pageNumber = page.value
+                pageNumber = page.value,
+                currentUser.email,
             )
             itemList.addAll(comments)
             totalItems.value = commentsViewModel.commentsCount
@@ -69,7 +71,7 @@ fun Comments(currentNews: NewsEntity, commentsViewModel: CommentsViewModel, page
         LazyColumn(state = listState, modifier = modifier.fillMaxWidth()) {
             items(itemList.size) { index ->
                 val comment = itemList[index]
-                CommentItem(comment)
+                CommentItem(comment, commentsViewModel)
             }
 
             item {

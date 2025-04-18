@@ -61,6 +61,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Viewer",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "pageNumber",
         "Type": "System.Int32",
         "IsRequired": false
@@ -84,6 +89,22 @@
       {
         "Name": "comment",
         "Type": "SportAppServer.Models.Entities.CommentDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.CommentsController",
+    "Method": "RemoveLike",
+    "RelativePath": "Comments/RemoveLike",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "likeData",
+        "Type": "SportAppServer.Models.DTOs.Requests.AddCommentLike",
         "IsRequired": true
       }
     ],

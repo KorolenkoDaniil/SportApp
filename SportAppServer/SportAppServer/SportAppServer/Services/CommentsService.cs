@@ -1,4 +1,5 @@
-﻿using SportAppServer.Models.Entities;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SportAppServer.Models.Entities;
 using SportAppServer.Models.Mappers;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
@@ -12,6 +13,7 @@ namespace SportAppServer.Services
     {
         private readonly ICommentsRepository _commentRepository;
         private readonly IUserRepository _userRepository;
+    
 
         public CommentsService(ICommentsRepository newsRepository, IUserRepository userRepository)
         {
@@ -19,7 +21,7 @@ namespace SportAppServer.Services
             _userRepository = userRepository;
         }
 
-        public async Task<CommentsPagination> GetPaginatedCommentsList(DateTime itemId, int pageNumber = 1, int pageSize = 10)
+        public async Task<CommentsPagination> GetPaginatedCommentsList(DateTime itemId, string Viewer, int pageNumber = 1, int pageSize = 10)
         {
             List<CommentDTO> commmentsList = CommentMapper.ConvertToListOfDTO( await _commentRepository.GetPaginatedCommentsList(itemId, pageNumber, pageSize));
 
@@ -53,10 +55,14 @@ namespace SportAppServer.Services
                 {
                     item.ElapsedTime = elapsedTime.Hours == 1 ? "1 hour ago" : $"{elapsedTime.Hours} hours ago";
                 }
-                else if (elapsedTime.Minutes > 0)
+                else
                 {
                     item.ElapsedTime = elapsedTime.Minutes == 1 ? "1 minute ago" : $"{elapsedTime.Minutes} minutes ago";
                 }
+
+
+                item.LikesCount = await _commentRepository.CountLIkes(item.CommentId);
+                item.IsLiked = await _commentRepository.IsLiked(item.CommentId, Viewer);
             }
 
 
@@ -92,13 +98,21 @@ namespace SportAppServer.Services
 
             CommentDTO returnedComment = CommentMapper.ConvertToDTO(savedComment);
 
+            returnedComment.ElapsedTime = "Just now";
+
             return returnedComment;
         }
 
 
         public async Task<int> AddLike(string LikeAuthor, int CommentId)
         {
-           return await _commentRepository.AddLike(LikeAuthor, CommentId);
+           return  await _commentRepository.AddLike(LikeAuthor, CommentId);
+        }
+
+
+        public async Task<int> RemoveLike(string LikeAuthor, int CommentId)
+        {
+            return await _commentRepository.RemoveLike(LikeAuthor, CommentId);
         }
     }
 }

@@ -40,12 +40,6 @@ namespace SportAppServer.Repositories
                 .Take(pageSize)
                 .ToListAsync();
 
-            foreach (var item in commentsList)
-            {
-                Debug.WriteLine(commentsList);
-            }
-
-
             return commentsList;
         }
 
@@ -61,6 +55,8 @@ namespace SportAppServer.Repositories
         {
             var comment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == CommentId);
 
+           
+
             bool alreadyLiked = await _context.CommentsLikes
                 .AnyAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
 
@@ -74,7 +70,6 @@ namespace SportAppServer.Repositories
 
             await _context.SaveChangesAsync();
 
-            // Сразу проверим, что реально видим 3 лайка
             var count = await _context.CommentsLikes
                 .CountAsync(cl => cl.CommentId == CommentId);
 
@@ -83,5 +78,63 @@ namespace SportAppServer.Repositories
             return count;
         }
 
+
+        public async Task<int> RemoveLike(string LikeAuthor, int CommentId)
+        {
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == CommentId);
+
+
+            bool alreadyLiked = await _context.CommentsLikes
+                .AnyAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
+
+            if (comment == null || !alreadyLiked)
+                return -1;
+
+            var like = await _context.CommentsLikes
+                .FirstOrDefaultAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
+
+            if (like == null)
+            {
+                Debug.WriteLine($"Лайк не найден для удаления: CommentId={CommentId}, Author={LikeAuthor}");
+                return -1;
+            }
+
+            _context.CommentsLikes.Remove(like);
+
+            comment.LikesCount--;
+
+            await _context.SaveChangesAsync();
+
+            var count = await _context.CommentsLikes
+                .CountAsync(cl => cl.CommentId == CommentId);
+
+            Console.WriteLine($"Сейчас лайков к комменту {CommentId}: {count}");
+
+            return count;
+        }
+
+
+        public async Task<int> CountLIkes(int commentId)
+        {
+            return await _context.CommentsLikes
+                .Where(cl => cl.CommentId == commentId)
+                .CountAsync();
+        }
+
+
+        public async Task<bool> IsLiked(int commentId, string userEmail)
+        {
+            var like = await _context.CommentsLikes
+                .FirstOrDefaultAsync(cl => cl.CommentId == commentId && cl.LikedByUserEmail == userEmail);
+           
+            if (like != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

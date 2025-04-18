@@ -23,7 +23,13 @@ namespace SportAppServer.Models.Entities
         [JsonPropertyName("user")]
         public UserDTO User { get; set; }
 
-        [JsonPropertyName("elapsed_ime")]
+        [JsonPropertyName("likes_count")]
+        public int LikesCount { get; set; }
+
+        [JsonPropertyName("is_liked")]
+        public bool IsLiked { get; set; }
+
+        [JsonPropertyName("elapsed_time")]
         public string ElapsedTime { get; set; }
 
         public CommentDTO() { }

@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +28,7 @@ import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidge
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.overlayElements.SendCommentRow
 
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun CommentsOverlay(
     showBar: MutableState<Boolean>,
@@ -78,6 +80,7 @@ fun CommentsOverlay(
                     commentsViewModel,
                     page,
                     itemList,
+                    authModel.currentUser.value!!,
                     Modifier.weight(1F)
                 )
 

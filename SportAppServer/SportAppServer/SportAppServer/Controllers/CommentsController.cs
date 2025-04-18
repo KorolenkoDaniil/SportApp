@@ -3,6 +3,7 @@ using SportAppServer.Models.DTOs.Requests;
 using SportAppServer.Models.Entities;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Services;
+using System.Diagnostics;
 
 namespace SportAppServer.Controllers
 {
@@ -19,9 +20,9 @@ namespace SportAppServer.Controllers
 
 
         [HttpGet("GetComments")]
-        public async Task<IActionResult> GetComments([FromQuery] DateTime itemId, int pageNumber = 1, int pageSize = 10)
+        public async Task<IActionResult> GetComments([FromQuery] DateTime itemId, string Viewer, int pageNumber = 1, int pageSize = 10)
         {
-            CommentsPagination paginatedComments = await _commentsService.GetPaginatedCommentsList(itemId, pageNumber, pageSize);
+            CommentsPagination paginatedComments = await _commentsService.GetPaginatedCommentsList(itemId, Viewer, pageNumber, pageSize);
 
             return Ok(paginatedComments);
         }
@@ -42,6 +43,9 @@ namespace SportAppServer.Controllers
         [HttpPost("AddLike")]
         public async Task<IActionResult> AddLike([FromBody] AddCommentLike likeData)
         {
+
+            Debug.WriteLine($"LikeData: {likeData.LikeAuthor}, {likeData.CommentId}");
+
             if (string.IsNullOrEmpty(likeData.LikeAuthor))
                 return BadRequest();
 
@@ -56,21 +60,24 @@ namespace SportAppServer.Controllers
         }
 
 
-        //[HttpPost("RemoveLike")]
-        //public async Task<IActionResult> RemoveLike([FromBody] LikeDto like)
-        //{
-        //    if (like == null)
-        //        return BadRequest();
+        [HttpPost("RemoveLike")]
+        public async Task<IActionResult> RemoveLike ([FromBody] AddCommentLike likeData)
+        {
 
-        //    int likesCount = await _likeService.RemoveLikeAsync(like);
+            Debug.WriteLine($"LikeData: {likeData.LikeAuthor}, {likeData.CommentId}");
 
-        //    if (likesCount < 0)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (string.IsNullOrEmpty(likeData.LikeAuthor))
+                return BadRequest();
 
-        //    return Ok();
-        //}
+            int likesCount = await _commentsService.RemoveLike(likeData.LikeAuthor, likeData.CommentId);
+
+            if (likesCount < 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok(likesCount);
+        }
 
 
     }

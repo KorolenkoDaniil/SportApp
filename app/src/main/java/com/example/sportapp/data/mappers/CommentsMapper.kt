@@ -16,7 +16,10 @@ class CommentsMapper {
                 commentText = item.commentText,
                 email = item.email,
                 elapsedTime = item.ElapsedTime,
-                user = userMapper.UserResponseToEntity(item.user)
+                isLiked = item.isLiked,
+                likesCount = item.LikesCount,
+                commentId = item.commentId,
+                user = userMapper.UserResponseToEntity(item.user),
             )
         }
     }
@@ -29,6 +32,9 @@ class CommentsMapper {
             commentText = response.commentText,
             email = response.email,
             elapsedTime = response.ElapsedTime,
+            isLiked = response.isLiked,
+            likesCount = response.LikesCount,
+            commentId = response.commentId,
             user = userMapper.UserResponseToEntity(response.user)
         )
     }
@@ -42,7 +48,10 @@ class CommentsMapper {
             commentText = response.commentText,
             email = response.email,
             ElapsedTime = response.elapsedTime,
-            user = userMapper.ConvertToDto(response.user)
+            isLiked = response.isLiked,
+            commentId = response.commentId,
+            user = userMapper.ConvertToDto(response.user),
+            LikesCount = response.likesCount,
         )
 
     }

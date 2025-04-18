@@ -41,7 +41,10 @@ fun CommentSendButton(commentsViewModel: CommentsViewModel, authViewModel: AuthV
                         commentText = message,
                         email = authViewModel.currentUser.value!!.email,
                         elapsedTime = "1 c",
-                        user = authViewModel.currentUser.value!!
+                        user = authViewModel.currentUser.value!!,
+                        isLiked = false,
+                        likesCount = 0,
+                        commentId = 0
                     )
                 )
                 itemList.addFirst(newComment)
