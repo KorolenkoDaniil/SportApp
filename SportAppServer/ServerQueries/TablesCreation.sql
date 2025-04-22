@@ -16,6 +16,7 @@ CREATE TABLE News (
     Title NVARCHAR(MAX) NOT NULL,
     ImageId NVARCHAR(MAX) NOT NULL,
 	ArticleText NVARCHAR(MAX),
+	FTS_key Int Identity(1, 1) not null
 );
 
 CREATE TABLE Users (
@@ -52,9 +53,9 @@ CREATE TABLE NewsLike (
 
 
 CREATE TABLE CommentLikes (
-    CommentLikeId INT IDENTITY(1,1) PRIMARY KEY,                  -- Уникальный ID лайка
-    CommentId INT NOT NULL,                                       -- Ссылка на комментарий
-    LikedByUserEmail NVARCHAR(255) NOT NULL,                      -- Кто лайкнул
+    CommentLikeId INT IDENTITY(1,1) PRIMARY KEY,                  
+    CommentId INT NOT NULL,                                       
+    LikedByUserEmail NVARCHAR(255) NOT NULL,                      
 
     FOREIGN KEY (CommentId) REFERENCES NewsComments (CommentId) ON DELETE CASCADE,
     FOREIGN KEY (LikedByUserEmail) REFERENCES Users(UserEmail),
@@ -132,7 +133,10 @@ VALUES
 ('Волейбол', CONVERT(DATETIME, '2024-04-08 22:00:00', 120), 'Италия побеждает в турнире в Турции', '1vj1fazpnqpov4rl7l36oc0k3ri7s6ff.jpg', 'Италия завоевала титул победителя турнира в Турции, выиграв финал с результатом 3:1.'),
 
 -- Дополнительные новости для примера
-('Футбол', CONVERT(DATETIME, '2024-04-05 12:30:00', 120), 'Манчестер Юнайтед обыгрывает Арсенал в Английской Премьер-Лиге', 'unops22spedaia05oqkiyvm8x2xm5p31.jpg', 'Манчестер Юнайтед победил Арсенал 2:1 в напряженном матче Английской Премьер-Лиги.')
+('Футбол', CONVERT(DATETIME, '2024-04-05 12:30:00', 120), 'Манчестер Юнайтед обыгрывает Арсенал в Английской Премьер-Лиге', 'unops22spedaia05oqkiyvm8x2xm5p31.jpg', 'Манчестер Юнайтед победил Арсенал 2:1 в напряженном матче Английской Премьер-Лиги.'),
+('Футбол', CONVERT(DATETIME, '2024-04-05 12:31:00', 120), 'Манчестер Юнайтед обыгрывает Арсенал в Английской Премьер-Лиге', 'unops22spedaia05oqkiyvm8x2xm5p31.jpg', 'Манчестер победил победил Арсенал 2:1 в напряженном матче Английской Премьер-Лиги.'),
+('Футбол', CONVERT(DATETIME, '2024-04-05 12:32:00', 120), 'Манчестер Юнайтед обыгрывает Арсенал в Английской Премьер-Лиге', 'unops22spedaia05oqkiyvm8x2xm5p31.jpg', 'Манчестер Юнайтед победил Арсенал 2:1 в беда матче Английской Премьер-Лиги.'),
+('Футбол', CONVERT(DATETIME, '2024-04-05 12:33:00', 120), 'Манчестер Юнайтед обыгрывает Арсенал в Английской Премьер-Лиге', 'unops22spedaia05oqkiyvm8x2xm5p31.jpg', 'Манчестер Юнайтед победил победили 2:1 в напряженном матче Английской Премьер-Лиги.')
 
 
 
@@ -216,19 +220,16 @@ SELECT @LikeCount AS LikeCount;
 USE KorSport
 GO
 
-/****** Object:  StoredProcedure [dbo].[CountComments]    Script Date: 15.04.2025 15:49:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
--- Правильно изменяем процедуру, если она существует или создаем, если её нет
 CREATE OR ALTER PROCEDURE [dbo].[CountComments]
     @newsDateTime DATETIME,
     @CommentCount INT OUTPUT
 AS
 BEGIN
-    -- Подсчет комментариев по NewsDateTime
     SELECT @CommentCount = COUNT(*)
     FROM NewsComments 
     WHERE NewsDateTime = @newsDateTime;
@@ -236,13 +237,11 @@ END
 GO
 
 
--- Правильно изменяем процедуру LikesCount, исправив связь с таблицей News
 CREATE OR ALTER PROCEDURE [dbo].[LikesCount]
     @newsDateTime DATETIME,
     @LikesCount INT OUTPUT
 AS
 BEGIN
-    -- Подсчет лайков для новости по NewsDateTime
     SELECT @LikesCount = COUNT(*)
     FROM NewsLike nl
     JOIN News n ON nl.NewsDateTime = n.DateTime
@@ -251,20 +250,106 @@ END
 GO
 
 
--- Пример выполнения процедуры для подсчета лайков
 DECLARE @date DATETIME = CONVERT(DATETIME, '2024-04-06 21:30:00', 120);
 DECLARE @LikeCount INT;
 
--- Вызов процедуры LikesCount
 EXEC [dbo].[LikesCount] @newsDateTime = @date, @LikesCount = @LikeCount OUTPUT;
-
 SELECT @LikeCount AS LikeCount;
 
 
--- Пример выполнения процедуры для подсчета комментариев
 DECLARE @CommentCount INT;
-
--- Вызов процедуры CountComments
 EXEC [dbo].[CountComments] @newsDateTime = @date, @CommentCount = @CommentCount OUTPUT;
-
 SELECT @CommentCount AS CommentCount;
+
+
+
+
+
+
+-- 1. Удалим полнотекстовый индекс, если есть
+IF EXISTS (SELECT * FROM sys.fulltext_indexes WHERE object_id = OBJECT_ID('News'))
+    DROP FULLTEXT INDEX ON News;
+GO
+
+-- 2. Удалим уникальный индекс, если был
+IF EXISTS (SELECT * FROM sys.indexes WHERE name = 'PK_News')
+    DROP INDEX PK_News ON News;
+GO
+
+-- 3. Добавим техническую колонку FTS_key, если не существует
+IF COL_LENGTH('News', 'FTS_key') IS NULL
+BEGIN
+    ALTER TABLE News ADD FTS_key INT IDENTITY(1,1);
+END
+GO
+
+-- 4. Создадим уникальный индекс по FTS_key (требуется для FTS)
+CREATE UNIQUE INDEX PK_News ON News(FTS_key);
+GO
+
+-- 5. Удалим каталог полнотекстового поиска, если уже есть
+IF EXISTS (SELECT * FROM sys.fulltext_catalogs WHERE name = 'ftCatalog')
+    DROP FULLTEXT CATALOG ftCatalog;
+GO
+
+-- 6. Создадим новый каталог полнотекстового поиска
+CREATE FULLTEXT CATALOG ftCatalog AS DEFAULT;
+GO
+
+-- 7. Создадим полнотекстовый индекс (укажем язык 1049 — русский)
+CREATE FULLTEXT INDEX ON News(ArticleText LANGUAGE 1049)
+    KEY INDEX PK_News ON ftCatalog;
+GO
+
+
+
+
+CREATE OR ALTER PROCEDURE SearchNewsByText
+    @search NVARCHAR(4000)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @sql NVARCHAR(MAX);
+    DECLARE @containsExpression NVARCHAR(4000);
+
+    -- Правильный вариант с одинарными кавычками
+    SET @containsExpression = 'FORMSOF(INFLECTIONAL, ' + QUOTENAME(@search, '''') + ')';
+
+    SET @sql = '
+        SELECT *
+        FROM News
+        WHERE CONTAINS(ArticleText, ' + @containsExpression + ')
+    ';
+
+    EXEC sp_executesql @sql;
+END
+GO
+
+
+
+
+
+CREATE OR ALTER PROCEDURE CountNewsByText
+    @search NVARCHAR(4000),
+    @total INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @sql NVARCHAR(MAX);
+    DECLARE @containsExpression NVARCHAR(4000);
+
+    SET @containsExpression = 'FORMSOF(INFLECTIONAL, ' + QUOTENAME(@search, '''') + ')';
+
+    SET @sql = '
+        SELECT @totalOut = COUNT(*)
+        FROM News
+        WHERE CONTAINS(ArticleText, ' + @containsExpression + ')';
+
+    EXEC sp_executesql
+        @sql,
+        N'@totalOut INT OUTPUT',
+        @totalOut = @total OUTPUT;
+END
+GO

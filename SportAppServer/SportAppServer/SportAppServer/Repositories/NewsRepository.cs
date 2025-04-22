@@ -166,6 +166,42 @@ namespace SportAppServer.Repositories
 
 
 
+        public async Task<(List<News>, int totalItems)> GetNewsListwithSearch(string searchPrompt, int pageNumber = 1, int pageSize = 10)
+        {
+            var outputParam = new SqlParameter("@total", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output
+            };
+
+            var searchParam = new SqlParameter("@search", searchPrompt);
+
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC CountNewsByText @search, @total OUT",
+                searchParam, outputParam
+            );
+
+            int totalItems = (int)outputParam.Value;
+
+            var newsList = await _context.NewsList
+                .FromSqlRaw("EXEC SearchNewsByText @search", searchParam)
+                .ToListAsync();
+
+            var paginatedList = newsList
+                .OrderByDescending(n => n.DateTime)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            // Подгрузка тегов (если нужно)
+            foreach (var newsItem in paginatedList)
+            {
+                newsItem.Tags = await _context.Tags
+                    .Where(t => t.NewsDateTime == newsItem.DateTime)
+                    .ToListAsync();
+            }
+
+            return (paginatedList, totalItems);
+        }
 
 
     }

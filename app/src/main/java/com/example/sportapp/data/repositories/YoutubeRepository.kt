@@ -16,8 +16,6 @@ import kotlinx.serialization.json.Json
 class YoutubeRepository {
 
     private val apiKey = "AIzaSyDW4nt60Fz-opw2g8iz8ZuulYWYO-Ar7ME"
-//    private val apiKey = "AIzaSyCZYtkyOKqGBE30EQigltlRsXrz7o8dGqw"
-//    private val apiKey = "AIzaSyAXi4bKWJNuJPaInDckFHLhTqGDnl_98nw"
     private val channelId = "UCxfPjORdISQSn2fV8tcVmgA"
     private var nextPageToken: String? = null
 

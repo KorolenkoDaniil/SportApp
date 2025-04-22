@@ -84,19 +84,25 @@ namespace SportAppServer.Controllers
 
 
 
-        //[HttpPost("ExistLike")]
-        //public async Task<IActionResult> ExistLike([FromBody] LikeDto like)
-        //{
-        //    if (like == null)
-        //        return BadRequest();
+        [HttpPost("SearchNews")]
+        public async Task<IActionResult> SearchNews([FromQuery] string searchPrompt, int pageNumber = 1, int pageSize = 10)
+        {
+            if (searchPrompt == null)
+                return BadRequest();
+
+            NewsPagination paginatedNews = await _newsService.GetPaginatedNewsListwithSearch(searchPrompt, pageNumber, pageSize);
+
+            if (paginatedNews.News.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(paginatedNews);
+        }
 
 
-        //    bool LikeExist = await _likeService.LikeExist(like);
 
-        //    Debug.WriteLine(LikeExist + "dfsdfsdfsdfsdfsdfsdffsdffd");
 
-        //    return Ok(LikeExist);
-        //}
     }
 }
 

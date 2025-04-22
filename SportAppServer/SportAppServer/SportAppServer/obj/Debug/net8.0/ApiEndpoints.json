@@ -199,5 +199,31 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.NewsController",
+    "Method": "SearchNews",
+    "RelativePath": "NewsController/SearchNews",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchPrompt",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

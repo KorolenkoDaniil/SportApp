@@ -79,6 +79,21 @@ namespace SportAppServer.Services
 
         }
 
+        public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageNumber = 1, int pageSize = 10)
+        {
+            var (newsList, totalItems) = await _newsRepository.GetNewsListwithSearch(searchPrompt, pageNumber, pageSize);
+
+
+            var page = new NewsPagination
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                News = NewsMapper.ConvertToListOfDTO(newsList)
+            };
+
+            return page;
+        }
         private Task<bool> LikeExist(DateTime newsDateTime, string email)
         {
             Debug.WriteLine(newsDateTime.ToString());
@@ -90,5 +105,8 @@ namespace SportAppServer.Services
         {
             throw new NotImplementedException();
         }
+
+
+       
     }
 }
