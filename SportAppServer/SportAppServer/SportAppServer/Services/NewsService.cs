@@ -3,6 +3,7 @@ using SportAppServer.Models.Entities;
 using SportAppServer.Models.Mappers;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
+using SportAppServer.Services.LemmatizeMicroService;
 using System.Diagnostics;
 
 namespace SportAppServer.Services
@@ -81,6 +82,14 @@ namespace SportAppServer.Services
 
         public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageNumber = 1, int pageSize = 10)
         {
+
+            searchPrompt = searchPrompt.ToLower().Trim();
+
+            searchPrompt = await LemmatizeService.GetLems(searchPrompt);
+
+            Debug.WriteLine(searchPrompt);
+
+
             var (newsList, totalItems) = await _newsRepository.GetNewsListwithSearch(searchPrompt, pageNumber, pageSize);
 
 
@@ -94,6 +103,11 @@ namespace SportAppServer.Services
 
             return page;
         }
+
+
+
+
+
         private Task<bool> LikeExist(DateTime newsDateTime, string email)
         {
             Debug.WriteLine(newsDateTime.ToString());

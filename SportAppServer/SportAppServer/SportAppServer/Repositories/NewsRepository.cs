@@ -168,6 +168,9 @@ namespace SportAppServer.Repositories
 
         public async Task<(List<News>, int totalItems)> GetNewsListwithSearch(string searchPrompt, int pageNumber = 1, int pageSize = 10)
         {
+            // Приведение строки к виду, подходящему для CONTAINS
+            searchPrompt = FormatForFullTextSearch(searchPrompt);
+
             var outputParam = new SqlParameter("@total", SqlDbType.Int)
             {
                 Direction = ParameterDirection.Output
@@ -203,6 +206,17 @@ namespace SportAppServer.Repositories
             return (paginatedList, totalItems);
         }
 
+
+
+
+        private string FormatForFullTextSearch(string input)
+        {
+            var terms = input
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Select(t => $"\"{t}\"");
+
+            return string.Join(" AND ", terms);
+        }
 
     }
 }

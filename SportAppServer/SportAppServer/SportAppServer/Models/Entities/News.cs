@@ -24,6 +24,9 @@ namespace SportAppServer.Models.Entities
 
         [JsonProperty("article_texts")]
         public required string ArticleText { get; set; }
+
+        public required string TextAfterLemmatize { get; set; }
+
         public required List<NewsTag> Tags { get; set; }
 
 

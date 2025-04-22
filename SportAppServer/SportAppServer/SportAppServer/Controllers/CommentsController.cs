@@ -78,7 +78,5 @@ namespace SportAppServer.Controllers
 
             return Ok(likesCount);
         }
-
-
     }
 }

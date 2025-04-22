@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using SportAppServer.Context;
 using SportAppServer.Models.Entities;
+using SportAppServer.Services.LemmatizeMicroService;
 using System.Diagnostics;
 using System.Text;
 
@@ -100,6 +101,12 @@ namespace SportAppServer
                         Console.WriteLine("Нет новых новостей для добавления.");
                         return;
                     }
+
+                    foreach (var news in newNews)
+                    {
+                        news.TextAfterLemmatize = await LemmatizeService.GetLems(news.ArticleText);
+                    }
+
 
                     await newsDB.NewsList.AddRangeAsync(newsList);
                     await newsDB.SaveChangesAsync();
