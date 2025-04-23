@@ -166,7 +166,7 @@ namespace SportAppServer.Repositories
 
 
 
-        public async Task<(List<News>, int totalItems)> GetNewsListwithSearch(string searchPrompt, int pageNumber = 1, int pageSize = 10)
+        public async Task<(List<News>, int totalItems)> GetNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber)
         {
             // Приведение строки к виду, подходящему для CONTAINS
             searchPrompt = FormatForFullTextSearch(searchPrompt);
@@ -195,7 +195,7 @@ namespace SportAppServer.Repositories
                 .Take(pageSize)
                 .ToList();
 
-            // Подгрузка тегов (если нужно)
+            
             foreach (var newsItem in paginatedList)
             {
                 newsItem.Tags = await _context.Tags
@@ -215,7 +215,7 @@ namespace SportAppServer.Repositories
                 .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(t => $"\"{t}\"");
 
-            return string.Join(" AND ", terms);
+            return string.Join(" OR ", terms);
         }
 
     }

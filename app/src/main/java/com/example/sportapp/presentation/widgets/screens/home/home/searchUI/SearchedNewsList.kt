@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home.home.searchUI
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -26,7 +27,6 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
-import com.example.sportapp.presentation.navigation.Screen
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -69,9 +69,11 @@ fun SearchedNEwsList(newsViewModel: NewsActivityViewModel, searchPrompt: String,
                     .fillMaxWidth()
                     .height(200.dp)
                     .clickable {
-                        navController.navigate(Screen.News.route)
+                        val newsDateTime = news.dateTime
+                        Log.d("ttt", "pageeee  $newsDateTime" )
 
-                        newsViewModel.selectedNews = news
+                        navController.navigate("news/$newsDateTime")
+//                        newsViewModel.selectedNews = news
                     },
                 contentScale = ContentScale.Crop
             )

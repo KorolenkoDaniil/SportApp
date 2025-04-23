@@ -88,7 +88,7 @@ namespace SportAppServer.Controllers
 
 
         [HttpPost("SearchNews")]
-        public async Task<IActionResult> SearchNews([FromQuery] string searchPrompt, int pageNumber = 1, int pageSize = 10)
+        public async Task<IActionResult> SearchNews([FromQuery] string searchPrompt, int pageNumber = 1, int pageSize = 5)
         {
             if (searchPrompt == null)
                 return BadRequest();

@@ -161,7 +161,7 @@ namespace SportAppServer.Services
             return page;
         }
 
-        public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageNumber = 1, int pageSize = 10)
+        public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber)
         {
 
             searchPrompt = searchPrompt.ToLower().Trim();
