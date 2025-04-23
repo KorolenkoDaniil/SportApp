@@ -17,7 +17,21 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
 
     override fun getState(): StateFlow<NewsState> = state
 
-    override fun loadData() { }
+    override fun loadData() {}
+
+
+    private var _selectedNews = selectedNews
+
+    var selectedNews: NewsEntity
+        get() = _selectedNews
+        set(value) {
+            _selectedNews = value
+        }
+
+
+    private val _isSearched = MutableStateFlow(false)
+
+    val isSearched: StateFlow<Boolean> = _isSearched
 
     init {
         viewModelScope.launch {
@@ -32,10 +46,33 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
     }
 
 
-    suspend fun loadNewsData(pageNumber: Int): List<NewsEntity> {
-        return  repository.getNews(pageNumber).news
+    fun toggleIsSearched (value: Boolean) {
+        _isSearched.value = value
     }
+
+
+    suspend fun loadNewsData(pageNumber: Int): List<NewsEntity> {
+        toggleIsSearched(false)
+        return repository.getNews(pageNumber).news
+    }
+
+
+    suspend fun searchNewsSuspend(
+        pageNumber: Int,
+        searchPrompt: String
+    ): NewsListEntity? {
+        return try {
+            toggleIsSearched(true)
+            repository.getNewsWithSearch(pageNumber, searchPrompt)
+        } catch (e: Throwable) {
+            toggleIsSearched(false)
+            Log.e("search", "Ошибка поиска: ${e.message}", e)
+            null
+        }
+    }
+
 }
+
 
 sealed interface NewsState : BaseState {
     data object Load : NewsState

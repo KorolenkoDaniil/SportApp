@@ -304,6 +304,9 @@ GO
 
 
 
+
+
+
 CREATE OR ALTER PROCEDURE SearchNewsByText
     @search NVARCHAR(4000)
 AS

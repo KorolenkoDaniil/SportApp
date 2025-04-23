@@ -36,6 +36,7 @@ fun HomePage(
                     when (states.newsState) {
 
                         is NewsState.NewsContent -> {
+
                             HomePageContent(
                                 user = user,
                                 viewModels,

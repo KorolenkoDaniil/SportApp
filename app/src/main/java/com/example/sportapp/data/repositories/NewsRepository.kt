@@ -13,13 +13,15 @@ import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.request
 import io.ktor.http.HttpMethod
 import io.ktor.http.encodedPath
+import io.ktor.http.takeFrom
 import kotlinx.serialization.json.Json
 
 class NewsRepository {
 
     private val controllerPath = "NewsController"
-    private val getNewsController = "GetNews"
-    private val getOneNewsController = "GetOneNews"
+    private val getNewsEndPoint = "GetNews"
+    private val getOneNewsEndPoint = "GetOneNews"
+    private val getNewsBySearchEndPoint = "SearchNews"
 
     val newsMapper = NewsMapper()
 
@@ -35,7 +37,7 @@ class NewsRepository {
 
         builder.url {
             (BaseUrl)
-            encodedPath = "/$controllerPath/$getNewsController"
+            encodedPath = "/$controllerPath/$getNewsEndPoint"
             this.parameters.append("pageNumber", pageNumber.toString())
         }
 
@@ -64,7 +66,7 @@ class NewsRepository {
 
         builder.url {
             (BaseUrl)
-            encodedPath = "/$controllerPath/$getOneNewsController"
+            encodedPath = "/$controllerPath/$getOneNewsEndPoint"
             this.parameters.append("dateTime", dateTime)
             this.parameters.append("userEmail", userEmail)
 
@@ -84,6 +86,37 @@ class NewsRepository {
         val oneNewsResponse: NewsDto = json.decodeFromString(responseString)
 
         return newsMapper.getOneNewsEntity(oneNewsResponse, BaseUrl)
+    }
+
+
+
+    suspend fun getNewsWithSearch(pageNumber: Int, searchPrompt: String): NewsListEntity {
+        val builder = HttpRequestBuilder()
+
+        builder.method = HttpMethod.Post
+
+        builder.url.takeFrom(BaseUrl)
+        builder.url {
+            encodedPath = "/$controllerPath/$getNewsBySearchEndPoint"
+            parameters.append("pageNumber", pageNumber.toString())
+            parameters.append("searchPrompt", searchPrompt)
+            parameters.append("pageSize", "3")
+        }
+
+        val requestUrl = builder.url.toString()
+        Log.d("tttNews", "Request URL: $requestUrl")
+
+        val response = newsNetworkClient.request(builder)
+
+        Log.d("tttNews", response.toString())
+
+        val responseString: String = response.body()
+
+        Log.d("tttNews", responseString)
+
+        val newsPageDto: NewsPageDto = json.decodeFromString(responseString)
+
+        return newsMapper.getNewsEntityList(newsPageDto, BaseUrl)
     }
 }
 

@@ -4,6 +4,7 @@ using SportAppServer.Models.Entities;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
 using SportAppServer.Services;
+using System.Diagnostics;
 
 
 namespace SportAppServer.Controllers
@@ -27,6 +28,8 @@ namespace SportAppServer.Controllers
         [HttpGet("GetNews")]
         public async Task<IActionResult> GetNews(int pageNumber = 1, int pageSize = 10)
         {
+            Debug.WriteLine($"pageNumber {pageNumber} pageSize {pageSize}");
+
             NewsPagination paginatedNews = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
 
             if (paginatedNews.News.Count == 0)
@@ -94,7 +97,7 @@ namespace SportAppServer.Controllers
 
             if (paginatedNews.News.Count == 0)
             {
-                return NotFound();
+               paginatedNews = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
             }
 
             return Ok(paginatedNews);
