@@ -41,7 +41,6 @@ fun HomePage(
                                 user = user,
                                 viewModels,
                                 navController = navController,
-                                news = states.newsState.news,
                                 horizontalPaddings
                             )
                         }

@@ -334,3 +334,15 @@ BEGIN
     WHERE CONTAINS(ArticleText, @search)
 END
 GO
+
+
+
+
+DELETE FROM News
+WHERE Title IS NULL
+   OR ArticleText IS NULL
+   OR ImageId IS NULL
+   OR Sport IS NULL
+   OR DateTime IS NULL;
+
+

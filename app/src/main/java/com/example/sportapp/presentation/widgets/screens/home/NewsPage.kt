@@ -3,6 +3,7 @@ package com.example.sportapp.presentation.widgets.screens.home
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,29 +31,36 @@ fun NewsPage(
     showBar: MutableState<Boolean>,
 ) {
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
-    oneNewsViewModel.loadOneNewsData(newsDateTime, viewModels.authViewModel.currentUser.value!!.email)
+    val currentUserEmail = viewModels.authViewModel.currentUser.value?.email
+
+    // Загружаем новость только если email доступен
+    LaunchedEffect(newsDateTime, currentUserEmail) {
+        if (currentUserEmail != null) {
+            oneNewsViewModel.loadOneNewsData(newsDateTime, currentUserEmail)
+        } else {
+            Log.e("NewsPage", "Email is null, cannot load news")
+        }
+    }
 
     val oneNewsState by oneNewsViewModel.getState().collectAsState()
     viewModels.appActivity.changePageName("One News")
 
-
-    when (oneNewsState) {
+    when (val oneNews = oneNewsState) {
         is OneNewsSate.OneNewsContent -> {
-            when (states.newsState) {
+            when (val news = states.newsState) {
                 is NewsState.NewsContent -> {
-
                     NewsPageContent(
-                        oneNewsState = oneNewsState,
+                        oneNewsState = oneNews,
                         navController = navController,
                         newsViewModel = viewModels.newsViewModel,
-                        horizontalPaddings,
-                        viewModels.authViewModel,
-                        showBar
+                        horizontalPaddings = horizontalPaddings,
+                        authModel = viewModels.authViewModel,
+                        showBar = showBar
                     )
                 }
 
                 is NewsState.Error -> {
-                    Log.d("tttNews", "ошибка newsPage")
+                    Log.d("NewsPage", "Ошибка в NewsState")
                     CommonError(viewModels.newsViewModel, Screen.News.route, navController, "новости")
                 }
 
@@ -63,10 +71,12 @@ fun NewsPage(
         }
 
         is OneNewsSate.Error -> {
-            Log.d("newsPage", newsDateTime)
+            Log.d("NewsPage", "Ошибка в OneNewsState. NewsDateTime: $newsDateTime")
             CommonError(oneNewsViewModel, Screen.News.route, navController, "1 новость")
         }
 
-        is OneNewsSate.Load -> Loading()
+        is OneNewsSate.Load -> {
+            Loading()
+        }
     }
 }
