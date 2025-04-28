@@ -88,12 +88,12 @@ namespace SportAppServer.Controllers
 
 
         [HttpPost("SearchNews")]
-        public async Task<IActionResult> SearchNews([FromQuery] string searchPrompt, int pageNumber = 1, int pageSize = 5)
+        public async Task<IActionResult> SearchNews([FromQuery] string searchPrompt = "", int pageNumber = 1, int pageSize = 5, int sportIndex = -1)
         {
-            if (searchPrompt == null)
+            if (searchPrompt == null && sportIndex == -1)
                 return BadRequest();
 
-            NewsPagination paginatedNews = await _newsService.GetPaginatedNewsListwithSearch(searchPrompt, pageNumber, pageSize);
+            NewsPagination paginatedNews = await _newsService.GetPaginatedNewsListwithSearch(searchPrompt, pageSize, pageNumber, sportIndex);
 
             if (paginatedNews.News.Count == 0)
             {

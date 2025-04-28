@@ -59,11 +59,12 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
 
     suspend fun searchNewsSuspend(
         pageNumber: Int,
-        searchPrompt: String
+        searchPrompt: String,
+        sportIndex: Int,
     ): NewsListEntity? {
         return try {
             toggleIsSearched(true)
-            repository.getNewsWithSearch(pageNumber, searchPrompt)
+            repository.getNewsWithSearch(pageNumber, searchPrompt, sportIndex)
         } catch (e: Throwable) {
             toggleIsSearched(false)
             Log.e("search", "Ошибка поиска: ${e.message}", e)

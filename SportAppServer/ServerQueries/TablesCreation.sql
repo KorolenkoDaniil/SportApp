@@ -68,6 +68,7 @@ CREATE TABLE CommentLikes (
 
 create index NewCommentsIndex on NewsComments (NewsDateTime)
 create index NewLikesIndex on NewsLike (NewsDateTime)
+create index NewsSportIndex on News (Sport)
 
 --drop index if exists NewCommentsIndex on NewsComments
 
@@ -304,37 +305,85 @@ GO
 
 
 
-
-
-
-CREATE OR ALTER PROCEDURE SearchNewsByText
-    @search NVARCHAR(4000)
+CREATE OR ALTER PROCEDURE SearchNews
+    @search NVARCHAR(4000) = NULL,
+    @sport NVARCHAR(500) = NULL,
+    @PageNumber INT = 1,
+    @PageSize INT = 10
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT *
-    FROM News
-    WHERE CONTAINS(ArticleText, @search)
+    PRINT @search
+    PRINT @sport
+    PRINT @PageNumber
+    PRINT @PageSize
+
+    DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
+
+    IF @search IS NULL OR @search = ''
+    BEGIN
+        -- “олько по спорту
+        SELECT *
+        FROM News
+        WHERE (@sport IS NULL OR Sport = @sport)
+        ORDER BY DateTime DESC
+        OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
+    END
+    ELSE IF @sport IS NULL OR @sport = ''
+    BEGIN
+        -- “олько по тексту
+        SELECT *
+        FROM News
+        WHERE CONTAINS(ArticleText, @search)
+        ORDER BY DateTime DESC
+        OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
+    END
+    ELSE
+    BEGIN
+        -- ѕо тексту и спорту
+        SELECT *
+        FROM News
+        WHERE CONTAINS(ArticleText, @search)
+          AND Sport = @sport
+        ORDER BY DateTime DESC
+        OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
+    END
 END
 GO
 
 
 
 
-CREATE OR ALTER PROCEDURE CountNewsByText
-    @search NVARCHAR(4000),
+
+CREATE OR ALTER PROCEDURE CountNews
+    @search NVARCHAR(4000) = NULL,
+    @sport NVARCHAR(500) = NULL,
     @total INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT @total = COUNT(*)
-    FROM News
-    WHERE CONTAINS(ArticleText, @search)
+    print @search
+    print @sport
+
+    IF @search IS NULL OR @search = ''
+    BEGIN
+        -- ≈сли поисковый запрос пуст, считаем по виду спорта (если он задан)
+        SELECT @total = COUNT(*)
+        FROM News
+        WHERE (@sport IS NULL OR Sport = @sport);
+    END
+    ELSE
+    BEGIN
+        -- ≈сли поисковый запрос не пуст, считаем по поисковому запросу и виду спорта (если задан)
+        SELECT @total = COUNT(*)
+        FROM News
+        WHERE (@sport IS NULL OR Sport = @sport)
+          AND CONTAINS(ArticleText, @search);
+    END
 END
 GO
-
 
 
 

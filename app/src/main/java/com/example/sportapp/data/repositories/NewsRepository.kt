@@ -90,7 +90,7 @@ class NewsRepository {
 
 
 
-    suspend fun getNewsWithSearch(pageNumber: Int, searchPrompt: String): NewsListEntity {
+    suspend fun getNewsWithSearch(pageNumber: Int, searchPrompt: String, sportIndex: Int): NewsListEntity {
         val builder = HttpRequestBuilder()
 
         builder.method = HttpMethod.Post
@@ -101,6 +101,7 @@ class NewsRepository {
             parameters.append("pageNumber", pageNumber.toString())
             parameters.append("searchPrompt", searchPrompt)
             parameters.append("pageSize", "3")
+            parameters.append("sportIndex", sportIndex.toString())
         }
 
         val requestUrl = builder.url.toString()

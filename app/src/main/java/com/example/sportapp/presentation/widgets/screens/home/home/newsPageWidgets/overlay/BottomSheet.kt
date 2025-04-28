@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CommentsBottomSheet(
+fun BottomSheet(
     showSheet: Boolean,
     onDismiss: () -> Unit,
     content: @Composable () -> Unit

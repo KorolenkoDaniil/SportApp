@@ -83,97 +83,25 @@ namespace SportAppServer.Services
                 News = NewsMapper.ConvertToListOfDTO(newsList)
             };
 
-
-            //var page = new NewsPagination
-            //{
-            //    PageNumber = pageNumber,
-            //    PageSize = pageSize,
-            //    TotalItems = 4, // Количество новостей
-            //    News = new List<NewsDTO>
-            //    {
-            //        new NewsDTO(
-            //            DateTime.Parse("2025-04-23 11:01:00.000"), // DateTime
-            //            "Football",                  // Sport
-            //            "Title 1",                                 // Title
-            //            "0u8xmdl1fee797sgu5f5fwnwanhpbaat.jpg",    // ImageId
-            //            "Description 1",                           // ArticleText
-            //            new List<NewsTagDTO> {                     // Tags
-            //                new NewsTagDTO("Football", DateTime.Parse("2025-04-23 11:01:00.000")),
-            //                new NewsTagDTO("News", DateTime.Parse("2025-04-23 11:01:00.000"))
-            //            }
-            //        )
-            //        {
-            //            Comments_count = 10,    // Инициализация дополнительных полей
-            //            Likes_count = 5,       // Инициализация дополнительных полей
-            //            Is_Liked = false       // Инициализация дополнительных полей
-            //        },
-            //         new NewsDTO(
-            //            DateTime.Parse("2025-04-23 11:01:00.000"), // DateTime
-            //            "Football",                  // Sport
-            //            "Title 1",                                 // Title
-            //            "0u8xmdl1fee797sgu5f5fwnwanhpbaat.jpg",    // ImageId
-            //            "Description 1",                           // ArticleText
-            //            new List<NewsTagDTO> {                     // Tags
-            //                new NewsTagDTO("Football", DateTime.Parse("2025-04-23 11:01:00.000")),
-            //                new NewsTagDTO("News", DateTime.Parse("2025-04-23 11:01:00.000"))
-            //            }
-            //        )
-            //        {
-            //            Comments_count = 10,    // Инициализация дополнительных полей
-            //            Likes_count = 5,       // Инициализация дополнительных полей
-            //            Is_Liked = false       // Инициализация дополнительных полей
-            //        },
-            //        new NewsDTO(
-            //            DateTime.Parse("2025-04-23 11:01:00.000"), // DateTime
-            //            "Football",                  // Sport
-            //            "Title 1",                                 // Title
-            //            "0u8xmdl1fee797sgu5f5fwnwanhpbaat.jpg",    // ImageId
-            //            "Description 1",                           // ArticleText
-            //            new List<NewsTagDTO> {                     // Tags
-            //                new NewsTagDTO("Football", DateTime.Parse("2025-04-23 11:01:00.000")),
-            //                new NewsTagDTO("News", DateTime.Parse("2025-04-23 11:01:00.000"))
-            //            }
-            //        )
-            //        {
-            //            Comments_count = 10,    // Инициализация дополнительных полей
-            //            Likes_count = 5,       // Инициализация дополнительных полей
-            //            Is_Liked = false       // Инициализация дополнительных полей
-            //        },
-            //         new NewsDTO(
-            //            DateTime.Parse("2025-04-23 11:01:00.000"), // DateTime
-            //            "Football",                  // Sport
-            //            "Title 1",                                 // Title
-            //            "0u8xmdl1fee797sgu5f5fwnwanhpbaat.jpg",    // ImageId
-            //            "Description 1",                           // ArticleText
-            //            new List<NewsTagDTO> {                     // Tags
-            //                new NewsTagDTO("Football", DateTime.Parse("2025-04-23 11:01:00.000")),
-            //                new NewsTagDTO("News", DateTime.Parse("2025-04-23 11:01:00.000"))
-            //            }
-            //        )
-            //        {
-            //            Comments_count = 10,    // Инициализация дополнительных полей
-            //            Likes_count = 5,       // Инициализация дополнительных полей
-            //            Is_Liked = false       // Инициализация дополнительных полей
-            //        },
-            //    }
-            //};
-
             return page;
         }
 
-        public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber)
+        public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
         {
-
-            searchPrompt = searchPrompt.ToLower().Trim();
-
-            searchPrompt = await LemmatizeService.GetLems(searchPrompt);
+            if (!string.IsNullOrEmpty(searchPrompt))
+            {
+                searchPrompt = searchPrompt.ToLower().Trim();
+                searchPrompt = await LemmatizeService.GetLems(searchPrompt);
+            }
 
             Debug.WriteLine(searchPrompt);
 
 
-            var (newsList, totalItems) = await _newsRepository.GetNewsListwithSearch(searchPrompt, pageNumber, pageSize);
-
-
+            List<News> newsList;
+            int totalItems;
+           
+            (newsList, totalItems) = await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
+            
             var page = new NewsPagination
             {
                 PageNumber = pageNumber,

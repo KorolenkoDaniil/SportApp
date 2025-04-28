@@ -36,6 +36,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
@@ -45,6 +46,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
+import com.example.sportapp.R
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import kotlinx.coroutines.delay
@@ -58,7 +60,9 @@ fun SearchLine(
     navController: NavHostController,
     horizontalPaddings: Dp,
     newsViewModel: NewsActivityViewModel,
-    promptState: MutableState<TextFieldValue>
+    promptState: MutableState<TextFieldValue>,
+    isSearching: Boolean,
+    openFilterOverlay: MutableState<Boolean>
 ) {
     var isFocused by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -70,6 +74,10 @@ fun SearchLine(
     var isFirstLaunch by remember { mutableStateOf(true) }
 
     val lastTextChangeTime = remember { mutableStateOf(0L) }
+
+    var iconRadius = if (isSearching ) 0.dp else 24.dp
+    var iconSize = if (isSearching ) 24.dp else 48.dp
+
 
     LaunchedEffect(promptState.value.text) {
         if (isFirstLaunch) {
@@ -149,20 +157,37 @@ fun SearchLine(
             verticalArrangement = Arrangement.Center
         ) {
             Box(
+
+
+
                 Modifier
-                    .size(48.dp)
-                    .clip(RoundedCornerShape(24.dp))
+                    .size(iconSize)
+                    .clip(RoundedCornerShape(iconRadius))
             ) {
-                Image(
-                    painter = painter,
-                    contentDescription = "User profile picture",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clickable {
-                            authViewModel.signOut(navController)
-                        }
-                )
+                if (!isSearching) {
+                    Image(
+                        painter = painter,
+                        contentDescription = "User profile picture",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clickable {
+                                authViewModel.signOut(navController)
+                            }
+                    )
+                }
+                else {
+                    Image(
+                        painter = painterResource(R.drawable.filter),
+                        contentDescription = "User profile picture",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clickable {
+                                openFilterOverlay.value = true
+                            }
+                    )
+                }
             }
         }
     }

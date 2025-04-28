@@ -19,6 +19,8 @@ import androidx.navigation.NavHostController
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.presentation.widgets.common.shared.SearchLine
+import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
+import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.BottomSheetFilter
 import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.SearchedNEwsList
 import com.example.sportapp.ui.theme.style1
 import kotlinx.coroutines.flow.StateFlow
@@ -32,6 +34,8 @@ fun HomePageContent(
 ) {
 
     val isSearching by viewModels.newsViewModel.isSearched.collectAsState()
+
+    val openFilterOverlay = remember { mutableStateOf(false) }
     val promptState = remember { mutableStateOf(TextFieldValue("")) }
 
     Column {
@@ -42,7 +46,9 @@ fun HomePageContent(
             navController,
             horizontalPaddings,
             viewModels.newsViewModel,
-            promptState
+            promptState,
+            isSearching,
+            openFilterOverlay
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -88,6 +94,14 @@ fun HomePageContent(
                 searchPrompt = promptState.value.text,
                 navController
             )
+        }
+
+        if (isSearching && openFilterOverlay.value)
+        BottomSheet(
+            showSheet = openFilterOverlay.value,
+            onDismiss = { openFilterOverlay.value = false }
+        ) {
+            BottomSheetFilter(horizontalPaddings,  openFilterOverlay)
         }
     }
 }

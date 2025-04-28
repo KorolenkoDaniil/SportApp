@@ -6,11 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,7 +36,7 @@ import java.time.format.DateTimeFormatter
 fun NewsCard(news: NewsEntity, navController: NavHostController) {
 
     val painterNewsImage = rememberAsyncImagePainter(news.newsImage)
-    val titleLineCount = remember { mutableStateOf (0) }
+    val titleLineCount = remember { mutableStateOf(0) }
 
     val format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
     val formattedDate = news.dateTime.format(format)
@@ -56,7 +54,7 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
 
             onClick = {
                 val newsDateTime = news.dateTime
-                Log.d("ttt", "pageeee  $newsDateTime" )
+                Log.d("ttt", "pageeee  $newsDateTime")
 
                 navController.navigate("news/$newsDateTime")
             }
@@ -74,28 +72,40 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
                             .clip(shape = RoundedCornerShape(16.dp)),
                         contentScale = ContentScale.FillWidth
                     )
-                    Box(modifier = Modifier
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
-                    ) {
-                        Text(text = news.title, style = style2, maxLines = 3, overflow = TextOverflow.Ellipsis,
+                    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween) {
+                        Text(
+                            text = news.title,
+                            style = style2,
+                            maxLines = 3,
+                            overflow = TextOverflow.Ellipsis,
                             onTextLayout = { textLayoutResult ->
                                 titleLineCount.value = textLayoutResult.lineCount
-                            }
+                            },
+                            modifier = Modifier
+                                .padding(horizontal = 8.dp, vertical = 4.dp)
                         )
-                    }
 
-                    if (titleLineCount.value == 1) {
-                        Spacer(Modifier.height(24.dp))
-                    } else {
-                        Spacer(Modifier.height(8.dp))
-                    }
 
-                    Row(
-                        Modifier.fillMaxWidth().padding(horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ){
-                        Text(text = news.sport, style = style15, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                        Text(text = formattedDate, style = style16, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                        Row(
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp)
+                                .padding(bottom = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text(
+                                text = news.sport,
+                                style = style15,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Text(
+                                text = formattedDate,
+                                style = style16,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
                     }
                 }
             }
