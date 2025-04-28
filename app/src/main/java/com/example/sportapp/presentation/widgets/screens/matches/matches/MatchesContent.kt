@@ -124,7 +124,8 @@ fun MatchesContent(
                                         pageState = pageState,
                                         matchDays = state.matchDays,
                                         rankings = rankingsState.rankings,
-                                        matchesMatchInfoNavController
+                                        matchesMatchInfoNavController,
+                                        horizontalPaddings
                                     )
 
                                 }

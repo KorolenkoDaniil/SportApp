@@ -19,7 +19,6 @@ import com.example.sportapp.presentation.widgets.screens.matches.matches.Matches
 import com.example.sportapp.presentation.widgets.screens.matches.matches.rankigs.RankingsContent
 
 
-//класс для упраления контентом на страница матчи-ранкинги
 sealed class MatchesRankingsScreen(val route: String) {
     object MatchesPage : MatchesRankingsScreen("matchesScreen")
     object RankingsPage : MatchesRankingsScreen("rankings")

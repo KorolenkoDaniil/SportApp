@@ -3,6 +3,7 @@ package com.example.sportapp.presentation.widgets.screens.matches.matches.matche
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
@@ -10,6 +11,7 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.CleanArchitexture.domain.models.match.MatchDayEntity
 import com.example.sportapp.CleanArchitexture.domain.models.match.RankingEntity
@@ -27,6 +29,7 @@ fun MatchesList(
     rankings: List<RankingEntity>,
     //контроллер страниц матчи-информация про матчи
     matchesMatchInfoNavController: NavHostController,
+    horizontalPaddings: Dp
 ) {
 
     //ассоциацитивный список ранкингов по имени
@@ -40,9 +43,10 @@ fun MatchesList(
 
     ) { page ->
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(horizontal = horizontalPaddings),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
+
         ) {
 
             //список вертикальный матчей

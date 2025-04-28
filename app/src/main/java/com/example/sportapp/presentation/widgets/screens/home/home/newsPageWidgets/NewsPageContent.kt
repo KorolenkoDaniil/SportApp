@@ -28,6 +28,7 @@ import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
 import com.example.sportapp.presentation.widgets.screens.home.home.NewsCardRow
+import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.CommentsBottomSheet
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.CommentsOverlay
 import java.time.format.DateTimeFormatter
 
@@ -100,5 +101,15 @@ fun NewsPageContent(
         }
     }
 
-    CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
+
+    CommentsBottomSheet(
+        showSheet = overlayVisible.value,
+        onDismiss = { overlayVisible.value = false }
+    ) {
+        CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
+    }
+
+
+
+
 }

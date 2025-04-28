@@ -4,11 +4,14 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -55,7 +58,7 @@ fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity, horizont
         }
     )
 
-    LazyColumn(state = lazyListState) {
+    LazyColumn(state = lazyListState, modifier = Modifier.padding(horizontal = horizontalPaddings)) {
         item {
             Box(
                 modifier = Modifier
@@ -76,12 +79,16 @@ fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity, horizont
                     }
                 }
             }
-            Box(
-                Modifier
-                    .fillMaxWidth()
-                    .height(15.dp)
-            )
+            Spacer(Modifier.height(16.dp))
         }
+
+        item {
+            Text("Играют на стадионе ${match.stadiumName}, который находится в ${match.stadiumCity}" )
+            Spacer(Modifier.height(16.dp))
+        }
+
+
+
         items(eventsList.size) { index ->
             if (index == eventsList.size - 1) PhaseNameLine("1st HALF")
             else {

@@ -2,7 +2,6 @@ package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidg
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,11 +45,9 @@ fun CommentsOverlay(
 
 
 
-
     if (overlayVisible.value) {
 
         showBar.value = false
-
 
         Column(
             modifier = Modifier
@@ -60,7 +57,6 @@ fun CommentsOverlay(
                     Color.White,
                     shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
                 )
-                .clickable { onDismiss(overlayVisible, showBar) },
         ) {
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
@@ -89,9 +85,4 @@ fun CommentsOverlay(
 
         }
     }
-}
-
-fun onDismiss(overlay: MutableState<Boolean>, showBar: MutableState<Boolean>) {
-    overlay.value = false
-    showBar.value = true
 }
