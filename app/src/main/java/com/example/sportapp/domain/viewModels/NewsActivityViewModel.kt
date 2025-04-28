@@ -19,6 +19,15 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
 
     override fun loadData() {}
 
+    private var _sportIndex: Int = -1
+
+    var sportIndex: Int
+        get() = _sportIndex
+        set(value) {
+            _sportIndex = value
+        }
+
+
 
     private var _selectedNews = selectedNews
 
@@ -56,7 +65,6 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
         return repository.getNews(pageNumber).news
     }
 
-
     suspend fun searchNewsSuspend(
         pageNumber: Int,
         searchPrompt: String,
@@ -71,6 +79,8 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
             null
         }
     }
+
+
 
 }
 

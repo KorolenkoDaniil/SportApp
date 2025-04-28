@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\repositories\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\repositories\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\services\\inewsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\services\\inewsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\models\\entities\\newstag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -63,10 +67,6 @@
       "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\services\\commentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\models\\dtos\\newstagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\models\\dtos\\newstagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -90,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 262,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -102,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "NewsTag.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Models\\Entities\\NewsTag.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Models\\Entities\\NewsTag.cs",
@@ -115,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "LikeRepository.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\LikeRepository.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Repositories\\LikeRepository.cs",
@@ -128,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Sports.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\Sports.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Repositories\\Sports.cs",
@@ -141,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "INewsService.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Services\\INewsService.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Services\\INewsService.cs",
@@ -154,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "CommentsPagination.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Models\\Pagination\\CommentsPagination.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Models\\Pagination\\CommentsPagination.cs",
@@ -166,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "CommentsService.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Services\\CommentsService.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Services\\CommentsService.cs",
@@ -190,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "NewsPagination.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Models\\Pagination\\NewsPagination.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Models\\Pagination\\NewsPagination.cs",
@@ -202,7 +202,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "NewsDTO.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Models\\DTOs\\NewsDTO.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Models\\DTOs\\NewsDTO.cs",
@@ -215,15 +215,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Program.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs",
-              "RelativeToolTip": "SportAppServer\\Program.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAEwE4AAAAZAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs*",
+              "RelativeToolTip": "SportAppServer\\Program.cs*",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAEwFkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T12:38:06.38Z"
+              "WhenOpened": "2025-04-22T12:38:06.38Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -263,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "News.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Models\\Entities\\News.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Models\\Entities\\News.cs",
@@ -276,7 +277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "INewsRepository.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\INewsRepository.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Repositories\\INewsRepository.cs",
@@ -289,7 +290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "NewsService.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Services\\NewsService.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Services\\NewsService.cs",
@@ -302,20 +303,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "NewsController.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\NewsController.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Controllers\\NewsController.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\NewsController.cs",
               "RelativeToolTip": "SportAppServer\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAswF8AAABcAAAAAAAAAA==",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAswFoAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-21T11:58:59.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Controllers\\UsersController.cs",
@@ -327,20 +328,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "NewsRepository.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\NewsRepository.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Repositories\\NewsRepository.cs",
               "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\NewsRepository.cs",
               "RelativeToolTip": "SportAppServer\\Repositories\\NewsRepository.cs",
-              "ViewState": "AgIAALoAAAAAAAAAAAAswNEAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAowMgAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-21T09:41:14.455Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CommentsController.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\CommentsController.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Controllers\\CommentsController.cs",

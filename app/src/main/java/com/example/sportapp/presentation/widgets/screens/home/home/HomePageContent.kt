@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -16,6 +16,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.presentation.widgets.common.shared.SearchLine
@@ -32,11 +33,14 @@ fun HomePageContent(
     navController: NavHostController,
     horizontalPaddings: Dp,
 ) {
-
-    val isSearching by viewModels.newsViewModel.isSearched.collectAsState()
-
     val openFilterOverlay = remember { mutableStateOf(false) }
     val promptState = remember { mutableStateOf(TextFieldValue("")) }
+
+    val isFocused = remember { mutableStateOf(false) }
+    val itemList = remember { mutableStateListOf<NewsEntity>() }
+    val page = remember { mutableStateOf(1) }
+    val loading = remember { mutableStateOf(false) }
+    val listState = rememberLazyListState()
 
     Column {
 
@@ -47,15 +51,16 @@ fun HomePageContent(
             horizontalPaddings,
             viewModels.newsViewModel,
             promptState,
-            isSearching,
-            openFilterOverlay
+            openFilterOverlay,
+            isFocused,
+            itemList
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyColumn {
 
-            if (!isSearching) {
+            if (!isFocused.value) {
 
                 item { CurrentMatch(viewModels.matchesViewModel.nearestMatch, horizontalPaddings) }
                 item { Spacer(modifier = Modifier.height(16.dp)) }
@@ -88,20 +93,32 @@ fun HomePageContent(
             }
         }
 
-        if (isSearching) {
+        if (isFocused.value) {
             SearchedNEwsList(
                 newsViewModel = viewModels.newsViewModel,
                 searchPrompt = promptState.value.text,
-                navController
+                navController,
+                itemList,
+                page,
+                loading,
+                listState
             )
         }
 
-        if (isSearching && openFilterOverlay.value)
+        if (isFocused.value && openFilterOverlay.value)
         BottomSheet(
             showSheet = openFilterOverlay.value,
             onDismiss = { openFilterOverlay.value = false }
         ) {
-            BottomSheetFilter(horizontalPaddings,  openFilterOverlay)
+            BottomSheetFilter(
+                horizontalPaddings = horizontalPaddings,
+                openFilterOverlay = openFilterOverlay,
+                newsViewModel = viewModels.newsViewModel,
+                promptState = promptState,
+                itemList,
+                page,
+                loading,
+            )
         }
     }
 }

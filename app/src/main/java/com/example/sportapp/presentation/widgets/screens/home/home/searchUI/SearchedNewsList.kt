@@ -10,15 +10,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -30,17 +29,12 @@ import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun SearchedNEwsList(newsViewModel: NewsActivityViewModel, searchPrompt: String, navController: NavController) {
-
-    val page = remember { mutableStateOf(1) }
-    val loading = remember { mutableStateOf(false) }
-    val itemList = remember { mutableStateListOf<NewsEntity>() }
-    val listState = rememberLazyListState()
+fun SearchedNEwsList(newsViewModel: NewsActivityViewModel, searchPrompt: String, navController: NavController, itemList: SnapshotStateList<NewsEntity>, page: MutableState<Int>, loading: MutableState<Boolean>, listState: LazyListState) {
 
     LaunchedEffect(key1 = page.value) {
         loading.value = true
 
-        val result = newsViewModel.searchNewsSuspend(page.value, searchPrompt)
+        val result = newsViewModel.searchNewsSuspend(page.value, searchPrompt, newsViewModel.sportIndex)
         result?.let {
             itemList.addAll(it.news)
         }
@@ -73,13 +67,15 @@ fun SearchedNEwsList(newsViewModel: NewsActivityViewModel, searchPrompt: String,
                         Log.d("ttt", "pageeee  $newsDateTime" )
 
                         navController.navigate("news/$newsDateTime")
-//                        newsViewModel.selectedNews = news
+                        newsViewModel.selectedNews = news
                     },
                 contentScale = ContentScale.Crop
             )
 
             Spacer(Modifier.height(4.dp))
             Text(text = news.title)
+            Spacer(Modifier.height(16.dp))
+            Text(text = news.sport)
             Spacer(Modifier.height(16.dp))
         }
 
