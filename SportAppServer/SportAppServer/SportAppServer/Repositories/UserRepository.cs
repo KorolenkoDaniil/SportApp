@@ -1,5 +1,6 @@
 ﻿using SportAppServer.Context;
 using SportAppServer.Models.Entities;
+using System.Diagnostics;
 
 namespace SportAppServer.Repositories
 {
@@ -14,6 +15,7 @@ namespace SportAppServer.Repositories
 
         public async Task<User> GetUserData(string email)
         {
+
             User user = await _context.Users.FindAsync(email);
 
             return user;

@@ -8,44 +8,32 @@ namespace SportAppServer.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _newsRepository;
+        private readonly IUserRepository _userRepository;
 
         public UserService(IUserRepository userRepository)
         {
-            _newsRepository = userRepository;
+            _userRepository = userRepository;
         }
 
-        public delegate Task<UserDTO> MyAsyncDelegate(string email);
-
- 
         public async Task<UserDTO> GetUserData(string email)
         {
+            if (string.IsNullOrWhiteSpace(email))
+                return null;
 
-            Debug.WriteLine("--------------------111");
-            
-            return await CheckEmail(email, async (emailToCheck) =>
-            {
-                return UserMapper.ConvertToDTO(await _newsRepository.GetUserData(emailToCheck));
-            });
+            Debug.WriteLine("-> Вызван метод GetUserData");
+            Debug.WriteLine(email);
+
+            var userEntity = await _userRepository.GetUserData(email);
+            return UserMapper.ConvertToDTO(userEntity);
         }
-
 
         public async Task<UserDTO> PutUser(EmailDto email)
         {
-            return await CheckEmail(email.Email, async (emailToCheck) => 
-            { 
-                return UserMapper.ConvertToDTO(await _newsRepository.PutUser(emailToCheck));  
-            });
-        }
-        private async Task<UserDTO> CheckEmail(string email, MyAsyncDelegate methodToExecute)
-        {
-            if (string.IsNullOrEmpty(email))
-            {
+            if (string.IsNullOrWhiteSpace(email?.Email))
                 return null;
-            }
 
-
-            return await methodToExecute(email);
+            var userEntity = await _userRepository.PutUser(email.Email);
+            return UserMapper.ConvertToDTO(userEntity);
         }
     }
 }

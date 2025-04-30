@@ -128,7 +128,7 @@ class SoccerRepository {
             this.parameters.append("match_id", matchId)
         }
 
-        Log.d("URL", url.toString())
+        Log.d("tttturl", url.toString())
 
 
         val response = client.request(builder)

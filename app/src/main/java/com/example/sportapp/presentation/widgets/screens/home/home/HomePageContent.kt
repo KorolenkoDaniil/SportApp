@@ -72,7 +72,7 @@ fun HomePageContent(
                 item { Spacer(modifier = Modifier.height(16.dp)) }
                 item {
                     Text(
-                        text = "Sport news",
+                        text = "Новости спорта",
                         style = style1,
                         modifier = Modifier.padding(horizontal = horizontalPaddings)
                     )
@@ -82,7 +82,7 @@ fun HomePageContent(
                 item { Spacer(modifier = Modifier.height(20.dp)) }
                 item {
                     Text(
-                        text = "Recommended videos",
+                        text = "Рекомендованные видео",
                         style = style1,
                         modifier = Modifier.padding(horizontal = horizontalPaddings)
                     )

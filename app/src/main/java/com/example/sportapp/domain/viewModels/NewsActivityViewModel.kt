@@ -38,10 +38,6 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
         }
 
 
-//    private val _isSearched = MutableStateFlow(false)
-//
-//    val isSearched: StateFlow<Boolean> = _isSearched
-
     init {
         viewModelScope.launch {
             try {

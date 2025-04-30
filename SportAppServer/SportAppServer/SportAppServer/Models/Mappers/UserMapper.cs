@@ -1,5 +1,6 @@
 ﻿using SportAppServer.Models.DTOs;
 using SportAppServer.Models.Entities;
+using System.Diagnostics;
 
 namespace SportAppServer.Models.Mappers
 {
@@ -7,6 +8,8 @@ namespace SportAppServer.Models.Mappers
     {
         public static UserDTO ConvertToDTO(User user, bool includeComments = false)
         {
+            Debug.WriteLine(user);
+
             return new UserDTO(
                 user.UserEmail,
                 user.UserImage,
