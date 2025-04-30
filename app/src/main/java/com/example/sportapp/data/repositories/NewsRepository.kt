@@ -100,7 +100,7 @@ class NewsRepository {
             encodedPath = "/$controllerPath/$getNewsBySearchEndPoint"
             parameters.append("pageNumber", pageNumber.toString())
             parameters.append("searchPrompt", searchPrompt)
-            parameters.append("pageSize", "3")
+            parameters.append("pageSize", "5")
             parameters.append("sportIndex", sportIndex.toString())
         }
 

@@ -43,8 +43,6 @@ fun CommentsOverlay(
 
     val itemList = remember { mutableStateListOf<CommentEntity>() }
 
-
-
     if (overlayVisible.value) {
 
         showBar.value = false

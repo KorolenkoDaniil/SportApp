@@ -28,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.R
 import com.example.sportapp.models.viewModels.AuthViewModel
@@ -61,11 +63,12 @@ fun SearchLine(
     horizontalPaddings: Dp,
     newsViewModel: NewsActivityViewModel,
     promptState: MutableState<TextFieldValue>,
-    isSearching: Boolean,
-    openFilterOverlay: MutableState<Boolean>
+    openFilterOverlay: MutableState<Boolean>,
+    isFocused: MutableState<Boolean>,
+    focusRequester: FocusRequester,
+    itemList: SnapshotStateList<NewsEntity>,
+    loading: MutableState<Boolean>
 ) {
-    var isFocused by remember { mutableStateOf(false) }
-    val focusRequester = remember { FocusRequester() }
 
     // отслеживаем предыдущий текст
     var previousText by remember { mutableStateOf("") }
@@ -75,8 +78,8 @@ fun SearchLine(
 
     val lastTextChangeTime = remember { mutableStateOf(0L) }
 
-    var iconRadius = if (isSearching ) 0.dp else 24.dp
-    var iconSize = if (isSearching ) 24.dp else 48.dp
+    val iconRadius = if (isFocused.value ) 0.dp else 24.dp
+    val iconSize = if (isFocused.value ) 24.dp else 48.dp
 
 
     LaunchedEffect(promptState.value.text) {
@@ -91,8 +94,16 @@ fun SearchLine(
             Log.d("search", promptState.value.text)
             previousText = promptState.value.text
             if (promptState.value.text.isNotBlank()) {
-                newsViewModel.toggleIsSearched(true)
-                newsViewModel.searchNewsSuspend(1, promptState.value.text)
+
+                loading.value = true
+
+                newsViewModel.searchAndSetNews(
+                    pageNumber = 1,
+                    searchPrompt = promptState.value.text,
+                    sportIndex = newsViewModel.sportIndex,
+                    itemList = itemList, true)
+
+                loading.value = false
             }
         }
     }
@@ -121,7 +132,7 @@ fun SearchLine(
                     .padding(horizontal = 8.dp)
                     .fillMaxSize()
                     .focusRequester(focusRequester)
-                    .onFocusChanged { focusState -> isFocused = focusState.isFocused },
+                    .onFocusChanged { focusState -> isFocused.value = focusState.isFocused },
                 singleLine = true,
                 textStyle = TextStyle(fontSize = 14.sp, color = Color.Black),
                 decorationBox = { innerTextField ->
@@ -132,8 +143,7 @@ fun SearchLine(
                             contentDescription = "search icon"
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        if (promptState.value.text.isEmpty()) {
-                            newsViewModel.toggleIsSearched(false)
+                        if (!isFocused.value) {
                             Text(
                                 text = "Search....",
                                 color = Color.Gray,
@@ -164,7 +174,7 @@ fun SearchLine(
                     .size(iconSize)
                     .clip(RoundedCornerShape(iconRadius))
             ) {
-                if (!isSearching) {
+                if (!isFocused.value) {
                     Image(
                         painter = painter,
                         contentDescription = "User profile picture",

@@ -1,6 +1,7 @@
 package com.example.sportapp.models.viewModels
 
 import android.util.Log
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.CleanArchitexture.data.repositories.NewsRepository
@@ -28,10 +29,18 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
             _selectedNews = value
         }
 
+    private var _sportIndexs = -1
 
-    private val _isSearched = MutableStateFlow(false)
+    var sportIndex : Int
+        get() = _sportIndexs
+        set(value) {
+            _sportIndexs = value
+        }
 
-    val isSearched: StateFlow<Boolean> = _isSearched
+
+//    private val _isSearched = MutableStateFlow(false)
+//
+//    val isSearched: StateFlow<Boolean> = _isSearched
 
     init {
         viewModelScope.launch {
@@ -46,31 +55,38 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
     }
 
 
-    fun toggleIsSearched (value: Boolean) {
-        _isSearched.value = value
-    }
-
-
-    suspend fun loadNewsData(pageNumber: Int): List<NewsEntity> {
-        toggleIsSearched(false)
-        return repository.getNews(pageNumber).news
-    }
-
-
-    suspend fun searchNewsSuspend(
+     private suspend fun searchNewsSuspend(
         pageNumber: Int,
         searchPrompt: String,
         sportIndex: Int,
     ): NewsListEntity? {
         return try {
-            toggleIsSearched(true)
             repository.getNewsWithSearch(pageNumber, searchPrompt, sportIndex)
         } catch (e: Throwable) {
-            toggleIsSearched(false)
             Log.e("search", "Ошибка поиска: ${e.message}", e)
             null
         }
     }
+
+
+    fun searchAndSetNews(
+        pageNumber: Int,
+        searchPrompt: String,
+        sportIndex: Int,
+        itemList: SnapshotStateList<NewsEntity>,
+        clearElements: Boolean
+    ) {
+        viewModelScope.launch {
+            val result = searchNewsSuspend(pageNumber, searchPrompt, sportIndex)
+            result?.news?.let {
+                if (clearElements){
+                    itemList.clear()
+                }
+                itemList.addAll(it)
+            }
+        }
+    }
+
 
 }
 

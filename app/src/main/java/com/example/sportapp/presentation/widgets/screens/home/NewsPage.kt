@@ -7,9 +7,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.models.viewModels.NewsState
@@ -29,6 +31,7 @@ fun NewsPage(
     navController: NavHostController,
     horizontalPaddings: Dp,
     showBar: MutableState<Boolean>,
+    itemList: SnapshotStateList<NewsEntity>
 ) {
     val oneNewsViewModel: OneNewsActivityViewModel = viewModel()
     val currentUserEmail = viewModels.authViewModel.currentUser.value?.email
@@ -47,7 +50,7 @@ fun NewsPage(
 
     when (val oneNews = oneNewsState) {
         is OneNewsSate.OneNewsContent -> {
-            when (val news = states.newsState) {
+            when (states.newsState) {
                 is NewsState.NewsContent -> {
                     NewsPageContent(
                         oneNewsState = oneNews,
@@ -55,7 +58,8 @@ fun NewsPage(
                         newsViewModel = viewModels.newsViewModel,
                         horizontalPaddings = horizontalPaddings,
                         authModel = viewModels.authViewModel,
-                        showBar = showBar
+                        showBar = showBar,
+                        itemList
                     )
                 }
 

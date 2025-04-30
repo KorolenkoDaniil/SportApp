@@ -4,6 +4,7 @@ import BottomNavBar
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -12,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.presentation.widgets.common.shared.Loading
@@ -52,6 +54,8 @@ fun MyAppNavigation(
         val topPaddings = 14.dp
         val horizontalPaddings = 12.dp
 
+        val itemList = remember { mutableStateListOf<NewsEntity>() }
+
 
         NavHost(
             navController = navController,
@@ -78,7 +82,8 @@ fun MyAppNavigation(
                         states = states,
                         navController = navController,
                         user = viewModels.authViewModel.currentUser,
-                        horizontalPaddings = horizontalPaddings
+                        horizontalPaddings = horizontalPaddings,
+                        itemList
                     )
                 }
 
@@ -115,7 +120,8 @@ fun MyAppNavigation(
                         parsedDateTime.toString(),
                         navController,
                         horizontalPaddings,
-                        showBar
+                        showBar,
+                        itemList
                     )
                 }
 

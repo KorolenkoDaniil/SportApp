@@ -9,10 +9,10 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -27,17 +27,23 @@ import kotlinx.coroutines.flow.collectLatest
 fun NewsCardRow(
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
-    horizontalPaddings: Dp
+    horizontalPaddings: Dp,
+    itemList: SnapshotStateList<NewsEntity>
 ) {
 
     val page = remember { mutableStateOf(1) }
     val loading = remember { mutableStateOf(false) }
-    val itemList = remember { mutableStateListOf<NewsEntity>() }
     val listState = rememberLazyListState()
 
     LaunchedEffect (key1 = page.value) {
         loading.value = true
-        itemList.addAll(newsViewModel.loadNewsData(page.value))
+        newsViewModel.searchAndSetNews(
+            pageNumber = page.value,
+            searchPrompt = "",
+            sportIndex = -1,
+            itemList = itemList,
+            clearElements = false
+        )
         loading.value = false
     }
 

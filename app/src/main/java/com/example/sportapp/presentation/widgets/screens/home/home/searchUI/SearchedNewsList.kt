@@ -15,10 +15,11 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -30,32 +31,43 @@ import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun SearchedNEwsList(newsViewModel: NewsActivityViewModel, searchPrompt: String, navController: NavController) {
+fun SearchedNewsList(newsViewModel: NewsActivityViewModel, searchPrompt: String, navController: NavController, itemList: SnapshotStateList<NewsEntity>, loading: MutableState<Boolean>) {
 
     val page = remember { mutableStateOf(1) }
-    val loading = remember { mutableStateOf(false) }
-    val itemList = remember { mutableStateListOf<NewsEntity>() }
+
     val listState = rememberLazyListState()
 
     LaunchedEffect(key1 = page.value) {
+
+        if (searchPrompt.isBlank()) return@LaunchedEffect
+
         loading.value = true
 
-        val result = newsViewModel.searchNewsSuspend(page.value, searchPrompt)
-        result?.let {
-            itemList.addAll(it.news)
-        }
+        newsViewModel.searchAndSetNews(
+            pageNumber = page.value,
+            searchPrompt = searchPrompt,
+            sportIndex = newsViewModel.sportIndex,
+            itemList = itemList,
+            false
+        )
 
         loading.value = false
     }
 
+
     LaunchedEffect(listState) {
-        snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
-            .collectLatest { index ->
-                if (!loading.value && index != null && index >= itemList.size - 5) {
-                    page.value++
+        snapshotFlow { listState.layoutInfo.visibleItemsInfo }
+            .collectLatest { visibleItems ->
+                val lastVisibleItemIndex = visibleItems.lastOrNull()?.index
+                if (!loading.value && lastVisibleItemIndex != null) {
+                    if (lastVisibleItemIndex >= itemList.size - 5) {
+                        page.value++
+                    }
                 }
             }
     }
+
+
 
     LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
         items(itemList.size) { index ->
@@ -73,7 +85,6 @@ fun SearchedNEwsList(newsViewModel: NewsActivityViewModel, searchPrompt: String,
                         Log.d("ttt", "pageeee  $newsDateTime" )
 
                         navController.navigate("news/$newsDateTime")
-//                        newsViewModel.selectedNews = news
                     },
                 contentScale = ContentScale.Crop
             )
@@ -81,6 +92,7 @@ fun SearchedNEwsList(newsViewModel: NewsActivityViewModel, searchPrompt: String,
             Spacer(Modifier.height(4.dp))
             Text(text = news.title)
             Spacer(Modifier.height(16.dp))
+            Text(text = news.sport)
         }
 
         item {
