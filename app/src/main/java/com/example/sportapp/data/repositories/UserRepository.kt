@@ -3,8 +3,8 @@ package com.example.sportapp.CleanArchitexture.data.repositories
 import android.util.Log
 import com.example.sportapp.CleanArchitexture.data.dto.user.UserDto
 import com.example.sportapp.CleanArchitexture.data.mappers.UserMapper
-import com.example.sportapp.data.BaseUrl
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
+import com.example.sportapp.data.BaseUrl
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -72,6 +72,9 @@ class UserRepository {
         return userMapper.UserResponseToEntity(currentUser)
     }
 
+
+//    suspend fun uploadImage(imageFile: File): HttpResponse
+//
 
 
 }

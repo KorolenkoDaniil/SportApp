@@ -1,6 +1,8 @@
 [versions]
 accompanistPermissions = "0.30.1"
 agp = "8.7.3"
+android0imageCropper = "5.5.0"
+androidImageCropper = "4.3.2"
 androidxCredentials = "<latest version>"
 coilCompose = "2.4.0"
 converterGson = "2.5.0"
@@ -26,21 +28,24 @@ fontVersion = "1.7.8"
 compose = "1.7.8"
 foundationLayoutAndroid = "1.7.8"
 lifecycleViewmodelKtx = "2.8.7"
-navigationCompose = "2.8.8"
-media3CommonKtx = "1.5.1"
+navigationCompose = "2.8.9"
+media3CommonKtx = "1.6.1"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.2.0"
 retrofitVersion = "2.9.0"
-roomCompiler = "2.6.1"
-firebaseMessaging = "24.1.0"
-firebaseFirestoreKtx = "25.1.2"
+roomCompiler = "2.7.1"
+firebaseMessaging = "24.1.1"
+firebaseFirestoreKtx = "25.1.4"
 roomKtx = "2.6.1"
 credentials = "1.5.0"
 credentialsPlayServicesAuth = "1.5.0"
 googleid = "1.1.1"
-uiTestAndroid = "1.7.8"
+timber = "5.0.1"
+uiTestAndroid = "1.8.0"
 
 [libraries]
+android-image-cropper = { module = "com.github.CanHub:Android-Image-Cropper", version.ref = "androidImageCropper" }
+android0image-cropper = { module = "com.vanniktech:android0image-cropper", version.ref = "android0imageCropper" }
 androidx-credentials-play-services-auth-vlatestversion = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentialsPlayServicesAuthVersion" }
 androidx-credentials-vlatestversion = { module = "androidx.credentials:credentials", version.ref = "androidxCredentials" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
@@ -84,6 +89,7 @@ androidx-credentials = { group = "androidx.credentials", name = "credentials", v
 androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 androidx-ui-test-android = { group = "androidx.compose.ui", name = "ui-test-android", version.ref = "uiTestAndroid" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

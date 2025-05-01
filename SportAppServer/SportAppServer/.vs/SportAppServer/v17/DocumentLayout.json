@@ -102,21 +102,8 @@
       "DocumentGroups": [
         {
           "DockedHeight": 262,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "SportAppServer\\Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\UserRepository.cs*",
-              "RelativeToolTip": "SportAppServer\\Repositories\\UserRepository.cs*",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T16:15:18.093Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -124,6 +111,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "SportAppServer\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "SportAppServer\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T16:15:18.093Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -135,8 +135,7 @@
               "RelativeToolTip": "SportAppServer\\Services\\UserService.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAewBkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T16:06:11.621Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T16:06:11.621Z"
             },
             {
               "$type": "Document",
@@ -148,8 +147,7 @@
               "RelativeToolTip": "SportAppServer\\Models\\Mappers\\UserMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T15:59:01.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T15:59:01.393Z"
             },
             {
               "$type": "Document",
@@ -185,8 +183,7 @@
               "RelativeToolTip": "SportAppServer\\Repositories\\Sports.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAowAYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T12:00:43.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T12:00:43.8Z"
             },
             {
               "$type": "Document",
@@ -342,8 +339,7 @@
               "RelativeToolTip": "SportAppServer\\Services\\NewsService.cs",
               "ViewState": "AgIAAFwAAAAAAAAAAAAwwGYAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T11:59:15.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T11:59:15.767Z"
             },
             {
               "$type": "Document",
@@ -379,8 +375,7 @@
               "RelativeToolTip": "SportAppServer\\Repositories\\NewsRepository.cs",
               "ViewState": "AgIAAKEAAAAAAAAAAAAkwMQAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T09:41:14.455Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T09:41:14.455Z"
             },
             {
               "$type": "Document",

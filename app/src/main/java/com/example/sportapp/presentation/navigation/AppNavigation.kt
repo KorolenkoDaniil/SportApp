@@ -23,6 +23,7 @@ import com.example.sportapp.presentation.widgets.screens.home.NewsPage
 import com.example.sportapp.presentation.widgets.screens.matches.MatchesPage
 import com.example.sportapp.presentation.widgets.screens.signUpIn.FirstPage
 import com.example.sportapp.presentation.widgets.screens.signUpIn.LoginPage
+import com.example.sportapp.presentation.widgets.screens.signUpIn.ProfileSetUpPage
 import com.example.sportapp.presentation.widgets.screens.signUpIn.SignupPage
 import com.example.sportapp.presentation.widgets.screens.videos.VideoListPage
 import com.example.sportapp.presentation.widgets.screens.videos.VideoPlayerPage
@@ -127,6 +128,13 @@ fun MyAppNavigation(
 
                 composable (Screen.VideoPlayerPage.route) {
                     VideoPlayerPage(viewModels.videoViewModel)
+                }
+
+                composable (Screen.ProfileSetUpPage.route) {
+                    ProfileSetUpPage(
+                        viewModel = viewModels.authViewModel,
+                        navController
+                    )
                 }
             }
         )

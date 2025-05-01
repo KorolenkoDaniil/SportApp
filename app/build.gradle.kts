@@ -64,6 +64,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.timber)
+
+    implementation(libs.android.image.cropper)
+    implementation(libs.android.image.cropper)
 
     implementation (libs.androidx.credentials.vlatestversion)
     implementation (libs.androidx.credentials.play.services.auth.vlatestversion)

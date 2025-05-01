@@ -11,4 +11,6 @@ sealed class Screen(val route: String) {
     data object SignupPage : Screen("signup")
     data object Loading : Screen("loading")
     data object VideoPlayerPage : Screen("videoPlayer")
+//    data object ImageRegistration : Screen("ImageRegistration")
+    data object ProfileSetUpPage : Screen("ProfileSetUpPage")
 }

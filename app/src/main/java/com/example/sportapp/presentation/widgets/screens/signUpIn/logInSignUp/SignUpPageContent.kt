@@ -110,12 +110,8 @@ fun SignupPageContent(
                     .width(270.dp)
                     .height(40.dp),
                 onClick = {
+                   Screen.ProfileSetUpPage.route
                     authViewModel.signup(email.value, password.value, context)
-
-
-
-
-
 
 
                 }, enabled = authState.value != AuthState.Loading,
