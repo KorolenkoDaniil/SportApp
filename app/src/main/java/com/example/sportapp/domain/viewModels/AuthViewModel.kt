@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.File
 
 
 class AuthViewModel : ViewModel() {
@@ -112,8 +113,12 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun sendUserImage(bytes: ByteArray) {
-
+    fun sendUserImage(image: File) {
+        viewModelScope.launch {
+            userRep.uploadImage(
+                imageFile = image
+            )
+        }
     }
 
     private fun updateCurrentUser(user: UserEntity?) {

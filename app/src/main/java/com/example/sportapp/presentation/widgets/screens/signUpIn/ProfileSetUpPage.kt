@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.signUpIn
 
+import android.content.Context
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,7 @@ import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
 import com.example.sportapp.models.viewModels.AuthViewModel
 import timber.log.Timber
+import java.io.File
 
 @Composable
 fun ProfileSetUpPage(viewModel: AuthViewModel, navController: NavController) {
@@ -32,12 +34,10 @@ fun ProfileSetUpPage(viewModel: AuthViewModel, navController: NavController) {
         ChoosePictureFromGalleryButton(
             modifier = Modifier,
             onPictureChosen = { uri ->
-                context.contentResolver.openInputStream(uri)?.readBytes()?.let { bytes ->
-                    viewModel.sendUserImage(bytes)
-                }
+                val file = uriToFile(context, uri)
+                viewModel.sendUserImage(file)
             }
         )
-
 //        navController.navigate(Screen.ProfileSetUpPage.route)
     }
 }
@@ -45,7 +45,7 @@ fun ProfileSetUpPage(viewModel: AuthViewModel, navController: NavController) {
 @Composable
 fun ChoosePictureFromGalleryButton(
     modifier: Modifier = Modifier,
-    onPictureChosen: (Uri) -> Unit
+    onPictureChosen: (Uri) -> Unit,
 ) {
     val imageCropLauncher = rememberLauncherForActivityResult(CropImageContract()) { result ->
         if (result.isSuccessful) {
@@ -72,4 +72,19 @@ fun buildImagePickerOptions() = options {
     setCropMenuCropButtonTitle("Готово")
     setAspectRatio(1, 1)
     setImageSource(includeCamera = true, includeGallery = true)
+}
+
+
+fun uriToFile(context: Context, uri: Uri): File {
+    val inputStream = context.contentResolver.openInputStream(uri)
+
+    val file = File.createTempFile("upload_", ".jpg", context.cacheDir)
+
+    inputStream.use { input ->
+        file.outputStream().use { output ->
+            input?.copyTo(output)
+        }
+    }
+
+    return file
 }

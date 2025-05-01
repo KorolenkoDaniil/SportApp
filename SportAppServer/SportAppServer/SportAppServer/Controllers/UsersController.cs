@@ -12,7 +12,7 @@ namespace SportAppServer.Controllers
     public class UsersController : Controller
     {
         private readonly IUserService _userService;
-
+        
         public UsersController(IUserService userService)
         {
             _userService = userService;
@@ -30,7 +30,7 @@ namespace SportAppServer.Controllers
                 return Ok(user);
             else
                 return BadRequest();
-            
+
         }
 
 
@@ -43,10 +43,34 @@ namespace SportAppServer.Controllers
             if (user != null)
                 return Ok(user);
             else
-                return BadRequest(); 
+                return BadRequest();
+        }
+
+
+
+        [HttpPost("putUserImage")]
+        public async Task<IActionResult> PutUserImage(IFormFile image)
+        {
+            if (image != null && image.Length > 0)
+            {
+                string extension = Path.GetExtension(image.FileName);
+                string fileName = $"{Guid.NewGuid()}{extension}";
+
+                string filePath = Path.Combine("C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\UsersImages", fileName);
+
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+
+                return Ok();
+            }
+
+            return BadRequest("No file uploaded."); 
         }
     }
-
   
 }
+
 
