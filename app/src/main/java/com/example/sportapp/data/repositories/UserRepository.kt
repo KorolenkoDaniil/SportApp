@@ -73,8 +73,10 @@ class UserRepository {
     }
 
 
-//    suspend fun uploadImage(imageFile: File): HttpResponse
-//
+//    suspend fun uploadImage(imageFile: File): HttpResponse{
+//        val
+//    }
+
 
 
 }
