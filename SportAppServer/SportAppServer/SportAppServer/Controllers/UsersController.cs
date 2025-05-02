@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SportAppServer.Models.DTOs;
 using SportAppServer.Models.DTOs.Requests;
 using SportAppServer.Services;
@@ -49,25 +50,20 @@ namespace SportAppServer.Controllers
 
 
         [HttpPost("putUserImage")]
-        public async Task<IActionResult> PutUserImage(IFormFile image)
+        public async Task<IActionResult> PutUserImage([FromForm] IFormFile image, [FromForm] string email)
         {
             if (image != null && image.Length > 0)
             {
-                string extension = Path.GetExtension(image.FileName);
-                string fileName = $"{Guid.NewGuid()}{extension}";
-
-                string filePath = Path.Combine("C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\UsersImages", fileName);
-
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                string imageId = await _userService.PutUserImage(email, image);
+                if (imageId.IsNullOrEmpty())
                 {
-                    await image.CopyToAsync(stream);
+                    return BadRequest("User not found.");
                 }
-
-                return Ok();
+          
+                return Ok(imageId);
             }
 
-            return BadRequest("No file uploaded."); 
+            return BadRequest("No file uploaded.");
         }
     }
   

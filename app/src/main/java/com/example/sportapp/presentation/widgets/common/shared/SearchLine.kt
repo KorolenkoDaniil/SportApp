@@ -47,17 +47,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.R
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.StateFlow
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun SearchLine(
-    user: StateFlow<UserEntity?>,
     authViewModel: AuthViewModel,
     navController: NavHostController,
     horizontalPaddings: Dp,
@@ -160,7 +157,7 @@ fun SearchLine(
 
         Spacer(Modifier.width(20.dp))
 
-        val painter = rememberAsyncImagePainter(user.value?.pictureURL)
+        val painter = rememberAsyncImagePainter(authViewModel.currentUser.value?.pictureURL)
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

@@ -17,18 +17,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.presentation.widgets.common.shared.SearchLine
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
 import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.BottomSheetFilter
 import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.SearchedNewsList
 import com.example.sportapp.ui.theme.style1
-import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun HomePageContent(
-    user: StateFlow<UserEntity?>,
     viewModels: ViewModelContainer,
     navController: NavHostController,
     horizontalPaddings: Dp,
@@ -49,7 +46,6 @@ fun HomePageContent(
     Column {
 
         SearchLine(
-            user,
             viewModels.authViewModel,
             navController,
             horizontalPaddings,

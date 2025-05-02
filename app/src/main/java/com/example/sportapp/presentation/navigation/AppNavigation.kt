@@ -82,7 +82,6 @@ fun MyAppNavigation(
                         viewModels = viewModels,
                         states = states,
                         navController = navController,
-                        user = viewModels.authViewModel.currentUser,
                         horizontalPaddings = horizontalPaddings,
                         itemList
                     )
@@ -132,7 +131,7 @@ fun MyAppNavigation(
 
                 composable (Screen.ProfileSetUpPage.route) {
                     ProfileSetUpPage(
-                        viewModel = viewModels.authViewModel,
+                        authViewModel = viewModels.authViewModel,
                         navController
                     )
                 }

@@ -24,7 +24,6 @@ fun HomePage(
     viewModels: ViewModelContainer,
     states: StatesContainer,
     navController: NavHostController,
-    user: StateFlow<UserEntity?>,
     horizontalPaddings: Dp,
     itemList: SnapshotStateList<NewsEntity>
 ) {
@@ -41,7 +40,6 @@ fun HomePage(
                         is NewsState.NewsContent -> {
 
                             HomePageContent(
-                                user = user,
                                 viewModels,
                                 navController = navController,
                                 horizontalPaddings,

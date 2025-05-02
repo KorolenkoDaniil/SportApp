@@ -7,5 +7,6 @@ namespace SportAppServer.Services
     {
         Task<UserDTO> PutUser(EmailDto email);
         Task<UserDTO> GetUserData(string email);
+        Task<string> PutUserImage(string email, IFormFile image);
     }
 }

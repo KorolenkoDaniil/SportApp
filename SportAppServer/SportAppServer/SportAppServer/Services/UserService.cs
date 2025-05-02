@@ -35,5 +35,10 @@ namespace SportAppServer.Services
             var userEntity = await _userRepository.PutUser(email.Email);
             return UserMapper.ConvertToDTO(userEntity);
         }
+
+        public async Task<string> PutUserImage(string email, IFormFile image)
+        {
+            return await _userRepository.PutUserImage(email, image);
+        }
     }
 }

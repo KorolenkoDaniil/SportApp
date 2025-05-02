@@ -16,6 +16,12 @@ namespace SportAppServer.Models.DTOs
         [ValidateNever]
         public List<CommentDTO> Comments { get; set; }
 
+
+        public override string ToString()
+        {
+            return $"UserEmail  {UserEmail} UserImage {UserImage}";
+        }
+
         public UserDTO(string userEmail, string userImage, List<CommentDTO> comments)
         {
             UserEmail = userEmail;

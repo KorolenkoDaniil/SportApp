@@ -1,6 +1,5 @@
 package com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp
 
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,11 +18,11 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -38,13 +37,11 @@ import com.example.sportapp.ui.theme.style15
 
 @Composable
 fun SignupPageContent(
-    email: MutableState<String>,
-    password: MutableState<String>,
     authViewModel: AuthViewModel,
     authState: State<AuthState>,
     navController: NavController,
-    context: Context
 ){
+    val context = LocalContext.current
 
     Box(modifier = Modifier.padding(20.dp)) {
         Column(
@@ -66,8 +63,8 @@ fun SignupPageContent(
 
             OutlinedTextField(
                 modifier = Modifier.width(270.dp),
-                value = email.value,
-                onValueChange = { email.value = it },
+                value = authViewModel.email.value,
+                onValueChange = { authViewModel.email.value = it },
                 label = { Text(text = "Email") },
                 singleLine = true,
                 colors = TextFieldDefaults.colors(
@@ -86,8 +83,8 @@ fun SignupPageContent(
 
             OutlinedTextField(
                 modifier = Modifier.width(270.dp),
-                value = password.value,
-                onValueChange = { password.value = it },
+                value = authViewModel.password.value,
+                onValueChange = { authViewModel.password.value = it },
                 label = { Text(text = "Password") },
                 singleLine = true,
                 colors = TextFieldDefaults.colors(
@@ -110,10 +107,8 @@ fun SignupPageContent(
                     .width(270.dp)
                     .height(40.dp),
                 onClick = {
-                   Screen.ProfileSetUpPage.route
-                    authViewModel.signup(email.value, password.value, context)
-
-
+                    authViewModel.signup(authViewModel.email.value, authViewModel.password.value, context)
+                    navController.navigate(Screen.ProfileSetUpPage.route)
                 }, enabled = authState.value != AuthState.Loading,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = red_accent_color,

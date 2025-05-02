@@ -387,6 +387,18 @@ GO
 
 
 
+
+CREATE OR ALTER PROCEDURE SearchUserByEmail
+	@email NVARCHAR(200)
+AS
+BEGIN
+	 SELECT U.UserEmail, U.UserImage
+    FROM Users U
+    WHERE LOWER(U.UserEmail) = LOWER(@Email)
+end
+
+
+
 DELETE FROM News
 WHERE Title IS NULL
    OR ArticleText IS NULL

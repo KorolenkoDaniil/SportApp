@@ -1,5 +1,8 @@
-﻿using SportAppServer.Context;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using SportAppServer.Context;
 using SportAppServer.Models.Entities;
+using System.Data;
 using System.Diagnostics;
 
 namespace SportAppServer.Repositories
@@ -8,7 +11,7 @@ namespace SportAppServer.Repositories
     {
         private readonly DBContext _context;
 
-        public UserRepository (DBContext context)
+        public UserRepository(DBContext context)
         {
             _context = context;
         }
@@ -17,6 +20,9 @@ namespace SportAppServer.Repositories
         {
 
             User user = await _context.Users.FindAsync(email);
+
+
+            Debug.WriteLine(user + "---------------------------------------11111111111111111111111111");
 
             return user;
         }
@@ -35,6 +41,44 @@ namespace SportAppServer.Repositories
             return newUser;
         }
 
+
+        public async Task<string> PutUserImage(string email, IFormFile image)
+        {
+            SqlParameter emailParam;
+            
+                emailParam = new SqlParameter("@email", email);
+
+            var user = _context.Users
+                .FromSqlRaw("EXEC SearchUserByEmail @email", emailParam)
+                .AsEnumerable()
+                .FirstOrDefault();
+
+            if (user == null)
+            {
+                return "";
+            }
+
+
+            string extension = Path.GetExtension(image.FileName);
+            string fileName = $"{Guid.NewGuid()}{extension}";
+
+            user.UserImage = fileName;
+
+            _context.Attach(user);
+            _context.Entry(user).Property(u => u.UserImage).IsModified = true;
+
+            string filePath = Path.Combine("C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\UsersImages", fileName);
+
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return fileName;
+        }
     }
 }
 

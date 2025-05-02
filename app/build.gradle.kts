@@ -64,6 +64,12 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.ktor.client.core.v237)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+
     implementation(libs.timber)
 
     implementation(libs.android.image.cropper)
