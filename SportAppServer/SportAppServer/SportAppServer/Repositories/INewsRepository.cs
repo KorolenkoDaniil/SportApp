@@ -12,7 +12,6 @@ namespace SportAppServer.Repositories
         Task<int> CountComments(DateTime newsDateTime);
         Task<int> CountLikes(DateTime newsDateTime);
         Task<(List<News>, int totalItems)> GetNewsList(string searchPrompt, int pageSize, int pageNumber, int sportIndex);
-
-
+        Task<List<News>> GetTags(List<News> newsList);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using SportAppServer.Context;
 using SportAppServer.Models.Entities;
@@ -10,8 +11,20 @@ namespace SportAppServer
 {
     public class PythonScript
     {
+
+        private readonly IDistributedCache _distributedCache;
+
+        public PythonScript(IDistributedCache distributedCache)
+        {
+            _distributedCache = distributedCache;
+        }
+
+
         public async Task RunPythonScriptAsync()
         {
+
+            await _distributedCache.RemoveAsync("cachedNewsList");
+
             try
             {
                 Console.WriteLine($"Python-скрипт начало");
@@ -101,15 +114,31 @@ namespace SportAppServer
                         Console.WriteLine("Нет новых новостей для добавления.");
                         return;
                     }
+                    
+                   
 
                     foreach (var news in newNews)
                     {
                         news.TextAfterLemmatize = await LemmatizeService.GetLems(news.ArticleText);
                     }
 
+                    //TODO написать вызов мтеода, который очишает строки с пустыми значениями
 
                     await newsDB.NewsList.AddRangeAsync(newsList);
                     await newsDB.SaveChangesAsync();
+
+
+                    List<News> last20News = await newsDB.NewsList
+                        .OrderByDescending(n => n.DateTime)
+                        .Take(30)
+                        .ToListAsync();
+
+                   
+
+                    //TODO заменить на поиск в sql
+
+
+                    await _distributedCache.SetStringAsync("cachedNewsList", JsonConvert.SerializeObject(last20News));
 
                     Console.WriteLine($"Успешно добавлено {newsList.Count} новостей в базу данных.");
                 }

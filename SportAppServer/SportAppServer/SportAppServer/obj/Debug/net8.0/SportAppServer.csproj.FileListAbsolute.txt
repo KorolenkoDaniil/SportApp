@@ -101,3 +101,6 @@ C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\Spor
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\calendar.json
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\OpenAI.dll
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\StackExchange.Redis.dll

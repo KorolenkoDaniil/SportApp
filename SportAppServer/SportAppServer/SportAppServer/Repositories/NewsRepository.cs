@@ -245,5 +245,17 @@ namespace SportAppServer.Repositories
             return string.Join(" OR ", terms);
         }
 
+        public async Task<List<News>> GetTags(List<News> newsList)
+        {
+            foreach (var newsItem in newsList)
+            {
+                newsItem.Tags = await _context.Tags
+                    .Where(t => t.NewsDateTime == newsItem.DateTime)
+                    .ToListAsync();
+            }
+
+            return newsList;
+        }
+
     }
 }

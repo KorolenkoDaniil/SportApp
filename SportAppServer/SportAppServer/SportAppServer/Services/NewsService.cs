@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 using SportAppServer.Models.DTOs;
 using SportAppServer.Models.Entities;
 using SportAppServer.Models.Mappers;
@@ -14,21 +15,19 @@ namespace SportAppServer.Services
 
         private readonly INewsRepository _newsRepository;
         private readonly ILikeRepository _likeRepository;
+        private readonly IDistributedCache _distributedCache;
 
-        public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository)
+        public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository, IDistributedCache distributedCache)
         {
             _newsRepository = newsRepository;
             _likeRepository = likeRepository;
+            _distributedCache = distributedCache;
         }
 
       
         public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
         {
             var searchResult = await _newsRepository.GetByDateAsync(dateTime);
-
-
-            //TODO сделать кеш последних 10 новоостей и не дергать базу
-
 
             if (searchResult != null)
             {
@@ -49,14 +48,39 @@ namespace SportAppServer.Services
 
         public async Task<NewsPagination> GetPaginatedNewsList(int pageNumber, int pageSize)
         {
+            List<News> newsList = new List<News>();
 
-            List<News> newsList = await _newsRepository.GetPaginatedNewsList(pageNumber, pageSize);
+            string cachedNews = await _distributedCache.GetStringAsync("cachedNewsList");
 
-            foreach (var item in newsList)
+           
+
+            if (cachedNews != null  )
             {
-                Debug.WriteLine(item.ToString());
-            }
+                var newsListCached = JsonConvert.DeserializeObject<List<News>>(cachedNews);
 
+                int skip = (pageNumber - 1) * pageSize;
+
+                if (skip + pageSize <= newsListCached.Count)
+                {
+                    newsList = newsListCached
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                    newsList = await _newsRepository.GetTags(newsList);
+                } 
+            }
+            else
+            {
+                newsList = await _newsRepository.GetPaginatedNewsList(pageNumber, pageSize);
+
+                foreach (var item in newsList)
+                {
+                    Debug.WriteLine(item.ToString());
+                }
+
+            }
+           
             int totalItems = await _newsRepository.CountItems();
 
             var page = new NewsPagination
@@ -98,9 +122,6 @@ namespace SportAppServer.Services
         }
 
 
-
-
-
         private Task<bool> LikeExist(DateTime newsDateTime, string email)
         {
             Debug.WriteLine(newsDateTime.ToString());
@@ -108,12 +129,10 @@ namespace SportAppServer.Services
             return _likeRepository.LikeExist(newsDateTime, email);
         }
 
+
         Task<List<NewsDTO>> INewsService.GetAllNews()
         {
             throw new NotImplementedException();
         }
-
-
-       
     }
 }

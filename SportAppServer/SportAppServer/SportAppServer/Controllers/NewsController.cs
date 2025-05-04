@@ -28,17 +28,36 @@ namespace SportAppServer.Controllers
         [HttpGet("GetNews")]
         public async Task<IActionResult> GetNews(int pageNumber = 1, int pageSize = 10)
         {
-            Debug.WriteLine($"pageNumber {pageNumber} pageSize {pageSize}");
-
-            NewsPagination paginatedNews = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
-
-            if (paginatedNews.News.Count == 0)
+            try
             {
-                return NotFound();
-            }
+                Debug.WriteLine($"[GetNews] pageNumber: {pageNumber}, pageSize: {pageSize}");
 
-            return Ok(paginatedNews);
+                NewsPagination paginatedNews = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
+
+                if (paginatedNews.News == null)
+                {
+                    Debug.WriteLine("[GetNews] paginatedNews.News is null");
+                    return StatusCode(500, "Ошибка: данные не получены");
+                }
+
+                if (paginatedNews.News.Count == 0)
+                {
+                    Debug.WriteLine("[GetNews] Нет новостей");
+                    return NotFound();
+                }
+
+                Debug.WriteLine($"[GetNews] Успешно возвращено новостей: {paginatedNews.News.Count}");
+
+                return Ok(paginatedNews);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[GetNews] Ошибка: {ex.Message}");
+                Debug.WriteLine(ex.StackTrace);
+                return StatusCode(500, "Внутренняя ошибка сервера");
+            }
         }
+
 
 
 
