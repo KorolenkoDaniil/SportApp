@@ -16,6 +16,8 @@ import io.ktor.http.encodedPath
 import io.ktor.http.takeFrom
 import kotlinx.serialization.json.Json
 
+//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
+
 class NewsRepository {
 
     private val controllerPath = "NewsController"

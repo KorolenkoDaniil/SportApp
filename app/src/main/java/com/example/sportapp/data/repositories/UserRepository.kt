@@ -31,6 +31,8 @@ import java.io.File
 import java.net.URLConnection
 
 
+//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
+
 class UserRepository {
 
     val userMapper = UserMapper()
@@ -107,6 +109,8 @@ class UserRepository {
         }
     }
 
+
+    //TODO сделать кеширование картинки пользователя
 }
 
 

@@ -22,6 +22,8 @@ import io.ktor.http.path
 import kotlinx.serialization.json.Json
 
 
+//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
+
 class SoccerRepository {
     //        https://dev-lsa-stats.origins-digital.com/lsa/stats/api/proxy/d3/calendar?season_id=serie-a%3A%3AFootball_Season%3A%3A1e32f55e98fc408a9d1fc27c0ba43243
 

@@ -21,29 +21,13 @@ namespace SportAppServer.Services
             _likeRepository = likeRepository;
         }
 
-        public Task<string> GetAllNews()
-        {
-            //var page = new NewsPagination
-            //{
-            //    PageNumber = pageNumber,
-            //    PageSize = pageSize,
-            //    TotalItems = totalItems,
-            //    News = newsList
-            //};
-
-            //string json = JsonConvert.SerializeObject(page, new JsonSerializerSettings
-            //{
-            //    Formatting = Formatting.Indented,
-            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            //});
-
-            //return Content(json, "application/json");
-            throw new NotImplementedException();
-        }
-
+      
         public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
         {
             var searchResult = await _newsRepository.GetByDateAsync(dateTime);
+
+
+            //TODO сделать кеш последних 10 новоостей и не дергать базу
 
 
             if (searchResult != null)

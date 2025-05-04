@@ -56,15 +56,16 @@ fun SearchedNewsList(newsViewModel: NewsActivityViewModel, searchPrompt: String,
 
 
     LaunchedEffect(listState) {
-        snapshotFlow { listState.layoutInfo.visibleItemsInfo }
-            .collectLatest { visibleItems ->
-                val lastVisibleItemIndex = visibleItems.lastOrNull()?.index
-                if (!loading.value && lastVisibleItemIndex != null) {
-                    if (lastVisibleItemIndex >= itemList.size - 5) {
-                        page.value++
-                    }
-                }
+        snapshotFlow {
+            val visibleItemCount = listState.layoutInfo.visibleItemsInfo.size
+            val totalItemCount = listState.layoutInfo.totalItemsCount
+            val lastVisibleItemIndex = listState.firstVisibleItemIndex + visibleItemCount
+            Pair(lastVisibleItemIndex, totalItemCount)
+        }.collectLatest { (lastVisible, total) ->
+            if (!loading.value && lastVisible >= total - 2) {
+                page.value++
             }
+        }
     }
 
 

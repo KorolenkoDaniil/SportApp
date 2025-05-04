@@ -13,6 +13,9 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.appendPathSegments
 import kotlinx.serialization.json.Json
 
+
+//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
+
 class YoutubeRepository {
 
     private val apiKey = "AIzaSyDW4nt60Fz-opw2g8iz8ZuulYWYO-Ar7ME"

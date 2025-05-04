@@ -26,6 +26,8 @@ import kotlinx.serialization.json.Json
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
+
 class CommentRepository {
 
     private val commentsPageMapper = CommentsPageMapper()

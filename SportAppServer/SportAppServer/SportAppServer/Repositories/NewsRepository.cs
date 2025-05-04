@@ -43,6 +43,8 @@ namespace SportAppServer.Repositories
                 .Take(pageSize)
                 .ToListAsync();
 
+            //TODO  сделать пагинацию на sql сервере
+
 
             return newsList;
         }

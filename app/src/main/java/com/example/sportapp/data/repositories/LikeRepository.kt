@@ -15,6 +15,8 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.time.LocalDateTime
 
+//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
+
 class LikeRepository {
 
     private val client = HttpClient(CIO) {

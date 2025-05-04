@@ -1,10 +1,10 @@
 package com.example.sportapp.CleanArchitexture.data.repositories
 
 import android.util.Log
-import com.example.sportapp.data.BaseUrl
 import com.example.sportapp.CleanArchitexture.data.dto.aiAnswer.AIAnswerDto
 import com.example.sportapp.CleanArchitexture.data.mappers.AIAnswerMapper
 import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.MessageEntity
+import com.example.sportapp.data.BaseUrl
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -18,6 +18,8 @@ import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+
+//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
 
 class AIAnswerRepository {
 

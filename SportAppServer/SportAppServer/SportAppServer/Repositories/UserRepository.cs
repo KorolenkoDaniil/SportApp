@@ -21,6 +21,8 @@ namespace SportAppServer.Repositories
 
             User user = await _context.Users.FindAsync(email);
 
+            //TODO : сделать поиск на sql сервере
+
 
             Debug.WriteLine(user + "---------------------------------------11111111111111111111111111");
 
