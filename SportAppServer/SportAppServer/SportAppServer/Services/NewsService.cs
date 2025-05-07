@@ -73,12 +73,6 @@ namespace SportAppServer.Services
             else
             {
                 newsList = await _newsRepository.GetPaginatedNewsList(pageNumber, pageSize);
-
-                foreach (var item in newsList)
-                {
-                    Debug.WriteLine(item.ToString());
-                }
-
             }
            
             int totalItems = await _newsRepository.CountItems();

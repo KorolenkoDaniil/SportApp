@@ -33,21 +33,19 @@ namespace SportAppServer.Repositories
 
         public async Task<List<News>> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10)
         {
-            int totalItems = await _context.NewsList.CountAsync();
-
+            var pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
+            var pageSizeParam = new SqlParameter("@PageSize", pageSize);
 
             var newsList = await _context.NewsList
-                .Include(n => n.Tags)
-                .OrderByDescending(news => news.DateTime)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
+                .FromSqlRaw("EXEC TakePaginatedNews @PageNumber, @PageSize", pageNumberParam, pageSizeParam)
                 .ToListAsync();
 
-            //TODO  сделать пагинацию на sql сервере
 
+            newsList = await GetTags(newsList);
 
             return newsList;
         }
+
 
 
 
@@ -90,8 +88,7 @@ namespace SportAppServer.Repositories
                                 emptyTags.Add(newTag);
                             }
 
-                            //newsItem.NewsTags = emptyTags;
-
+                          
                             await _context.NewsList.AddAsync(newsItem);
 
                             Console.WriteLine($"Новость добавлена: {newsItem.Title}");
@@ -168,41 +165,23 @@ namespace SportAppServer.Repositories
 
 
 
+
+
+
         public async Task<(List<News>, int totalItems)> GetNewsList(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
         {
-
-            SqlParameter searchParam;
-
-            if (string.IsNullOrEmpty(searchPrompt))
-                searchParam = new SqlParameter("@search", DBNull.Value);
-            else
-                searchParam = new SqlParameter("@search", FormatForFullTextSearch(searchPrompt));
-
-            Debug.WriteLine($"Search Parameter: {searchParam.Value}");
-
-            var outputParam = new SqlParameter("@total", SqlDbType.Int)
-            {
-                Direction = ParameterDirection.Output
-            };
-
-            SqlParameter sportParam;
-            if (sportIndex != -1 && sportIndex < Sports.sports.Count)
-                sportParam = new SqlParameter("@sport", Sports.sports[sportIndex]);
-            else
-                sportParam = new SqlParameter("@sport", DBNull.Value);
+            SqlParameter searchParam = new SqlParameter("@search", string.IsNullOrEmpty(searchPrompt) ? DBNull.Value : FormatForFullTextSearch(searchPrompt));
+            SqlParameter sportParam = new SqlParameter("@sport", sportIndex != -1 && sportIndex < Sports.sports.Count ? Sports.sports[sportIndex] : DBNull.Value);
 
             var pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
             var pageSizeParam = new SqlParameter("@PageSize", pageSize);
 
-       
-
-            Debug.WriteLine($"Sport Parameter: {sportParam.Value}");
+            var outputParam = new SqlParameter("@total", SqlDbType.Int) { Direction = ParameterDirection.Output };
 
             await _context.Database.ExecuteSqlRawAsync(
                 "EXEC CountNews @search, @sport, @total OUT",
                 searchParam, sportParam, outputParam
             );
-
             int totalItems = (int)outputParam.Value;
             Debug.WriteLine($"Total Items: {totalItems}");
 
@@ -211,24 +190,9 @@ namespace SportAppServer.Repositories
                     searchParam, sportParam, pageNumberParam, pageSizeParam)
                 .ToListAsync();
 
-            foreach (var item in newsList)
-            {
-                Debug.WriteLine(item);
-            }
+            newsList = await GetTags(newsList);
+
             Debug.WriteLine("-----------------------------------");
-
-            var paginatedList = newsList
-                .OrderByDescending(n => n.DateTime)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            foreach (var newsItem in newsList)
-            {
-                newsItem.Tags = await _context.Tags
-                    .Where(t => t.NewsDateTime == newsItem.DateTime)
-                    .ToListAsync();
-            }
 
             return (newsList, totalItems);
         }

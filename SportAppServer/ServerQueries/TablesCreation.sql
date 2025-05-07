@@ -314,11 +314,6 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    PRINT @search
-    PRINT @sport
-    PRINT @PageNumber
-    PRINT @PageSize
-
     DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
 
     IF @search IS NULL OR @search = ''
@@ -351,6 +346,26 @@ BEGIN
     END
 END
 GO
+
+
+
+CREATE OR ALTER PROCEDURE TakePaginatedNews
+    @PageNumber INT = 1,
+    @PageSize INT = 10
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
+       
+	SELECT *
+        FROM News
+        ORDER BY DateTime DESC
+        OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
+END
+GO
+
+
 
 
 
@@ -387,23 +402,54 @@ GO
 
 
 
+go
+	CREATE OR ALTER PROCEDURE SearchUserByEmail
+		@email NVARCHAR(200)
+	AS
+	BEGIN
+		SELECT U.UserEmail, U.UserImage
+		FROM Users U
+			WHERE LOWER(U.UserEmail) = LOWER(@Email)
+	end
+go
 
-CREATE OR ALTER PROCEDURE SearchUserByEmail
-	@email NVARCHAR(200)
-AS
+
+--go
+--	CREATE OR ALTER PROCEDURE GetLast30News
+--	AS
+--	BEGIN
+--		SET NOCOUNT ON;  SET NOCOUNT ON; -- отключает сообщение "N строк обработано", что ускоряет выполнение в некоторых сценариях (особенно при вызовах из кода).
+
+--		SELECT 
+--			news.ArticleText, 
+--			news.DateTime, 
+--			news.ImageId, 
+--			news.Sport, 
+--			news.TextAfterLemmatize, 
+--			news.Title
+--		FROM News news
+--			Order by news.DateTime DESC
+--			OFFSET 0 ROWS FETCH NEXT 30 ROWS ONLY
+--	end
+--go
+
+--drop PROCEDURE GetLast30News
+
+
+
+
+
+
+
+
+CREATE OR ALTER PROC DeleteNUllValue 
+AS 
 BEGIN
-	 SELECT U.UserEmail, U.UserImage
-    FROM Users U
-    WHERE LOWER(U.UserEmail) = LOWER(@Email)
-end
-
-
-
-DELETE FROM News
-WHERE Title IS NULL
-   OR ArticleText IS NULL
-   OR ImageId IS NULL
-   OR Sport IS NULL
-   OR DateTime IS NULL;
-
+	DELETE FROM News
+		WHERE Title IS NULL
+			OR ArticleText IS NULL
+			OR ImageId IS NULL
+			OR Sport IS NULL
+			OR DateTime IS NULL;
+END
 

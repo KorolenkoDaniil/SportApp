@@ -19,9 +19,8 @@ namespace SportAppServer.Repositories
         public async Task<User> GetUserData(string email)
         {
 
-            User user = await _context.Users.FindAsync(email);
-
-            //TODO : сделать поиск на sql сервере
+            var user = await _context.Users
+    .           FirstOrDefaultAsync(u => u.UserEmail == email);
 
 
             Debug.WriteLine(user + "---------------------------------------11111111111111111111111111");
@@ -54,6 +53,14 @@ namespace SportAppServer.Repositories
                 .FromSqlRaw("EXEC SearchUserByEmail @email", emailParam)
                 .AsEnumerable()
                 .FirstOrDefault();
+
+
+            //Метод.AsEnumerable() в данном контексте используется для принудительного выполнения 
+            //SQL-запроса и перевода результата из EF Core IQueryable в LINQ на уровне C#, чтобы 
+            //можно было безопасно использовать методы, не поддерживаемые SQL-сервером — такие как 
+            //.FirstOrDefault() в чистом C#.
+
+
 
             if (user == null)
             {

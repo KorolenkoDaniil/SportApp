@@ -14,10 +14,12 @@ namespace SportAppServer
     {
 
         private readonly IDistributedCache _distributedCache;
+        private readonly DBContext _context;
 
-        public PythonScript(IDistributedCache distributedCache)
+        public PythonScript(IDistributedCache distributedCache, DBContext context)
         {
             _distributedCache = distributedCache;
+            _context = context;
         }
 
 
@@ -110,7 +112,7 @@ namespace SportAppServer
                         .Where(n => !newsDB.NewsList.Any(existingNews => existingNews.DateTime == n.DateTime))
                         .ToList();
 
-                    if (newsList.Count == 0)
+                    if (newNews.Count == 0)
                     {
                         Console.WriteLine("Нет новых новостей для добавления.");
                         return;
@@ -127,22 +129,18 @@ namespace SportAppServer
 
                   
 
-                    await newsDB.NewsList.AddRangeAsync(newsList);
+                    await newsDB.NewsList.AddRangeAsync(newNews);
                     await newsDB.SaveChangesAsync();
 
 
-                    List<News> last20News = await newsDB.NewsList
-                        .OrderByDescending(n => n.DateTime)
-                        .Take(30)
+                    List<News> last20News = await _context.NewsList
+                        .FromSqlRaw("EXEC GetLast30News")
                         .ToListAsync();
-
-                   
-                    //TODO заменить на поиск в sql
 
 
                     await _distributedCache.SetStringAsync("cachedNewsList", JsonConvert.SerializeObject(last20News));
 
-                    Console.WriteLine($"Успешно добавлено {newsList.Count} новостей в базу данных.");
+                    Console.WriteLine($"Успешно добавлено {newNews.Count} новостей в базу данных.");
                 }
                 catch (DbUpdateException ex)
                 {
