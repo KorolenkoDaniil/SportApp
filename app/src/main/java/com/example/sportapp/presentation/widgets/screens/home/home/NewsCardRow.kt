@@ -31,6 +31,8 @@ fun NewsCardRow(
     itemList: SnapshotStateList<NewsEntity>
 ) {
 
+    //TODO сделать проверку и убрать лищние зщапросы
+
     val page = remember { mutableStateOf(1) }
     val loading = remember { mutableStateOf(false) }
     val listState = rememberLazyListState()

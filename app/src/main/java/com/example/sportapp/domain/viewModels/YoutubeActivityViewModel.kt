@@ -1,5 +1,7 @@
 package com.example.sportapp.models.viewModels
 
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.CleanArchitexture.data.repositories.YoutubeRepository
@@ -17,6 +19,19 @@ class YoutubeActivityViewModel : ViewModel(), BaseViewModelInterface <VideosStat
     override fun getState(): StateFlow<VideosState> {
         return state
     }
+
+
+    val page = mutableStateOf(1)
+    val loading = mutableStateOf(false)
+    val videoList = mutableStateListOf<VideoEntity>()
+
+
+    //TODO использовать этот метод
+    fun addVideo(video: VideoEntity) {
+        videoList.add(video)
+    }
+
+
 
     private var _selectedVideo = selectedVideo
 

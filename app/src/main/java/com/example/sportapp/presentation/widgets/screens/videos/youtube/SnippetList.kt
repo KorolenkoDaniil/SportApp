@@ -14,9 +14,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
-import com.example.sportapp.CleanArchitexture.domain.models.youTube.VideoEntity
 import com.example.sportapp.presentation.navigation.Screen
 import kotlinx.coroutines.flow.collectLatest
 
@@ -35,29 +31,26 @@ fun SnippetList(
     navController: NavHostController
 ) {
 
-    val page = remember { mutableStateOf(1) }
-    val loading = remember { mutableStateOf(false) }
-    val itemList = remember { mutableStateListOf<VideoEntity>() }
     val listState = rememberLazyListState()
 
-    LaunchedEffect(key1 = page.value) {
-        loading.value = true
-        itemList.addAll(videoViewModel.loadVideos())
-        loading.value = false
+    LaunchedEffect(key1 = videoViewModel.page.value) {
+        videoViewModel.loading.value = true
+        videoViewModel.videoList.addAll(videoViewModel.loadVideos())
+        videoViewModel.loading.value = false
     }
 
     LaunchedEffect(listState) {
         snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
             .collectLatest { index ->
-                if (!loading.value && index != null && index >= itemList.size - 5) {
-                    page.value++
+                if (!videoViewModel.loading.value && index != null && index >= videoViewModel.videoList.size - 5) {
+                    videoViewModel.page.value++
                 }
             }
     }
 
     LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
-        items(itemList.size) { index ->
-            val video = itemList[index]
+        items(videoViewModel.videoList.size) { index ->
+            val video = videoViewModel.videoList[index]
             val thumbnail = rememberAsyncImagePainter(video.snippet.thumbnailUrl)
 
             Image(
@@ -79,7 +72,7 @@ fun SnippetList(
         }
 
         item {
-            if (loading.value) {
+            if (videoViewModel.loading.value) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()

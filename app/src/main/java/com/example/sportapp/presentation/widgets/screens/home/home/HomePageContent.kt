@@ -9,14 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.presentation.widgets.common.shared.SearchLine
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
@@ -29,7 +27,6 @@ fun HomePageContent(
     viewModels: ViewModelContainer,
     navController: NavHostController,
     horizontalPaddings: Dp,
-    itemList: SnapshotStateList<NewsEntity>
 ) {
 
     val isFocused = remember { mutableStateOf(false) }
@@ -54,7 +51,7 @@ fun HomePageContent(
             openFilterOverlay,
             isFocused,
             focusRequester,
-            itemList,
+            viewModels.newsViewModel.newsList,
             loading
         )
 
@@ -74,7 +71,7 @@ fun HomePageContent(
                     )
                 }
                 item { Spacer(modifier = Modifier.height(20.dp)) }
-                item { NewsCardRow(navController, viewModels.newsViewModel, horizontalPaddings, itemList) }
+                item { NewsCardRow(navController, viewModels.newsViewModel, horizontalPaddings,  viewModels.newsViewModel.newsList) }
                 item { Spacer(modifier = Modifier.height(20.dp)) }
                 item {
                     Text(
@@ -100,7 +97,7 @@ fun HomePageContent(
                 newsViewModel = viewModels.newsViewModel,
                 searchPrompt = promptState.value.text,
                 navController,
-                itemList,
+                viewModels.newsViewModel.newsList,
                 loading
             )
         }
@@ -115,7 +112,7 @@ fun HomePageContent(
                 openFilterOverlay = openFilterOverlay,
                 newsViewModel = viewModels.newsViewModel,
                 promptState = promptState,
-                itemList,
+                viewModels.newsViewModel.newsList,
                 loading
             )
         }

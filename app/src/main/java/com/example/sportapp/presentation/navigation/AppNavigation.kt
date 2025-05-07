@@ -55,9 +55,6 @@ fun MyAppNavigation(
         val topPaddings = 14.dp
         val horizontalPaddings = 12.dp
 
-        val itemList = remember { mutableStateListOf<NewsEntity>() }
-
-
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -83,7 +80,6 @@ fun MyAppNavigation(
                         states = states,
                         navController = navController,
                         horizontalPaddings = horizontalPaddings,
-                        itemList
                     )
                 }
 
@@ -121,7 +117,7 @@ fun MyAppNavigation(
                         navController,
                         horizontalPaddings,
                         showBar,
-                        itemList
+
                     )
                 }
 

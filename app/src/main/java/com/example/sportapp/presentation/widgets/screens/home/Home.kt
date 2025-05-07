@@ -2,11 +2,8 @@ package com.example.sportapp.presentation.widgets.screens.home
 
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.models.viewModels.MatchesState
@@ -16,7 +13,6 @@ import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.presentation.widgets.common.shared.CommonError
 import com.example.sportapp.presentation.widgets.common.shared.Loading
 import com.example.sportapp.presentation.widgets.screens.home.home.HomePageContent
-import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
@@ -25,7 +21,6 @@ fun HomePage(
     states: StatesContainer,
     navController: NavHostController,
     horizontalPaddings: Dp,
-    itemList: SnapshotStateList<NewsEntity>
 ) {
     when ( states.matchesState) {
 
@@ -43,7 +38,6 @@ fun HomePage(
                                 viewModels,
                                 navController = navController,
                                 horizontalPaddings,
-                                itemList
                             )
                         }
 
