@@ -42,7 +42,7 @@ class YoutubeActivityViewModel : ViewModel(), BaseViewModelInterface <VideosStat
 
 
     init {
-        loadData()
+//        loadData()
     }
 
     override fun loadData() {

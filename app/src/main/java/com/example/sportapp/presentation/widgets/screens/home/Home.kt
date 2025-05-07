@@ -8,7 +8,6 @@ import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsState
-import com.example.sportapp.models.viewModels.VideosState
 import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.presentation.widgets.common.shared.CommonError
 import com.example.sportapp.presentation.widgets.common.shared.Loading
@@ -25,10 +24,10 @@ fun HomePage(
     when ( states.matchesState) {
 
         is MatchesState.MatchesContent -> {
-
-            when (states.videoState) {
-
-                is VideosState.VideosContent -> {
+//
+//            when (states.videoState) {
+//
+//                is VideosState.VideosContent -> {
 
                     when (states.newsState) {
 
@@ -50,14 +49,14 @@ fun HomePage(
                             Loading()
                         }
                     }
-                }
-
-                is VideosState.Error ->
-                    CommonError(viewModels.videoViewModel, Screen.Home.route, navController, "видео")
-
-
-                is VideosState.Load -> Loading()
-            }
+//                }
+//
+//                is VideosState.Error ->
+//                    CommonError(viewModels.videoViewModel, Screen.Home.route, navController, "видео")
+//
+//
+//                is VideosState.Load -> Loading()
+//            }
         }
 
         is MatchesState.Error -> {
