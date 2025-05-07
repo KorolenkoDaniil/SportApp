@@ -7,7 +7,22 @@ import com.example.sportapp.presentation.widgets.screens.videos.youtube.YoutubeP
 
 @Composable
 fun VideoPlayerPage ( youTubeViewModel: YoutubeActivityViewModel ){
+
+    //TODO сделать переворот экрана
+
+    //TODO добавить лайки
+
+    //TODO добавить комментарии
+
+    //TODO добавить "рекомендованные" видео
+
+    //TODO написать дату публикаии
+
+    //TODO выделять кнопку меню
+
     YoutubePlayer (youTubeViewModel.selectedVideo.id.videoId, LocalLifecycleOwner.current)
+
+
 }
 
 

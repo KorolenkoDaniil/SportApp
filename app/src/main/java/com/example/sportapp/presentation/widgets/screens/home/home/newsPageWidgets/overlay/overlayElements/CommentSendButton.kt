@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.CleanArchitexture.domain.models.comments.CommentEntity
 import com.example.sportapp.R
-import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.CommentsViewModel
 import com.example.sportapp.ui.theme.red_accent_color
 import kotlinx.coroutines.CoroutineScope

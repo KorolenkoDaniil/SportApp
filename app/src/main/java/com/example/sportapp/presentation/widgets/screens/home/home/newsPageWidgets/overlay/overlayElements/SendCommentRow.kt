@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.CleanArchitexture.domain.models.comments.CommentEntity
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.CommentsViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")

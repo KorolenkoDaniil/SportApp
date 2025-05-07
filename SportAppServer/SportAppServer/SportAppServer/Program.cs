@@ -16,10 +16,6 @@ internal class Program
 
 
 
-        //builder.Services.AddDbContext<DBContext>(options =>
-        //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
         builder.Services.AddDbContext<DBContext>(options =>
             options.UseSqlServer("Server=Karalenka;Database=KorSport;Trusted_Connection=True;TrustServerCertificate=True"));
 

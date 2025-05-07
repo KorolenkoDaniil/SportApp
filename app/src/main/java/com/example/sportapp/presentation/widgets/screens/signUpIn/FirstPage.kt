@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
-import com.example.sportapp.models.viewModels.AuthState
+import com.example.sportapp.domain.viewModels.authorization.AuthState
 import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp.first_page.FirstPageElements
 

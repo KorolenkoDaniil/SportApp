@@ -26,7 +26,6 @@ class YoutubeActivityViewModel : ViewModel(), BaseViewModelInterface <VideosStat
     val videoList = mutableStateListOf<VideoEntity>()
 
 
-    //TODO использовать этот метод
     fun addVideo(video: VideoEntity) {
         videoList.add(video)
     }

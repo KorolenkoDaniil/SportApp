@@ -6,8 +6,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import com.example.sportapp.models.viewModels.AuthState
-import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.AuthState
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp.SignupPageContent
 

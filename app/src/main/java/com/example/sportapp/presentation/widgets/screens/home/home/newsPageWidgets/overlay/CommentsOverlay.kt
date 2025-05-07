@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.CleanArchitexture.domain.models.comments.CommentEntity
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.CommentsViewModel
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.overlayElements.Comments
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.overlayElements.SendCommentRow

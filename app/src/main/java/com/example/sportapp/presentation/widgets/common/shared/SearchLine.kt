@@ -48,7 +48,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.R
-import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import kotlinx.coroutines.delay
 

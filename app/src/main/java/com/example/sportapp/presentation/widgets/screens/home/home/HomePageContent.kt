@@ -71,7 +71,7 @@ fun HomePageContent(
                     )
                 }
                 item { Spacer(modifier = Modifier.height(20.dp)) }
-                item { NewsCardRow(navController, viewModels.newsViewModel, horizontalPaddings,  viewModels.newsViewModel.newsList) }
+                item { NewsCardRow(navController, viewModels.newsViewModel, horizontalPaddings) }
                 item { Spacer(modifier = Modifier.height(20.dp)) }
                 item {
                     Text(

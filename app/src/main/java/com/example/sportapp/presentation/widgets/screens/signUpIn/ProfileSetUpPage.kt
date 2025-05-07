@@ -24,8 +24,8 @@ import androidx.navigation.NavController
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
-import com.example.sportapp.models.viewModels.AuthViewModel
-import com.example.sportapp.models.viewModels.ImageSubmissionState
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.ImageSubmissionState
 import com.example.sportapp.presentation.navigation.Screen
 import timber.log.Timber
 import java.io.File

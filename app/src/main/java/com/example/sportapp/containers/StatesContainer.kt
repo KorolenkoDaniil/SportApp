@@ -1,7 +1,7 @@
 package com.example.sportapp.containers
 
 import com.example.sportapp.models.viewModels.AnswerState
-import com.example.sportapp.models.viewModels.AuthState
+import com.example.sportapp.domain.viewModels.authorization.AuthState
 import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsState
 import com.example.sportapp.models.viewModels.VideosState

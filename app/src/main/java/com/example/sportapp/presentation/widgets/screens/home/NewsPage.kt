@@ -56,7 +56,6 @@ fun NewsPage(
                         horizontalPaddings = horizontalPaddings,
                         authModel = viewModels.authViewModel,
                         showBar = showBar,
-                        viewModels.newsViewModel.newsList
                     )
                 }
 

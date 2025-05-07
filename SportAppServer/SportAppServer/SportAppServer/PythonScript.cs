@@ -14,13 +14,14 @@ namespace SportAppServer
     {
 
         private readonly IDistributedCache _distributedCache;
-        private readonly DBContext _context;
+        private readonly IServiceScopeFactory _scopeFactory;
 
-        public PythonScript(IDistributedCache distributedCache, DBContext context)
+        public PythonScript(IDistributedCache distributedCache, IServiceScopeFactory scopeFactory)
         {
             _distributedCache = distributedCache;
-            _context = context;
+            _scopeFactory = scopeFactory;
         }
+
 
 
         public async Task RunPythonScriptAsync()
@@ -79,12 +80,11 @@ namespace SportAppServer
 
             List<News>? newsList;
 
-
             using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
             {
                 string text = await reader.ReadToEndAsync();
                 Console.WriteLine("--- JSON content read by C# ---");
-                Console.WriteLine(text); 
+                Console.WriteLine(text);
                 Console.WriteLine("--- End JSON content ---");
 
                 try
@@ -94,23 +94,34 @@ namespace SportAppServer
                 catch (JsonException jsonEx)
                 {
                     Console.WriteLine($"JSON Deserialization Error: {jsonEx.Message}");
-                    newsList = null; 
+                    newsList = null;
                 }
             }
 
             if (newsList == null || newsList.Count == 0)
             {
-                Console.WriteLine("Список новостей пуст или не удалось десериализовать данные. Check the JSON file and Python script output.");
+                Console.WriteLine("Список новостей пуст или не удалось десериализовать данные.");
                 return;
             }
 
-            using (var newsDB = new DBContext())
+            using (var scope = _scopeFactory.CreateScope())
             {
+                var context = scope.ServiceProvider.GetRequiredService<DBContext>();
+
                 try
                 {
                     List<News> newNews = newsList
-                        .Where(n => !newsDB.NewsList.Any(existingNews => existingNews.DateTime == n.DateTime))
+                        .Where(n => !context.NewsList.Any(existingNews => existingNews.DateTime == n.DateTime))
                         .ToList();
+
+                    Debug.WriteLine("---111---");
+
+                    foreach (var news in newNews)
+                    {
+                        Debug.WriteLine(news);
+                    }
+
+                    Debug.WriteLine("---111---");
 
                     if (newNews.Count == 0)
                     {
@@ -118,24 +129,54 @@ namespace SportAppServer
                         return;
                     }
 
-                    newNews = NullFilterServise.FilterNews(newsList);
+                    newNews = NullFilterServise.FilterNews(newNews);
 
+                    Debug.WriteLine("---222---");
 
+                    foreach (var news in newNews)
+                    {
+                        Debug.WriteLine(news);
+                    }
 
+                    Debug.WriteLine("---222---");
+
+                    
+                    
                     foreach (var news in newNews)
                     {
                         news.TextAfterLemmatize = await LemmatizeService.GetLems(news.ArticleText);
                     }
 
-                  
-
-                    await newsDB.NewsList.AddRangeAsync(newNews);
-                    await newsDB.SaveChangesAsync();
 
 
-                    List<News> last20News = await _context.NewsList
-                        .FromSqlRaw("EXEC GetLast30News")
+                    Debug.WriteLine("---333---");
+
+                    foreach (var news in newNews)
+                    {
+                        Debug.WriteLine(news);
+                    }
+
+                    Debug.WriteLine("---333---");
+
+
+
+
+                    await context.NewsList.AddRangeAsync(newNews);
+                    await context.SaveChangesAsync();
+
+                    List<News> last20News = await context.NewsList.OrderByDescending(n => n.DateTime)
+                        .Take(30)
                         .ToListAsync();
+
+
+                    Debug.WriteLine("---444---");
+
+                    foreach (var news in last20News)
+                    {
+                        Debug.WriteLine(news);
+                    }
+
+                    Debug.WriteLine("---444---");
 
 
                     await _distributedCache.SetStringAsync("cachedNewsList", JsonConvert.SerializeObject(last20News));
@@ -144,17 +185,10 @@ namespace SportAppServer
                 }
                 catch (DbUpdateException ex)
                 {
-                    if (ex.InnerException != null)
-                    {
-                        Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Error: {ex.Message}");
-                    }
+                    Console.WriteLine(ex.InnerException?.Message ?? ex.Message);
                 }
             }
-
         }
+
     }
 }

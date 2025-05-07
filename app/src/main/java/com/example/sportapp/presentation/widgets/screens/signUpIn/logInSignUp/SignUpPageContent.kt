@@ -27,8 +27,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.sportapp.R
-import com.example.sportapp.models.viewModels.AuthState
-import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.AuthState
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.ui.theme.red_accent_color
 import com.example.sportapp.ui.theme.style13_log_in__page

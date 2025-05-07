@@ -13,14 +13,11 @@ import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 
-class CommentsViewModel : ViewModel(), BaseViewModelInterface<CommentState, CommentRepository> {
+class CommentsViewModel() : ViewModel(), BaseViewModelInterface<CommentState, CommentRepository> {
 
     override val state: MutableStateFlow<CommentState> = MutableStateFlow(CommentState.Load)
-
     override val repository = CommentRepository()
-
     override fun loadData() {}
-
     private var _commentsCount = commentsCount
 
     var commentsCount: Int
@@ -29,6 +26,7 @@ class CommentsViewModel : ViewModel(), BaseViewModelInterface<CommentState, Comm
             _commentsCount = value
         }
 
+    //TODO сделать use case
 
     fun loadData(newsDateTime: LocalDateTime, pageNumber: Int, viewer: String) {
         viewModelScope.launch {
@@ -168,11 +166,6 @@ class CommentsViewModel : ViewModel(), BaseViewModelInterface<CommentState, Comm
             }
         }
     }
-
-
-
-
-
 }
 
 

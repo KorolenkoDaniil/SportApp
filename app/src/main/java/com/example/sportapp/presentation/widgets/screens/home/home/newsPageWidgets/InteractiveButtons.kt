@@ -29,6 +29,10 @@ fun InteractiveButtons(
     user: UserEntity,
     CommentsCount: MutableState<Int>
 ) {
+
+
+    //TODO не запоминается, что новость была лайкнута
+
     val likeViewModel: LikeViewModel = viewModel()
 
     val likeRes = if (currentNews.isLiked) R.drawable.red_heart else R.drawable.like

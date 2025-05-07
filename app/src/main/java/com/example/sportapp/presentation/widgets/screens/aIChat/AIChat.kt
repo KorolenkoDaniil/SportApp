@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.sqlLiteDB.MessageRoomDatabase
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
-import com.example.sportapp.models.viewModels.AuthViewModel
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.MessagesColumn
 import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.RowToSendPrompt
 
