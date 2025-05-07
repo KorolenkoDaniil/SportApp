@@ -67,6 +67,8 @@ fun SearchLine(
     loading: MutableState<Boolean>
 ) {
 
+    //TODO   разбить на состовляющие
+
     // отслеживаем предыдущий текст
     var previousText by remember { mutableStateOf("") }
 
@@ -157,7 +159,11 @@ fun SearchLine(
 
         Spacer(Modifier.width(20.dp))
 
-        val painter = rememberAsyncImagePainter(authViewModel.currentUser.value?.pictureURL)
+        val painter = rememberAsyncImagePainter(
+            model = authViewModel.currentUserPhotoFile.value
+                ?: authViewModel.currentUser.value?.pictureURL
+        )
+
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

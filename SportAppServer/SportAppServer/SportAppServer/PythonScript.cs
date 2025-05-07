@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using SportAppServer.Context;
 using SportAppServer.Models.Entities;
+using SportAppServer.Services;
 using SportAppServer.Services.LemmatizeMicroService;
 using System.Diagnostics;
 using System.Text;
@@ -114,15 +115,17 @@ namespace SportAppServer
                         Console.WriteLine("Нет новых новостей для добавления.");
                         return;
                     }
-                    
-                   
+
+                    newNews = NullFilterServise.FilterNews(newsList);
+
+
 
                     foreach (var news in newNews)
                     {
                         news.TextAfterLemmatize = await LemmatizeService.GetLems(news.ArticleText);
                     }
 
-                    //TODO написать вызов мтеода, который очишает строки с пустыми значениями
+                  
 
                     await newsDB.NewsList.AddRangeAsync(newsList);
                     await newsDB.SaveChangesAsync();
@@ -134,7 +137,6 @@ namespace SportAppServer
                         .ToListAsync();
 
                    
-
                     //TODO заменить на поиск в sql
 
 

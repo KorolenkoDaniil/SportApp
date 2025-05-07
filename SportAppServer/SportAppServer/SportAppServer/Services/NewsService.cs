@@ -52,9 +52,9 @@ namespace SportAppServer.Services
 
             string cachedNews = await _distributedCache.GetStringAsync("cachedNewsList");
 
-           
+      
 
-            if (cachedNews != null  )
+            if (cachedNews != null)
             {
                 var newsListCached = JsonConvert.DeserializeObject<List<News>>(cachedNews);
 

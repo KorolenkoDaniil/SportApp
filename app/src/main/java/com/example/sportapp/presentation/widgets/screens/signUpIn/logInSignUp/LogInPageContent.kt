@@ -82,6 +82,7 @@ fun LogInPageContent(
             )
 
 
+            //TODO скрывать пароль
 
             OutlinedTextField(
                 modifier = Modifier.width(270.dp),

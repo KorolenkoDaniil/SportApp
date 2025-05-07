@@ -34,6 +34,20 @@ class AuthViewModel : ViewModel() {
 
     private val _currentUser = MutableStateFlow<UserEntity?>(null)
     val currentUser: StateFlow<UserEntity?> = _currentUser
+
+
+    //TODO перенести жто поле куда-нибудь
+
+    private val _currentUserPhotoFile = MutableStateFlow<File?>(null)
+    var currentUserPhotoFile: StateFlow<File?> = _currentUserPhotoFile
+
+    fun setUserPhotoFile(file: File) {
+        _currentUserPhotoFile.value = file
+    }
+
+
+
+
     private val userRep = UserRepository()
 
     init {
@@ -129,6 +143,8 @@ class AuthViewModel : ViewModel() {
         changeImageState(ImageSubmissionState.Initial)
     }
 
+
+    //TODO проверить почему не заргужается картинка
 
     fun sendUserImage(image: File, email: String) {
         viewModelScope.launch {

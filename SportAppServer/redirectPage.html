@@ -3,23 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Открытие приложения</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #516174;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+    </style>
+
     <script>
-        // Получаем параметр id из URL (это дата)
+       
         const params = new URLSearchParams(window.location.search);
         const newsId = params.get("id");
 
         if (newsId) {
-            // Делаем редирект на кастомную схему
+            
             setTimeout(() => {
                 window.location.href = `korsport://news/${encodeURIComponent(newsId)}`;
-            }, 100); // можно увеличить задержку, если нужно
+            }, 100); 
         } else {
             document.write("Ошибка: не передан параметр id.");
         }
     </script>
+
 </head>
 <body>
+    <img src="logo.png" alt="KorSport Logo">
     <p>Открываем новость в приложении...</p>
-    <a href="korsport://news/2024-04-08T23%3A30%3A00">Открыть новость в приложении</a>
 </body>
 </html>

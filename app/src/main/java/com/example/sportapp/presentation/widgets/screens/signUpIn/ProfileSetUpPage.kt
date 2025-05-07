@@ -46,8 +46,9 @@ fun ProfileSetUpPage(authViewModel: AuthViewModel, navController: NavController)
             authViewModel,
             context,
             onPictureChosen = { uri ->
-                val file = uriToFile(context, uri)
-                authViewModel.sendUserImage(file, authViewModel.email.value)
+                authViewModel.setUserPhotoFile(uriToFile(context, uri))
+                authViewModel.sendUserImage(authViewModel.currentUserPhotoFile.value!!, authViewModel.email.value)
+                navController.navigate(Screen.Home.route)
             }
         )
 
@@ -69,8 +70,7 @@ fun ChoosePictureFromGalleryButton(
     LaunchedEffect(imageState) {
         when (imageState) {
             is ImageSubmissionState.Received -> {
-                navController.navigate(Screen.Home.route)
-                buttonEnabled.value = true
+
             }
 
             is ImageSubmissionState.Error -> {
@@ -106,6 +106,7 @@ fun ChoosePictureFromGalleryButton(
         modifier = modifier.padding(16.dp),
         onClick = {
             imageCropLauncher.launch(buildImagePickerOptions())
+            buttonEnabled.value = true
         },
         enabled = buttonEnabled.value
 
@@ -116,6 +117,7 @@ fun ChoosePictureFromGalleryButton(
 }
 
 
+//TODO вынести методы в отдльеную viewModel
 
 fun buildImagePickerOptions() = options {
     setGuidelines(CropImageView.Guidelines.ON)
