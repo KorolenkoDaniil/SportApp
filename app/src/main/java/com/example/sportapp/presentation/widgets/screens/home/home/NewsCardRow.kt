@@ -9,16 +9,12 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.presentation.widgets.common.shared.NewsCard
 import kotlinx.coroutines.flow.collectLatest
@@ -28,49 +24,55 @@ fun NewsCardRow(
     navController: NavHostController,
     newsViewModel: NewsActivityViewModel,
     horizontalPaddings: Dp,
-    itemList: SnapshotStateList<NewsEntity>
 ) {
 
-    //TODO сделать проверку и убрать лищние зщапросы
-
-    val page = remember { mutableStateOf(1) }
-    val loading = remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
-    LaunchedEffect (key1 = page.value) {
-        loading.value = true
-        newsViewModel.searchAndSetNews(
-            pageNumber = page.value,
-            searchPrompt = "",
-            sportIndex = -1,
-            itemList = itemList,
-            clearElements = false
-        )
-        loading.value = false
+    LaunchedEffect (Unit) {
+        if (newsViewModel.newsList.isEmpty()){
+            newsViewModel.loading.value = true
+            newsViewModel.searchAndSetNews(
+                pageNumber = newsViewModel.page.value,
+                searchPrompt = "",
+                sportIndex = -1,
+                itemList = newsViewModel.newsList,
+                clearElements = false
+            )
+            newsViewModel.loading.value = false
+        }
     }
 
     LaunchedEffect (listState) {
         snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
             .collectLatest {  index ->
-                if (!loading.value && index != null && index >= itemList.size - 5){
-                    page.value++
+                if (!newsViewModel.loading.value && index != null && index >= newsViewModel.newsList.size - 5){
+                    newsViewModel.page.value++
+                    newsViewModel.loading.value = true
+                    newsViewModel.searchAndSetNews(
+                        pageNumber = newsViewModel.page.value,
+                        searchPrompt = "",
+                        sportIndex = -1,
+                        itemList = newsViewModel.newsList,
+                        clearElements = false
+                    )
+                    newsViewModel.loading.value = false
                 }
             }
     }
 
 
     LazyRow(state = listState, modifier = Modifier.padding(start = horizontalPaddings)) {
-        items(itemList.size){ index ->
+        items(newsViewModel.newsList.size){ index ->
 
-            val newss = itemList[index]
+            val news = newsViewModel.newsList[index]
 
             NewsCard(
-                news = newss,
+                news = news,
                 navController = navController
             )
         }
         item {
-            if (loading.value) {
+            if (newsViewModel.loading.value) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()

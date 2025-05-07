@@ -27,25 +27,29 @@ fun VideoCardRow(
     horizontalPaddings: Dp
 ) {
 
-    //TODO сделать проверку и убрать лищние зщапросы
-
-
     val listState = rememberLazyListState()
 
-    LaunchedEffect(key1 = videoViewModel.page.value) {
-        videoViewModel.loading.value = true
-        videoViewModel.videoList.addAll(videoViewModel.loadVideos())
-        videoViewModel.loading.value = false
+    LaunchedEffect(Unit) {
+
+        if (videoViewModel.videoList.isEmpty()) {
+            videoViewModel.loading.value = true
+            videoViewModel.videoList.addAll(videoViewModel.loadVideos())
+            videoViewModel.loading.value = false
+        }
     }
 
     LaunchedEffect(listState) {
         snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
             .collectLatest { index ->
                 if (!videoViewModel.loading.value && index != null && index >= videoViewModel.videoList.size - 5) {
+                    videoViewModel.loading.value = true
                     videoViewModel.page.value++
+                    videoViewModel.videoList.addAll(videoViewModel.loadVideos())
+                    videoViewModel.loading.value = false
                 }
             }
     }
+
 
     LazyRow(state = listState, modifier = Modifier.fillMaxSize().padding(start = horizontalPaddings)) {
         items(videoViewModel.videoList.size) { index ->

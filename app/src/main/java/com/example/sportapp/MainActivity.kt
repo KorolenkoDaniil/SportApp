@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
-import com.example.sportapp.domain.viewModels.LikeViewModel
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
@@ -21,25 +20,28 @@ import com.example.sportapp.presentation.navigation.MyAppNavigation as MyAppNavi
 
 
 class mainActivity : ComponentActivity() {
+
+    private val appActivity: AppActivityViewModel by viewModels()
+    private val videoViewModel: YoutubeActivityViewModel by viewModels()
+    private val newsViewModel: NewsActivityViewModel by viewModels()
+    private val matchesViewModel: MatchesActivitySoccerViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
+    private val aiViewModel: AIAnswerViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val appActivity: AppActivityViewModel by viewModels()
+            //set contetn перерисолвывесся при каждом переходе
 
-            val videoViewModel: YoutubeActivityViewModel by viewModels()
             val videoState by videoViewModel.getState().collectAsState()
 
-            val newsViewModel: NewsActivityViewModel by viewModels()
             val newsState by newsViewModel.getState().collectAsState()
 
-            val matchesViewModel: MatchesActivitySoccerViewModel by viewModels()
             val matchesState by matchesViewModel.getState().collectAsState()
 
-            val authViewModel: AuthViewModel by viewModels()
             val authState by authViewModel.authState.collectAsState()
 
-            val aiViewModel: AIAnswerViewModel by viewModels()
             val answerState by aiViewModel.getState().collectAsState()
 
 //            val likeViewModel: LikeViewModel by viewModels()

@@ -2,6 +2,7 @@ package com.example.sportapp.models.viewModels
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,7 +23,8 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
     override fun loadData() {}
 
     val newsList = mutableStateListOf<NewsEntity>()
-
+    val page = mutableStateOf(1)
+    val loading = mutableStateOf(false)
 
     //TODO использовать этот метод
     fun addNews(news: NewsEntity) {
@@ -37,12 +39,12 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
             _selectedNews = value
         }
 
-    private var _sportIndexs = -1
+    private var _sportIndex = -1
 
     var sportIndex : Int
-        get() = _sportIndexs
+        get() = _sportIndex
         set(value) {
-            _sportIndexs = value
+            _sportIndex = value
         }
 
 

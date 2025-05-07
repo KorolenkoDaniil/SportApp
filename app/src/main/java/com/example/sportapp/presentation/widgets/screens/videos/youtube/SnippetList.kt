@@ -33,20 +33,27 @@ fun SnippetList(
 
     val listState = rememberLazyListState()
 
-    LaunchedEffect(key1 = videoViewModel.page.value) {
-        videoViewModel.loading.value = true
-        videoViewModel.videoList.addAll(videoViewModel.loadVideos())
-        videoViewModel.loading.value = false
+    LaunchedEffect(Unit) {
+
+        if (videoViewModel.videoList.isEmpty()) {
+            videoViewModel.loading.value = true
+            videoViewModel.videoList.addAll(videoViewModel.loadVideos())
+            videoViewModel.loading.value = false
+        }
     }
 
     LaunchedEffect(listState) {
         snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
             .collectLatest { index ->
                 if (!videoViewModel.loading.value && index != null && index >= videoViewModel.videoList.size - 5) {
+                    videoViewModel.loading.value = true
                     videoViewModel.page.value++
+                    videoViewModel.videoList.addAll(videoViewModel.loadVideos())
+                    videoViewModel.loading.value = false
                 }
             }
     }
+
 
     LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
         items(videoViewModel.videoList.size) { index ->

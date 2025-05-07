@@ -15,7 +15,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -25,7 +24,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.models.viewModels.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
@@ -43,7 +41,6 @@ fun NewsPageContent(
     horizontalPaddings: Dp,
     authModel: AuthViewModel,
     showBar: MutableState<Boolean>,
-    itemList: SnapshotStateList<NewsEntity>
 ) {
     val currentNews = (oneNewsState as OneNewsSate.OneNewsContent).news
     val painterNewsImage = rememberAsyncImagePainter(currentNews.newsImage)
@@ -99,7 +96,7 @@ fun NewsPageContent(
         }
 
         item {
-            NewsCardRow(navController, newsViewModel, horizontalPaddings, itemList)
+            NewsCardRow(navController, newsViewModel, horizontalPaddings)
             Spacer(Modifier.height(20.dp))
         }
     }
