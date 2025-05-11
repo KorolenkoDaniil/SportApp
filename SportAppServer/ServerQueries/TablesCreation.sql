@@ -66,6 +66,18 @@ CREATE TABLE CommentLikes (
 
 
 
+
+CREATE TABLE messages (
+	MessageID INT IDENTITY(1, 1) PRIMARY KEY,
+	UserEmail NVARCHAR(255) NOT NULL,
+	MessageText NVARCHAR(Max) NOT NULL,
+	IsAIAnswer BIT NOT NULL
+	FOREIGN KEY (UserEmail) REFERENCES Users(UserEmail)
+);
+
+
+
+CREATE INDEX AIChatEmailIndex on messages (UserEmail)
 create index NewCommentsIndex on NewsComments (NewsDateTime)
 create index NewLikesIndex on NewsLike (NewsDateTime)
 create index NewsSportIndex on News (Sport)
@@ -314,7 +326,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
+    DECLARE @Offset INT = @PageNumber * @PageSize;
 
     IF @search IS NULL OR @search = ''
     BEGIN
@@ -356,7 +368,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
+    DECLARE @Offset INT = @PageNumber * @PageSize;
        
 	SELECT *
         FROM News
@@ -364,6 +376,27 @@ BEGIN
         OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
 END
 GO
+
+
+
+GO
+CREATE OR ALTER PROCEDURE TakePaginatedMessages 
+    @PageNumber INT,
+    @PageSize INT,
+    @Email NVARCHAR(100)
+AS
+BEGIN 
+    SET NOCOUNT ON;
+
+    DECLARE @Offset INT = (@PageNumber) * @PageSize;
+
+    SELECT * FROM messages M
+    WHERE M.UserEmail = @Email
+    ORDER BY MessageID DESC
+    OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
+END
+GO
+
 
 
 
@@ -452,4 +485,5 @@ BEGIN
 			OR Sport IS NULL
 			OR DateTime IS NULL;
 END
+
 

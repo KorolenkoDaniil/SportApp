@@ -6,7 +6,7 @@ using SportAppServer.Context;
 using SportAppServer.Gemini;
 using SportAppServer.Repositories;
 using SportAppServer.Services;
-using StackExchange.Redis;
+
 
 internal class Program
 {
@@ -28,6 +28,8 @@ internal class Program
         builder.Services.AddScoped<IGeminiService, GeminiService>();
         builder.Services.AddScoped<ILikeServise, LikeServise>();
         builder.Services.AddScoped<ILikeRepository, LikeRepository>();
+        builder.Services.AddScoped<IMessageService, MessageService>();
+        builder.Services.AddScoped<IMessageRepository, MessagesRepository>();
         builder.Services.AddScoped<PythonScript>();
 
         builder.Services.AddCors(options =>

@@ -1,7 +1,6 @@
 package com.example.sportapp.containers
 
 import AppActivityViewModel
-import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
@@ -13,5 +12,4 @@ data class ViewModelContainer(
     val newsViewModel: NewsActivityViewModel,
     val matchesViewModel: MatchesActivitySoccerViewModel,
     val authViewModel: AuthViewModel,
-    val aiViewModel: AIAnswerViewModel
 )

@@ -10,8 +10,8 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.compose.rememberNavController
 import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
-import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
+import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
@@ -42,26 +42,19 @@ class mainActivity : ComponentActivity() {
 
             val authState by authViewModel.authState.collectAsState()
 
-            val answerState by aiViewModel.getState().collectAsState()
-
-//            val likeViewModel: LikeViewModel by viewModels()
-//            val answerState by likeViewModel.getState().collectAsState()
-
             val viewModels = ViewModelContainer(
                 appActivity,
                 videoViewModel,
                 newsViewModel,
                 matchesViewModel,
                 authViewModel,
-                aiViewModel
             )
 
             val states = StatesContainer(
                 videoState,
                 newsState,
                 matchesState,
-                authState,
-                answerState
+                authState
             )
 
             val navController = rememberNavController()

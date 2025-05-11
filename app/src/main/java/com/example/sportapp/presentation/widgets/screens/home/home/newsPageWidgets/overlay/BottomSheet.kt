@@ -12,20 +12,27 @@ import kotlinx.coroutines.launch
 fun BottomSheet(
     showSheet: Boolean,
     onDismiss: () -> Unit,
-    content: @Composable () -> Unit
+    isAIChat: Boolean,
+    content: @Composable () -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
+        skipPartiallyExpanded = true,
+        confirmValueChange = { !isAIChat }
     )
     val coroutineScope = rememberCoroutineScope()
 
     if (showSheet) {
         ModalBottomSheet(
             onDismissRequest = {
-                coroutineScope.launch { sheetState.hide() }
-                onDismiss()
+                if (isAIChat) {
+
+                } else {
+                    coroutineScope.launch { sheetState.hide() }
+                    onDismiss()
+                }
             },
             sheetState = sheetState,
+            dragHandle = { if (isAIChat) null else {} }
         ) {
             content()
         }

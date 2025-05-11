@@ -16,6 +16,7 @@ namespace SportAppServer.Context
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<Like> Likes { get; set; } = null!;
         public DbSet<CommentLike> CommentsLikes { get; set; } = null!;
+        public DbSet<AIMessages> AIMessages { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,6 +27,7 @@ namespace SportAppServer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<News>()
                 .HasMany(n => n.Tags)
                 .WithOne(nt => nt.News)
@@ -36,7 +38,6 @@ namespace SportAppServer.Context
                .WithMany(user => user.Comments)
                .HasForeignKey(c => c.UserEmail);
 
-        
             base.OnModelCreating(modelBuilder);
         }
     }

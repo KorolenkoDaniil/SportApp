@@ -166,8 +166,34 @@
     "Parameters": [
       {
         "Name": "prompt",
-        "Type": "SportAppServer.Gemini.Models.GeminiDTORequest",
+        "Type": "SportAppServer.Gemini.DTO.GeminiDTORequest",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.GeminiController",
+    "Method": "GetMessages",
+    "RelativePath": "gemini/GetMessages",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

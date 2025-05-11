@@ -105,6 +105,7 @@ fun HomePageContent(
         if (isFocused.value && openFilterOverlay.value)
         BottomSheet(
             showSheet = openFilterOverlay.value,
+            isAIChat = false,
             onDismiss = { openFilterOverlay.value = false }
         ) {
             BottomSheetFilter(

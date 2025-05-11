@@ -1,50 +1,47 @@
 package com.example.sportapp.presentation.widgets.screens.aIChat
 
-import ChatRepository
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.sqlLiteDB.MessageRoomDatabase
-import com.example.sportapp.models.viewModels.AIAnswerViewModel
+import androidx.compose.ui.unit.Dp
+import androidx.navigation.NavController
+import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
-import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.MessagesColumn
-import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.RowToSendPrompt
+import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.AIChatOverlay
+import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun AIChatPage(
-    AIViewModel: AIAnswerViewModel,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    navController: NavController,
+    viewModels: ViewModelContainer,
+    horizontalPaddings: Dp
 ) {
 
+    val overlayVisible = remember { mutableStateOf(true) }
 
-    val listState = rememberLazyListState()
+    BottomSheet(
+        showSheet = overlayVisible.value,
+        isAIChat = true,
+        onDismiss = { overlayVisible.value = false }
+    ) {
+        Column {
+            Box(Modifier.weight(1f).fillMaxSize()) {
 
-    val context = LocalContext.current
-    val messageDb = remember { MessageRoomDatabase.getInstance(context) }
-    val messageDao = remember { messageDb.messageDao() }
-    val repository = remember { ChatRepository(messageDao, context, authViewModel.currentUser.value!!.email) }
-    val messagesState by remember { repository.messagesList }.collectAsState(initial = emptyList())
-
-    LaunchedEffect(messagesState.size) {
-        if (messagesState.isNotEmpty()) {
-            listState.animateScrollToItem(messagesState.lastIndex)
+            }
+            AIChatOverlay(
+                authModel = authViewModel,
+                horizontalPaddings = horizontalPaddings,
+                navController,
+                viewModels
+            )
         }
-    }
-
-    Column(Modifier.fillMaxSize()) {
-
-        MessagesColumn(listState, messagesState, modifier = Modifier.weight(1f))
-
-        RowToSendPrompt(repository, AIViewModel,  authViewModel.currentUser.value!!.email)
     }
 }
 

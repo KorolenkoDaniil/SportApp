@@ -23,7 +23,7 @@ fun Message (message: MessageEntity, color: Color, shape: RoundedCornerShape, pa
                 .background(color = color, shape)
                 .padding(8.dp)
         ) {
-            Text(text = message.text, style = textStyle)
+            Text(text = message.messageText, style = textStyle)
         }
     }
 }

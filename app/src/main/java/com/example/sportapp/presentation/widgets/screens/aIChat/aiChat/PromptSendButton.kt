@@ -1,6 +1,6 @@
-package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.rowToSendPrompt
+package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat
 
-import ChatRepository
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.size
@@ -12,23 +12,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.R
 import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.MessageEntity
+import com.example.sportapp.R
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.ui.theme.red_accent_color
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
+@SuppressLint("NewApi")
 @Composable
-fun SendButton(repository: ChatRepository, AIViewModel: AIAnswerViewModel, prompt: String, user: String, onPromptClear: () -> Unit){
+fun PromptSendButton(messageViewModel: AIAnswerViewModel, authViewModel: AuthViewModel, message: String, onPromptClear: () -> Unit){
     Button(
         onClick = {
             CoroutineScope(Dispatchers.IO).launch {
-                repository.addMessage(MessageEntity(text = prompt, sender = "User", user), user)
-            }
 
-            AIViewModel.loadAIAnswer(prompt, repository, user = user)
+                messageViewModel.messagesList.addFirst(MessageEntity(
+                    userEmail = authViewModel.currentUser.value!!.email,
+                    messageText = message,
+                    isAiAnswer = false
+                ))
+
+                messageViewModel.loadAIAnswer(
+                    prompt = message,
+                    user = authViewModel.currentUser.value!!.email
+                )
+            }
 
             onPromptClear()
 

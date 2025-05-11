@@ -21,42 +21,35 @@ fun HomePage(
     navController: NavHostController,
     horizontalPaddings: Dp,
 ) {
-    when ( states.matchesState) {
+    when (states.matchesState) {
 
         is MatchesState.MatchesContent -> {
-//
-//            when (states.videoState) {
-//
-//                is VideosState.VideosContent -> {
 
-                    when (states.newsState) {
+            when (states.newsState) {
 
-                        is NewsState.NewsContent -> {
+                is NewsState.NewsContent -> {
 
-                            HomePageContent(
-                                viewModels,
-                                navController = navController,
-                                horizontalPaddings,
-                            )
-                        }
+                    HomePageContent(
+                        viewModels,
+                        navController = navController,
+                        horizontalPaddings,
+                    )
+                }
 
-                        is NewsState.Error -> {
-                            Log.d("tttNews", "ошибка Home")
-                            CommonError(viewModels.newsViewModel, Screen.Home.route, navController, "статитистика")
-                        }
+                is NewsState.Error -> {
+                    Log.d("tttNews", "ошибка Home")
+                    CommonError(
+                        viewModels.newsViewModel,
+                        Screen.Home.route,
+                        navController,
+                        "статитистика"
+                    )
+                }
 
-                        is NewsState.Load -> {
-                            Loading()
-                        }
-                    }
-//                }
-//
-//                is VideosState.Error ->
-//                    CommonError(viewModels.videoViewModel, Screen.Home.route, navController, "видео")
-//
-//
-//                is VideosState.Load -> Loading()
-//            }
+                is NewsState.Load -> {
+                    Loading()
+                }
+            }
         }
 
         is MatchesState.Error -> {

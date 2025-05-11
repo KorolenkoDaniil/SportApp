@@ -36,7 +36,7 @@ namespace SportAppServer.Controllers
 
                 if (paginatedNews.News == null)
                 {
-                    Debug.WriteLine("[GetNews] paginatedNews.News is null");
+                    Debug.WriteLine("[GetNews] paginatedNews.messages is null");
                     return StatusCode(500, "Ошибка: данные не получены");
                 }
 
