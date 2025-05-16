@@ -72,10 +72,10 @@ class MessageRepository {
                 parameters.append("pageSize", "10")
             }
             // Логируем итоговую ссылку прямо в момент создания запроса
-            Log.d("chat", "Request URL: ${url.buildString()}")
+            Log.d("loadChatHistory", "Request URL: ${url.buildString()}")
         }
 
-        Log.d("chat", "Response body: ${response.bodyAsText()}")
+        Log.d("loadChatHistory", "Response body: ${response.bodyAsText()}")
 
         val messagePage: MessagesPageDto = json.decodeFromString(response.body())
         return answerMapper.convertToPageEntity(messagePage)

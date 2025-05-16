@@ -42,7 +42,7 @@ fun HomePage(
                         viewModels.newsViewModel,
                         Screen.Home.route,
                         navController,
-                        "статитистика"
+                        "новости"
                     )
                 }
 

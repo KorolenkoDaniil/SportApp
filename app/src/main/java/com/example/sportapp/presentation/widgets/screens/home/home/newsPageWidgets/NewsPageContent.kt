@@ -107,7 +107,6 @@ fun NewsPageContent(
 
     BottomSheet(
         showSheet = overlayVisible.value,
-        isAIChat = false,
         onDismiss = { overlayVisible.value = false }
     ) {
         CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)

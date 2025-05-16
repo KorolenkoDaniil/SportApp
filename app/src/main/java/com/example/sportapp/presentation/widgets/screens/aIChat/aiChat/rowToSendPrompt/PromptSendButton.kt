@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat
+package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.rowToSendPrompt
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -29,7 +29,7 @@ fun PromptSendButton(messageViewModel: AIAnswerViewModel, authViewModel: AuthVie
         onClick = {
             CoroutineScope(Dispatchers.IO).launch {
 
-                messageViewModel.messagesList.addFirst(MessageEntity(
+                messageViewModel.messagesList.add(MessageEntity(
                     userEmail = authViewModel.currentUser.value!!.email,
                     messageText = message,
                     isAiAnswer = false

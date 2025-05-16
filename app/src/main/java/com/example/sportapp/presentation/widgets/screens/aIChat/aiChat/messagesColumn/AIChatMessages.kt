@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat
+package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.messagesColumn
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,25 +27,36 @@ fun AIChatMessages(AIViewModel: AIAnswerViewModel, authViewModel: AuthViewModel,
         if (AIViewModel.messagesList.isEmpty()) {
             AIViewModel.loading.value = true
             AIViewModel.loadAIChatHistory(
-                email = authViewModel.currentUser.value.toString()
+                email = authViewModel.currentUser.value!!.email
             )
             AIViewModel.loading.value = false
         }
     }
 
     LaunchedEffect (listState) {
-        snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
-            .collectLatest {  index ->
-                if (!AIViewModel.loading.value && index != null && index >= AIViewModel.messagesList.size - 5){
-                    AIViewModel.page.value++
+        if (AIViewModel.page.value > 0) {
+            snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
+                .collectLatest { index ->
+                    if (!AIViewModel.loading.value && index != null && index >= AIViewModel.messagesList.size - 5) {
+                        AIViewModel.page.value++
 
-                    AIViewModel.loading.value = true
-                    AIViewModel.loadAIChatHistory(
-                        email = authViewModel.currentUser.value.toString()
-                    )
-                    AIViewModel.loading.value = false
+                        AIViewModel.loading.value = true
+                        AIViewModel.loadAIChatHistory(
+                            email = authViewModel.currentUser.value!!.email
+                        )
+                        AIViewModel.loading.value = false
+                    }
                 }
+        }
+    }
+
+    LaunchedEffect(AIViewModel.shouldScrollToBottom.value) {
+        if (AIViewModel.shouldScrollToBottom.value) {
+            if (AIViewModel.messagesList.isNotEmpty()) {
+                listState.animateScrollToItem(AIViewModel.messagesList.lastIndex)
             }
+            AIViewModel.shouldScrollToBottom.value = false
+        }
     }
 
 

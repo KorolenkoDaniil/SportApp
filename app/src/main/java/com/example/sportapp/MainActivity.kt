@@ -48,6 +48,7 @@ class mainActivity : ComponentActivity() {
                 newsViewModel,
                 matchesViewModel,
                 authViewModel,
+                aiViewModel
             )
 
             val states = StatesContainer(

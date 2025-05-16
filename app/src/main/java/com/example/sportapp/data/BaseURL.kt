@@ -1,6 +1,6 @@
 package com.example.sportapp.data
 
-val BaseUrl = "https://b72f-51-159-195-196.ngrok-free.app"
+val BaseUrl = "https://0433-195-238-124-47.ngrok-free.app"
 
 
 

@@ -392,7 +392,7 @@ BEGIN
 
     SELECT * FROM messages M
     WHERE M.UserEmail = @Email
-    ORDER BY MessageID DESC
+    ORDER BY MessageID 
     OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
 END
 GO

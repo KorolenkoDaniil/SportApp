@@ -50,6 +50,7 @@ import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
 import com.example.sportapp.R
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
+import com.example.sportapp.presentation.navigation.Screen
 import kotlinx.coroutines.delay
 
 @SuppressLint("StateFlowValueCalledInComposition")
@@ -170,9 +171,6 @@ fun SearchLine(
             verticalArrangement = Arrangement.Center
         ) {
             Box(
-
-
-
                 Modifier
                     .size(iconSize)
                     .clip(RoundedCornerShape(iconRadius))
@@ -185,7 +183,7 @@ fun SearchLine(
                         modifier = Modifier
                             .fillMaxSize()
                             .clickable {
-                                authViewModel.signOut(navController)
+                                navController.navigate(Screen.SettingsPage.route)
                             }
                     )
                 }

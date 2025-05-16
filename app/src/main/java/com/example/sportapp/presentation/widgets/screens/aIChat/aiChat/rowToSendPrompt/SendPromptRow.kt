@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat
+package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.rowToSendPrompt
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -48,9 +48,9 @@ fun SendPromptRow(
     Box(
         modifier = Modifier
             .padding(bottom = 0.dp)
-            .background(color = Color.White)
+            .background(color = Color(0xFFF5F5F5))
             .fillMaxWidth()
-            .height(80.dp)
+            .height(60.dp)
     ) {
         Column(verticalArrangement = Arrangement.Center) {
             Row(
@@ -58,20 +58,11 @@ fun SendPromptRow(
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-//                Image(
-//                    painter = userPhoto,
-//                    contentDescription = null,
-//                    contentScale = ContentScale.Crop,
-//                    modifier = Modifier
-//                        .size(40.dp)
-//                        .clip(RoundedCornerShape(20.dp))
-//                )
-
                 BasicTextField(
                     value = prompt,
                     onValueChange = { prompt = it },
                     modifier = Modifier
-                        .background(Color.Transparent, RoundedCornerShape(8.dp))
+                        .background(Color.Transparent, RoundedCornerShape(16.dp))
                         .padding(horizontal = 12.dp, vertical = 8.dp)
                         .fillMaxWidth()
                         .weight(1F)

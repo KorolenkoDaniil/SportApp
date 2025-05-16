@@ -13,7 +13,7 @@ import androidx.navigation.NavController
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.AIChatOverlay
-import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
+import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.SimpleBottomOverlay
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -26,22 +26,21 @@ fun AIChatPage(
 
     val overlayVisible = remember { mutableStateOf(true) }
 
-    BottomSheet(
-        showSheet = overlayVisible.value,
-        isAIChat = true,
-        onDismiss = { overlayVisible.value = false }
-    ) {
-        Column {
-            Box(Modifier.weight(1f).fillMaxSize()) {
+    SimpleBottomOverlay(
+        visible = overlayVisible.value,
+        content = {
+            Column {
+                Box(Modifier.weight(1f).fillMaxSize()) {
 
+                }
+                AIChatOverlay(
+                    authModel = authViewModel,
+                    horizontalPaddings = horizontalPaddings,
+                    viewModels
+                )
             }
-            AIChatOverlay(
-                authModel = authViewModel,
-                horizontalPaddings = horizontalPaddings,
-                navController,
-                viewModels
-            )
         }
-    }
+    )
+
 }
 

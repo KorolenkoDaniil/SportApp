@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat
+package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.messagesColumn
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.CleanArchitexture.domain.models.aiAnswer.MessageEntity
-import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.messagesColumn.Message
 import com.example.sportapp.ui.theme.Blue100
 import com.example.sportapp.ui.theme.companion_messages
 import com.example.sportapp.ui.theme.my_messages
@@ -23,7 +22,7 @@ fun MessageItem(item: MessageEntity) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
             Message(
                 item,
-                Color.White,
+                Color(0xFFF5F5F5),
                 RoundedCornerShape(
                     topStart = 16.dp,
                     topEnd = 16.dp,

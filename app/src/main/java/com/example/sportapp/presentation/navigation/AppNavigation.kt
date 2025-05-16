@@ -18,6 +18,7 @@ import com.example.sportapp.presentation.widgets.common.shared.Loading
 import com.example.sportapp.presentation.widgets.screens.aIChat.AIChatPage
 import com.example.sportapp.presentation.widgets.screens.home.HomePage
 import com.example.sportapp.presentation.widgets.screens.home.NewsPage
+import com.example.sportapp.presentation.widgets.screens.home.SettingsPage
 import com.example.sportapp.presentation.widgets.screens.matches.MatchesPage
 import com.example.sportapp.presentation.widgets.screens.signUpIn.FirstPage
 import com.example.sportapp.presentation.widgets.screens.signUpIn.LoginPage
@@ -127,6 +128,15 @@ fun MyAppNavigation(
                     ProfileSetUpPage(
                         authViewModel = viewModels.authViewModel,
                         navController
+                    )
+                }
+
+                composable (Screen.SettingsPage.route) {
+                    SettingsPage(
+                        authViewModel = viewModels.authViewModel,
+                        navController,
+                        navController,
+                        topPaddings,
                     )
                 }
             }

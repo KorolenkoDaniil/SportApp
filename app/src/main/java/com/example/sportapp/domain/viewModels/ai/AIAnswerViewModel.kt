@@ -20,6 +20,8 @@ class AIAnswerViewModel(
 
     override val repository = MessageRepository()
 
+    var shouldScrollToBottom = mutableStateOf(false)
+
     override fun getState(): StateFlow<AnswerState> = state
 
     override fun loadData() {}
@@ -40,18 +42,11 @@ class AIAnswerViewModel(
 
                 state.value = AnswerState.AIAnswerContent(aiAnswer)
 
-//                addMessageToLocalHistory(
-//                    MessageEntity(
-//                        userEmail = user,
-//                        messageText = prompt,
-//                        isAiAnswer = false
-//                    )
-//                )
-
             } catch (e: Throwable) {
                 Log.e("tttAIAnswer", "Error loading news data: ${e.message}", e)
                 state.value = AnswerState.Error(e)
             }
+            shouldScrollToBottom.value = true
         }
     }
 
@@ -72,6 +67,8 @@ class AIAnswerViewModel(
                     repository = repository
                 ).messages)
             )
+
+            shouldScrollToBottom.value = true
         }
     }
 }

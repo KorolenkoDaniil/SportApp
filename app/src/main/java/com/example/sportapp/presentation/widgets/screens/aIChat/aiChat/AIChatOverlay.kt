@@ -1,12 +1,13 @@
 package com.example.sportapp.presentation.widgets.screens.aIChat.aiChat
 
-import BottomNavBar
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -17,20 +18,18 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
-import com.example.sportapp.models.viewModels.AIAnswerViewModel
+import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.messagesColumn.AIChatMessages
+import com.example.sportapp.presentation.widgets.screens.aIChat.aiChat.rowToSendPrompt.SendPromptRow
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun AIChatOverlay(
     authModel: AuthViewModel,
     horizontalPaddings: Dp,
-    navController: NavController,
     viewModels: ViewModelContainer,
 ) {
-    val aiViewModel = AIAnswerViewModel()
 
     Column(
         modifier = Modifier
@@ -45,8 +44,11 @@ fun AIChatOverlay(
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)
+                .weight(1F)
         ) {
+
+            Spacer(Modifier.height(4.dp))
+
             Text(
                 text = "Чат с нейростью",
                 style = TextStyle(textAlign = TextAlign.Center),
@@ -57,7 +59,7 @@ fun AIChatOverlay(
 
 
             AIChatMessages(
-                AIViewModel = aiViewModel,
+                AIViewModel = viewModels.aiViewModel,
                 authViewModel = authModel,
                 horizontalPaddings = horizontalPaddings,
                 modifier = Modifier.weight(1f)
@@ -65,14 +67,8 @@ fun AIChatOverlay(
 
             SendPromptRow(
                 authModel = authModel,
-                messageViewModel = aiViewModel
-            )
-
-            BottomNavBar(
-                navController = navController,
-                appActivity = viewModels.appActivity
+                messageViewModel = viewModels.aiViewModel
             )
         }
-
     }
 }
