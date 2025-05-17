@@ -52,8 +52,6 @@ class AuthViewModel(
 
 
 
-
-
     fun login(email: String, password: String) {
 
         if (authorizationUtils.checkEmailAndPassword(
