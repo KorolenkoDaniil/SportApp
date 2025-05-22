@@ -1,10 +1,10 @@
 package com.example.sportapp.domain.viewModels.authorization
 
+import AppActivityViewModel
 import android.content.Context
 import android.util.Log
 import com.example.sportapp.CleanArchitexture.data.repositories.UserRepository
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
-import com.example.sportapp.CleanArchitexture.domain.preferencesManager.PreferencesManager
 import com.example.sportapp.domain.viewModels.authorization.utils.AuthorizationUtils
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,8 @@ class SignUpUseCase {
         authorizationUtils: AuthorizationUtils,
         userRep: UserRepository,
         _currentUser: MutableStateFlow<UserEntity?>,
-        context: Context
+        context: Context,
+        appActivity: AppActivityViewModel
     ) {
         _authState.value = try {
             auth.createUserWithEmailAndPassword(email, password).await()
@@ -31,9 +32,13 @@ class SignUpUseCase {
             }
             authorizationUtils.updateCurrentUser(user, _currentUser)
             Log.d("currentUser", "User created successfully: $user")
-            val sharedPrefManager = PreferencesManager(context)
-            sharedPrefManager.saveLimit(10)
+
+            appActivity.customChangeAppTheme(
+                isDark = !user.IsWhiteTheme
+            )
+
             AuthState.Authenticated
+
         } catch (e: Exception) {
             AuthState.Error(e.message ?: "Signup failed")
         }

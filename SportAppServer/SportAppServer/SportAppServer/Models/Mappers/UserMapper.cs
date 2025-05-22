@@ -13,6 +13,7 @@ namespace SportAppServer.Models.Mappers
             return new UserDTO(
                 user.UserEmail,
                 user.UserImage,
+                user.IsWhiteTheme,
                 includeComments ? CommentMapper.ConvertToListOfDTO(user.Comments) : new List<CommentDTO>()
             );
         }
@@ -22,6 +23,7 @@ namespace SportAppServer.Models.Mappers
             return new User(
                 user.UserEmail,
                 user.UserImage,
+                user.IsWhiteTheme,
                 new List<Comment>()
             );
         }

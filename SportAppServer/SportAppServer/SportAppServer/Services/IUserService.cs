@@ -6,7 +6,7 @@ namespace SportAppServer.Services
     public interface IUserService
     {
         Task<UserDTO> PutUser(EmailDto email);
-        Task<UserDTO> GetUserData(string email);
+        Task<UserDTO> GetUserData (string email);
         Task<string> PutUserImage(string email, IFormFile image);
     }
 }

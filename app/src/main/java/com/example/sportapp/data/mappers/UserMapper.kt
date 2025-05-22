@@ -9,6 +9,7 @@ class UserMapper {
         return UserEntity(
             email = response.email,
             pictureURL = BaseUrl + "/UserImage/" + response.pictureId,
+            IsWhiteTheme = response.IsWhiteTheme,
         )
     }
 
@@ -17,7 +18,8 @@ class UserMapper {
 
         return UserDto(
             email = entity.email,
-            pictureId = pictureId
+            pictureId = pictureId,
+            IsWhiteTheme = entity.IsWhiteTheme,
         )
     }
 

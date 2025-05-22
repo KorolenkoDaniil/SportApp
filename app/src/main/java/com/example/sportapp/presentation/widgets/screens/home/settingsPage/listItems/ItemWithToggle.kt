@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home.settingsPage.listItems
 
+import AppActivityViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,17 +11,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ItemWithToggle(drawableResource: Painter, text: String){
+fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel: AppActivityViewModel){
 
-    val value = remember { mutableStateOf(false) }
+    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -39,15 +40,17 @@ fun ItemWithToggle(drawableResource: Painter, text: String){
 
             Spacer(modifier = Modifier.width(8.dp))
 
-            Text(text = text)
+            Text(text = text, Modifier.fillMaxWidth().weight(1F))
         }
 
         Spacer(modifier = Modifier.weight(1f))
 
+
+
         Switch(
-            checked = value.value,
+            checked = isDarkTheme,
             onCheckedChange = {
-                value.value = !value.value
+                appActivityViewModel.changeAppTheme()
             },
             modifier = Modifier.height(20.dp)
         )

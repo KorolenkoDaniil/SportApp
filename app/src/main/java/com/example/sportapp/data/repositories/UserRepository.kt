@@ -5,6 +5,7 @@ import com.example.sportapp.CleanArchitexture.data.dto.user.UserDto
 import com.example.sportapp.CleanArchitexture.data.mappers.UserMapper
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.data.BaseUrl
+import com.example.sportapp.data.dto.user.EmailsDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -14,6 +15,7 @@ import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.get
 import io.ktor.client.request.post
+import io.ktor.client.request.put
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
@@ -48,7 +50,7 @@ class UserRepository {
     }
 
 
-    suspend fun putNewUser(email: String) : UserEntity {
+    suspend fun putNewUser(email: String): UserEntity {
 
         val response = client.post("$BaseUrl/api/users") {
             contentType(ContentType.Application.Json)
@@ -85,10 +87,30 @@ class UserRepository {
     }
 
 
+    suspend fun UpdateEmail(newEmail: String, oldEmail: String): UserEntity {
+
+        val emailsDto = EmailsDto(
+            oldEmail = oldEmail,
+            newEmail = newEmail
+        )
+
+
+        val response = client.put("$BaseUrl/api/users") {
+            contentType(ContentType.Application.Json)
+            setBody(emailsDto)
+        }
+
+        Log.d("User response", response.bodyAsText())
+
+
+        val currentUser: UserDto = json.decodeFromString(response.body())
+        return userMapper.UserResponseToEntity(currentUser)
+    }
 
 
     suspend fun uploadImage(imageFile: File, email: String): HttpResponse {
-        val mimeType = URLConnection.guessContentTypeFromName(imageFile.name) ?: "application/octet-stream"
+        val mimeType =
+            URLConnection.guessContentTypeFromName(imageFile.name) ?: "application/octet-stream"
 
         return client.post("$BaseUrl/api/users/putUserImage") {
             setBody(
@@ -98,7 +120,10 @@ class UserRepository {
                             "image",
                             InputProvider { imageFile.inputStream().asInput() },
                             Headers.build {
-                                append(HttpHeaders.ContentDisposition, "form-data; name=\"image\"; filename=\"${imageFile.name}\"")
+                                append(
+                                    HttpHeaders.ContentDisposition,
+                                    "form-data; name=\"image\"; filename=\"${imageFile.name}\""
+                                )
                                 append(HttpHeaders.ContentType, mimeType)
                             }
                         )

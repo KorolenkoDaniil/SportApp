@@ -33,8 +33,7 @@ namespace SportAppServer.Controllers
                 return BadRequest();
 
         }
-
-
+        
 
         [HttpGet("GetUser")]
         public async Task<IActionResult> GetUserData(string email)
@@ -51,6 +50,24 @@ namespace SportAppServer.Controllers
 
         [HttpPost("putUserImage")]
         public async Task<IActionResult> PutUserImage([FromForm] IFormFile image, [FromForm] string email)
+        {
+            if (image != null && image.Length > 0)
+            {
+                string imageId = await _userService.PutUserImage(email, image);
+                if (imageId.IsNullOrEmpty())
+                {
+                    return BadRequest("User not found.");
+                }
+          
+                return Ok(imageId);
+            }
+
+            return BadRequest("No file uploaded.");
+        }
+
+
+        [HttpPut("changeTheme")]
+        public async Task<IActionResult> ChangeTheme([FromForm] IFormFile image, [FromForm] string email)
         {
             if (image != null && image.Length > 0)
             {

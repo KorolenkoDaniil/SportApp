@@ -1,7 +1,9 @@
 package com.example.sportapp.presentation.navigation
 
 import BottomNavBar
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -48,10 +50,12 @@ fun MyAppNavigation(
             }
         },
 
+
+
         ) { innerPadding ->
 
 
-        val topPaddings = 14.dp
+        val topPaddings = if (showBar.value) 14.dp else 0.dp
         val horizontalPaddings = 12.dp
 
         NavHost(
@@ -59,15 +63,17 @@ fun MyAppNavigation(
             startDestination = startDestination,
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(top = topPaddings),
+                .background(MaterialTheme.colorScheme.background)
+                .padding( top = topPaddings),
+
             builder = {
                 composable(Screen.LoginPage.route) {
                     showBar.value = false
-                    LoginPage(navController, viewModels.authViewModel)
+                    LoginPage(navController, viewModels.authViewModel, viewModels.appActivity)
                 }
                 composable(Screen.SignupPage.route) {
                     showBar.value = false
-                    SignupPage(navController, viewModels.authViewModel)
+                    SignupPage(navController, viewModels.authViewModel, viewModels.appActivity)
                 }
                 composable(Screen.Loading.route) {
                     Loading()
@@ -137,6 +143,7 @@ fun MyAppNavigation(
                         navController,
                         navController,
                         topPaddings,
+                        viewModels.appActivity
                     )
                 }
             }

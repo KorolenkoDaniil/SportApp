@@ -16,6 +16,7 @@ namespace SportAppServer.Repositories
             _context = context;
         }
 
+      
         public async Task<User> GetUserData(string email)
         {
 
@@ -33,7 +34,7 @@ namespace SportAppServer.Repositories
             List<Comment> comments = new List<Comment>();
             List<Like> likes = new List<Like>();
 
-            var newUser = new User(email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg", comments);
+            var newUser = new User(email, "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg", true, comments);
 
             _context.Users.Add(newUser);
 
@@ -42,6 +43,7 @@ namespace SportAppServer.Repositories
             return newUser;
         }
 
+      
 
         public async Task<string> PutUserImage(string email, IFormFile image)
         {

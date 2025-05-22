@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp
 
+import AppActivityViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -40,6 +41,7 @@ fun SignupPageContent(
     authViewModel: AuthViewModel,
     authState: State<AuthState>,
     navController: NavController,
+    appActivity: AppActivityViewModel
 ){
     val context = LocalContext.current
 
@@ -107,7 +109,7 @@ fun SignupPageContent(
                     .width(270.dp)
                     .height(40.dp),
                 onClick = {
-                    authViewModel.signup(authViewModel.email.value, authViewModel.password.value, context)
+                    authViewModel.signup(authViewModel.email.value, authViewModel.password.value, context, appActivity)
                     navController.navigate(Screen.ProfileSetUpPage.route)
                 }, enabled = authState.value != AuthState.Loading,
                 colors = ButtonDefaults.buttonColors(

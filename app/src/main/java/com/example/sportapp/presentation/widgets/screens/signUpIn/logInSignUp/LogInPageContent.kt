@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp
 
+import AppActivityViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,10 +20,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.sportapp.R
@@ -41,8 +46,12 @@ fun LogInPageContent(
     password: MutableState<String>,
     authState: AuthState,
     navController: NavController,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    appActivity: AppActivityViewModel
 ) {
+
+    val passwordVisible = remember { mutableStateOf(false) }
+
     NotificationPermissionRequest()
 
     Box(modifier = Modifier.padding(20.dp)) {
@@ -82,22 +91,32 @@ fun LogInPageContent(
             )
 
 
-            //TODO скрывать пароль
-
             OutlinedTextField(
                 modifier = Modifier.width(270.dp),
                 value = password.value,
                 onValueChange = { password.value = it },
                 label = { Text(text = "Password") },
                 singleLine = true,
+                visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
+//                trailingIcon = {
+//                    val image = if (passwordVisible.value) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+//                    val description = if (passwordVisible.value) "Скрыть пароль" else "Показать пароль"
+//                    Icon(
+//                        imageVector = image,
+//                        contentDescription = description,
+//                        modifier = Modifier.clickable {
+//                            passwordVisible.value = !passwordVisible.value
+//                        }
+//                    )
+//                },
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
                     unfocusedTextColor = Color.Black,
                     focusedContainerColor = Color.White,
                     focusedTextColor = Color.Black,
-                    unfocusedIndicatorColor = Color.Transparent, // Убираем обводку
-                    focusedIndicatorColor = Color.Transparent,   // Убираем обводку
-                    disabledIndicatorColor = Color.Transparent   // Убираем обводку
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(8.dp)
             )
@@ -109,7 +128,7 @@ fun LogInPageContent(
                 modifier = Modifier
                     .width(270.dp)
                     .height(40.dp),
-                onClick = { authViewModel.login(email.value, password.value) },
+                onClick = { authViewModel.login(email.value, password.value, appActivity) },
                 enabled = authState != AuthState.Loading,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = red_accent_color,

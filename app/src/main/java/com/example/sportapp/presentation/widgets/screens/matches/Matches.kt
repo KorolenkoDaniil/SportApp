@@ -1,10 +1,13 @@
 package com.example.sportapp.presentation.widgets.screens.matches
 
 import AppActivityViewModel
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -44,7 +47,7 @@ fun MatchesPage(
     val matchesRankingsNavController = rememberNavController()
 
 
-    Column {
+    Column (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
 
         //кнопки для навигации межджду контентом, потом переделать
         MatchesPageNavigation(matchesRankingsNavController)

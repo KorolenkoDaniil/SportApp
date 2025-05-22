@@ -1,6 +1,8 @@
 package com.example.sportapp.presentation.widgets.screens.home
 
+import AppActivityViewModel
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,8 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.sportapp.R
@@ -38,10 +43,11 @@ fun SettingsPage(
     authViewModel: AuthViewModel,
     navController: NavController,
     navHostController: NavHostController,
-    topPaddings: Dp
+    topPaddings: Dp,
+    appActivityViewModel: AppActivityViewModel
 ) {
 
-    val newEmail = remember { mutableStateOf( authViewModel.email.value ) }
+    val openDialog = remember { mutableStateOf(false) }
     val newPassword = remember { mutableStateOf("") }
 
     Column(
@@ -49,6 +55,7 @@ fun SettingsPage(
             .fillMaxSize()
             .padding(horizontal = 20.dp)
             .padding(top = topPaddings)
+            .background(MaterialTheme.colorScheme.background)
     ) {
 
         SettingsHeader(
@@ -63,11 +70,6 @@ fun SettingsPage(
             verticalArrangement = Arrangement.SpaceAround
         ) {
 
-            ItemWithTextField(
-                drawableResource = painterResource(R.drawable.email),
-                text = "изменить почту",
-                input = newEmail
-            )
 
             ItemWithTextField(
                 drawableResource = painterResource(R.drawable.password),
@@ -78,11 +80,11 @@ fun SettingsPage(
 
             Button(
                 onClick = {
-
+                    openDialog.value = true
                 },
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text("сохранить")
+                Text("сохранить новый пароль")
             }
 
             HorizontalDivider(thickness = 1.dp, color = Color.LightGray)
@@ -90,11 +92,16 @@ fun SettingsPage(
 
             ItemWithToggle(
                 drawableResource = painterResource(R.drawable.moon),
-                text = "темная тема"
+                text = "темная тема",
+                appActivityViewModel = appActivityViewModel
             )
 
-            Row (verticalAlignment = Alignment.CenterVertically) {
-                Image(painter = painterResource(R.drawable.language), "", modifier = Modifier.size(24.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(R.drawable.language),
+                    "",
+                    modifier = Modifier.size(24.dp)
+                )
 
                 Spacer(Modifier.width(16.dp))
 
@@ -107,10 +114,10 @@ fun SettingsPage(
             }
 
 
-            ItemWithToggle(
-                drawableResource = painterResource(R.drawable.notification),
-                text = "Уведомения"
-            )
+//            ItemWithToggle(
+//                drawableResource = painterResource(R.drawable.notification),
+//                text = "Уведомения"
+//            )
 
 
             ItemWithAction(
@@ -136,5 +143,20 @@ fun SettingsPage(
         }
 
         Sosials()
+    }
+
+    if (openDialog.value) {
+        AlertDialog(
+            onDismissRequest = { openDialog.value = false },
+            title = { Text(text = "Подтвердите измененеие пароля", fontSize = 20.sp) },
+            confirmButton = {
+                Button({
+                    openDialog.value = false
+                    authViewModel
+                }) {
+                    Text("OK", fontSize = 22.sp)
+                }
+            }
+        )
     }
 }

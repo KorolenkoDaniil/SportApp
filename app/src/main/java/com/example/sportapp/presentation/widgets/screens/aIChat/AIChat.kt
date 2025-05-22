@@ -1,9 +1,11 @@
 package com.example.sportapp.presentation.widgets.screens.aIChat
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,7 +31,7 @@ fun AIChatPage(
     SimpleBottomOverlay(
         visible = overlayVisible.value,
         content = {
-            Column {
+            Column (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
                 Box(Modifier.weight(1f).fillMaxSize()) {
 
                 }

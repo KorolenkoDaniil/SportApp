@@ -15,8 +15,9 @@ import com.example.sportapp.models.viewModels.AIAnswerViewModel
 import com.example.sportapp.models.viewModels.MatchesActivitySoccerViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
+import com.example.sportapp.presentation.navigation.MyAppNavigation
 import com.example.sportapp.presentation.navigation.Screen
-import com.example.sportapp.presentation.navigation.MyAppNavigation as MyAppNavigation1
+import com.example.sportapp.ui.theme.AppTheme
 
 
 class mainActivity : ComponentActivity() {
@@ -32,52 +33,49 @@ class mainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            //set contetn перерисолвывесся при каждом переходе
-
             val videoState by videoViewModel.getState().collectAsState()
-
             val newsState by newsViewModel.getState().collectAsState()
-
             val matchesState by matchesViewModel.getState().collectAsState()
-
             val authState by authViewModel.authState.collectAsState()
 
-            val viewModels = ViewModelContainer(
-                appActivity,
-                videoViewModel,
-                newsViewModel,
-                matchesViewModel,
-                authViewModel,
-                aiViewModel
-            )
+            AppTheme(
+                appActivity = appActivity
+            ) {
 
-            val states = StatesContainer(
-                videoState,
-                newsState,
-                matchesState,
-                authState
-            )
+                val viewModels = ViewModelContainer(
+                    appActivity,
+                    videoViewModel,
+                    newsViewModel,
+                    matchesViewModel,
+                    authViewModel,
+                    aiViewModel
+                )
 
-            val navController = rememberNavController()
+                val states = StatesContainer(
+                    videoState,
+                    newsState,
+                    matchesState,
+                    authState
+                )
 
-            val url = intent.data
+                val navController = rememberNavController()
+                val url = intent.data
+                val startDestination = if (url != null && url.scheme == "korsport" && url.host == "news") {
+                    val newsId = url.lastPathSegment ?: ""
+                    "news/$newsId"
+                } else {
+                    Screen.FirstPage.route
+                }
 
-            val startDestination = if (url != null && url.scheme == "korsport" && url.host == "news") {
-
-                val newsId = url.lastPathSegment ?: ""
-                "news/$newsId"
-            } else {
-                Screen.FirstPage.route
+                MyAppNavigation(
+                    viewModels = viewModels,
+                    states = states,
+                    navController = navController,
+                    startDestination = startDestination,
+                )
             }
-
-
-            MyAppNavigation1(
-                viewModels,
-                states,
-                navController = navController,
-                startDestination,
-            )
         }
+
     }
 }
 

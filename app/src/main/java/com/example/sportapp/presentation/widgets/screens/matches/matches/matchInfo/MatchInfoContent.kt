@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -58,7 +59,7 @@ fun MatchInfoContent(eventsList: List<EventEntity>, match: MatchEntity, horizont
         }
     )
 
-    LazyColumn(state = lazyListState, modifier = Modifier.padding(horizontal = horizontalPaddings)) {
+    LazyColumn(state = lazyListState, modifier = Modifier.padding(horizontal = horizontalPaddings).background(MaterialTheme.colorScheme.background)) {
         item {
             Box(
                 modifier = Modifier

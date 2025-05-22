@@ -1,6 +1,7 @@
 package com.example.sportapp.domain.viewModels.authorization
 
 
+import AppActivityViewModel
 import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,7 @@ class AuthViewModel(
     private val loginUseCase: LoginUseCase = LoginUseCase(),
     private val signUpUseCase: SignUpUseCase = SignUpUseCase(),
     private val sendUserImageUseCase: SendUserImageUseCase = SendUserImageUseCase(),
+    private val changeEmailAndPasswordUseCase: ChangeEmailAndPasswordUseCase = ChangeEmailAndPasswordUseCase(),
 ) : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -41,7 +43,6 @@ class AuthViewModel(
     val password = mutableStateOf("")
 
 
-
     fun setUserPhotoFile(file: File) {
         _currentUserPhotoFile.value = file
     }
@@ -52,7 +53,7 @@ class AuthViewModel(
 
 
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String, appActivity: AppActivityViewModel) {
 
         if (authorizationUtils.checkEmailAndPassword(
                 email = email,
@@ -69,14 +70,15 @@ class AuthViewModel(
                     password = password,
                     authorizationUtils = authorizationUtils,
                     userRep = userRep,
-                    _currentUser = _currentUser
+                    _currentUser = _currentUser,
+                    appActivity = appActivity
                 )
             }
         } else return
     }
 
 
-    fun signup(email: String, password: String, context: Context) {
+    fun signup(email: String, password: String, context: Context, appActivity: AppActivityViewModel) {
         if (authorizationUtils.checkEmailAndPassword(
                 email = email,
                 password = password,
@@ -94,7 +96,8 @@ class AuthViewModel(
                     authorizationUtils = authorizationUtils,
                     userRep = userRep,
                     _currentUser = _currentUser,
-                    context = context
+                    context = context,
+                    appActivity = appActivity
                 )
             }
         } else return
@@ -112,6 +115,18 @@ class AuthViewModel(
             }
         }
     }
+
+
+
+
+    fun changeEmailAndPassword(newEmail: String, newPassword: String) {
+        viewModelScope.launch {
+            val result = changeEmailAndPasswordUseCase.changeEmailAndPasswordFireBase(newPassword, auth)
+            println(result)
+        }
+    }
+
+
 
     fun signOut(navController: NavHostController) {
         auth.signOut()

@@ -11,6 +11,9 @@ namespace SportAppServer.Models.DTOs
 
         [JsonPropertyName("pictureId")]
         public string UserImage { get; set; } = "0y3wav6f03b2m9vup3yunrdm3u3rnm4s.jpg";
+        
+        [JsonPropertyName("is_white_theme")]
+        public bool IsWhiteTheme { get; set; } = true;
 
         [JsonIgnore]
         [ValidateNever]
@@ -19,13 +22,14 @@ namespace SportAppServer.Models.DTOs
 
         public override string ToString()
         {
-            return $"UserEmail  {UserEmail} UserImage {UserImage}";
+            return $"UserEmail  {UserEmail} UserImage {UserImage} IsWhiteTheme {IsWhiteTheme}";
         }
 
-        public UserDTO(string userEmail, string userImage, List<CommentDTO> comments)
+        public UserDTO(string userEmail, string userImage, bool isWhiteTheme, List<CommentDTO> comments)
         {
             UserEmail = userEmail;
             UserImage = userImage;
+            IsWhiteTheme = isWhiteTheme;
             Comments = comments;
         }
 

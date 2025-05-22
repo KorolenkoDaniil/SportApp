@@ -25,6 +25,8 @@ class YoutubeActivityViewModel : ViewModel(), BaseViewModelInterface <VideosStat
     val loading = mutableStateOf(false)
     val videoList = mutableStateListOf<VideoEntity>()
 
+    val currentTime = mutableStateOf(0f)
+    val lastVideoId = mutableStateOf("")
 
     fun addVideo(video: VideoEntity) {
         videoList.add(video)

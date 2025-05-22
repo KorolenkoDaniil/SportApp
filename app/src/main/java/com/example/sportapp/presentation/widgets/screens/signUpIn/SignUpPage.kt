@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.signUpIn
 
+import AppActivityViewModel
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,7 +14,7 @@ import com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp.Si
 
 
 @Composable
-fun SignupPage(navController: NavController, authViewModel: AuthViewModel) {
+fun SignupPage(navController: NavController, authViewModel: AuthViewModel, appActivity: AppActivityViewModel) {
 
 
     val authState = authViewModel.authState.collectAsState()
@@ -33,6 +34,7 @@ fun SignupPage(navController: NavController, authViewModel: AuthViewModel) {
         authViewModel = authViewModel,
         authState = authState,
         navController = navController,
+        appActivity = appActivity
     )
 }
 

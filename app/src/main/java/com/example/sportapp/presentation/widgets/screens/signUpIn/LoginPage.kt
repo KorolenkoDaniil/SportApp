@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.signUpIn
 
+import AppActivityViewModel
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
@@ -12,11 +13,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.sportapp.domain.viewModels.authorization.AuthState
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
-import com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp.LogInPageContent
 import com.example.sportapp.presentation.navigation.Screen
+import com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp.LogInPageContent
 
 @Composable
-fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
+fun LoginPage(navController: NavController, authViewModel: AuthViewModel, appActivity: AppActivityViewModel) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
 
@@ -53,6 +54,7 @@ fun LoginPage(navController: NavController, authViewModel: AuthViewModel) {
         password = password,
         authState = authState,
         navController = navController,
-        authViewModel = authViewModel
+        authViewModel = authViewModel,
+        appActivity
     )
 }

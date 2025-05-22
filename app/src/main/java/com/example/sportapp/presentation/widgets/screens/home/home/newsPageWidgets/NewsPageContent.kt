@@ -1,6 +1,7 @@
 package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -55,7 +57,7 @@ fun NewsPageContent(
 
     val CommentsCount = remember { mutableStateOf(currentNews.commentsCount) }
 
-    LazyColumn {
+    LazyColumn (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
         item {
             Box(Modifier.padding(horizontal = horizontalPaddings)) {
 
