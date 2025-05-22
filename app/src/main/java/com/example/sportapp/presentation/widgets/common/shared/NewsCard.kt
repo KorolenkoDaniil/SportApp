@@ -69,7 +69,7 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight(0.6f)
-                            .clip(shape = RoundedCornerShape(16.dp)),
+                            .clip(shape = RoundedCornerShape(12.dp)),
                         contentScale = ContentScale.FillWidth
                     )
                     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween) {

@@ -93,7 +93,8 @@ fun SettingsPage(
             ItemWithToggle(
                 drawableResource = painterResource(R.drawable.moon),
                 text = "темная тема",
-                appActivityViewModel = appActivityViewModel
+                appActivityViewModel = appActivityViewModel,
+                authViewModel = authViewModel
             )
 
             Row(verticalAlignment = Alignment.CenterVertically) {

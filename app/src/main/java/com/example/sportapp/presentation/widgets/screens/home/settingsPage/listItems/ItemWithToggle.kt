@@ -17,9 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
+import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 
 @Composable
-fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel: AppActivityViewModel){
+fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel: AppActivityViewModel, authViewModel: AuthViewModel){
 
     val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
 
@@ -51,6 +52,7 @@ fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel
             checked = isDarkTheme,
             onCheckedChange = {
                 appActivityViewModel.changeAppTheme()
+                authViewModel.changeTheme()
             },
             modifier = Modifier.height(20.dp)
         )

@@ -98,4 +98,203 @@ val News_title_style = TextStyle(fontFamily = Roboto, fontSize = 24.sp, fontWeig
 
 
 
+//val Typography.style1: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = MaterialTheme.colorScheme.onPrimary,
+//        fontFamily = Roboto,
+//        fontSize = 20.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+//
+//val Typography.style2: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = MaterialTheme.colorScheme.onSurface,
+//        fontFamily = Roboto,
+//        fontSize = 14.sp,
+//        fontWeight = FontWeight.Normal,
+//        textAlign = TextAlign.Start
+//    )
+//
+//val Typography.style3: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = MaterialTheme.colorScheme.onSurface,
+//        fontFamily = Roboto,
+//        fontSize = 18.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+//
+//val Typography.style4: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.White,
+//        fontFamily = Roboto,
+//        fontSize = 16.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+//
+//val Typography.style5: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.White,
+//        fontFamily = Roboto,
+//        fontSize = 24.sp,
+//        fontWeight = FontWeight.Bold,
+//        textAlign = TextAlign.Center
+//    )
+//
+//val Typography.style6: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.White,
+//        fontFamily = Roboto,
+//        fontSize = 20.sp,
+//        fontWeight = FontWeight.Bold,
+//        textAlign = TextAlign.Center
+//    )
+//
+//val Typography.style7: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.White,
+//        fontFamily = Roboto,
+//        fontSize = 12.sp,
+//        fontWeight = FontWeight.Bold,
+//        textAlign = TextAlign.Center
+//    )
+//
+//val Typography.style8: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Blue100,
+//        fontFamily = Roboto,
+//        fontSize = 40.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+//
+//val Typography.style9: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.Black,
+//        fontFamily = Roboto,
+//        fontSize = 14.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+//
+//val Typography.style10: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.Black,
+//        fontFamily = Roboto,
+//        fontSize = 14.sp,
+//        fontWeight = FontWeight.Normal
+//    )
+//
+//val Typography.style11: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.White,
+//        fontFamily = Roboto,
+//        fontSize = 14.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+//
+//val Typography.style12: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        color = Color.White,
+//        fontFamily = Roboto,
+//        fontSize = 18.sp,
+//        fontWeight = FontWeight.Normal,
+//        textAlign = TextAlign.Center
+//    )
+//
+//val Typography.style12FirstPage: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 24.sp,
+//        fontWeight = FontWeight.Light,
+//        textAlign = TextAlign.Center
+//    )
+//
+//val Typography.style13LoginPage: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 32.sp,
+//        fontWeight = FontWeight.Bold,
+//        textAlign = TextAlign.Center
+//    )
+//
+//val Typography.style14: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 14.sp,
+//        fontWeight = FontWeight.Normal,
+//        textAlign = TextAlign.Start
+//    )
+//
+//val Typography.style15: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 12.sp,
+//        fontWeight = FontWeight.Normal,
+//        textAlign = TextAlign.Center,
+//        color = red_accent_color,
+//        textDecoration = TextDecoration.Underline
+//    )
+//
+//val Typography.style16: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 12.sp,
+//        fontWeight = FontWeight.Normal,
+//        textAlign = TextAlign.Center,
+//        color = blue_grey_color
+//    )
+//
+//val Typography.elapsedTime: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 12.sp,
+//        fontWeight = FontWeight.Normal,
+//        color = Color.Black.copy(alpha = 0.5f)
+//    )
+//
+//val Typography.myMessages: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 16.sp,
+//        fontWeight = FontWeight.Normal,
+//        textAlign = TextAlign.End
+//    )
+//
+//val Typography.companionMessages: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 16.sp,
+//        fontWeight = FontWeight.Normal,
+//        textAlign = TextAlign.Start,
+//        color = Color.White
+//    )
+//
+//val Typography.newsTitle: TextStyle
+//    @Composable
+//    get() = TextStyle(
+//        fontFamily = Roboto,
+//        fontSize = 24.sp,
+//        fontWeight = FontWeight.Medium,
+//        textAlign = TextAlign.Start,
+//        color = Color.Black
+//    )
+//
 

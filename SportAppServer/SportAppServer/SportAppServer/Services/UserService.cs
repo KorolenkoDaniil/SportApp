@@ -40,5 +40,20 @@ namespace SportAppServer.Services
         {
             return await _userRepository.PutUserImage(email, image);
         }
+
+
+        public async Task<UserDTO> ChangeTheme(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return null;
+
+            Debug.WriteLine("-> Вызван метод ChangeTheme");
+            Debug.WriteLine(email);
+
+            var userEntity = await _userRepository.ChangeTheme(email);
+
+            return UserMapper.ConvertToDTO(userEntity);
+        }
+     
     }
 }

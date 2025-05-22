@@ -27,6 +27,7 @@ class AuthViewModel(
     private val signUpUseCase: SignUpUseCase = SignUpUseCase(),
     private val sendUserImageUseCase: SendUserImageUseCase = SendUserImageUseCase(),
     private val changeEmailAndPasswordUseCase: ChangeEmailAndPasswordUseCase = ChangeEmailAndPasswordUseCase(),
+    private val changeAppThemeUseCase: ChangeAppThemeUseCase = ChangeAppThemeUseCase(),
 ) : ViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -51,6 +52,19 @@ class AuthViewModel(
         checkAuthStatus()
     }
 
+    fun changeTheme() {
+        viewModelScope.launch {
+            currentUser.value?.let { user ->
+                val newTheme = changeAppThemeUseCase.changeAppTheme (
+                    userRep = userRep,
+                    email = user.email
+                )
+                user.IsWhiteTheme = newTheme
+            }
+        }
+    }
+
+
 
 
     fun login(email: String, password: String, appActivity: AppActivityViewModel) {
@@ -71,7 +85,7 @@ class AuthViewModel(
                     authorizationUtils = authorizationUtils,
                     userRep = userRep,
                     _currentUser = _currentUser,
-                    appActivity = appActivity
+                    appActivity
                 )
             }
         } else return
@@ -97,7 +111,7 @@ class AuthViewModel(
                     userRep = userRep,
                     _currentUser = _currentUser,
                     context = context,
-                    appActivity = appActivity
+                    appActivity
                 )
             }
         } else return

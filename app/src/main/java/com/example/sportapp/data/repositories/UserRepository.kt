@@ -87,6 +87,24 @@ class UserRepository {
     }
 
 
+    suspend fun changeTheme(email: String): Boolean {
+
+        Log.d("email", email)
+
+        val response = client.put("$BaseUrl/api/users/changeTheme") {
+            url {
+                parameters.append("email", email)
+            }
+        }
+
+        Log.d("theme response", response.bodyAsText())
+
+
+        val currentTheme: Boolean = json.decodeFromString(response.body())
+        return currentTheme
+    }
+
+
     suspend fun UpdateEmail(newEmail: String, oldEmail: String): UserEntity {
 
         val emailsDto = EmailsDto(

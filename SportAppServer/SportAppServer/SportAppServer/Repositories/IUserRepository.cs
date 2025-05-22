@@ -7,6 +7,7 @@ namespace SportAppServer.Repositories
     {
         Task<User> PutUser (string email);
         Task<User> GetUserData (string email);
+        Task<User> ChangeTheme (string email);
         Task<string> PutUserImage (string email, IFormFile image);
     }
 }

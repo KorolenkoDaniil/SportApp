@@ -90,6 +90,19 @@ namespace SportAppServer.Repositories
 
             return fileName;
         }
+
+        public async Task<User> ChangeTheme(string email)
+        {
+
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserEmail == email);
+
+            user.IsWhiteTheme = !user.IsWhiteTheme;
+
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
     }
 }
 
