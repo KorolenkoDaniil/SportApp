@@ -15,6 +15,7 @@ class CheckAuthStatusUseCase {
         _authorizationUtils: AuthorizationUtils,
         userRep: UserRepository,
         _currentUser: MutableStateFlow<UserEntity?>,
+        _themeIsWhite: MutableStateFlow<Boolean>
     ) {
         _authState.value = try {
             if (auth.currentUser == null) {
@@ -24,7 +25,9 @@ class CheckAuthStatusUseCase {
                 if (auth.currentUser != null) {
                     _authorizationUtils.updateCurrentUser(
                         userRep.getUser(auth.currentUser!!.email!!),
-                        _currentUser
+                        _currentUser,
+                        _themeIsWhite
+
                     )
                     AuthState.Authenticated
                 } else {

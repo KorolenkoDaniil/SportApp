@@ -39,7 +39,7 @@ class mainActivity : ComponentActivity() {
             val authState by authViewModel.authState.collectAsState()
 
             AppTheme(
-                appActivity = appActivity
+                authViewModel = authViewModel
             ) {
 
                 val viewModels = ViewModelContainer(

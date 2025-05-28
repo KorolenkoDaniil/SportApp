@@ -79,7 +79,7 @@ class UserRepository {
             }
         }
 
-        Log.d("User response", response.bodyAsText())
+        Log.d("tttgetUser", response.bodyAsText())
 
 
         val currentUser: UserDto = json.decodeFromString(response.body())

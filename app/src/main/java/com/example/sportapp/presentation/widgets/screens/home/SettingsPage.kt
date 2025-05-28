@@ -1,6 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home
 
-import AppActivityViewModel
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,7 +20,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,18 +40,19 @@ import com.example.sportapp.presentation.widgets.screens.home.settingsPage.listI
 import com.example.sportapp.presentation.widgets.screens.home.settingsPage.listItems.Sosials
 import com.example.sportapp.ui.theme.SettingTextStyle
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun SettingsPage(
     authViewModel: AuthViewModel,
     navController: NavController,
     navHostController: NavHostController,
     topPaddings: Dp,
-    appActivityViewModel: AppActivityViewModel
 ) {
 
     val openDialog = remember { mutableStateOf(false) }
     val newPassword = remember { mutableStateOf("") }
-    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
+
+    val isDarkTheme = authViewModel.themeIsWhite.collectAsState().value
 
     val icon_password = if (isDarkTheme) { R.drawable.password } else { R.drawable.w_password }
     val icon_theme = if (isDarkTheme) { R.drawable.moon } else { R.drawable.w_sun }
@@ -104,8 +104,7 @@ fun SettingsPage(
             ItemWithToggle(
                 drawableResource = painterResource(icon_theme),
                 text = "темная тема",
-                appActivityViewModel = appActivityViewModel,
-                authViewModel = authViewModel
+                authViewModel,
             )
 
             Row(verticalAlignment = Alignment.CenterVertically) {

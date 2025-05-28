@@ -9,20 +9,6 @@ class AppActivityViewModel : ViewModel() {
         _pageName.value = newPageName
     }
 
-
-    private val _appTheme = MutableStateFlow (false )
-
-    val appTheme = _appTheme
-
-    fun changeAppTheme () {
-        _appTheme.value = !_appTheme.value
-    }
-
-    fun customChangeAppTheme (isDark: Boolean) {
-        _appTheme.value = isDark
-    }
-
-
     private val _aiChatPagePaddings = MutableStateFlow(false)
 
     fun changeAIChat(showBars: Boolean) {

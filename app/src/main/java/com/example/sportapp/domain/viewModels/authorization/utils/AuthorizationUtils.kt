@@ -1,5 +1,6 @@
 package com.example.sportapp.domain.viewModels.authorization.utils
 
+import android.util.Log
 import com.example.sportapp.CleanArchitexture.data.repositories.UserRepository
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.domain.viewModels.authorization.AuthState
@@ -11,8 +12,12 @@ import java.io.File
 
 class AuthorizationUtils {
 
-    fun updateCurrentUser(newUser: UserEntity?, _currentUser: MutableStateFlow<UserEntity?>) {
+    fun updateCurrentUser(newUser: UserEntity?, _currentUser: MutableStateFlow<UserEntity?>, _themeIsWhite: MutableStateFlow<Boolean>) {
         _currentUser.value = newUser
+        if (newUser != null) {
+            Log.d("ttttheme", newUser.getIsWhiteTheme().toString())
+            _themeIsWhite.value = newUser.getIsWhiteTheme()
+        }
     }
 
     fun changeImageState (state: ImageSubmissionState, _imageState: MutableStateFlow<ImageSubmissionState>){

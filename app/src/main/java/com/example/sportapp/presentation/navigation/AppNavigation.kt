@@ -143,7 +143,6 @@ fun MyAppNavigation(
                         navController,
                         navController,
                         topPaddings,
-                        viewModels.appActivity
                     )
                 }
             }

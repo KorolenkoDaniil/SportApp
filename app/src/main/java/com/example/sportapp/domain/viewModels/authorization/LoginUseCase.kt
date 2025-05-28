@@ -1,6 +1,5 @@
 package com.example.sportapp.domain.viewModels.authorization
 
-import AppActivityViewModel
 import com.example.sportapp.CleanArchitexture.data.repositories.UserRepository
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.domain.viewModels.authorization.utils.AuthorizationUtils
@@ -18,17 +17,14 @@ class LoginUseCase {
         authorizationUtils: AuthorizationUtils,
         userRep: UserRepository,
         _currentUser: MutableStateFlow<UserEntity?>,
-        appActivity: AppActivityViewModel
+        _themeIsWhite: MutableStateFlow<Boolean>
     ) {
         _authState.value = try {
             auth.signInWithEmailAndPassword(email, password).await()
             authorizationUtils.updateCurrentUser(
-                userRep.getUser(auth.currentUser!!.email!!),
-                _currentUser
-            )
-
-            appActivity.customChangeAppTheme(
-                isDark = !_currentUser.value!!.IsWhiteTheme
+                 userRep.getUser(auth.currentUser!!.email!!),
+                _currentUser,
+                _themeIsWhite
             )
 
             AuthState.Authenticated

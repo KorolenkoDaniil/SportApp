@@ -3,5 +3,9 @@ package com.example.sportapp.CleanArchitexture.domain.models.user
 data class UserEntity (
     val email: String,
     var pictureURL: String,
-    var IsWhiteTheme: Boolean
-)
+    private val _isWhiteTheme: Boolean
+){
+    fun getIsWhiteTheme() : Boolean{
+        return _isWhiteTheme
+    }
+}

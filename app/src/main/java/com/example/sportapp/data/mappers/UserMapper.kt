@@ -5,11 +5,13 @@ import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.data.BaseUrl
 
 class UserMapper {
+
     fun UserResponseToEntity(response: UserDto): UserEntity {
+
         return UserEntity(
             email = response.email,
             pictureURL = BaseUrl + "/UserImage/" + response.pictureId,
-            IsWhiteTheme = response.IsWhiteTheme,
+            _isWhiteTheme = response.IsWhiteTheme
         )
     }
 
@@ -19,7 +21,7 @@ class UserMapper {
         return UserDto(
             email = entity.email,
             pictureId = pictureId,
-            IsWhiteTheme = entity.IsWhiteTheme,
+            true
         )
     }
 

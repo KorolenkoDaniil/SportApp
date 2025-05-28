@@ -1,7 +1,5 @@
 package com.example.sportapp.domain.viewModels.authorization
 
-import AppActivityViewModel
-import android.content.Context
 import android.util.Log
 import com.example.sportapp.CleanArchitexture.data.repositories.UserRepository
 import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
@@ -22,20 +20,19 @@ class SignUpUseCase {
         authorizationUtils: AuthorizationUtils,
         userRep: UserRepository,
         _currentUser: MutableStateFlow<UserEntity?>,
-        context: Context,
-        appActivity: AppActivityViewModel
+        _themeIsWhite: MutableStateFlow<Boolean>
     ) {
         _authState.value = try {
             auth.createUserWithEmailAndPassword(email, password).await()
             val user = withContext(Dispatchers.IO) {
                 userRep.putNewUser(auth.currentUser?.email ?: "")
             }
-            authorizationUtils.updateCurrentUser(user, _currentUser)
+            authorizationUtils.updateCurrentUser(user, _currentUser, _themeIsWhite)
             Log.d("currentUser", "User created successfully: $user")
 
-            appActivity.customChangeAppTheme(
-                isDark = !user.IsWhiteTheme
-            )
+//            appActivity.customChangeAppTheme(
+//                isDark = !user.IsWhiteTheme
+//            )
 
             AuthState.Authenticated
 

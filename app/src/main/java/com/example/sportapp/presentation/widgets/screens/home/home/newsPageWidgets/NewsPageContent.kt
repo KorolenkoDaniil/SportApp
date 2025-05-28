@@ -1,6 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets
 
-import AppActivityViewModel
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -38,6 +37,7 @@ import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidge
 import java.time.format.DateTimeFormatter
 
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun NewsPageContent(
     oneNewsState: OneNewsSate,
@@ -46,11 +46,13 @@ fun NewsPageContent(
     horizontalPaddings: Dp,
     authModel: AuthViewModel,
     showBar: MutableState<Boolean>,
-    appActivityViewModel: AppActivityViewModel
 ) {
 
     //TODO поднять дату и время выше
-    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
+//    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
+
+    val isDarkTheme = authModel.themeIsWhite.collectAsState().value
+
     val icon_arrow = if (isDarkTheme) { R.drawable.arrow_small_left_1 } else { R.drawable.w_left_arrow }
 
 

@@ -35,6 +35,8 @@ class AuthViewModel(
     private val _imageState = MutableStateFlow<ImageSubmissionState>(ImageSubmissionState.Initial)
     private val _currentUser = MutableStateFlow<UserEntity?>(null)
     private val _currentUserPhotoFile = MutableStateFlow<File?>(null)
+    private val _themeIsWhite = MutableStateFlow(true)
+
 
     var currentUserPhotoFile: StateFlow<File?> = _currentUserPhotoFile
     val authState: StateFlow<AuthState> = _authState
@@ -42,6 +44,7 @@ class AuthViewModel(
     val currentUser: StateFlow<UserEntity?> = _currentUser
     val email = mutableStateOf("")
     val password = mutableStateOf("")
+    val themeIsWhite: StateFlow<Boolean> = _themeIsWhite
 
 
     fun setUserPhotoFile(file: File) {
@@ -54,17 +57,22 @@ class AuthViewModel(
 
     fun changeTheme() {
         viewModelScope.launch {
+            _themeIsWhite.value = !_themeIsWhite.value
             currentUser.value?.let { user ->
-                val newTheme = changeAppThemeUseCase.changeAppTheme (
+                changeAppThemeUseCase.changeAppTheme (
                     userRep = userRep,
                     email = user.email
                 )
-                user.IsWhiteTheme = newTheme
+
             }
         }
     }
 
-
+    fun setTheme(isWhiteTheme: Boolean) {
+        viewModelScope.launch {
+            _themeIsWhite.value = isWhiteTheme
+        }
+    }
 
 
     fun login(email: String, password: String, appActivity: AppActivityViewModel) {
@@ -85,11 +93,14 @@ class AuthViewModel(
                     authorizationUtils = authorizationUtils,
                     userRep = userRep,
                     _currentUser = _currentUser,
-                    appActivity
+                    _themeIsWhite
                 )
+
+
             }
         } else return
     }
+
 
 
     fun signup(email: String, password: String, context: Context, appActivity: AppActivityViewModel) {
@@ -110,8 +121,7 @@ class AuthViewModel(
                     authorizationUtils = authorizationUtils,
                     userRep = userRep,
                     _currentUser = _currentUser,
-                    context = context,
-                    appActivity
+                    _themeIsWhite
                 )
             }
         } else return
@@ -177,7 +187,8 @@ class AuthViewModel(
                 auth = auth,
                 _authorizationUtils = authorizationUtils,
                 userRep = userRep,
-                _currentUser = _currentUser
+                _currentUser = _currentUser,
+                _themeIsWhite
             )
         }
     }

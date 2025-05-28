@@ -1,6 +1,5 @@
 package com.example.sportapp.presentation.widgets.screens.home.settingsPage.listItems
 
-import AppActivityViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +12,6 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -22,9 +20,9 @@ import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.ui.theme.SettingTextStyle
 
 @Composable
-fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel: AppActivityViewModel, authViewModel: AuthViewModel){
+fun ItemWithToggle(drawableResource: Painter, text: String, authViewModel: AuthViewModel){
 
-    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
+    val isWhiteTheme = authViewModel.themeIsWhite.collectAsState().value
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -51,9 +49,9 @@ fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel
 
 
         Switch(
-            checked = isDarkTheme,
+            checked = isWhiteTheme,
             onCheckedChange = {
-                appActivityViewModel.changeAppTheme()
+
                 authViewModel.changeTheme()
             },
             modifier = Modifier.height(20.dp)
