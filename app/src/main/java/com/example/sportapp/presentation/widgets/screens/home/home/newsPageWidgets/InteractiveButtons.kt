@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -15,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
@@ -27,15 +29,20 @@ fun InteractiveButtons(
     overlay: MutableState<Boolean>,
     currentNews: NewsEntity,
     user: UserEntity,
-    CommentsCount: MutableState<Int>
+    CommentsCount: MutableState<Int>,
+    isDarkTheme: Boolean
+
 ) {
 
+    val icon_like = if (isDarkTheme) { R.drawable.like } else { R.drawable.w_like }
+    val icon_comments = if (isDarkTheme) { R.drawable.comment } else { R.drawable.w_comments }
+    val icon_send = if (isDarkTheme) { R.drawable.send } else { R.drawable.w_send }
 
     //TODO не запоминается, что новость была лайкнута
 
     val likeViewModel: LikeViewModel = viewModel()
 
-    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else R.drawable.like
+    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else icon_like
 
     val context = LocalContext.current
     val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
@@ -61,21 +68,25 @@ fun InteractiveButtons(
         )
 
         Spacer(Modifier.width(8.dp))
-        Text(text = likeCount.value.toString())
+        Text(text = likeCount.value.toString(), style = TextStyle(
+            color = MaterialTheme.colorScheme.onBackground
+        ))
 
         Spacer(Modifier.width(16.dp))
         Image(
-            painter = painterResource(R.drawable.comment),
+            painter = painterResource(icon_comments),
             contentDescription = null,
             Modifier.clickable { overlay.value = true }
         )
 
         Spacer(Modifier.width(8.dp))
-        Text(text = CommentsCount.value.toString())
+        Text(text = CommentsCount.value.toString(), style = TextStyle(
+            color = MaterialTheme.colorScheme.onBackground
+        ))
 
         Spacer(Modifier.width(16.dp))
         Image(
-            painter = painterResource(R.drawable.send),
+            painter = painterResource(icon_send),
             contentDescription = null,
             modifier = Modifier.clickable {
                 val sendIntent = Intent(Intent.ACTION_SEND).apply {

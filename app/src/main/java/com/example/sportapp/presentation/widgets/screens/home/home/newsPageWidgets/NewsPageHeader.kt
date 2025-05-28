@@ -8,22 +8,22 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.sportapp.R
 import com.example.sportapp.ui.theme.News_title_style
 
 @Composable
-fun NewsPageHeader(title: String, navController: NavController) {
+fun NewsPageHeader(title: String, navController: NavController, icon_arrow: Int) {
 
     Column {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Image(
-                painter = painterResource(R.drawable.arrow_small_left_1),
+                painter = painterResource(icon_arrow),
                 contentDescription = "",
                 modifier = Modifier.clickable {
                     navController.popBackStack()
@@ -33,6 +33,6 @@ fun NewsPageHeader(title: String, navController: NavController) {
 
         Spacer(Modifier.height(16.dp))
 
-        Text(text = "\t\t\t$title", style = News_title_style)
+        Text(text = "\t\t\t$title", style = MaterialTheme.typography.News_title_style)
     }
 }

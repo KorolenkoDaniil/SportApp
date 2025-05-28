@@ -19,6 +19,8 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -50,6 +52,14 @@ fun SettingsPage(
 
     val openDialog = remember { mutableStateOf(false) }
     val newPassword = remember { mutableStateOf("") }
+    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
+
+    val icon_password = if (isDarkTheme) { R.drawable.password } else { R.drawable.w_password }
+    val icon_theme = if (isDarkTheme) { R.drawable.moon } else { R.drawable.w_sun }
+    val icon_language = if (isDarkTheme) { R.drawable.language } else { R.drawable.w_languagesvg }
+    val icon_delete = if (isDarkTheme) { R.drawable.delete } else { R.drawable.w_delete }
+    val icon_pexit = if (isDarkTheme) { R.drawable.exit } else { R.drawable.w_exit }
+
 
     Column(
         modifier = Modifier
@@ -73,7 +83,7 @@ fun SettingsPage(
 
 
             ItemWithTextField(
-                drawableResource = painterResource(R.drawable.password),
+                drawableResource = painterResource(icon_password),
                 text = "Изменить пароль",
                 input = newPassword
             )
@@ -92,7 +102,7 @@ fun SettingsPage(
 
 
             ItemWithToggle(
-                drawableResource = painterResource(R.drawable.moon),
+                drawableResource = painterResource(icon_theme),
                 text = "темная тема",
                 appActivityViewModel = appActivityViewModel,
                 authViewModel = authViewModel
@@ -100,7 +110,7 @@ fun SettingsPage(
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
-                    painter = painterResource(R.drawable.language),
+                    painter =  painterResource(icon_language),
                     "",
                     modifier = Modifier.size(24.dp)
                 )
@@ -124,7 +134,7 @@ fun SettingsPage(
 
 
             ItemWithAction(
-                drawableResource = painterResource(R.drawable.delete),
+                drawableResource = painterResource(icon_delete),
                 text = "Удалить аккаунт",
                 action = {
                     authViewModel.deleteUser(
@@ -135,7 +145,7 @@ fun SettingsPage(
 
 
             ItemWithAction(
-                drawableResource = painterResource(R.drawable.exit),
+                drawableResource = painterResource(icon_pexit),
                 text = "Выйти из аккаунта",
                 action = {
                     authViewModel.signOut(

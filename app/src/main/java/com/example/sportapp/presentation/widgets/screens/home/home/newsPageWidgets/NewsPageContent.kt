@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets
 
+import AppActivityViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -26,6 +28,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.sportapp.R
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.models.viewModels.OneNewsSate
@@ -43,9 +46,13 @@ fun NewsPageContent(
     horizontalPaddings: Dp,
     authModel: AuthViewModel,
     showBar: MutableState<Boolean>,
+    appActivityViewModel: AppActivityViewModel
 ) {
 
     //TODO поднять дату и время выше
+    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
+    val icon_arrow = if (isDarkTheme) { R.drawable.arrow_small_left_1 } else { R.drawable.w_left_arrow }
+
 
     val currentNews = (oneNewsState as OneNewsSate.OneNewsContent).news
     val painterNewsImage = rememberAsyncImagePainter(currentNews.newsImage)
@@ -63,13 +70,13 @@ fun NewsPageContent(
 
                 Column {
 
-                    NewsPageHeader(currentNews.title, navController)
+                    NewsPageHeader(currentNews.title, navController, icon_arrow)
 
                     Spacer(Modifier.height(4.dp))
 
                     Text(
                         text = formattedDate,
-                        style = TextStyle(textAlign = TextAlign.End),
+                        style = TextStyle(textAlign = TextAlign.End, color = MaterialTheme.colorScheme.onBackground),
                         modifier = Modifier.fillMaxWidth()
                     )
 
@@ -87,13 +94,15 @@ fun NewsPageContent(
 
                     Spacer(Modifier.height(20.dp))
 
-                    Text(text = "\t\t\t" + currentNews.articleText)
+                    Text(text = "\t\t\t" + currentNews.articleText, style = TextStyle(
+                        color = MaterialTheme.colorScheme.onBackground
+                    ))
 
                     Spacer(Modifier.height(20.dp))
 
                     val user = authModel.currentUser.collectAsState().value ?: return@Box
 
-                    InteractiveButtons(overlayVisible, currentNews, user, CommentsCount)
+                    InteractiveButtons(overlayVisible, currentNews, user, CommentsCount, isDarkTheme)
 
                     Spacer(Modifier.height(20.dp))
                 }

@@ -91,7 +91,7 @@ val my_messages = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = 
 
 val companion_messages = TextStyle(fontFamily = Roboto, fontSize = 16.sp, fontWeight = FontWeight.Normal, textAlign = TextAlign.Start, color = Color.White)
 
-val News_title_style = TextStyle(fontFamily = Roboto, fontSize = 24.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Start, color = Color.Black)
+//val News_title_style = TextStyle(fontFamily = Roboto, fontSize = 24.sp, fontWeight = FontWeight.Medium, textAlign = TextAlign.Start, color = Color.Black)
 
 
 
@@ -132,7 +132,7 @@ val Typography.style12FirstPage: TextStyle
         fontSize = 24.sp,
         fontWeight = FontWeight.Light,
         textAlign = TextAlign.Center,
-        color = MaterialTheme.colorScheme.onBackground
+        color = Color.Black
     )
 
 val Typography.style13LoginPage: TextStyle
@@ -180,6 +180,16 @@ val Typography.VideoText: TextStyle
         fontFamily = Roboto,
         fontSize = 16.sp,
         fontWeight = FontWeight.Normal,
+        color = MaterialTheme.colorScheme.onBackground
+    )
+
+val Typography.News_title_style: TextStyle
+    @Composable
+    get() = TextStyle(
+        fontFamily = Roboto,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Medium,
+        textAlign = TextAlign.Start,
         color = MaterialTheme.colorScheme.onBackground
     )
 

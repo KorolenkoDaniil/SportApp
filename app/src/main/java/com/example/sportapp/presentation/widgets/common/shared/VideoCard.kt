@@ -56,7 +56,7 @@ fun VideoCard(video: VideoEntity, navController: NavHostController, videoViewMod
                         contentDescription = "newsImage",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .fillMaxHeight(0.6f),
+                            .fillMaxHeight(0.8f),
                         contentScale = ContentScale.Crop
                     )
                     Box(
