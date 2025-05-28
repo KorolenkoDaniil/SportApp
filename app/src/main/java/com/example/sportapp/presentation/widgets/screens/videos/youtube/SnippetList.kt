@@ -24,6 +24,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.presentation.navigation.Screen
+import com.example.sportapp.ui.theme.VideoText
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -81,7 +82,7 @@ fun SnippetList(
             )
 
             Spacer(Modifier.height(4.dp))
-            Text(text = video.snippet.title)
+            Text(text = video.snippet.title, style = MaterialTheme.typography.VideoText)
             Spacer(Modifier.height(16.dp))
         }
 

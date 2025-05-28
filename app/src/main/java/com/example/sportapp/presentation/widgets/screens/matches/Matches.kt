@@ -50,7 +50,7 @@ fun MatchesPage(
     Column (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
 
         //кнопки для навигации межджду контентом, потом переделать
-        MatchesPageNavigation(matchesRankingsNavController)
+        MatchesPageNavigation(matchesRankingsNavController, horizontalPaddings)
 
         //навигация между контентом страинцы матчи-ранкинги
         NavHost(

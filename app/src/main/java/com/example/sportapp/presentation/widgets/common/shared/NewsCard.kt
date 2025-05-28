@@ -14,13 +14,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults.cardColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -49,7 +49,7 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
                 .size(height = 216.dp, width = 240.dp)
                 .clip(shape = RoundedCornerShape(12.dp)),
             colors = cardColors(
-                containerColor = Color.White
+                containerColor = MaterialTheme.colorScheme.surface
             ),
 
             onClick = {
@@ -75,7 +75,7 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
                     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween) {
                         Text(
                             text = news.title,
-                            style = style2,
+                            style = MaterialTheme.typography.style2,
                             maxLines = 3,
                             overflow = TextOverflow.Ellipsis,
                             onTextLayout = { textLayoutResult ->

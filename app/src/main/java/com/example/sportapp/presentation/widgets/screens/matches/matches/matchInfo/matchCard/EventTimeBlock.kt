@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,8 +25,8 @@ fun EventTimeBlock(event: EventEntity) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (event.additionalMinute == 0)
-            Text(text = event.minute.toString() + "'", style = style7)
+            Text(text = event.minute.toString() + "'", style = MaterialTheme.typography.style7)
         else
-            Text(text = event.minute.toString() + "' + " + event.additionalMinute + "'", style = style7)
+            Text(text = event.minute.toString() + "' + " + event.additionalMinute + "'", style = MaterialTheme.typography.style7)
     }
 }

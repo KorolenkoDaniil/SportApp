@@ -78,28 +78,25 @@ fun MatchesContent(
 
                     //переход к старинце с текущим матчем
                     LaunchedEffect(pageState) {
-
                         val currentTime = ZonedDateTime.now()
-                        var i = -1
 
-                        do {
-                            i++
-                            val matchDateTime =
-                                ZonedDateTime.parse(state.matchDays[i].matches[0].matchStartTime)
-                            Log.d(
-                                "dateTime", "" +
-                                        "matchDateTime  $matchDateTime" +
-                                        "currentTime $currentTime" +
-                                        "          $i"
-                            )
+                        // Найти индекс первого матча, который ещё не прошёл
+                        val upcomingMatchIndex = state.matchDays.indexOfFirst { matchDay ->
+                            matchDay.matches.any { match ->
+                                val matchDateTime = ZonedDateTime.parse(match.matchStartTime)
+                                matchDateTime.isAfter(currentTime)
+                            }
+                        }
 
-                        } while (matchDateTime.isBefore(currentTime) || matchDateTime.isEqual(
-                                currentTime
-                            )
-                        )
+                        val targetPage = if (upcomingMatchIndex != -1) {
+                            upcomingMatchIndex
+                        } else {
+                            state.matchDays.lastIndex // все матчи прошли — перейти к последнему дню
+                        }
 
-                        pageState.scrollToPage(i)
+                        pageState.scrollToPage(targetPage)
                     }
+
 
                     Column {
                         NavHost(

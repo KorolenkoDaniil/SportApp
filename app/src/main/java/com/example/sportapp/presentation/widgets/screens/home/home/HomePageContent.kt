@@ -68,7 +68,7 @@ fun HomePageContent(
                 item {
                     Text(
                         text = "Новости спорта",
-                        style = style1,
+                        style = MaterialTheme.typography.style1,
                         modifier = Modifier.padding(horizontal = horizontalPaddings)
                     )
                 }
@@ -78,7 +78,7 @@ fun HomePageContent(
                 item {
                     Text(
                         text = "Рекомендованные видео",
-                        style = style1,
+                        style = MaterialTheme.typography.style1,
                         modifier = Modifier.padding(horizontal = horizontalPaddings)
                     )
                 }

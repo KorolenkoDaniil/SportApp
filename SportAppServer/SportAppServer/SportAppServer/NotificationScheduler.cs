@@ -29,59 +29,92 @@ namespace SportAppServer
         {
             DateTime currentTime = DateTime.Now;
 
-          
+
             SportMatch closestMatch = matches
                 .Where(match => match.Date > currentTime)
                 .OrderBy(match => match.Date)
                 .FirstOrDefault()!;
 
-   
-       
-            TimeSpan delay = closestMatch.Date - currentTime - TimeSpan.FromMinutes(15);
-            if (delay <= TimeSpan.Zero)
+            if (closestMatch == null)
             {
-                Console.WriteLine("Матч уже начался или начинается менее чем через 15 минут.");
-                return;
-            }
+                await Task.Delay(1800000);
 
-            Console.WriteLine($"Ближайший матч: {closestMatch.TeamAShortName} - {closestMatch.TeamBShortName} {closestMatch.Date}");
-
-            await Task.Delay(delay);
-
-            var message = new Message()
-            {
-                Notification = new Notification
+                var message = new Message()
                 {
-                    Title = "Скоро начнется матч!",
-                    Body = $"{closestMatch.TeamAShortName} vs {closestMatch.TeamBShortName} начнется в {closestMatch.Date}",
-                    ImageUrl = baseURL + "/images/kor_sport.png",
-                },
-                Android = new AndroidConfig
-                {
-                    Notification = new AndroidNotification
+                    Notification = new Notification
                     {
-                        Icon = "ic_sport_icon", // Здесь укажите имя ресурса иконки из Android
-                    }
-                },
-                Topic = "MatchNotification"
-            };
+                        Title = "Заакончились матчи в сезоне",
+                        Body = $"Спасибо, чтор были с нами весь сезон",
+                        ImageUrl = baseURL + "/images/kor_sport.png",
+                    },
+                    Android = new AndroidConfig
+                    {
+                        Notification = new AndroidNotification
+                        {
+                            Icon = "ic_sport_icon", // Здесь укажите имя ресурса иконки из Android
+                        }
+                    },
+                    Topic = "MatchNotification"
+                };
 
 
-            try
-            {
-                string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
-                Console.WriteLine($"Уведомление успешно отправлено: {response}");
+                try
+                {
+                    string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+                    Console.WriteLine($"Уведомление успешно отправлено: {response}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка при отправке уведомления: {ex.Message}");
+                }
+
+                await CheckNearestDateAndSetNotificationAsync();
+
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Ошибка при отправке уведомления: {ex.Message}");
-            }
+                TimeSpan delay = closestMatch.Date - currentTime - TimeSpan.FromMinutes(15);
+                if (delay <= TimeSpan.Zero)
+                {
+                    Console.WriteLine("Матч уже начался или начинается менее чем через 15 минут.");
+                    return;
+                }
 
-            await CheckNearestDateAndSetNotificationAsync();
+                Console.WriteLine($"Ближайший матч: {closestMatch.TeamAShortName} - {closestMatch.TeamBShortName} {closestMatch.Date}");
+
+                await Task.Delay(delay);
+
+                var message = new Message()
+                {
+                    Notification = new Notification
+                    {
+                        Title = "Скоро начнется матч!",
+                        Body = $"{closestMatch.TeamAShortName} vs {closestMatch.TeamBShortName} начнется в {closestMatch.Date}",
+                        ImageUrl = baseURL + "/images/kor_sport.png",
+                    },
+                    Android = new AndroidConfig
+                    {
+                        Notification = new AndroidNotification
+                        {
+                            Icon = "ic_sport_icon", // Здесь укажите имя ресурса иконки из Android
+                        }
+                    },
+                    Topic = "MatchNotification"
+                };
+
+
+                try
+                {
+                    string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+                    Console.WriteLine($"Уведомление успешно отправлено: {response}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка при отправке уведомления: {ex.Message}");
+                }
+
+                await CheckNearestDateAndSetNotificationAsync();
+            }
         }
-
-
-
-
     }
 }

@@ -12,18 +12,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults.cardColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.CleanArchitexture.domain.models.youTube.VideoEntity
+import com.example.sportapp.models.viewModels.YoutubeActivityViewModel
 import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.ui.theme.style2
 
@@ -40,10 +40,10 @@ fun VideoCard(video: VideoEntity, navController: NavHostController, videoViewMod
     ) {
         Card(
             modifier = Modifier
-                .size(height = 216.dp, width = 240.dp)
+                .size(height = 150.dp, width = 240.dp)
                 .clip(shape = RoundedCornerShape(16.dp)),
             colors = cardColors(
-                containerColor = Color.White
+                containerColor = MaterialTheme.colorScheme.surface
             ),
 
             ) {
@@ -67,7 +67,7 @@ fun VideoCard(video: VideoEntity, navController: NavHostController, videoViewMod
                     ) {
                         Text(
                             text = video.snippet.title,
-                            style = style2,
+                            style = MaterialTheme.typography.style2,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )

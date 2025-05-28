@@ -37,6 +37,7 @@ import com.example.sportapp.presentation.widgets.screens.home.settingsPage.listI
 import com.example.sportapp.presentation.widgets.screens.home.settingsPage.listItems.ItemWithToggle
 import com.example.sportapp.presentation.widgets.screens.home.settingsPage.listItems.SettingsHeader
 import com.example.sportapp.presentation.widgets.screens.home.settingsPage.listItems.Sosials
+import com.example.sportapp.ui.theme.SettingTextStyle
 
 @Composable
 fun SettingsPage(
@@ -110,7 +111,8 @@ fun SettingsPage(
                     text = "язык",
                     modifier = Modifier.clickable {
 
-                    }
+                    },
+                    style = MaterialTheme.typography.SettingTextStyle
                 )
             }
 

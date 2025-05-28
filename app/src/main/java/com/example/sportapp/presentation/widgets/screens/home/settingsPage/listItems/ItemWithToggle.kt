@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
+import com.example.sportapp.ui.theme.SettingTextStyle
 
 @Composable
 fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel: AppActivityViewModel, authViewModel: AuthViewModel){
@@ -41,7 +43,7 @@ fun ItemWithToggle(drawableResource: Painter, text: String, appActivityViewModel
 
             Spacer(modifier = Modifier.width(8.dp))
 
-            Text(text = text, Modifier.fillMaxWidth().weight(1F))
+            Text(text = text, Modifier.fillMaxWidth().weight(1F), style = MaterialTheme.typography.SettingTextStyle)
         }
 
         Spacer(modifier = Modifier.weight(1f))

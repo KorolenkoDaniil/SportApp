@@ -156,10 +156,10 @@ class AuthViewModel(
         )
     }
 
-    fun sendUserImage(image: File, email: String) {
+    fun sendUserImage(image: File) {
         viewModelScope.launch {
             sendUserImageUseCase.sendUserImage(
-                email = email,
+                email = _currentUser.value!!.email,
                 authorizationUtils = authorizationUtils,
                 userRep = userRep,
                 _currentUser = _currentUser,

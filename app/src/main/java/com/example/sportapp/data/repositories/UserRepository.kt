@@ -130,6 +130,8 @@ class UserRepository {
         val mimeType =
             URLConnection.guessContentTypeFromName(imageFile.name) ?: "application/octet-stream"
 
+        Log.d("UploadDebug", "Uploading image: ${imageFile.name}, email: $email, size: ${imageFile.length()}")
+
         return client.post("$BaseUrl/api/users/putUserImage") {
             setBody(
                 MultiPartFormDataContent(

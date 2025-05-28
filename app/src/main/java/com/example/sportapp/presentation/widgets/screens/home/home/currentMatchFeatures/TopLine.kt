@@ -24,7 +24,7 @@ fun TopLine(nearestMatch: MatchEntity) {
             LiveTranslationFlag()
         }
         Text(
-            text = "League name",
+            text = "Серия А",
             style = style3,
             modifier = Modifier
                 .align(Alignment.Center)

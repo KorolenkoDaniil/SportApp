@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -65,7 +66,7 @@ fun CommentItem(comment: CommentEntity, commentsViewModel: CommentsViewModel) {
             Row(verticalAlignment = Alignment.Bottom) {
                 Text(text = comment.user.email)
                 Spacer(modifier = Modifier.width(12.dp))
-                Text(text = comment.elapsedTime, style = elapsedTime)
+                Text(text = comment.elapsedTime, style = MaterialTheme.typography.elapsedTime)
             }
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = comment.commentText)

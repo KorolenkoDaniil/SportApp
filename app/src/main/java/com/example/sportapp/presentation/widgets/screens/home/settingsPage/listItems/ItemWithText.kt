@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
+import com.example.sportapp.ui.theme.SettingTextStyle
 
 @Composable
 fun ItemWithTextField(drawableResource: Painter, text: String, input: MutableState<String>) {
@@ -36,7 +38,7 @@ fun ItemWithTextField(drawableResource: Painter, text: String, input: MutableSta
 
             Spacer(modifier = Modifier.width(8.dp))
 
-            Text(text = text)
+            Text(text = text, style = MaterialTheme.typography.SettingTextStyle)
         }
 
         Spacer(Modifier.width(16.dp))

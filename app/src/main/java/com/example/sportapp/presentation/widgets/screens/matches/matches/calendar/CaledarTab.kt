@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,7 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.example.sportapp.models.viewModels.MatchesState
-import com.example.sportapp.ui.theme.Blue100
 import kotlinx.coroutines.launch
 
 @Composable
@@ -48,7 +48,7 @@ fun CalendarTab(pageState: PagerState, data: MatchesState.MatchesContent) {
                     .padding(horizontal = 8.dp, vertical = 4.dp)
                     .clip(shape = RoundedCornerShape(16.dp))
                     .background(
-                        color = if (isSelected) Blue100 else Color.Transparent
+                        color = if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent
                     )
             ) {
                 Tab(
@@ -60,7 +60,7 @@ fun CalendarTab(pageState: PagerState, data: MatchesState.MatchesContent) {
                     },
                     text = {
                         Text(text = dayName.name, style = TextStyle(
-                            if (isSelected) Color.White else Color.Black
+                            if (isSelected) MaterialTheme.colorScheme.onPrimary else Color.White
                         ))
                     }
                 )

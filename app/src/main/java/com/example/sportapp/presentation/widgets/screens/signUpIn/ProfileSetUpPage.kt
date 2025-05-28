@@ -47,7 +47,7 @@ fun ProfileSetUpPage(authViewModel: AuthViewModel, navController: NavController)
             context,
             onPictureChosen = { uri ->
                 authViewModel.setUserPhotoFile(uriToFile(context, uri))
-                authViewModel.sendUserImage(authViewModel.currentUserPhotoFile.value!!, authViewModel.email.value)
+                authViewModel.sendUserImage(authViewModel.currentUserPhotoFile.value!!)
                 navController.navigate(Screen.Home.route)
             }
         )

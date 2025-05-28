@@ -9,43 +9,17 @@ val blue_grey_color = Color(0xFF939DA8)
 
 
 
-val md_theme_light_primary = Color(0xFF4B6382)            // Синий-стабильный
-val md_theme_light_onPrimary = Color(0xFFFFFFFF)
-val md_theme_light_primaryContainer = Color(0xFFA4B5C4)    // Светло-синий
-val md_theme_light_onPrimaryContainer = Color(0xFFBDBABA)  // Контрастный тёмный
+val LightPrimary       = Color(0xFF4B6382)
+val LightSecondary     = Color(0xFFA68868)
+val LightBackground    = Color(0xFFFDFDFD)
+val LightSurface       = Color(0xFFFFFFFF)
+val LightError         = Color(0xFFB00020)
 
-val md_theme_light_secondary = Color(0xFFA68868)           // Светлый кофейный
-val md_theme_light_onSecondary = Color(0xFFFFFFFF)
-val md_theme_light_secondaryContainer = Color(0xFFE3C39D)  // Бежевый
-val md_theme_light_onSecondaryContainer = Color(0xFF3F2A1D)
+val DarkPrimary        = Color(0xFFA4B5C4)
+val DarkSecondary      = Color(0xFFE3C39D)
+val DarkBackground     = Color(0xFF071739)
+val DarkSurface        = Color(0xFF0B1C32)
+val DarkError          = Color(0xFFCF6679)
 
-val md_theme_light_background = Color(0xFFFDFDFD)
-val md_theme_light_onBackground = Color(0xFF071739)
-val md_theme_light_surface = Color(0xFFFFFFFF)
-val md_theme_light_onSurface = Color(0xFFDED2D2)
-
-val md_theme_light_outline = Color(0xFFCDD5DB)
-val md_theme_light_surfaceVariant = Color(0xFFE3C39D)
-val md_theme_light_onSurfaceVariant = Color(0xFF3E2F1F)
-
-
-val md_theme_dark_primary = Color(0xFFA4B5C4)              // Светло-голубой
-val md_theme_dark_onPrimary = Color(0xFF071739)
-val md_theme_dark_primaryContainer = Color(0xFF4B6382)
-val md_theme_dark_onPrimaryContainer = Color(0xFFFFFFFF)
-
-val md_theme_dark_secondary = Color(0xFFE3C39D)
-val md_theme_dark_onSecondary = Color(0xFF3E2F1F)
-val md_theme_dark_secondaryContainer = Color(0xFFA68868)
-val md_theme_dark_onSecondaryContainer = Color(0xFFFFFFFF)
-
-val md_theme_dark_background = Color(0xFF071739)
-val md_theme_dark_onBackground = Color(0xFFCDD5DB)
-val md_theme_dark_surface = Color(0xFF0B1C32)
-val md_theme_dark_onSurface = Color(0xFF565454)
-
-val md_theme_dark_outline = Color(0xFF4B6382)
-val md_theme_dark_surfaceVariant = Color(0xFF2F3E54)
-val md_theme_dark_onSurfaceVariant = Color(0xFFA4B5C4)
 
 val seed = Color(0xFF825500)

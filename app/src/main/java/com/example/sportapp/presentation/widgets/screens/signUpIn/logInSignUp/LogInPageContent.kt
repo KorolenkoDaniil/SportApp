@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -36,7 +37,7 @@ import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.presentation.widgets.screens.signUpIn.logInSignUp.requests.NotificationPermissionRequest
 import com.example.sportapp.ui.theme.red_accent_color
-import com.example.sportapp.ui.theme.style13_log_in__page
+import com.example.sportapp.ui.theme.style13LoginPage
 import com.example.sportapp.ui.theme.style14
 import com.example.sportapp.ui.theme.style15
 
@@ -66,7 +67,7 @@ fun LogInPageContent(
                 modifier = Modifier.height(200.dp)
             )
             Text(
-                text = "Log In", style = style13_log_in__page
+                text = "Log In", style = MaterialTheme.typography.style13LoginPage
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -141,7 +142,7 @@ fun LogInPageContent(
             Spacer(Modifier.height(24.dp))
 
             Row {
-                Text("Еще нет аккаунта?", style = style14)
+                Text("Еще нет аккаунта?", style = MaterialTheme.typography.style14)
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = "Зарегистрируйся",
