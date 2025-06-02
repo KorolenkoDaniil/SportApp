@@ -90,30 +90,47 @@ namespace SportAppServer.Services
 
         public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
         {
-            if (!string.IsNullOrEmpty(searchPrompt))
+     
+            if (!string.IsNullOrWhiteSpace(searchPrompt))
             {
                 searchPrompt = searchPrompt.ToLower().Trim();
                 searchPrompt = await LemmatizeService.GetLems(searchPrompt);
             }
 
-            Debug.WriteLine(searchPrompt);
+            (List<News> filteredNews, int totalFilteredItems) =
+                await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
 
+            if (filteredNews.Count > 0)
+            {
+                return new NewsPagination
+                {
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalItems = totalFilteredItems,
+                    News = NewsMapper.ConvertToListOfDTO(filteredNews)
+                };
+            }
 
-            List<News> newsList;
-            int totalItems;
-           
-            (newsList, totalItems) = await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
-            
-            var page = new NewsPagination
+          
+            (List<News> allNews, int totalItems) =
+                await _newsRepository.GetNewsList(null, pageSize, pageNumber, -1);
+
+            return new NewsPagination
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 TotalItems = totalItems,
-                News = NewsMapper.ConvertToListOfDTO(newsList)
+                News = NewsMapper.ConvertToListOfDTO(allNews)
             };
-
-            return page;
         }
+
+
+
+
+
+
+
+
 
 
         private Task<bool> LikeExist(DateTime newsDateTime, string email)

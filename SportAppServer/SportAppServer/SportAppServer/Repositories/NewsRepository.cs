@@ -171,19 +171,20 @@ namespace SportAppServer.Repositories
         public async Task<(List<News>, int totalItems)> GetNewsList(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
         {
             SqlParameter searchParam = new SqlParameter("@search", string.IsNullOrEmpty(searchPrompt) ? DBNull.Value : FormatForFullTextSearch(searchPrompt));
-            SqlParameter sportParam = new SqlParameter("@sport", sportIndex != -1 && sportIndex < Sports.sports.Count ? Sports.sports[sportIndex] : DBNull.Value);
+            SqlParameter sportParam = new SqlParameter("@sport", sportIndex != -1 && sportIndex < Sports.sports.Count
+                ? Sports.sports[sportIndex]
+                : DBNull.Value);
 
-            var pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
-            var pageSizeParam = new SqlParameter("@PageSize", pageSize);
-
-            var outputParam = new SqlParameter("@total", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            SqlParameter pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
+            SqlParameter pageSizeParam = new SqlParameter("@PageSize", pageSize);
+            SqlParameter outputParam = new SqlParameter("@total", SqlDbType.Int) { Direction = ParameterDirection.Output };
 
             await _context.Database.ExecuteSqlRawAsync(
                 "EXEC CountNews @search, @sport, @total OUT",
                 searchParam, sportParam, outputParam
             );
+
             int totalItems = (int)outputParam.Value;
-            Debug.WriteLine($"Total Items: {totalItems}");
 
             var newsList = await _context.NewsList
                 .FromSqlRaw("EXEC SearchNews @search, @sport, @PageNumber, @PageSize",
@@ -192,10 +193,9 @@ namespace SportAppServer.Repositories
 
             newsList = await GetTags(newsList);
 
-            Debug.WriteLine("-----------------------------------");
-
             return (newsList, totalItems);
         }
+
 
 
 

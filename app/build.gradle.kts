@@ -65,6 +65,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.ktor.client.core.v237)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
@@ -87,6 +88,10 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.androidx.ui.test.android)
+    implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.animation.core.lint)
+    implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.espresso.core)
     ksp(libs.androidx.room.compiler) // Используем ksp вместо kapt
     implementation(libs.androidx.room.ktx) // Поддержка корутин
 

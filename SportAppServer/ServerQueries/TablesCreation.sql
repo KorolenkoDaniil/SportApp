@@ -23,14 +23,9 @@ CREATE TABLE News (
 
 CREATE TABLE Users (
     UserEmail NVARCHAR(255) NOT NULL Primary key, 
-	UserImage NVARCHAR(MAX),
+	UserImage NVARCHAR(1000),
 	IsWhiteTheme Bit not null DEFAULT 1 
 );
-
-
---ALTER TABLE Users 
---	ADD IsWhiteTheme Bit NOT NULL DEFAULT 1 
-
 
 
 
@@ -216,7 +211,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @Offset INT = @PageNumber * @PageSize;
+   DECLARE @Offset INT = (@PageNumber - 1) * @PageSize;
 
     IF @search IS NULL OR @search = ''
     BEGIN
@@ -330,7 +325,7 @@ go
 		@email NVARCHAR(200)
 	AS
 	BEGIN
-		SELECT U.UserEmail, U.UserImage
+		SELECT *
 		FROM Users U
 			WHERE LOWER(U.UserEmail) = LOWER(@Email)
 	end
@@ -358,49 +353,5 @@ BEGIN
 END
 go
 
-
-
-CREATE OR ALTER PROC ChangeEmail
-	@oldEmail NVARCHAR(256),
-	@newEmail NVARCHAR(256)
-	AS
-	begin 
-		set nocount ON;
-		
-		BEGIN TRY
-        BEGIN TRANSACTION;
-
-		---- Обновляем зависимости (FK)
-		--UPDATE NewsComments
-		--SET UserEmail = @newEmail
-		--	WHERE UserEmail = @oldEmail;
-
-		--UPDATE NewsLike
-		--	SET UserEmail = @newEmail
-		--	WHERE UserEmail = @oldEmail;
-
-		--UPDATE CommentLikes
-		--	SET LikedByUserEmail = @newEmail
-		--	WHERE LikedByUserEmail = @oldEmail;
-
-		--UPDATE messages
-		--	SET UserEmail = @newEmail
-		--	WHERE UserEmail = @oldEmail;
-
-		--	-- Теперь обновляем главную таблицу Users
-		UPDATE Users
-			SET UserEmail = @newEmail
-			WHERE UserEmail = @oldEmail;
-
-
-		SELECT * FROM Users WHERE UserEmail = @newEmail;
-
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-        THROW;
-    END CATCH
-END
 
 

@@ -46,7 +46,7 @@ fun NewsCardRow(
     LaunchedEffect (listState) {
         snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
             .collectLatest {  index ->
-                if (!newsViewModel.loading.value && index != null && index >= newsViewModel.newsList.size - 5){
+                if (!newsViewModel.loading.value && index != null && index >= newsViewModel.newsList.size - 4){
                     newsViewModel.page.value++
 
                     newsViewModel.loading.value = true

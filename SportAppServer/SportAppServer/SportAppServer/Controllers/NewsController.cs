@@ -105,25 +105,19 @@ namespace SportAppServer.Controllers
         }
 
 
-
-        [HttpPost("SearchNews")]
-        public async Task<IActionResult> SearchNews([FromQuery] string searchPrompt = "", int pageNumber = 1, int pageSize = 5, int sportIndex = -1)
+        [HttpGet ("SearchNews")]
+        public async Task<IActionResult> SearchNews(string? searchPrompt, int pageSize, int pageNumber, int sportIndex)
         {
-            if (searchPrompt == null && sportIndex == -1)
-                return BadRequest();
-
-            NewsPagination paginatedNews = await _newsService.GetPaginatedNewsListwithSearch(searchPrompt, pageSize, pageNumber, sportIndex);
-
-            if (paginatedNews.News.Count == 0)
+            try
             {
-               paginatedNews = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
+                var result = await _newsService.GetPaginatedNewsListwithSearch(searchPrompt, pageSize, pageNumber, sportIndex);
+                return Ok(result);
             }
-
-            return Ok(paginatedNews);
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
-
-
-
 
     }
 }

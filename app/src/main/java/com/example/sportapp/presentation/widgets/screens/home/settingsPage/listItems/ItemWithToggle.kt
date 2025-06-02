@@ -51,10 +51,21 @@ fun ItemWithToggle(drawableResource: Painter, text: String, authViewModel: AuthV
         Switch(
             checked = isWhiteTheme,
             onCheckedChange = {
-
                 authViewModel.changeTheme()
             },
             modifier = Modifier.height(20.dp)
         )
+
+//        switch.setOnCheckedChangeListener { _, isChecked ->
+//            val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+//            prefs.edit().putBoolean("notifications_enabled", isChecked).apply()
+//
+//            if (isChecked) {
+//                FirebaseMessaging.getInstance().subscribeToTopic("MatchNotification")
+//            } else {
+//                FirebaseMessaging.getInstance().unsubscribeFromTopic("MatchNotification")
+//            }
+//        }
+
     }
 }

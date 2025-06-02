@@ -13,14 +13,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,6 +51,7 @@ fun SignupPageContent(
     appActivity: AppActivityViewModel
 ){
     val context = LocalContext.current
+    val passwordVisible = remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.padding(20.dp)) {
         Column(
@@ -90,6 +97,17 @@ fun SignupPageContent(
                 onValueChange = { authViewModel.password.value = it },
                 label = { Text(text = "Password") },
                 singleLine = true,
+                trailingIcon = {
+                    val image = if (passwordVisible.value) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                    val description = if (passwordVisible.value) "Скрыть пароль" else "Показать пароль"
+                    Icon(
+                        imageVector = image,
+                        contentDescription = description,
+                        modifier = Modifier.clickable {
+                            passwordVisible.value = !passwordVisible.value
+                        }
+                    )
+                },
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
                     unfocusedTextColor = Color.Black,

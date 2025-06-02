@@ -292,7 +292,7 @@
     "ContainingType": "SportAppServer.Controllers.NewsController",
     "Method": "SearchNews",
     "RelativePath": "NewsController/SearchNews",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -302,12 +302,12 @@
         "IsRequired": false
       },
       {
-        "Name": "pageNumber",
+        "Name": "pageSize",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "pageSize",
+        "Name": "pageNumber",
         "Type": "System.Int32",
         "IsRequired": false
       },

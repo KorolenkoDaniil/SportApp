@@ -13,8 +13,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -40,6 +44,7 @@ import com.example.sportapp.ui.theme.red_accent_color
 import com.example.sportapp.ui.theme.style13LoginPage
 import com.example.sportapp.ui.theme.style14
 import com.example.sportapp.ui.theme.style15
+
 
 @Composable
 fun LogInPageContent(
@@ -99,18 +104,18 @@ fun LogInPageContent(
                 label = { Text(text = "Password") },
                 singleLine = true,
                 visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
-//                trailingIcon = {
-//                    val image = if (passwordVisible.value) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-//                    val description = if (passwordVisible.value) "Скрыть пароль" else "Показать пароль"
-//                    Icon(
-//                        imageVector = image,
-//                        contentDescription = description,
-//                        modifier = Modifier.clickable {
-//                            passwordVisible.value = !passwordVisible.value
-//                        }
-//                    )
-//                },
-                colors = TextFieldDefaults.colors(
+                trailingIcon = {
+                    val image = if (passwordVisible.value) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                    val description = if (passwordVisible.value) "Скрыть пароль" else "Показать пароль"
+                    Icon(
+                        imageVector = image,
+                        contentDescription = description,
+                        modifier = Modifier.clickable {
+                            passwordVisible.value = !passwordVisible.value
+                        }
+                    )
+                },
+                    colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
                     unfocusedTextColor = Color.Black,
                     focusedContainerColor = Color.White,

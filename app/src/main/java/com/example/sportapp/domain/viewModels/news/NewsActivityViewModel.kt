@@ -23,11 +23,14 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
     override fun loadData() {}
 
     val newsList = mutableStateListOf<NewsEntity>()
+    val newsListAfterSearch = mutableStateListOf<NewsEntity>()
+
     fun addNews(news: NewsEntity) {
         newsList.add(news)
     }
 
-    val page = mutableStateOf(0)
+    val page = mutableStateOf(1)
+    val pageAfterSearch = mutableStateOf(0)
     val loading = mutableStateOf(false)
 
     private var _selectedNews = selectedNews
@@ -51,6 +54,7 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
         viewModelScope.launch {
             try {
                 val newsListEntity = repository.getNews(pageNumber = 1)
+                newsListAfterSearch.addAll(newsListEntity.news)
                 state.value = NewsState.NewsContent(newsListEntity)
             } catch (e: Throwable) {
                 Log.e("tttNews", "Ошибка при загрузке новостей: ${e.message}", e)
@@ -68,7 +72,7 @@ class NewsActivityViewModel : ViewModel(), BaseViewModelInterface<NewsState, New
         return try {
             repository.getNewsWithSearch(pageNumber, searchPrompt, sportIndex)
         } catch (e: Throwable) {
-            Log.e("search", "Ошибка поиска: ${e.message}", e)
+            Log.e("searchNewsSuspend", "Ошибка поиска: ${e.message}", e)
             null
         }
     }

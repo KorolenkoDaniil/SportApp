@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home.home
 
+import SearchLine
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +19,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.containers.ViewModelContainer
-import com.example.sportapp.presentation.widgets.common.shared.SearchLine
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
 import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.BottomSheetFilter
 import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.SearchedNewsList
@@ -99,7 +99,7 @@ fun HomePageContent(
                 newsViewModel = viewModels.newsViewModel,
                 searchPrompt = promptState.value.text,
                 navController,
-                viewModels.newsViewModel.newsList,
+                viewModels.newsViewModel.newsListAfterSearch,
                 loading
             )
         }
@@ -114,7 +114,7 @@ fun HomePageContent(
                 openFilterOverlay = openFilterOverlay,
                 newsViewModel = viewModels.newsViewModel,
                 promptState = promptState,
-                viewModels.newsViewModel.newsList,
+                viewModels.newsViewModel.newsListAfterSearch,
                 loading
             )
         }
