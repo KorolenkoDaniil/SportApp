@@ -76,12 +76,6 @@ C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\Spor
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets\msbuild.SportAppServer.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets\msbuild.SportAppServer.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets\msbuild.build.SportAppServer.props
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.SportAppServer.props
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.SportAppServer.props
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportApp.F7E91662.Up2Date
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.dll
@@ -104,3 +98,8 @@ C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\Spor
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\bin\Debug\net8.0\StackExchange.Redis.dll
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.build.json.cache

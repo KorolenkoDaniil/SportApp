@@ -5,7 +5,7 @@ using SportAppServer.Models.Entities;
 using SportAppServer.Models.Mappers;
 using SportAppServer.Models.Pagination;
 using SportAppServer.Repositories;
-using SportAppServer.Services.LemmatizeMicroService;
+//using SportAppServer.Services.LemmatizeMicroService;
 using System.Diagnostics;
 
 namespace SportAppServer.Services
@@ -88,41 +88,41 @@ namespace SportAppServer.Services
             return page;
         }
 
-        public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
-        {
+        //public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
+        //{
      
-            if (!string.IsNullOrWhiteSpace(searchPrompt))
-            {
-                searchPrompt = searchPrompt.ToLower().Trim();
-                searchPrompt = await LemmatizeService.GetLems(searchPrompt);
-            }
+        //    if (!string.IsNullOrWhiteSpace(searchPrompt))
+        //    {
+        //        searchPrompt = searchPrompt.ToLower().Trim();
+        //        //searchPrompt = await LemmatizeService.GetLems(searchPrompt);
+        //    }
 
-            (List<News> filteredNews, int totalFilteredItems) =
-                await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
+        //    (List<News> filteredNews, int totalFilteredItems) =
+        //        await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
 
-            if (filteredNews.Count > 0)
-            {
-                return new NewsPagination
-                {
-                    PageNumber = pageNumber,
-                    PageSize = pageSize,
-                    TotalItems = totalFilteredItems,
-                    News = NewsMapper.ConvertToListOfDTO(filteredNews)
-                };
-            }
+        //    if (filteredNews.Count > 0)
+        //    {
+        //        return new NewsPagination
+        //        {
+        //            PageNumber = pageNumber,
+        //            PageSize = pageSize,
+        //            TotalItems = totalFilteredItems,
+        //            News = NewsMapper.ConvertToListOfDTO(filteredNews)
+        //        };
+        //    }
 
           
-            (List<News> allNews, int totalItems) =
-                await _newsRepository.GetNewsList(null, pageSize, pageNumber, -1);
+        //    (List<News> allNews, int totalItems) =
+        //        await _newsRepository.GetNewsList(null, pageSize, pageNumber, -1);
 
-            return new NewsPagination
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize,
-                TotalItems = totalItems,
-                News = NewsMapper.ConvertToListOfDTO(allNews)
-            };
-        }
+        //    return new NewsPagination
+        //    {
+        //        PageNumber = pageNumber,
+        //        PageSize = pageSize,
+        //        TotalItems = totalItems,
+        //        News = NewsMapper.ConvertToListOfDTO(allNews)
+        //    };
+        //}
 
 
 

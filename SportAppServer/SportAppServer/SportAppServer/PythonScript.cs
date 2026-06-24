@@ -4,7 +4,9 @@ using Newtonsoft.Json;
 using SportAppServer.Context;
 using SportAppServer.Models.Entities;
 using SportAppServer.Services;
-using SportAppServer.Services.LemmatizeMicroService;
+
+//using SportAppServer.Services;
+//using SportAppServer.Services.LemmatizeMicroService;
 using System.Diagnostics;
 using System.Text;
 
@@ -142,10 +144,10 @@ namespace SportAppServer
 
                     
                     
-                    foreach (var news in newNews)
-                    {
-                        news.TextAfterLemmatize = await LemmatizeService.GetLems(news.ArticleText);
-                    }
+                    //foreach (var news in newNews)
+                    //{
+                    //    news.TextAfterLemmatize = await LemmatizeService.GetLems(news.ArticleText);
+                    //}
 
 
 

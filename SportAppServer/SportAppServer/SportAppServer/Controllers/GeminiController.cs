@@ -96,7 +96,7 @@ namespace SportAppServer.Controllers
                 await _messageService.AddMessage(prompt.Prompt, prompt.Email, false);
                 Debug.WriteLine($"User message saved in {sw.ElapsedMilliseconds} ms");
 
-                AIMessageDto response = await _geminiService.AskGemini(prompt, prompt.Email);
+                MessageDTO response = await _geminiService.AskGemini(prompt, prompt.Email);
                 Debug.WriteLine($"Gemini response received in {sw.ElapsedMilliseconds} ms");
 
                 if (response == null)

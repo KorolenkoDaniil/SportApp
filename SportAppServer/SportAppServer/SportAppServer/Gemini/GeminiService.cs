@@ -19,7 +19,7 @@ namespace SportAppServer.Gemini
             Timeout = TimeSpan.FromSeconds(30)
         };
 
-        public async Task<AIMessageDto> AskGemini(GeminiDTORequest prompt, string email)
+        public async Task<MessageDTO> AskGemini(GeminiDTORequest prompt, string email)
         {
             var requestBody = BuildRequestBody(prompt.Prompt);
             string response = await SendRequestToGeminiAsync(requestBody);
@@ -27,7 +27,7 @@ namespace SportAppServer.Gemini
             JObject json = JObject.Parse(response);
             string text = (string?)json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"] ?? "Ответ не найден";
 
-            return new AIMessageDto(email, text, true);
+            return new MessageDTO(email, text, true);
         }
 
         public async Task<List<string>> CreateTags(string newsText)

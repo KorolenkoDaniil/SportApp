@@ -16,7 +16,7 @@ namespace SportAppServer.Context
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<Like> Likes { get; set; } = null!;
         public DbSet<CommentLike> CommentsLikes { get; set; } = null!;
-        public DbSet<AIMessages> AIMessages { get; set; }
+        public DbSet<Message> AIMessages { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

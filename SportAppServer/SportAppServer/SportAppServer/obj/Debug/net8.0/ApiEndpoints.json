@@ -287,36 +287,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SportAppServer.Controllers.NewsController",
-    "Method": "SearchNews",
-    "RelativePath": "NewsController/SearchNews",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "searchPrompt",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "pageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "pageNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "sportIndex",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
   }
 ]

@@ -7,6 +7,6 @@ namespace SportAppServer.Gemini
     public interface IGeminiService
     {
         Task<List<string>> CreateTags(string newsText);
-        Task<AIMessageDto> AskGemini(GeminiDTORequest prompt, string email);
+        Task<MessageDTO> AskGemini(GeminiDTORequest prompt, string email);
     }
 }

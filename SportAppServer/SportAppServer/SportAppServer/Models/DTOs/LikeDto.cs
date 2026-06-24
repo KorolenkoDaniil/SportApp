@@ -10,7 +10,7 @@ namespace SportAppServer.Models.Entities
         [JsonProperty("user_email")]
         public required string UserEmail { get; set; }
 
-      
+
 
         public LikeDto() { }
 

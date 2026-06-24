@@ -29,7 +29,7 @@ internal class Program
         builder.Services.AddScoped<ILikeServise, LikeServise>();
         builder.Services.AddScoped<ILikeRepository, LikeRepository>();
         builder.Services.AddScoped<IMessageService, MessageService>();
-        builder.Services.AddScoped<IMessageRepository, MessagesRepository>();
+        builder.Services.AddScoped<IMessageRepository, MessageRepository>();
         builder.Services.AddScoped<PythonScript>();
 
         builder.Services.AddCors(options =>
