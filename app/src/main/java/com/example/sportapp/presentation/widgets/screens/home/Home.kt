@@ -2,11 +2,11 @@ package com.example.sportapp.presentation.widgets.screens.home
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavHostController
-import com.example.sportapp.containers.StatesContainer
 import com.example.sportapp.containers.ViewModelContainer
-import com.example.sportapp.models.viewModels.MatchesState
 import com.example.sportapp.models.viewModels.NewsState
 import com.example.sportapp.presentation.navigation.Screen
 import com.example.sportapp.presentation.widgets.common.shared.CommonError
@@ -17,15 +17,21 @@ import com.example.sportapp.presentation.widgets.screens.home.home.HomePageConte
 @Composable
 fun HomePage(
     viewModels: ViewModelContainer,
-    states: StatesContainer,
+//    states: StatesContainer,
     navController: NavHostController,
     horizontalPaddings: Dp,
 ) {
-    when (states.matchesState) {
+//    when (states.matchesState) {
+//
+//        is MatchesState.MatchesContent -> {
 
-        is MatchesState.MatchesContent -> {
+    val newsState by viewModels.newsViewModel.state.collectAsState()
 
-            when (states.newsState) {
+
+    Log.d("Composable", "Composable  HomePage")
+            Log.d("Composable", newsState.toString())
+
+    when (newsState) {
 
                 is NewsState.NewsContent -> {
 
@@ -52,13 +58,13 @@ fun HomePage(
             }
         }
 
-        is MatchesState.Error -> {
-            CommonError(viewModels.matchesViewModel, Screen.Home.route, navController, "матчи")
-        }
-
-        MatchesState.Load -> {
-            Loading()
-        }
-    }
-}
+//        is MatchesState.Error -> {
+//            CommonError(viewModels.matchesViewModel, Screen.Home.route, navController, "матчи")
+//        }
+//
+//        MatchesState.Load -> {
+//            Loading()
+//        }
+//    }
+//}
 

@@ -1,6 +1,5 @@
 package com.example.sportapp.presentation.widgets.screens.home.home
 
-import SearchLine
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -44,18 +43,18 @@ fun HomePageContent(
 
     Column (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
 
-        SearchLine(
-            viewModels.authViewModel,
-            navController,
-            horizontalPaddings,
-            viewModels.newsViewModel,
-            promptState,
-            openFilterOverlay,
-            isFocused,
-            focusRequester,
-            viewModels.newsViewModel.newsList,
-            loading
-        )
+//        SearchLine(
+//            viewModels.authViewModel,
+//            navController,
+//            horizontalPaddings,
+//            viewModels.newsViewModel,
+//            promptState,
+//            openFilterOverlay,
+//            isFocused,
+//            focusRequester,
+//            viewModels.newsViewModel.newsList,
+//            loading
+//        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -63,7 +62,7 @@ fun HomePageContent(
 
             if (!isFocused.value) {
 
-                item { CurrentMatch(viewModels.matchesViewModel.nearestMatch, horizontalPaddings) }
+//                item { CurrentMatch(viewModels.matchesViewModel.nearestMatch, horizontalPaddings) }
                 item { Spacer(modifier = Modifier.height(16.dp)) }
                 item {
                     Text(
@@ -83,13 +82,13 @@ fun HomePageContent(
                     )
                 }
                 item { Spacer(modifier = Modifier.height(20.dp)) }
-                item {
-                    VideoCardRow(
-                        videoViewModel = viewModels.videoViewModel,
-                        navController = navController,
-                        horizontalPaddings
-                    )
-                }
+//                item {
+//                    VideoCardRow(
+//                        videoViewModel = viewModels.videoViewModel,
+//                        navController = navController,
+//                        horizontalPaddings
+//                    )
+//                }
                 item { Spacer(modifier = Modifier.height(24.dp)) }
             }
         }

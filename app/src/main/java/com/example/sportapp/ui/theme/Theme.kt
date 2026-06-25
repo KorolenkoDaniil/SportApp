@@ -5,8 +5,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import com.example.sportapp.domain.viewModels.authorization.AuthViewModel
 
 private val LightColors = lightColorScheme(
     primary   = LightPrimary,
@@ -27,20 +25,20 @@ private val DarkColors = darkColorScheme(
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun AppTheme(
-    authViewModel: AuthViewModel,
+//    authViewModel: AuthViewModel,
     content: @Composable () -> Unit
 ) {
 
-    val themeISWhite = authViewModel.themeIsWhite.collectAsState().value
+//    val themeISWhite = authViewModel.themeIsWhite.collectAsState().value
 
-    val colors = if (themeISWhite) {
-        LightColors
-    } else {
-        DarkColors
-    }
+//    val colors = if (themeISWhite) {
+//        LightColors
+//    } else {
+//        DarkColors
+//    }
 
     MaterialTheme(
-        colorScheme = colors,
+        colorScheme = LightColors,
         content = content
     )
 }

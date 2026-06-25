@@ -1,5 +1,6 @@
 package com.example.sportapp.presentation.widgets.screens.home.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,7 +31,7 @@ fun NewsCardRow(
     val listState = rememberLazyListState()
 
     LaunchedEffect (Unit) {
-        if (newsViewModel.newsList.isEmpty()) {
+        if ( newsViewModel.newsList.isEmpty()) {
             newsViewModel.loading.value = true
             newsViewModel.searchAndSetNews(
                 pageNumber = newsViewModel.page.value,
@@ -63,13 +64,41 @@ fun NewsCardRow(
     }
 
 
-    LazyRow(state = listState, modifier = Modifier.padding(start = horizontalPaddings)) {
-        items(newsViewModel.newsList.size){ index ->
+//    LazyRow(state = listState, modifier = Modifier.padding(start = horizontalPaddings)) {
+//        items(newsViewModel.newsList.size){ index ->
+//
+//            val news = newsViewModel.newsList[index]
+//
+//            Log.d("NewsCardRow", news.toString())
+//
+//            NewsCard(
+//                news = news,
+//                navController = navController
+//            )
+//        }
+//        item {
+//            if (newsViewModel.loading.value) {
+//                Box(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(10.dp),
+//                    contentAlignment = Alignment.Center
+//                ) {
+//                    CircularProgressIndicator(modifier = Modifier.height(50.dp))
+//                }
+//            }
+//        }
+//    }
 
-            val newss = newsViewModel.newsList[index]
+    LazyRow(state = listState, modifier = Modifier.padding(start = horizontalPaddings)) {
+        items(newsViewModel.newsListAfterSearch.size){ index ->
+
+            val news = newsViewModel.newsListAfterSearch[index]
+
+            Log.d("NewsCardRow", news.toString())
 
             NewsCard(
-                news = newss,
+                news = news,
                 navController = navController
             )
         }

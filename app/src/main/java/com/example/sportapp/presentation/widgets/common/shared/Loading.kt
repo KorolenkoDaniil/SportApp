@@ -12,16 +12,23 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.sportapp.R.drawable.loading
+import com.example.sportapp.containers.ViewModelContainer
+import com.example.sportapp.models.viewModels.NewsState
+import com.example.sportapp.presentation.navigation.Screen
 
 @Composable
 fun Loading() {
+
     val startRotation = 0f
     val endRotation = 360f
 
@@ -53,3 +60,36 @@ fun Loading() {
     }
 }
 
+
+
+@Composable
+fun LoadingPage(
+    viewModels: ViewModelContainer,
+    navController: NavHostController
+) {
+    val newsState by viewModels.newsViewModel.getState().collectAsState()
+
+    when (newsState) {
+        is NewsState.Load -> {
+            Loading() // твой индикатор загрузки
+        }
+
+        is NewsState.NewsContent -> {
+            // переход на HomePage
+            LaunchedEffect(Unit) {
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Loading.route) { inclusive = true }
+                }
+            }
+        }
+
+        is NewsState.Error -> {
+            CommonError(
+                viewModels.newsViewModel,
+                Screen.Loading.route,
+                navController,
+                "новости"
+            )
+        }
+    }
+}

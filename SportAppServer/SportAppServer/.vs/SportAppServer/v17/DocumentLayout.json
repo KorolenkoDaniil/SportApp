@@ -194,8 +194,7 @@
               "RelativeToolTip": "SportAppServer\\Services\\NullFilterServise.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-24T19:11:59.786Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-24T19:11:59.786Z"
             },
             {
               "$type": "Document",
@@ -207,8 +206,7 @@
               "RelativeToolTip": "SportAppServer\\Repositories\\NewsRepository.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAuwB0AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T17:52:23.549Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T17:52:23.549Z"
             },
             {
               "$type": "Document",
@@ -220,8 +218,7 @@
               "RelativeToolTip": "SportAppServer\\Controllers\\NewsController.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAYwC0AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T11:01:39.002Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-22T11:01:39.002Z"
             },
             {
               "$type": "Document",
@@ -282,8 +279,7 @@
               "RelativeToolTip": "SportAppServer\\Repositories\\INewsRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-24T17:30:58.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-24T17:30:58.622Z"
             },
             {
               "$type": "Document",
@@ -295,8 +291,7 @@
               "RelativeToolTip": "SportAppServer\\Services\\NewsService.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAgwEoAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T17:51:52.777Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T17:51:52.777Z"
             },
             {
               "$type": "Document",
@@ -308,8 +303,7 @@
               "RelativeToolTip": "SportAppServer\\Models\\Entities\\News.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-24T18:30:49.689Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-24T18:30:49.689Z"
             },
             {
               "$type": "Document",
@@ -321,8 +315,7 @@
               "RelativeToolTip": "SportAppServer\\Context\\DBContext.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAA/wDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-24T16:29:01.876Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-24T16:29:01.876Z"
             },
             {
               "$type": "Document",
@@ -346,8 +339,7 @@
               "RelativeToolTip": "SportAppServer\\Models\\Entities\\Message.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-24T17:31:30.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-24T17:31:30.438Z"
             },
             {
               "$type": "Document",
