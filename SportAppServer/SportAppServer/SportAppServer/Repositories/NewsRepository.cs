@@ -1,225 +1,228 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using SportAppServer.Context;
-using SportAppServer.Entities.Models;
-using SportAppServer.Gemini;
-using SportAppServer.Models.Entities;
-using System.Data;
-using System.Diagnostics;
+﻿//using Microsoft.Data.SqlClient;
+//using Microsoft.EntityFrameworkCore;
+//using SportAppServer.Models.Entities;
+//using SportAppServer.Support2026.Infrastructure.Database.Context;
+//using System.Data;
+//using System.Diagnostics;
 
 
-namespace SportAppServer.Repositories
-{
-    public class NewsRepository: INewsRepository
-    {
-        private readonly DBContext _context;
-        private readonly IGeminiService _gemini;
+//namespace SportAppServer.Repositories
+//{
+//    public class NewsRepository : INewsRepository
+//    {
+//        private readonly ApplicationDbContext _context;
+//        //private readonly IGeminiService _gemini;
 
 
-        public NewsRepository(DBContext context, IGeminiService gemini)
-        {
-            _context = context;
-            _gemini = gemini;
-        }
+//        //public NewsRepository(ApplicationDbContext context, IGeminiService gemini)
+//        //{
+//        //    _context = context;
+//        //    _gemini = gemini;
+//        //}
 
-        public async Task<List<News>> GetAllNews()
-        {           
-            var newsList = await _context.NewsList
-                .ToListAsync();
+//        public NewsRepository(ApplicationDbContext context)
+//        {
+//            _context = context;
+//        }
 
-            return newsList;
-        }
+//        public async Task<List<News>> GetAllNews()
+//        {
+//            var newsList = await _context.NewsList
+//                .ToListAsync();
 
+//            return newsList;
+//        }
 
-        public async Task<List<News>> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10)
-        {
-            var pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
-            var pageSizeParam = new SqlParameter("@PageSize", pageSize);
 
-            var newsList = await _context.NewsList
-                .FromSqlRaw("EXEC TakePaginatedNews @PageNumber, @PageSize", pageNumberParam, pageSizeParam)
-                .ToListAsync();
+//        public async Task<List<News>> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10)
+//        {
+//            var pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
+//            var pageSizeParam = new SqlParameter("@PageSize", pageSize);
 
+//            var newsList = await _context.NewsList
+//                .FromSqlRaw("EXEC TakePaginatedNews @PageNumber, @PageSize", pageNumberParam, pageSizeParam)
+//                .ToListAsync();
 
-            newsList = await GetTags(newsList);
 
-            return newsList;
-        }
+//            //newsList = await GetTags(newsList);
 
+//            return newsList;
+//        }
 
 
 
-        public async Task<News?> GetByDateAsync(string dateTime)
-        {
-            DateTime newsDateTime = DateTime.Parse(dateTime);
 
-            var news = await _context.NewsList
-                .Include(n => n.Tags)
-                .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
+//        public async Task<News?> GetByDateAsync(string dateTime)
+//        {
+//            DateTime newsDateTime = DateTime.Parse(dateTime);
 
-            return news;
-        }
+//            var news = await _context.NewsList
+//                //.Include(n => n.Tags)
+//                .FirstOrDefaultAsync(item => item.DateTime == newsDateTime);
 
+//            return news;
+//        }
 
 
 
-        public async Task AddNewsToDBAsync(List<News> newsList)
-        {
-            try
-            {
-                foreach (var newsItem in newsList)
-                {
-                    var newsFound = await _context.NewsList
-                    .Include(n => n.Tags)
-                    .FirstOrDefaultAsync(n => n.DateTime == newsItem.DateTime);
 
-                    if (newsFound == null)
-                    {
-                        if (newsItem.Title != null)
-                        {
+//        public async Task AddNewsToDbAsync(List<News> newsList)
+//        {
+//            try
+//            {
+//                foreach (var newsItem in newsList)
+//                {
+//                    var newsFound = await _context.NewsList
+//                    //.Include(n => n.Tags)
+//                    .FirstOrDefaultAsync(n => n.DateTime == newsItem.DateTime);
 
-                            var tags = await _gemini.CreateTags(newsItem.ArticleText);
-                            List<NewsTag> emptyTags = new List<NewsTag>();
+//                    if (newsFound == null)
+//                    {
+//                        if (newsItem.Title != null)
+//                        {
 
-                            foreach (var item in tags)
-                            {
-                                var newTag = new NewsTag(item, newsItem.DateTime);
-                                await _context.Tags.AddAsync(newTag);
-                                emptyTags.Add(newTag);
-                            }
+//                            //var tags = await _gemini.CreateTags(newsItem.ArticleText);
+//                            //List<NewsTag> emptyTags = new List<NewsTag>();
 
-                          
-                            await _context.NewsList.AddAsync(newsItem);
+//                            //foreach (var item in tags)
+//                            //{
+//                            //    //var newTag = new NewsTag(item, newsItem.DateTime);
+//                            //    //await _context.Tags.AddAsync(newTag);
+//                            //    //emptyTags.Add(newTag);
+//                            //}
 
-                            Console.WriteLine($"Новость добавлена: {newsItem.Title}");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Новость уже существует: {newsItem.Title}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка при добавлении новостей: {ex.Message}");
-            }
-        }
 
+//                            await _context.NewsList.AddAsync(newsItem);
 
-        public async Task<int> CountItems()
-        {
-            return await _context.NewsList.CountAsync();
-        }
+//                            Console.WriteLine($"Новость добавлена: {newsItem.Title}");
+//                        }
+//                    }
+//                    else
+//                    {
+//                        Console.WriteLine($"Новость уже существует: {newsItem.Title}");
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                Console.WriteLine($"Ошибка при добавлении новостей: {ex.Message}");
+//            }
+//        }
 
 
-        public async Task<int> CountComments(DateTime newsDateTime)
-        {
-            Debug.WriteLine($"CountComments: {newsDateTime}");
+//        public async Task<int> CountItems()
+//        {
+//            return await _context.NewsList.CountAsync();
+//        }
 
-            var param = new SqlParameter("@newsDateTime", newsDateTime);
-            var outputParam = new SqlParameter("@OutputCount", SqlDbType.Int)
-            {
-                Direction = ParameterDirection.Output
-            };
 
-            
-            await _context.Database.ExecuteSqlRawAsync(
-                "EXEC [dbo].[CountComments] @newsDateTime, @OutputCount OUT",
-                param, outputParam
-            );
+//        //public async Task<int> CountComments(DateTime newsDateTime)
+//        //{
+//        //    Debug.WriteLine($"CountComments: {newsDateTime}");
 
-            var result = (int)outputParam.Value;
+//        //    var param = new SqlParameter("@newsDateTime", newsDateTime);
+//        //    var outputParam = new SqlParameter("@OutputCount", SqlDbType.Int)
+//        //    {
+//        //        Direction = ParameterDirection.Output
+//        //    };
 
-            Debug.WriteLine($"CountComments: {result}");
 
-            return result; 
-        }
+//        //    await _context.Database.ExecuteSqlRawAsync(
+//        //        "EXEC [dbo].[CountComments] @newsDateTime, @OutputCount OUT",
+//        //        param, outputParam
+//        //    );
 
+//        //    var result = (int)outputParam.Value;
 
+//        //    Debug.WriteLine($"CountComments: {result}");
 
+//        //    return result;
+//        //}
 
 
-        public async Task<int> CountLikes(DateTime newsDateTime)
-        {
-            Debug.WriteLine($"CountLikes: {newsDateTime}");
 
-            var param = new SqlParameter("@newsDateTime", newsDateTime);
-            var outputParam = new SqlParameter("@OutputCount", SqlDbType.Int)
-            {
-                Direction = ParameterDirection.Output
-            };
 
 
-            await _context.Database.ExecuteSqlRawAsync(
-                "EXEC [dbo].[LikesCount] @newsDateTime, @OutputCount OUT",
-                param, outputParam
-            );
+//        //public async Task<int> CountLikes(DateTime newsDateTime)
+//        //{
+//        //    Debug.WriteLine($"CountLikes: {newsDateTime}");
 
-            var result = (int)outputParam.Value;
+//        //    var param = new SqlParameter("@newsDateTime", newsDateTime);
+//        //    var outputParam = new SqlParameter("@OutputCount", SqlDbType.Int)
+//        //    {
+//        //        Direction = ParameterDirection.Output
+//        //    };
 
-            Debug.WriteLine($"CountLikes: {result}");
 
-            return result;
-        }
+//        //    await _context.Database.ExecuteSqlRawAsync(
+//        //        "EXEC [dbo].[LikesCount] @newsDateTime, @OutputCount OUT",
+//        //        param, outputParam
+//        //    );
 
+//        //    var result = (int)outputParam.Value;
 
+//        //    Debug.WriteLine($"CountLikes: {result}");
 
+//        //    return result;
+//        //}
 
 
 
-        //public async Task<(List<News>, int totalItems)> GetNewsList(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
-        //{
-        //    SqlParameter searchParam = new SqlParameter("@search", string.IsNullOrEmpty(searchPrompt) ? DBNull.Value : FormatForFullTextSearch(searchPrompt));
-        //    SqlParameter sportParam = new SqlParameter("@sport", sportIndex != -1 && sportIndex < Sports.sports.Count
-        //        ? Sports.sports[sportIndex]
-        //        : DBNull.Value);
 
-        //    SqlParameter pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
-        //    SqlParameter pageSizeParam = new SqlParameter("@PageSize", pageSize);
-        //    SqlParameter outputParam = new SqlParameter("@total", SqlDbType.Int) { Direction = ParameterDirection.Output };
 
-        //    await _context.Database.ExecuteSqlRawAsync(
-        //        "EXEC CountNews @search, @sport, @total OUT",
-        //        searchParam, sportParam, outputParam
-        //    );
 
-        //    int totalItems = (int)outputParam.Value;
+//        //public async Task<(List<News>, int totalItems)> GetNewsList(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
+//        //{
+//        //    SqlParameter searchParam = new SqlParameter("@search", string.IsNullOrEmpty(searchPrompt) ? DBNull.Value : FormatForFullTextSearch(searchPrompt));
+//        //    SqlParameter sportParam = new SqlParameter("@sport", sportIndex != -1 && sportIndex < Sports.sports.Count
+//        //        ? Sports.sports[sportIndex]
+//        //        : DBNull.Value);
 
-        //    var newsList = await _context.NewsList
-        //        .FromSqlRaw("EXEC SearchNews @search, @sport, @PageNumber, @PageSize",
-        //            searchParam, sportParam, pageNumberParam, pageSizeParam)
-        //        .ToListAsync();
+//        //    SqlParameter pageNumberParam = new SqlParameter("@PageNumber", pageNumber);
+//        //    SqlParameter pageSizeParam = new SqlParameter("@PageSize", pageSize);
+//        //    SqlParameter outputParam = new SqlParameter("@total", SqlDbType.Int) { Direction = ParameterDirection.Output };
 
-        //    newsList = await GetTags(newsList);
+//        //    await _context.Database.ExecuteSqlRawAsync(
+//        //        "EXEC CountNews @search, @sport, @total OUT",
+//        //        searchParam, sportParam, outputParam
+//        //    );
 
-        //    return (newsList, totalItems);
-        //}
+//        //    int totalItems = (int)outputParam.Value;
 
+//        //    var newsList = await _context.NewsList
+//        //        .FromSqlRaw("EXEC SearchNews @search, @sport, @PageNumber, @PageSize",
+//        //            searchParam, sportParam, pageNumberParam, pageSizeParam)
+//        //        .ToListAsync();
 
+//        //    newsList = await GetTags(newsList);
 
+//        //    return (newsList, totalItems);
+//        //}
 
 
-        //private string FormatForFullTextSearch(string input)
-        //{
-        //    var terms = input
-        //        .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-        //        .Select(t => $"\"{t}\"");
 
-        //    return string.Join(" OR ", terms);
-        //}
 
-        public async Task<List<News>> GetTags(List<News> newsList)
-        {
-            foreach (var newsItem in newsList)
-            {
-                newsItem.Tags = await _context.Tags
-                    .Where(t => t.NewsDateTime == newsItem.DateTime)
-                    .ToListAsync();
-            }
 
-            return newsList;
-        }
+//        //private string FormatForFullTextSearch(string input)
+//        //{
+//        //    var terms = input
+//        //        .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+//        //        .Select(t => $"\"{t}\"");
 
-    }
-}
+//        //    return string.Join(" OR ", terms);
+//        //}
+
+//        //public async Task<List<News>> GetTags(List<News> newsList)
+//        //{
+//        //    foreach (var newsItem in newsList)
+//        //    {
+//        //        newsItem.Tags = await _context.Tags
+//        //            .Where(t => t.NewsDateTime == newsItem.DateTime)
+//        //            .ToListAsync();
+//        //    }
+
+//        //    return newsList;
+//        //}
+
+//    }
+//}

@@ -12,10 +12,10 @@ DROP TABLE IF EXISTS Users;
 
 
 CREATE TABLE News (
-    Sport NVARCHAR(255) NOT NULL, 
     DateTime DATETIME NOT NULL PRIMARY KEY,
-    Title NVARCHAR(MAX) NOT NULL,
-    ImageId NVARCHAR(MAX) NOT NULL,
+    Sport NVARCHAR(255) NOT NULL, 
+    Title NVARCHAR(200) NOT NULL,
+    ImageId NVARCHAR(300) NOT NULL,
 	ArticleText NVARCHAR(MAX),
 	TextAfterLemmatize NVARCHAR(MAX),
 	FTS_key Int Identity(1, 1) not null

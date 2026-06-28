@@ -1,5 +1,4 @@
-﻿using SportAppServer.Entities.Models;
-using SportAppServer.Models.Entities;
+﻿using SportAppServer.Support2026.Domain.Entities;
 
 namespace SportAppServer.Services
 {
@@ -35,7 +34,7 @@ namespace SportAppServer.Services
                 n.Title = n.Title ?? "";
 
                 // Если Tags = null — создаём пустой список
-                n.Tags ??= new List<NewsTag>();
+                //n.Tags ??= new List<NewsTag>();
 
                 filtered.Add(n);
             }

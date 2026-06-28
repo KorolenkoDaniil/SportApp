@@ -1,130 +1,127 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
-using Newtonsoft.Json;
-using SportAppServer.Models.DTOs;
-using SportAppServer.Models.Entities;
-using SportAppServer.Models.Mappers;
-using SportAppServer.Models.Pagination;
-using SportAppServer.Repositories;
-//using SportAppServer.Services.LemmatizeMicroService;
-using System.Diagnostics;
+﻿//using Microsoft.Extensions.Caching.Distributed;
+//using Newtonsoft.Json;
+//using SportAppServer.Models.DTOs;
+//using SportAppServer.Models.Entities;
+//using SportAppServer.Models.Mappers;
+//using SportAppServer.Models.Pagination;
+//using SportAppServer.Repositories;
+////using SportAppServer.Services.LemmatizeMicroService;
 
-namespace SportAppServer.Services
-{
-    public class NewsService : INewsService
-    {
+//namespace SportAppServer.Services
+//{
+//    public class NewsService : INewsService
+//    {
 
-        private readonly INewsRepository _newsRepository;
-        private readonly ILikeRepository _likeRepository;
-        private readonly IDistributedCache _distributedCache;
+//        private readonly INewsRepository _newsRepository;
+//        //private readonly ILikeRepository _likeRepository;
+//        private readonly IDistributedCache _distributedCache;
 
-        public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository, IDistributedCache distributedCache)
-        {
-            _newsRepository = newsRepository;
-            _likeRepository = likeRepository;
-            _distributedCache = distributedCache;
-        }
+//        //public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository, IDistributedCache distributedCache)
+//        public NewsService(INewsRepository newsRepository, IDistributedCache distributedCache)
+//        {
+//            _newsRepository = newsRepository;
+//            _distributedCache = distributedCache;
+//        }
 
       
-        public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
-        {
-            var searchResult = await _newsRepository.GetByDateAsync(dateTime);
+//        public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
+//        {
+//            var searchResult = await _newsRepository.GetByDateAsync(dateTime);
 
-            if (searchResult != null)
-            {
-                NewsDTO newsDto = NewsMapper.ConvertToDTO(searchResult);
+//            if (searchResult != null)
+//            {
+//                NewsDTO newsDto = NewsMapper.ConvertToDTO(searchResult);
 
-                newsDto.Comments_count = await _newsRepository.CountComments(newsDto.DateTime);
-                newsDto.Likes_count = await _newsRepository.CountLikes(newsDto.DateTime);
+//                newsDto.Comments_count = await _newsRepository.CountComments(newsDto.DateTime);
+//                newsDto.Likes_count = await _newsRepository.CountLikes(newsDto.DateTime);
                 
 
-                newsDto.Is_Liked = await LikeExist(newsDto.DateTime, userEmail);
+//                //newsDto.Is_Liked = await LikeExist(newsDto.DateTime, userEmail);
 
-                return newsDto;
-            }
+//                return newsDto;
+//            }
 
-            return null;
+//            return null;
 
-        }
+//        }
 
-        public async Task<NewsPagination> GetPaginatedNewsList(int pageNumber, int pageSize)
-        {
-            List<News> newsList = new List<News>();
+//        public async Task<NewsPagination> GetPaginatedNewsList(int pageNumber, int pageSize)
+//        {
+//            List<News> newsList = new List<News>();
 
-            string cachedNews = await _distributedCache.GetStringAsync("cachedNewsList");
+//            string cachedNews = await _distributedCache.GetStringAsync("cachedNewsList");
 
       
 
-            if (cachedNews != null)
-            {
-                var newsListCached = JsonConvert.DeserializeObject<List<News>>(cachedNews);
+//            if (cachedNews != null)
+//            {
+//                var newsListCached = JsonConvert.DeserializeObject<List<News>>(cachedNews);
 
-                int skip = (pageNumber - 1) * pageSize;
+//                int skip = (pageNumber - 1) * pageSize;
 
-                if (skip + pageSize <= newsListCached.Count)
-                {
-                    newsList = newsListCached
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+//                if (skip + pageSize <= newsListCached.Count)
+//                {
+//                    newsList = newsListCached
+//                    .Skip((pageNumber - 1) * pageSize)
+//                    .Take(pageSize)
+//                    .ToList();
 
-                    newsList = await _newsRepository.GetTags(newsList);
-                } 
-            }
-            else
-            {
-                newsList = await _newsRepository.GetPaginatedNewsList(pageNumber, pageSize);
-            }
+//                    //newsList = await _newsRepository.GetTags(newsList);
+//                } 
+//            }
+//            else
+//            {
+//                newsList = await _newsRepository.GetPaginatedNewsList(pageNumber, pageSize);
+//            }
            
-            int totalItems = await _newsRepository.CountItems();
+//            int totalItems = await _newsRepository.CountItems();
 
-            var page = new NewsPagination
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize,
-                TotalItems = totalItems,
-                News = NewsMapper.ConvertToListOfDTO(newsList)
-            };
+//            var page = new NewsPagination
+//            {
+//                PageNumber = pageNumber,
+//                PageSize = pageSize,
+//                TotalItems = totalItems,
+//                News = NewsMapper.ConvertToListOfDTO(newsList)
+//            };
 
-            return page;
-        }
+//            return page;
+//        }
 
-        //public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
-        //{
+//        //public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
+//        //{
      
-        //    if (!string.IsNullOrWhiteSpace(searchPrompt))
-        //    {
-        //        searchPrompt = searchPrompt.ToLower().Trim();
-        //        //searchPrompt = await LemmatizeService.GetLems(searchPrompt);
-        //    }
+//        //    if (!string.IsNullOrWhiteSpace(searchPrompt))
+//        //    {
+//        //        searchPrompt = searchPrompt.ToLower().Trim();
+//        //        //searchPrompt = await LemmatizeService.GetLems(searchPrompt);
+//        //    }
 
-        //    (List<News> filteredNews, int totalFilteredItems) =
-        //        await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
+//        //    (List<News> filteredNews, int totalFilteredItems) =
+//        //        await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
 
-        //    if (filteredNews.Count > 0)
-        //    {
-        //        return new NewsPagination
-        //        {
-        //            PageNumber = pageNumber,
-        //            PageSize = pageSize,
-        //            TotalItems = totalFilteredItems,
-        //            News = NewsMapper.ConvertToListOfDTO(filteredNews)
-        //        };
-        //    }
+//        //    if (filteredNews.Count > 0)
+//        //    {
+//        //        return new NewsPagination
+//        //        {
+//        //            PageNumber = pageNumber,
+//        //            PageSize = pageSize,
+//        //            TotalItems = totalFilteredItems,
+//        //            News = NewsMapper.ConvertToListOfDTO(filteredNews)
+//        //        };
+//        //    }
 
           
-        //    (List<News> allNews, int totalItems) =
-        //        await _newsRepository.GetNewsList(null, pageSize, pageNumber, -1);
+//        //    (List<News> allNews, int totalItems) =
+//        //        await _newsRepository.GetNewsList(null, pageSize, pageNumber, -1);
 
-        //    return new NewsPagination
-        //    {
-        //        PageNumber = pageNumber,
-        //        PageSize = pageSize,
-        //        TotalItems = totalItems,
-        //        News = NewsMapper.ConvertToListOfDTO(allNews)
-        //    };
-        //}
-
-
+//        //    return new NewsPagination
+//        //    {
+//        //        PageNumber = pageNumber,
+//        //        PageSize = pageSize,
+//        //        TotalItems = totalItems,
+//        //        News = NewsMapper.ConvertToListOfDTO(allNews)
+//        //    };
+//        //}
 
 
 
@@ -133,17 +130,19 @@ namespace SportAppServer.Services
 
 
 
-        private Task<bool> LikeExist(DateTime newsDateTime, string email)
-        {
-            Debug.WriteLine(newsDateTime.ToString());
-            Debug.WriteLine(email);
-            return _likeRepository.LikeExist(newsDateTime, email);
-        }
 
 
-        Task<List<NewsDTO>> INewsService.GetAllNews()
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
+//        //private Task<bool> LikeExist(DateTime newsDateTime, string email)
+//        //{
+//        //    Debug.WriteLine(newsDateTime.ToString());
+//        //    Debug.WriteLine(email);
+//        //    return _likeRepository.LikeExist(newsDateTime, email);
+//        //}
+
+
+//        Task<List<NewsDTO>> INewsService.GetAllNews()
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//}

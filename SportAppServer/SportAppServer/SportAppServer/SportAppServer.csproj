@@ -15,4 +15,14 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Support2026\Application\Paginators\" />
+    <Folder Include="Support2026\Application\Interfaces\" />
+    <Folder Include="Support2026\Domain\Services\" />
+    <Folder Include="Support2026\Infrastructure\Repositories\" />
+    <Folder Include="Support2026\Infrastructure\Controllers\" />
+    <Folder Include="Support2026\Presentation\Requests\" />
+    <Folder Include="Support2026\Presentation\Responses\" />
+  </ItemGroup>
+
 </Project>

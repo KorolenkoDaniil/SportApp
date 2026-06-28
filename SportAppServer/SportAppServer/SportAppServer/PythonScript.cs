@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using SportAppServer.Context;
-using SportAppServer.Models.Entities;
 using SportAppServer.Services;
-
-//using SportAppServer.Services;
-//using SportAppServer.Services.LemmatizeMicroService;
+using SportAppServer.Support2026.Application.Dto;
+using SportAppServer.Support2026.Application.Mappers;
+using SportAppServer.Support2026.Domain.Entities;
+using SportAppServer.Support2026.Infrastructure.Database.Context;
 using System.Diagnostics;
 using System.Text;
 
@@ -80,7 +79,7 @@ namespace SportAppServer
         {
             string path = "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\news_list.json";
 
-            List<News>? newsList;
+            List<News>? newsList = new List<News>();
 
             using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
             {
@@ -91,7 +90,14 @@ namespace SportAppServer
 
                 try
                 {
-                    newsList = JsonConvert.DeserializeObject<List<News>>(text);
+
+                    List<NewsDtoFromParser> newsDtoList = JsonConvert.DeserializeObject<List<NewsDtoFromParser>>(text);
+
+                    foreach (var item in newsDtoList)
+                    {
+                        newsList.Add(NewsMapper.MapEntity(item));
+                    }
+
                 }
                 catch (JsonException jsonEx)
                 {
@@ -108,7 +114,7 @@ namespace SportAppServer
 
             using (var scope = _scopeFactory.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<DBContext>();
+                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
                 try
                 {

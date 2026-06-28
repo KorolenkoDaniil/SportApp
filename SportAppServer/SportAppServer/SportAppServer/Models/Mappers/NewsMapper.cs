@@ -1,42 +1,42 @@
-﻿using SportAppServer.Models.DTOs;
-using SportAppServer.Models.Entities;
+﻿//using SportAppServer.Models.DTOs;
+//using SportAppServer.Models.Entities;
 
-namespace SportAppServer.Models.Mappers
-{
-    public static class NewsMapper
-    {
-        public static NewsDTO ConvertToDTO(News news)
-        {
-            return new NewsDTO(
-                news.DateTime,
-                news.Sport,
-                news.Title,
-                news.ImageId,
-                news.ArticleText,
-                NewsTagMapper.ConvertToListOfDTO(news.Tags)
+//namespace SportAppServer.Models.Mappers
+//{
+//    public static class NewsMapper
+//    {
+//        public static NewsDTO ConvertToDTO(News news)
+//        {
+//            return new NewsDTO(
+//                news.DateTime,
+//                news.Sport,
+//                news.Title,
+//                news.ImageId,
+//                news.ArticleText
+//                //NewsTagMapper.ConvertToListOfDTO(news.Tags)
 
-            );
-        }
+//            );
+//        }
 
 
-        public static List<NewsDTO> ConvertToListOfDTO(List<News> news)
-        {
-            List<NewsDTO> newsDTOs = new List<NewsDTO>();
+//        public static List<NewsDTO> ConvertToListOfDTO(List<News> news)
+//        {
+//            List<NewsDTO> newsDTOs = new List<NewsDTO>();
 
-            foreach (var item in news)
-            {
-                newsDTOs.Add(new NewsDTO(
-                        item.DateTime,
-                        item.Sport,
-                        item.Title,
-                        item.ImageId,
-                        item.ArticleText,
-                        NewsTagMapper.ConvertToListOfDTO(item.Tags)
-                    )
-                );
-            };
+//            foreach (var item in news)
+//            {
+//                newsDTOs.Add(new NewsDTO(
+//                        item.DateTime,
+//                        item.Sport,
+//                        item.Title,
+//                        item.ImageId,
+//                        item.ArticleText
+//                        //NewsTagMapper.ConvertToListOfDTO(item.Tags)
+//                    )
+//                );
+//            };
 
-            return newsDTOs;
-        }
-    }
-}
+//            return newsDTOs;
+//        }
+//    }
+//}

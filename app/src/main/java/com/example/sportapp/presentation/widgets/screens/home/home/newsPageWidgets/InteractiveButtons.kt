@@ -42,35 +42,35 @@ fun InteractiveButtons(
 
     val likeViewModel: LikeViewModel = viewModel()
 
-    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else icon_like
+//    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else icon_like
 
     val context = LocalContext.current
     val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
 
     val lastLikeTime = remember { mutableStateOf(0L) }
-    val likeCount = remember { mutableStateOf(currentNews.likesCount) }
+//    val likeCount = remember { mutableStateOf(currentNews.likesCount) }
 
 
 
     Row(verticalAlignment = Alignment.CenterVertically) {
 
-        Image(
-            painter = painterResource(likeRes),
-            contentDescription = null,
-            modifier = Modifier.clickable {
-                likeViewModel.toggleLike(
-                    lastLikeTime = lastLikeTime,
-                    likeCount = likeCount,
-                    currentNews = currentNews,
-                    user = user
-                )
-            }
-        )
+//        Image(
+//            painter = painterResource(likeRes),
+//            contentDescription = null,
+//            modifier = Modifier.clickable {
+//                likeViewModel.toggleLike(
+//                    lastLikeTime = lastLikeTime,
+//                    likeCount = likeCount,
+//                    currentNews = currentNews,
+//                    user = user
+//                )
+//            }
+//        )
 
         Spacer(Modifier.width(8.dp))
-        Text(text = likeCount.value.toString(), style = TextStyle(
-            color = MaterialTheme.colorScheme.onBackground
-        ))
+//        Text(text = likeCount.value.toString(), style = TextStyle(
+//            color = MaterialTheme.colorScheme.onBackground
+//        ))
 
         Spacer(Modifier.width(16.dp))
         Image(

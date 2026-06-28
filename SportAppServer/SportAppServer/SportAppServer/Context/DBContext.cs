@@ -1,47 +1,46 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SportAppServer.Entities.Models;
-using SportAppServer.Models.Entities;
+﻿//using Microsoft.EntityFrameworkCore;
+//using SportAppServer.Models.Entities;
 
-namespace SportAppServer.Context
-{
-    public class DBContext : DbContext
-    {
-        public DBContext() { }
+//namespace SportAppServer.Context
+//{
+//    public class ApplicationDbContext : DbContext
+//    {
+//        public ApplicationDbContext() { }
 
-        public DBContext(DbContextOptions<DBContext> options) : base(options) { }
+//        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<News> NewsList { get; set; } = null!;
-        public DbSet<User> Users { get; set; } = null!;
-        public DbSet<NewsTag> Tags { get; set; } = null!;
-        public DbSet<Comment> Comments { get; set; } = null!;
-        public DbSet<Like> Likes { get; set; } = null!;
-        public DbSet<CommentLike> CommentsLikes { get; set; } = null!;
-        public DbSet<Message> AIMessages { get; set; }
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=Karalenka;Database=KorSport;Trusted_Connection=True;TrustServerCertificate=True");
-        }
+//        public DbSet<News> NewsList { get; set; } = null!;
+//        //public DbSet<User> Users { get; set; } = null!;
+//        //public DbSet<NewsTag> Tags { get; set; } = null!;
+//        //public DbSet<Comment> Comments { get; set; } = null!;
+//        //public DbSet<Like> Likes { get; set; } = null!;
+//        //public DbSet<CommentLike> CommentsLikes { get; set; } = null!;
+//        //public DbSet<Message> AIMessages { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            optionsBuilder.UseSqlServer("Server=Karalenka;Database=KorSport;Trusted_Connection=True;TrustServerCertificate=True");
+//        }
 
-            modelBuilder.Entity<News>()
-                .HasMany(n => n.Tags)
-                .WithOne(nt => nt.News)
-                .HasForeignKey(nt => nt.NewsDateTime);
 
-            modelBuilder.Entity<Comment>()
-               .HasOne(c => c.User)
-               .WithMany(user => user.Comments)
-               .HasForeignKey(c => c.UserEmail);
+//        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+//        //{
 
-            base.OnModelCreating(modelBuilder);
-        }
-    }
-}
+//            //modelBuilder.Entity<News>()
+//                //.HasMany(n => n.Tags)
+//                //.WithOne(nt => nt.News)
+//                //.HasForeignKey(nt => nt.NewsDateTime);
+
+//            //modelBuilder.Entity<Comment>()
+//               //.HasOne(c => c.User)
+//               //.WithMany(user => user.Comments)
+//               //.HasForeignKey(c => c.UserEmail);
+
+//            //base.OnModelCreating(modelBuilder);
+//        //}
+//    }
+//}
 
 
 

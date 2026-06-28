@@ -1,136 +1,134 @@
-﻿using SportAppServer.Models.DTOs;
-using SportAppServer.Models.Pagination;
-using SportAppServer.Repositories;
+﻿//using SportAppServer.Models.DTOs;
+//using SportAppServer.Models.Pagination;
+//using SportAppServer.Repositories;
 
-namespace SportAppServer.Services
-{
-    public class MessageService : IMessageService
-    {
-        private readonly IMessageRepository messageRepository;
+//namespace SportAppServer.Services
+//{
+//    public class MessageService : IMessageService
+//    {
+//        private readonly IMessageRepository messageRepository;
 
-        public Task<NewsDTO> AddMessage(string email, string pronpt, bool isAiAnswer)
-        {
-            throw new NotImplementedException();
-        }
+//        public Task<NewsDTO> AddMessage(string email, string pronpt, bool isAiAnswer)
+//        {
+//            throw new NotImplementedException();
+//        }
 
-        public Task<MessagesPagination> GetPaginatedMessagesList(string email, int pageNumber, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        //private readonly INewsRepository _newsRepository;
-        //private readonly ILikeRepository _likeRepository;
-        //private readonly IDistributedCache _distributedCache;
-
-        //public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository, IDistributedCache distributedCache)
-        //{
-        //    _newsRepository = newsRepository;
-        //    _likeRepository = likeRepository;
-        //    _distributedCache = distributedCache;
-        //}
+//        public Task<MessagesPagination> GetPaginatedMessagesList(string email, int pageNumber, int pageSize)
+//        {
+//            throw new NotImplementedException();
+//        }
 
 
-        //public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
-        //{
-        //    var searchResult = await _newsRepository.GetByDateAsync(dateTime);
+//        //private readonly INewsRepository _newsRepository;
+//        //private readonly ILikeRepository _likeRepository;
+//        //private readonly IDistributedCache _distributedCache;
 
-        //    if (searchResult != null)
-        //    {
-        //        NewsDTO newsDto = NewsMapper.ConvertToDTO(searchResult);
-
-        //        newsDto.Comments_count = await _newsRepository.CountComments(newsDto.DateTime);
-        //        newsDto.Likes_count = await _newsRepository.CountLikes(newsDto.DateTime);
-
-
-        //        newsDto.Is_Liked = await LikeExist(newsDto.DateTime, userEmail);
-
-        //        return newsDto;
-        //    }
-
-        //    return null;
-
-        //}
-
-        //public async Task<NewsPagination> GetPaginatedNewsList(int pageNumber, int pageSize)
-        //{
-        //    List<News> newsList = new List<News>();
-
-        //    string cachedNews = await _distributedCache.GetStringAsync("cachedNewsList");
+//        //public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository, IDistributedCache distributedCache)
+//        //{
+//        //    _newsRepository = newsRepository;
+//        //    _likeRepository = likeRepository;
+//        //    _distributedCache = distributedCache;
+//        //}
 
 
+//        //public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
+//        //{
+//        //    var searchResult = await _newsRepository.GetByDateAsync(dateTime);
 
-        //    if (cachedNews != null)
-        //    {
-        //        var newsListCached = JsonConvert.DeserializeObject<List<News>>(cachedNews);
+//        //    if (searchResult != null)
+//        //    {
+//        //        NewsDTO newsDto = NewsMapper.ConvertToDTO(searchResult);
 
-        //        int skip = (pageNumber - 1) * pageSize;
-
-        //        if (skip + pageSize <= newsListCached.Count)
-        //        {
-        //            newsList = newsListCached
-        //            .Skip((pageNumber - 1) * pageSize)
-        //            .Take(pageSize)
-        //            .ToList();
-
-        //            newsList = await _newsRepository.GetTags(newsList);
-        //        } 
-        //    }
-        //    else
-        //    {
-        //        newsList = await _newsRepository.GetPaginatedNewsList(pageNumber, pageSize);
-        //    }
-
-        //    int totalItems = await _newsRepository.CountItems();
-
-        //    var page = new NewsPagination
-        //    {
-        //        PageNumber = pageNumber,
-        //        PageSize = pageSize,
-        //        TotalItems = totalItems,
-        //        News = NewsMapper.ConvertToListOfDTO(newsList)
-        //    };
-
-        //    return page;
-        //}
-
-        //public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
-        //{
-
-        //    if (!string.IsNullOrWhiteSpace(searchPrompt))
-        //    {
-        //        searchPrompt = searchPrompt.ToLower().Trim();
-        //        searchPrompt = await LemmatizeService.GetLems(searchPrompt);
-        //    }
-
-        //    (List<News> filteredNews, int totalFilteredItems) =
-        //        await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
-
-        //    if (filteredNews.Count > 0)
-        //    {
-        //        return new NewsPagination
-        //        {
-        //            PageNumber = pageNumber,
-        //            PageSize = pageSize,
-        //            TotalItems = totalFilteredItems,
-        //            News = NewsMapper.ConvertToListOfDTO(filteredNews)
-        //        };
-        //    }
+//        //        newsDto.Comments_count = await _newsRepository.CountComments(newsDto.DateTime);
+//        //        newsDto.Likes_count = await _newsRepository.CountLikes(newsDto.DateTime);
 
 
-        //    (List<News> allNews, int totalItems) =
-        //        await _newsRepository.GetNewsList(null, pageSize, pageNumber, -1);
+//        //        newsDto.Is_Liked = await LikeExist(newsDto.DateTime, userEmail);
 
-        //    return new NewsPagination
-        //    {
-        //        PageNumber = pageNumber,
-        //        PageSize = pageSize,
-        //        TotalItems = totalItems,
-        //        News = NewsMapper.ConvertToListOfDTO(allNews)
-        //    };
-        //}
+//        //        return newsDto;
+//        //    }
+
+//        //    return null;
+
+//        //}
+
+//        //public async Task<NewsPagination> GetPaginatedNewsList(int pageNumber, int pageSize)
+//        //{
+//        //    List<News> newsList = new List<News>();
+
+//        //    string cachedNews = await _distributedCache.GetStringAsync("cachedNewsList");
 
 
+
+//        //    if (cachedNews != null)
+//        //    {
+//        //        var newsListCached = JsonConvert.DeserializeObject<List<News>>(cachedNews);
+
+//        //        int skip = (pageNumber - 1) * pageSize;
+
+//        //        if (skip + pageSize <= newsListCached.Count)
+//        //        {
+//        //            newsList = newsListCached
+//        //            .Skip((pageNumber - 1) * pageSize)
+//        //            .Take(pageSize)
+//        //            .ToList();
+
+//        //            newsList = await _newsRepository.GetTags(newsList);
+//        //        } 
+//        //    }
+//        //    else
+//        //    {
+//        //        newsList = await _newsRepository.GetPaginatedNewsList(pageNumber, pageSize);
+//        //    }
+
+//        //    int totalItems = await _newsRepository.CountItems();
+
+//        //    var page = new NewsPagination
+//        //    {
+//        //        PageNumber = pageNumber,
+//        //        PageSize = pageSize,
+//        //        TotalItems = totalItems,
+//        //        News = NewsMapper.ConvertToListOfDTO(newsList)
+//        //    };
+
+//        //    return page;
+//        //}
+
+//        //public async Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageSize, int pageNumber, int sportIndex)
+//        //{
+
+//        //    if (!string.IsNullOrWhiteSpace(searchPrompt))
+//        //    {
+//        //        searchPrompt = searchPrompt.ToLower().Trim();
+//        //        searchPrompt = await LemmatizeService.GetLems(searchPrompt);
+//        //    }
+
+//        //    (List<News> filteredNews, int totalFilteredItems) =
+//        //        await _newsRepository.GetNewsList(searchPrompt, pageSize, pageNumber, sportIndex);
+
+//        //    if (filteredNews.Count > 0)
+//        //    {
+//        //        return new NewsPagination
+//        //        {
+//        //            PageNumber = pageNumber,
+//        //            PageSize = pageSize,
+//        //            TotalItems = totalFilteredItems,
+//        //            News = NewsMapper.ConvertToListOfDTO(filteredNews)
+//        //        };
+//        //    }
+
+
+//        //    (List<News> allNews, int totalItems) =
+//        //        await _newsRepository.GetNewsList(null, pageSize, pageNumber, -1);
+
+//        //    return new NewsPagination
+//        //    {
+//        //        PageNumber = pageNumber,
+//        //        PageSize = pageSize,
+//        //        TotalItems = totalItems,
+//        //        News = NewsMapper.ConvertToListOfDTO(allNews)
+//        //    };
+//        //}
 
 
 
@@ -139,18 +137,20 @@ namespace SportAppServer.Services
 
 
 
-        //private Task<bool> LikeExist(DateTime newsDateTime, string email)
-        //{
-        //    Debug.WriteLine(newsDateTime.ToString());
-        //    Debug.WriteLine(email);
-        //    return _likeRepository.LikeExist(newsDateTime, email);
-        //}
 
 
-        //Task<List<NewsDTO>> INewsService.GetAllNews()
-        //{
-        //    throw new NotImplementedException();
-        //}
+//        //private Task<bool> LikeExist(DateTime newsDateTime, string email)
+//        //{
+//        //    Debug.WriteLine(newsDateTime.ToString());
+//        //    Debug.WriteLine(email);
+//        //    return _likeRepository.LikeExist(newsDateTime, email);
+//        //}
 
-    }
-}
+
+//        //Task<List<NewsDTO>> INewsService.GetAllNews()
+//        //{
+//        //    throw new NotImplementedException();
+//        //}
+
+//    }
+//}

@@ -1,0 +1,24 @@
+﻿/Application
+    /Dto
+        NewsDto.cs
+        UserDto.cs
+    /Mappers
+        INewsMapper.cs
+        NewsMapper.cs
+    /Paginators
+        IPaginator.cs
+        NewsPaginator.cs
+    /UseCases
+        GetNewsUseCase.cs
+        CreateNewsUseCase.cs
+        AddCommentUseCase.cs
+    /Interfaces
+        INewsService.cs
+
+
+DTO
+Мапперы
+Пагинаторы
+UseCases (интеракторы)
+Интерфейсы сервисов
+Это мозг приложения.

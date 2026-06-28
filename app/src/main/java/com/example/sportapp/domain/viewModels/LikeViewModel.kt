@@ -15,13 +15,13 @@ class LikeViewModel : ViewModel() {
 
     fun putLike(newsDateTime: LocalDateTime, userEmail: String) {
         viewModelScope.launch {
-            repository.putLike(newsDateTime, userEmail)
+//            repository.putLike(newsDateTime, userEmail)
         }
     }
 
     fun removeLike(newsDateTime: LocalDateTime, userEmail: String) {
         viewModelScope.launch {
-            repository.removeLike(newsDateTime, userEmail)
+//            repository.removeLike(newsDateTime, userEmail)
         }
     }
 
@@ -37,15 +37,15 @@ class LikeViewModel : ViewModel() {
 
         if (currentTime - lastLikeTime.value >= likeCoolDown) {
             viewModelScope.launch {
-                if (currentNews.isLiked) {
-                    removeLike(currentNews.dateTime, user.email)
-                    likeCount.value -= 1
-                } else {
-                    putLike(currentNews.dateTime, user.email)
-                    likeCount.value += 1
-                }
-                lastLikeTime.value = currentTime
-                currentNews.isLiked = !currentNews.isLiked
+//                if (currentNews.isLiked) {
+//                    removeLike(currentNews.dateTime, user.email)
+//                    likeCount.value -= 1
+//                } else {
+//                    putLike(currentNews.dateTime, user.email)
+//                    likeCount.value += 1
+//                }
+//                lastLikeTime.value = currentTime
+//                currentNews.isLiked = !currentNews.isLiked
             }
         }
     }

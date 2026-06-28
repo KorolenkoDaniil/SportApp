@@ -2,10 +2,9 @@ using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.EntityFrameworkCore;
 using SportAppServer;
-using SportAppServer.Context;
-using SportAppServer.Gemini;
-using SportAppServer.Repositories;
-using SportAppServer.Services;
+using SportAppServer.Support2026.Application.UseCases;
+using SportAppServer.Support2026.Domain.Repositories.NewsRepositoryLayer;
+using SportAppServer.Support2026.Infrastructure.Database.Context;
 
 
 internal class Program
@@ -13,23 +12,31 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 
-
-        builder.Services.AddDbContext<DBContext>(options =>
-            options.UseSqlServer("Server=Karalenka;Database=KorSport;Trusted_Connection=True;TrustServerCertificate=True"));
-
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.LogTo(Console.WriteLine);
+                options.UseSqlServer(connectionString);
+            }
+        );
+        
+             
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
-        builder.Services.AddScoped<INewsService, NewsService>();
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<IUserService, UserService>();
-        builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
-        builder.Services.AddScoped<ICommentsService, CommentsService>();
-        builder.Services.AddScoped<IGeminiService, GeminiService>();
-        builder.Services.AddScoped<ILikeServise, LikeServise>();
-        builder.Services.AddScoped<ILikeRepository, LikeRepository>();
-        builder.Services.AddScoped<IMessageService, MessageService>();
-        builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+        builder.Services.AddScoped<GetPaginatedNewsUseCase>();
+
+        //builder.Services.AddScoped<INewsRepository, NewsRepository>();
+        //builder.Services.AddScoped<INewsService, NewsService>();
+        //builder.Services.AddScoped<IUserRepository, UserRepository>();
+        //builder.Services.AddScoped<IUserService, UserService>();
+        //builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
+        //builder.Services.AddScoped<ICommentsService, CommentsService>();
+        //builder.Services.AddScoped<IGeminiService, GeminiService>();
+        //builder.Services.AddScoped<ILikeServise, LikeServise>();
+        //builder.Services.AddScoped<ILikeRepository, LikeRepository>();
+        //builder.Services.AddScoped<IMessageService, MessageService>();
+        //builder.Services.AddScoped<IMessageRepository, MessageRepository>();
         builder.Services.AddScoped<PythonScript>();
 
         builder.Services.AddCors(options =>
@@ -102,10 +109,10 @@ internal class Program
         });
 
 
-        NotificationScheduler notification = new NotificationScheduler();
-        notification.Deserialisation();
+        //NotificationScheduler notification = new NotificationScheduler();
+        //notification.Deserialisation();
 
-        notification.CheckNearestDateAndSetNotificationAsync();
+        //notification.CheckNearestDateAndSetNotificationAsync();
 
         app.Run();
     }

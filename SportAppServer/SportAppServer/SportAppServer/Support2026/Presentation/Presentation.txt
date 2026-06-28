@@ -1,0 +1,19 @@
+﻿/Presentation
+    /Controllers
+        NewsController.cs
+        UserController.cs
+    /Requests
+        CreateNewsRequest.cs
+        AddCommentRequest.cs
+    /Responses
+        NewsResponse.cs
+        PaginatedNewsResponse.cs
+    /Middleware
+        ErrorHandlingMiddleware.cs
+
+
+
+Контроллеры
+Request/Response модели
+Middleware
+👉 Этот слой зависит от Application.

@@ -1,0 +1,18 @@
+﻿/Infrastructure
+    /Database
+        AppDbContext.cs
+        Migrations/
+    /Repositories
+        NewsRepository.cs
+        UserRepository.cs
+    /Services
+        GeminiService.cs
+        EmailService.cs
+    /Configuration
+        DbSettings.cs
+
+
+EF Core
+Реализации репозиториев
+Внешние API
+Настройки

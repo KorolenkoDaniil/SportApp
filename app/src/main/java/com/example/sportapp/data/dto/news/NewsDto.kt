@@ -5,13 +5,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class NewsDto (
-    @SerialName("dateTime") val dateTime: String,
+    @SerialName("date_time") val dateTime: String,
     @SerialName("sport") val sport: String,
     @SerialName("title") val title: String,
-    @SerialName("imageId") val imageId: String,
-    @SerialName("articleText") val articleText: String,
-    @SerialName("comments_count") val commentsCount: Int,
-    @SerialName("likes_count") val likesCount: Int,
-    @SerialName("is_Liked") val isLiked: Boolean,
-    @SerialName("tags") val newsTags: List<NewsTagDto>,
+    @SerialName("image_id") val imageId: String,
+    @SerialName("text") val articleText: String,
+//    @SerialName("comments_count") val commentsCount: Int,
+//    @SerialName("likes_count") val likesCount: Int,
+//    @SerialName("is_Liked") val isLiked: Boolean,
+//    @SerialName("tags") val newsTags: List<NewsTagDto>,
 )

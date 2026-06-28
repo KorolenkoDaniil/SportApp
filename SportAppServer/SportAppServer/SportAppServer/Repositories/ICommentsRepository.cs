@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SportAppServer.Models.Entities;
+﻿//using Microsoft.AspNetCore.Mvc;
+//using SportAppServer.Models.Entities;
 
-namespace SportAppServer.Repositories
-{
-    public interface ICommentsRepository
-    {
-        Task<List<Comment>> GetPaginatedCommentsList(DateTime itemId, int pageNumber = 1, int pageSize = 10);
-        Task<int> CountItems(DateTime itemId);
-        Task<Comment> PutCommment(Comment comment);
-        Task<int> AddLike(string LikeAuthor, int CommentId);
-        Task<int> RemoveLike(string LikeAuthor, int CommentId);
-        Task<int> CountLIkes (int commentId);
-        Task<bool> IsLiked (int commentId, string userEmail);
-    }
-}
+//namespace SportAppServer.Repositories
+//{
+//    public interface ICommentsRepository
+//    {
+//        Task<List<Comment>> GetPaginatedCommentsList(DateTime itemId, int pageNumber = 1, int pageSize = 10);
+//        Task<int> CountItems(DateTime itemId);
+//        Task<Comment> PutCommment(Comment comment);
+//        Task<int> AddLike(string LikeAuthor, int CommentId);
+//        Task<int> RemoveLike(string LikeAuthor, int CommentId);
+//        Task<int> CountLIkes (int commentId);
+//        Task<bool> IsLiked (int commentId, string userEmail);
+//    }
+//}

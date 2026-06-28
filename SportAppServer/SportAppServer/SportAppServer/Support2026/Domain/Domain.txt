@@ -1,0 +1,24 @@
+﻿/Domain
+    /Entities
+        News.cs
+        User.cs
+        Comment.cs
+    /ValueObjects
+        Email.cs
+        Slug.cs
+    /Services
+        SlugGeneratorService.cs
+        RatingCalculatorService.cs
+    /Repositories
+        INewsRepository.cs
+        IUserRepository.cs
+
+
+
+Entities — модели без зависимостей
+
+ValueObjects — Email, Money, DateRange
+
+Domain Services — чистая бизнес‑логика
+
+Repository interfaces — контракты

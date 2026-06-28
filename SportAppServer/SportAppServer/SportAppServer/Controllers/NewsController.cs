@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SportAppServer.Models.DTOs;
-using SportAppServer.Models.Entities;
 using SportAppServer.Models.Pagination;
-using SportAppServer.Repositories;
 using SportAppServer.Services;
+using SportAppServer.Support2026.Application.UseCases;
+using SportAppServer.Support2026.Domain.Repositories.NewsRepositoryLayer;
 using System.Diagnostics;
 
 
@@ -13,15 +12,23 @@ namespace SportAppServer.Controllers
     [ApiController]
     public class NewsController : Controller
     {
+        private readonly INewsRepository _repository;
+        private GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
 
-        private readonly INewsService _newsService;
-        private readonly ILikeServise _likeService;
+        //private readonly ILikeServise _likeService;
 
 
-        public NewsController(INewsService newsService, ILikeServise likeServise)
+        //public NewsController(INewsService newsService, ILikeServise likeServise)
+        //{
+        //    _newsService = newsService;
+        //    _likeService = likeServise;
+        //}
+
+        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase)
         {
-            _newsService = newsService;
-            _likeService = likeServise;
+
+            //обьединиить множестов use cases В ФАСАД
+            _getPaginatedNewsUseCase = getPaginatedNewsUseCase;
         }
 
 
@@ -32,7 +39,7 @@ namespace SportAppServer.Controllers
             {
                 Debug.WriteLine($"[GetNews] pageNumber: {pageNumber}, pageSize: {pageSize}");
 
-                NewsPagination paginatedNews = await _newsService.GetPaginatedNewsList(pageNumber, pageSize);
+                NewsPagination paginatedNews = await _getPaginatedNewsUseCase.Execute(pageNumber, pageSize);
 
                 if (paginatedNews.News == null)
                 {
@@ -62,47 +69,47 @@ namespace SportAppServer.Controllers
 
 
 
-        [HttpGet("GetOneNews")]
+       /* [HttpGet("GetOneNews")]
         public async Task<IActionResult> GetOneNews(string dateTime, string userEmail)
         {
-            NewsDTO news = await _newsService.GetNewsByDateAsync(dateTime, userEmail);
+            NewsDto news = await _newsService.GetNewsByDateAsync(dateTime, userEmail);
 
             return Ok(news);
-        }
+        }*/
 
 
-        [HttpPost("AddLike")]
-        public async Task<IActionResult> AddLike ([FromBody] LikeDto like)
-        {
-            if (like == null)
-                return BadRequest();
+        //[HttpPost("AddLike")]
+        //public async Task<IActionResult> AddLike ([FromBody] LikeDto like)
+        //{
+        //    if (like == null)
+        //        return BadRequest();
 
-            int likesCount = await _likeService.AddLikeAsync(like);
+        //    int likesCount = await _likeService.AddLikeAsync(like);
 
-            if (likesCount < 0)
-            {
-                return BadRequest();
-            }
+        //    if (likesCount < 0)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
 
-        [HttpPost("RemoveLike")]
-        public async Task<IActionResult> RemoveLike([FromBody] LikeDto like)
-        {
-            if (like == null)
-                return BadRequest();
+        //[HttpPost("RemoveLike")]
+        //public async Task<IActionResult> RemoveLike([FromBody] LikeDto like)
+        //{
+        //    if (like == null)
+        //        return BadRequest();
 
-            int likesCount = await _likeService.RemoveLikeAsync(like);
+        //    int likesCount = await _likeService.RemoveLikeAsync(like);
 
-            if (likesCount < 0)
-            {
-                return BadRequest();
-            }
+        //    if (likesCount < 0)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
 
         //[HttpGet ("SearchNews")]

@@ -1,141 +1,141 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SportAppServer.Context;
-using SportAppServer.Models.Entities;
-using System.Diagnostics;
+﻿//using Microsoft.EntityFrameworkCore;
+//using SportAppServer.Context;
+//using SportAppServer.Models.Entities;
+//using System.Diagnostics;
 
-namespace SportAppServer.Repositories
-{
-    public class CommentsRepository : ICommentsRepository
-    {
-        private readonly DBContext _context;
+//namespace SportAppServer.Repositories
+//{
+//    public class CommentsRepository : ICommentsRepository
+//    {
+//        private readonly ApplicationDbContext _context;
 
-        public CommentsRepository(DBContext context)
-        {
-            _context = context;
-        }
+//        public CommentsRepository(ApplicationDbContext context)
+//        {
+//            _context = context;
+//        }
 
-        public async Task<int> CountItems(DateTime itemId)
-        {
-            var normalized = new DateTime(itemId.Year, itemId.Month, itemId.Day, itemId.Hour, itemId.Minute, itemId.Second);
-            var nextSecond = normalized.AddSeconds(1);
+//        public async Task<int> CountItems(DateTime itemId)
+//        {
+//            var normalized = new DateTime(itemId.Year, itemId.Month, itemId.Day, itemId.Hour, itemId.Minute, itemId.Second);
+//            var nextSecond = normalized.AddSeconds(1);
 
-            return await _context.Comments
-                .Where(comment => comment.NewsDateTime >= normalized && comment.NewsDateTime < nextSecond)
-                .CountAsync();
-        }
-
-
-        public async Task<List<Comment>> GetPaginatedCommentsList(DateTime itemId, int pageNumber, int pageSize)
-        {
-
-            Debug.WriteLine(itemId.ToString());
+//            return await _context.Comments
+//                .Where(comment => comment.NewsDateTime >= normalized && comment.NewsDateTime < nextSecond)
+//                .CountAsync();
+//        }
 
 
-            var commentsList = await _context.Comments
-                .Where(comment => comment.NewsDateTime == itemId
-                )
-                .OrderByDescending(comment => comment.CommentDateTime)
-                .Skip((pageNumber - 1) * pageSize)
-                .Include(comment => comment.User)
-                .Take(pageSize)
-                .ToListAsync();
+//        public async Task<List<Comment>> GetPaginatedCommentsList(DateTime itemId, int pageNumber, int pageSize)
+//        {
 
-            return commentsList;
-        }
-
-        public async Task<Comment> PutCommment(Comment comment)
-        {
-            await _context.Comments.AddAsync(comment);
-            await _context.SaveChangesAsync();
-            return comment;
-        }
+//            Debug.WriteLine(itemId.ToString());
 
 
-        public async Task<int> AddLike(string LikeAuthor, int CommentId)
-        {
-            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == CommentId);
+//            var commentsList = await _context.Comments
+//                .Where(comment => comment.NewsDateTime == itemId
+//                )
+//                .OrderByDescending(comment => comment.CommentDateTime)
+//                .Skip((pageNumber - 1) * pageSize)
+//                .Include(comment => comment.User)
+//                .Take(pageSize)
+//                .ToListAsync();
+
+//            return commentsList;
+//        }
+
+//        public async Task<Comment> PutCommment(Comment comment)
+//        {
+//            await _context.Comments.AddAsync(comment);
+//            await _context.SaveChangesAsync();
+//            return comment;
+//        }
+
+
+//        public async Task<int> AddLike(string LikeAuthor, int CommentId)
+//        {
+//            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == CommentId);
 
            
 
-            bool alreadyLiked = await _context.CommentsLikes
-                .AnyAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
+//            bool alreadyLiked = await _context.CommentsLikes
+//                .AnyAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
 
-            if (comment == null || alreadyLiked)
-                return -1;
+//            if (comment == null || alreadyLiked)
+//                return -1;
 
-            var like = new CommentLike(CommentId, LikeAuthor, comment, comment.User);
-            await _context.CommentsLikes.AddAsync(like);
+//            var like = new CommentLike(CommentId, LikeAuthor, comment, comment.User);
+//            await _context.CommentsLikes.AddAsync(like);
 
-            comment.LikesCount++;
+//            comment.LikesCount++;
 
-            await _context.SaveChangesAsync();
+//            await _context.SaveChangesAsync();
 
-            var count = await _context.CommentsLikes
-                .CountAsync(cl => cl.CommentId == CommentId);
+//            var count = await _context.CommentsLikes
+//                .CountAsync(cl => cl.CommentId == CommentId);
 
-            Console.WriteLine($"Сейчас лайков к комменту {CommentId}: {count}");
+//            Console.WriteLine($"Сейчас лайков к комменту {CommentId}: {count}");
 
-            return count;
-        }
-
-
-        public async Task<int> RemoveLike(string LikeAuthor, int CommentId)
-        {
-            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == CommentId);
+//            return count;
+//        }
 
 
-            bool alreadyLiked = await _context.CommentsLikes
-                .AnyAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
-
-            if (comment == null || !alreadyLiked)
-                return -1;
-
-            var like = await _context.CommentsLikes
-                .FirstOrDefaultAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
-
-            if (like == null)
-            {
-                Debug.WriteLine($"Лайк не найден для удаления: CommentId={CommentId}, Author={LikeAuthor}");
-                return -1;
-            }
-
-            _context.CommentsLikes.Remove(like);
-
-            comment.LikesCount--;
-
-            await _context.SaveChangesAsync();
-
-            var count = await _context.CommentsLikes
-                .CountAsync(cl => cl.CommentId == CommentId);
-
-            Console.WriteLine($"Сейчас лайков к комменту {CommentId}: {count}");
-
-            return count;
-        }
+//        public async Task<int> RemoveLike(string LikeAuthor, int CommentId)
+//        {
+//            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.CommentId == CommentId);
 
 
-        public async Task<int> CountLIkes(int commentId)
-        {
-            return await _context.CommentsLikes
-                .Where(cl => cl.CommentId == commentId)
-                .CountAsync();
-        }
+//            bool alreadyLiked = await _context.CommentsLikes
+//                .AnyAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
+
+//            if (comment == null || !alreadyLiked)
+//                return -1;
+
+//            var like = await _context.CommentsLikes
+//                .FirstOrDefaultAsync(cl => cl.CommentId == CommentId && cl.LikedByUserEmail == LikeAuthor);
+
+//            if (like == null)
+//            {
+//                Debug.WriteLine($"Лайк не найден для удаления: CommentId={CommentId}, Author={LikeAuthor}");
+//                return -1;
+//            }
+
+//            _context.CommentsLikes.Remove(like);
+
+//            comment.LikesCount--;
+
+//            await _context.SaveChangesAsync();
+
+//            var count = await _context.CommentsLikes
+//                .CountAsync(cl => cl.CommentId == CommentId);
+
+//            Console.WriteLine($"Сейчас лайков к комменту {CommentId}: {count}");
+
+//            return count;
+//        }
 
 
-        public async Task<bool> IsLiked(int commentId, string userEmail)
-        {
-            var like = await _context.CommentsLikes
-                .FirstOrDefaultAsync(cl => cl.CommentId == commentId && cl.LikedByUserEmail == userEmail);
+//        public async Task<int> CountLIkes(int commentId)
+//        {
+//            return await _context.CommentsLikes
+//                .Where(cl => cl.CommentId == commentId)
+//                .CountAsync();
+//        }
+
+
+//        public async Task<bool> IsLiked(int commentId, string userEmail)
+//        {
+//            var like = await _context.CommentsLikes
+//                .FirstOrDefaultAsync(cl => cl.CommentId == commentId && cl.LikedByUserEmail == userEmail);
            
-            if (like != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+//            if (like != null)
+//            {
+//                return true;
+//            }
+//            else
+//            {
+//                return false;
+//            }
+//        }
        
-    }
-}
+//    }
+//}

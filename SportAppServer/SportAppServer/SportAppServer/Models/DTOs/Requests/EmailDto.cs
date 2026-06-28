@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿//using Newtonsoft.Json;
 
 
-namespace SportAppServer.Models.DTOs.Requests
-{
-    public class EmailDto
-    {
-        [JsonProperty("email")]
-        public required string Email { get; set; }
-    }
-}
+//namespace SportAppServer.Models.DTOs.Requests
+//{
+//    public class EmailDto
+//    {
+//        [JsonProperty("email")]
+//        public required string Email { get; set; }
+//    }
+//}

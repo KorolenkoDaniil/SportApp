@@ -1,17 +1,17 @@
-﻿using SportAppServer.Models.DTOs;
+﻿//using SportAppServer.Models.DTOs;
 
-namespace SportAppServer.Models.Pagination
-{
-    public class MessagesPagination
-    {
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; } = 5;
-        public int TotalItems { get; set; }
-        public int TotalPages
-        {
-            get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
-        }
+//namespace SportAppServer.Models.Pagination
+//{
+//    public class MessagesPagination
+//    {
+//        public int PageNumber { get; set; }
+//        public int PageSize { get; set; } = 5;
+//        public int TotalItems { get; set; }
+//        public int TotalPages
+//        {
+//            get { return (int)Math.Ceiling((decimal)TotalItems / PageSize); }
+//        }
 
-        public List<MessageDTO> News { get; set; }
-    }
-}
+//        public List<MessageDTO> News { get; set; }
+//    }
+//}

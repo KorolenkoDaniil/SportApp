@@ -9,10 +9,10 @@ data class NewsEntity(
     val imageId: String,
     val newsImage: String,
     val articleText: String,
-    val commentsCount: Int,
-    val likesCount: Int,
-    var isLiked: Boolean,
-    val tags: List<NewsTagEntity>,
+//    val commentsCount: Int,
+//    val likesCount: Int,
+//    var isLiked: Boolean,
+//    val tags: List<NewsTagEntity>,
 )
 
 
