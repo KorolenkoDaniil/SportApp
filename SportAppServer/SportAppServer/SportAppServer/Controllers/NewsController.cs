@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SportAppServer.Models.Pagination;
-using SportAppServer.Services;
+using SportAppServer.Support2026.Application.Dto;
+using SportAppServer.Support2026.Application.Pagination;
 using SportAppServer.Support2026.Application.UseCases;
-using SportAppServer.Support2026.Domain.Repositories.NewsRepositoryLayer;
 using System.Diagnostics;
 
 
@@ -12,8 +11,8 @@ namespace SportAppServer.Controllers
     [ApiController]
     public class NewsController : Controller
     {
-        private readonly INewsRepository _repository;
         private GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
+        private GetNewsByDateUseCase _getNewsByDateUseCase;
 
         //private readonly ILikeServise _likeService;
 
@@ -24,11 +23,12 @@ namespace SportAppServer.Controllers
         //    _likeService = likeServise;
         //}
 
-        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase)
+        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsByDateUseCase getNewsByDateUseCase)
         {
 
             //обьединиить множестов use cases В ФАСАД
             _getPaginatedNewsUseCase = getPaginatedNewsUseCase;
+            _getNewsByDateUseCase = getNewsByDateUseCase;
         }
 
 
@@ -39,21 +39,21 @@ namespace SportAppServer.Controllers
             {
                 Debug.WriteLine($"[GetNews] pageNumber: {pageNumber}, pageSize: {pageSize}");
 
-                NewsPagination paginatedNews = await _getPaginatedNewsUseCase.Execute(pageNumber, pageSize);
+                PaginatedList<NewsDto> paginatedNews = await _getPaginatedNewsUseCase.Execute(pageNumber, pageSize);
 
-                if (paginatedNews.News == null)
+                if (paginatedNews.ItemsList == null)
                 {
                     Debug.WriteLine("[GetNews] paginatedNews.messages is null");
                     return StatusCode(500, "Ошибка: данные не получены");
                 }
 
-                if (paginatedNews.News.Count == 0)
+                if (paginatedNews.ItemsList.Count == 0)
                 {
                     Debug.WriteLine("[GetNews] Нет новостей");
                     return NotFound();
                 }
 
-                Debug.WriteLine($"[GetNews] Успешно возвращено новостей: {paginatedNews.News.Count}");
+                Debug.WriteLine($"[GetNews] Успешно возвращено новостей: {paginatedNews.ItemsList.Count}");
 
                 return Ok(paginatedNews);
             }
@@ -69,13 +69,38 @@ namespace SportAppServer.Controllers
 
 
 
-       /* [HttpGet("GetOneNews")]
-        public async Task<IActionResult> GetOneNews(string dateTime, string userEmail)
+        [HttpGet("GetOneNews")]
+        public async Task<IActionResult> GetOneNewsByDate(string dateTime)
         {
-            NewsDto news = await _newsService.GetNewsByDateAsync(dateTime, userEmail);
+            try
+            {
+                Debug.WriteLine($"[GetOneNewsByDate] dateTime: {dateTime}");
 
-            return Ok(news);
-        }*/
+                PaginatedList<NewsDto> paginatedNews = await _getNewsByDateUseCase.Execute(dateTime);
+
+                if (paginatedNews.ItemsList == null)
+                {
+                    Debug.WriteLine("[GetOneNewsByDate] paginatedNews.messages is null");
+                    return StatusCode(500, "Ошибка: данные не получены");
+                }
+
+                if (paginatedNews.ItemsList.Count == 0)
+                {
+                    Debug.WriteLine("[GetOneNewsByDate] Нет новостей");
+                    return NotFound();
+                }
+
+                Debug.WriteLine($"[GetOneNewsByDate] Успешно возвращено новостей: {paginatedNews.ItemsList.Count}");
+
+                return Ok(paginatedNews);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[GetOneNewsByDate] Ошибка: {ex.Message}");
+                Debug.WriteLine(ex.StackTrace);
+                return StatusCode(500, "Внутренняя ошибка сервера");
+            }
+        }
 
 
         //[HttpPost("AddLike")]

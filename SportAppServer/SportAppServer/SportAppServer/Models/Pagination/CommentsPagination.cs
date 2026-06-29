@@ -1,6 +1,6 @@
 ﻿//using SportAppServer.Models.Entities;
 
-//namespace SportAppServer.Models.Pagination
+//namespace SportAppServer.Models.NewsPagination
 //{
 //    public class CommentsPagination
 //    {

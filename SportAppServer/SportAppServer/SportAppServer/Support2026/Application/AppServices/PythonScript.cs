@@ -9,7 +9,7 @@ using SportAppServer.Support2026.Infrastructure.Database.Context;
 using System.Diagnostics;
 using System.Text;
 
-namespace SportAppServer
+namespace SportAppServer.Support2026.Application.AppServices
 {
     public class PythonScript
     {
@@ -93,10 +93,8 @@ namespace SportAppServer
 
                     List<NewsDtoFromParser> newsDtoList = JsonConvert.DeserializeObject<List<NewsDtoFromParser>>(text);
 
-                    foreach (var item in newsDtoList)
-                    {
-                        newsList.Add(NewsMapper.MapEntity(item));
-                    }
+                    newsDtoList.Select(NewsMapper.MapToEntity)
+                        .ToList();
 
                 }
                 catch (JsonException jsonEx)

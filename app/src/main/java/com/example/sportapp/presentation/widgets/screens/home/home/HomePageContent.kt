@@ -20,7 +20,7 @@ import androidx.navigation.NavHostController
 import com.example.sportapp.containers.ViewModelContainer
 import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
 import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.BottomSheetFilter
-import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.SearchedNewsList
+//import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.SearchedNewsList
 import com.example.sportapp.ui.theme.style1
 
 @Composable
@@ -93,15 +93,15 @@ fun HomePageContent(
             }
         }
 
-        if (isFocused.value) {
-            SearchedNewsList(
-                newsViewModel = viewModels.newsViewModel,
-                searchPrompt = promptState.value.text,
-                navController,
-                viewModels.newsViewModel.newsListAfterSearch,
-                loading
-            )
-        }
+//        if (isFocused.value) {
+//            SearchedNewsList(
+//                newsViewModel = viewModels.newsViewModel,
+//                searchPrompt = promptState.value.text,
+//                navController,
+//                viewModels.newsViewModel.newsListAfterSearch,
+//                loading
+//            )
+//        }
 
         if (isFocused.value && openFilterOverlay.value)
         BottomSheet(

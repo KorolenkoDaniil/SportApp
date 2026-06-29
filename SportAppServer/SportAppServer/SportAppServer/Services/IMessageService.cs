@@ -1,6 +1,6 @@
 ﻿//using Newtonsoft.Json;
 //using SportAppServer.Models.DTOs;
-//using SportAppServer.Models.Pagination;
+//using SportAppServer.Models.NewsPagination;
 
 //namespace SportAppServer.Services
 //{

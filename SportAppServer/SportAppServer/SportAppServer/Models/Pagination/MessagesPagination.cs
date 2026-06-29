@@ -1,6 +1,6 @@
 ﻿//using SportAppServer.Models.DTOs;
 
-//namespace SportAppServer.Models.Pagination
+//namespace SportAppServer.Models.NewsPagination
 //{
 //    public class MessagesPagination
 //    {

@@ -1,7 +1,7 @@
 ﻿//using Microsoft.AspNetCore.Mvc;
 //using SportAppServer.Models.DTOs.Requests;
 //using SportAppServer.Models.Entities;
-//using SportAppServer.Models.Pagination;
+//using SportAppServer.Models.NewsPagination;
 //using SportAppServer.Services;
 //using System.Diagnostics;
 

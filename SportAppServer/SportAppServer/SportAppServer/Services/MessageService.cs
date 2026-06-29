@@ -1,5 +1,5 @@
 ﻿//using SportAppServer.Models.DTOs;
-//using SportAppServer.Models.Pagination;
+//using SportAppServer.Models.NewsPagination;
 //using SportAppServer.Repositories;
 
 //namespace SportAppServer.Services

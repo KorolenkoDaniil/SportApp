@@ -1,5 +1,5 @@
-﻿using SportAppServer.Models.Pagination;
-using SportAppServer.Support2026.Application.Dto;
+﻿using SportAppServer.Support2026.Application.Dto;
+using SportAppServer.Support2026.Application.Pagination;
 
 namespace SportAppServer.Services
 {
@@ -7,7 +7,7 @@ namespace SportAppServer.Services
     {
         Task<List<NewsDto>> GetAllNews();
         Task<NewsDto> GetNewsByDateAsync(string dateTime, string userEmail);
-        Task<NewsPagination> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10);
+        Task<PaginatedList<NewsDto>> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10);
         //Task<NewsPagination> GetPaginatedNewsListwithSearch(string searchPrompt, int pageNumber, int pageSize, int sportIndex);
     }
 }

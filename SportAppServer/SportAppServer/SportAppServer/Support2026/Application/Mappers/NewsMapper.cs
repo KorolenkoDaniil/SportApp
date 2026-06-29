@@ -5,7 +5,7 @@ namespace SportAppServer.Support2026.Application.Mappers
 {
     public static class NewsMapper
     {
-        public static News MapEntity (NewsDtoFromParser dto)
+        public static News MapToEntity (NewsDtoFromParser dto)
         {
             return new News
             {

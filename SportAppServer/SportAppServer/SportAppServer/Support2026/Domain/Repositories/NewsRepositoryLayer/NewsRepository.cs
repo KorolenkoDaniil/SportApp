@@ -52,9 +52,9 @@ namespace SportAppServer.Support2026.Domain.Repositories.NewsRepositoryLayer
             throw new NotImplementedException();
         }
 
-        public Task<News?> GetByDateAsync(string dateTime)
+        public async Task<News?> GetByDateAsync(DateTime dateTime)
         {
-            throw new NotImplementedException();
+            return await _context.NewsList.FirstOrDefaultAsync(n => n.DateTime == dateTime);    
         }
 
         public async Task<List<News>> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10)

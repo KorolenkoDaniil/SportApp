@@ -2,7 +2,7 @@
 //using SportAppServer.Models.DTOs;
 //using SportAppServer.Models.Entities;
 //using SportAppServer.Models.Mappers;
-//using SportAppServer.Models.Pagination;
+//using SportAppServer.Models.NewsPagination;
 //using SportAppServer.Repositories;
 //using System.Diagnostics;
 

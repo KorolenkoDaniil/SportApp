@@ -1,7 +1,9 @@
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.EntityFrameworkCore;
-using SportAppServer;
+using SportAppServer.Support2026.Application.AppServices;
+using SportAppServer.Support2026.Application.Dto;
+using SportAppServer.Support2026.Application.Pagination;
 using SportAppServer.Support2026.Application.UseCases;
 using SportAppServer.Support2026.Domain.Repositories.NewsRepositoryLayer;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
@@ -25,6 +27,33 @@ internal class Program
              
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
         builder.Services.AddScoped<GetPaginatedNewsUseCase>();
+        builder.Services.AddScoped<GetNewsByDateUseCase>();
+        
+        builder.Services.AddScoped(typeof(IPaginationBuilder<>), typeof(PaginationBuilder<>));
+
+
+        // Репозитории
+        builder.Services.AddScoped<INewsRepository, NewsRepository>();
+
+
+        // Use Cases
+        builder.Services.AddScoped<GetPaginatedNewsUseCase>();
+        builder.Services.AddScoped<GetNewsByDateUseCase>();
+
+        // Application Services
+
+
+        // Generic Builders
+        builder.Services.AddScoped(typeof(IPaginationBuilder<>), typeof(PaginationBuilder<>));
+
+
+
+
+
+
+
+
+
 
         //builder.Services.AddScoped<INewsRepository, NewsRepository>();
         //builder.Services.AddScoped<INewsService, NewsService>();

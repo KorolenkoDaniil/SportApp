@@ -19,5 +19,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.NewsController",
+    "Method": "GetOneNewsByDate",
+    "RelativePath": "NewsController/GetOneNews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dateTime",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

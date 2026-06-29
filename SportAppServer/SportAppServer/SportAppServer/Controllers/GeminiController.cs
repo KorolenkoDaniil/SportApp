@@ -2,7 +2,7 @@
 //using SportAppServer.Gemini;
 //using SportAppServer.Gemini.DTO;
 //using SportAppServer.Models.DTOs;
-//using SportAppServer.Models.Pagination;
+//using SportAppServer.Models.NewsPagination;
 //using SportAppServer.Services;
 //using System.Diagnostics;
 

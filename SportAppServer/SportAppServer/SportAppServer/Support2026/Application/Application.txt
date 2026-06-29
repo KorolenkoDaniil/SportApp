@@ -14,6 +14,7 @@
         AddCommentUseCase.cs
     /Interfaces
         INewsService.cs
+    /AppServices
 
 
 DTO
@@ -22,3 +23,5 @@ DTO
 UseCases (интеракторы)
 Интерфейсы сервисов
 Это мозг приложения.
+
+AppServices - это сервисы для use case
