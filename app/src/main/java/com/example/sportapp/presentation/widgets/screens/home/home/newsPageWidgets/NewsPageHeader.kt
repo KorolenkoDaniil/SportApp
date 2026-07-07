@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.sportapp.ui.theme.News_title_style
+import com.example.sportapp.support2026.presentation.ui.theme.News_title_style
 
 @Composable
 fun NewsPageHeader(title: String, navController: NavController, icon_arrow: Int) {

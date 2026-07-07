@@ -5,7 +5,9 @@ namespace SportAppServer.Support2026.Application.Mappers
 {
     public static class NewsMapper
     {
-        public static News MapToEntity (NewsDtoFromParser dto)
+
+        /// <summary> Mapping of News from dto to entity 
+        public static News MapToEntity (NewsDto dto)
         {
             return new News
             {
@@ -13,10 +15,12 @@ namespace SportAppServer.Support2026.Application.Mappers
                 Sport = dto.Sport,
                 Title = dto.Title,
                 ImageId = dto.ImageId,
-                ArticleText = dto.ArticleTexts,
+                ArticleText = dto.ArticleText,
             };
         }
 
+
+        /// <summary> Mapping of News from entity to dto 
         public static NewsDto MapToDto(News entity)
         {
             return new NewsDto

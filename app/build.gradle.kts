@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp") version "2.1.10-1.0.31"
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -28,11 +29,10 @@ android {
             storePassword = "456123123DKa"
         }
     }
-//    keytool -list -v -alias sport -keystore KorSport.jks
+
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = null // Убираем подпись
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -46,74 +46,62 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     buildFeatures {
         compose = true
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
 }
 
 dependencies {
+    implementation(libs.androidx.compose.ui.unit)
+    // Подключение Hilt Navigation Compose
+    implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation(libs.androidx.material.icons.extended)
-    implementation(libs.ktor.client.core.v237)
-    implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    // Навигация Compose (теперь Gradle её найдет!)
+    implementation(libs.androidx.navigation.compose)
 
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.kotlinx.serialization.json)
+
+    // Timber
     implementation(libs.timber)
 
-    implementation(libs.android.image.cropper)
-    implementation(libs.android.image.cropper)
-
-    implementation (libs.androidx.credentials.vlatestversion)
-    implementation (libs.androidx.credentials.play.services.auth.vlatestversion)
-
-
-    implementation(libs.androidx.datastore.preferences)
+    // Ktor
+    implementation(libs.bundles.ktor)
 
     // Room
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
-    implementation(libs.androidx.ui.test.android)
-    implementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.animation.core.lint)
-    implementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.espresso.core)
-    ksp(libs.androidx.room.compiler) // Используем ksp вместо kapt
-    implementation(libs.androidx.room.ktx) // Поддержка корутин
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     // Kotlin Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Lifecycle (для Flow)
+    // Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // Ktor (HTTP-клиент)
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    // Compose
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.runtime)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.material.icons.extended)
 
-    // Retrofit
-    implementation(libs.retrofit2.retrofit)
-    implementation(libs.converter.gson)
-
-    // Accompanist (Permissions)
+    // Accompanist
     implementation(libs.accompanist.permissions)
 
     // Firebase
@@ -123,30 +111,27 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.messaging)
 
-    // Compose
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.compose.ui)
-    implementation(libs.compose.runtime)
-    implementation(libs.androidx.navigation.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.foundation.layout.android)
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
 
-    // Coil (Работа с изображениями)
+    // Credentials & Google Auth
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    // Coil
     implementation(libs.coil.compose)
 
-    // JSON-сериализация
-    implementation(libs.kotlinx.serialization.json)
+    // Дополнительные настройки Ktor
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.content.negotiation)
 
-    // Видео и медиаконтент
+    // Media & Fonts
     implementation(libs.android.youtube.player)
     implementation(libs.androidx.media3.common.ktx)
-
-    // Google Fonts
     implementation(libs.googleFonts)
 
-    // Тестирование
+    // Тесты
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,101 +1,101 @@
-package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets
-
-import android.content.Intent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
-import com.example.sportapp.R
-import com.example.sportapp.domain.viewModels.LikeViewModel
-
-@Composable
-fun InteractiveButtons(
-    overlay: MutableState<Boolean>,
-    currentNews: NewsEntity,
-    user: UserEntity,
-    CommentsCount: MutableState<Int>,
-    isDarkTheme: Boolean
-
-) {
-
-    val icon_like = if (isDarkTheme) { R.drawable.like } else { R.drawable.w_like }
-    val icon_comments = if (isDarkTheme) { R.drawable.comment } else { R.drawable.w_comments }
-    val icon_send = if (isDarkTheme) { R.drawable.send } else { R.drawable.w_send }
-
-    //TODO не запоминается, что новость была лайкнута
-
-    val likeViewModel: LikeViewModel = viewModel()
-
-//    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else icon_like
-
-    val context = LocalContext.current
-    val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
-
-    val lastLikeTime = remember { mutableStateOf(0L) }
-//    val likeCount = remember { mutableStateOf(currentNews.likesCount) }
-
-
-
-    Row(verticalAlignment = Alignment.CenterVertically) {
-
+//package com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets
+//
+//import android.content.Intent
+//import androidx.compose.foundation.Image
+//import androidx.compose.foundation.clickable
+//import androidx.compose.foundation.layout.Row
+//import androidx.compose.foundation.layout.Spacer
+//import androidx.compose.foundation.layout.width
+//import androidx.compose.material3.MaterialTheme
+//import androidx.compose.material3.Text
+//import androidx.compose.runtime.Composable
+//import androidx.compose.runtime.MutableState
+//import androidx.compose.runtime.mutableStateOf
+//import androidx.compose.runtime.remember
+//import androidx.compose.ui.Alignment
+//import androidx.compose.ui.Modifier
+//import androidx.compose.ui.platform.LocalContext
+//import androidx.compose.ui.res.painterResource
+//import androidx.compose.ui.text.TextStyle
+//import androidx.compose.ui.unit.dp
+//import androidx.lifecycle.viewmodel.compose.viewModel
+//import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
+//import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
+//import com.example.sportapp.R
+//import com.example.sportapp.domain.viewModels.LikeViewModel
+//
+//@Composable
+//fun InteractiveButtons(
+//    overlay: MutableState<Boolean>,
+//    currentNews: NewsEntity,
+//    user: UserEntity,
+//    CommentsCount: MutableState<Int>,
+//    isDarkTheme: Boolean
+//
+//) {
+//
+//    val icon_like = if (isDarkTheme) { R.drawable.like } else { R.drawable.w_like }
+//    val icon_comments = if (isDarkTheme) { R.drawable.comment } else { R.drawable.w_comments }
+//    val icon_send = if (isDarkTheme) { R.drawable.send } else { R.drawable.w_send }
+//
+//    //TODO не запоминается, что новость была лайкнута
+//
+//    val likeViewModel: LikeViewModel = viewModel()
+//
+////    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else icon_like
+//
+//    val context = LocalContext.current
+//    val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
+//
+//    val lastLikeTime = remember { mutableStateOf(0L) }
+////    val likeCount = remember { mutableStateOf(currentNews.likesCount) }
+//
+//
+//
+//    Row(verticalAlignment = Alignment.CenterVertically) {
+//
+////        Image(
+////            painter = painterResource(likeRes),
+////            contentDescription = null,
+////            modifier = Modifier.clickable {
+////                likeViewModel.toggleLike(
+////                    lastLikeTime = lastLikeTime,
+////                    likeCount = likeCount,
+////                    currentNews = currentNews,
+////                    user = user
+////                )
+////            }
+////        )
+//
+//        Spacer(Modifier.width(8.dp))
+////        Text(text = likeCount.value.toString(), style = TextStyle(
+////            color = MaterialTheme.colorScheme.onBackground
+////        ))
+//
+//        Spacer(Modifier.width(16.dp))
 //        Image(
-//            painter = painterResource(likeRes),
+//            painter = painterResource(icon_comments),
 //            contentDescription = null,
-//            modifier = Modifier.clickable {
-//                likeViewModel.toggleLike(
-//                    lastLikeTime = lastLikeTime,
-//                    likeCount = likeCount,
-//                    currentNews = currentNews,
-//                    user = user
-//                )
-//            }
+//            Modifier.clickable { overlay.value = true }
 //        )
-
-        Spacer(Modifier.width(8.dp))
-//        Text(text = likeCount.value.toString(), style = TextStyle(
+//
+//        Spacer(Modifier.width(8.dp))
+//        Text(text = CommentsCount.value.toString(), style = TextStyle(
 //            color = MaterialTheme.colorScheme.onBackground
 //        ))
-
-        Spacer(Modifier.width(16.dp))
-        Image(
-            painter = painterResource(icon_comments),
-            contentDescription = null,
-            Modifier.clickable { overlay.value = true }
-        )
-
-        Spacer(Modifier.width(8.dp))
-        Text(text = CommentsCount.value.toString(), style = TextStyle(
-            color = MaterialTheme.colorScheme.onBackground
-        ))
-
-        Spacer(Modifier.width(16.dp))
-        Image(
-            painter = painterResource(icon_send),
-            contentDescription = null,
-            modifier = Modifier.clickable {
-                val sendIntent = Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, link)
-                }
-                val shareIntent = Intent.createChooser(sendIntent, null)
-                context.startActivity(shareIntent)
-            }
-        )
-    }
-}
+//
+//        Spacer(Modifier.width(16.dp))
+//        Image(
+//            painter = painterResource(icon_send),
+//            contentDescription = null,
+//            modifier = Modifier.clickable {
+//                val sendIntent = Intent(Intent.ACTION_SEND).apply {
+//                    type = "text/plain"
+//                    putExtra(Intent.EXTRA_TEXT, link)
+//                }
+//                val shareIntent = Intent.createChooser(sendIntent, null)
+//                context.startActivity(shareIntent)
+//            }
+//        )
+//    }
+//}

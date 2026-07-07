@@ -10,57 +10,52 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import com.example.sportapp.models.viewModels.NewsActivityViewModel
 import com.example.sportapp.presentation.widgets.common.shared.NewsCard
+import com.example.sportapp.support2026.features.news.presentation.NewsState
+import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun NewsCardRow(
-    navController: NavHostController,
-    newsViewModel: NewsActivityViewModel,
-    horizontalPaddings: Dp,
+//    navController: NavHostController,
+//    newsViewModel: NewsActivityViewModel,
+    newsViewModel: NewsViewModel,
+//    horizontalPaddings: Dp,
 ) {
-
-
+    //состояние списка UI
     val listState = rememberLazyListState()
 
-    LaunchedEffect (Unit) {
-        if ( newsViewModel.newsList.isEmpty()) {
-            newsViewModel.loading.value = true
-            newsViewModel.searchAndSetNews(
-                pageNumber = newsViewModel.page.value,
-                searchPrompt = "",
-                sportIndex = -1,
-                itemList = newsViewModel.newsList,
-                clearElements = false
-            )
-            newsViewModel.loading.value = false
-        }
+    // 1. Подписываемся на состояние из ViewModel
+    val newsContentState by newsViewModel.state.collectAsState()
+    val newsLoadingState by newsViewModel.loading;
+
+    val newsList = when (newsContentState) {
+        is NewsState.NewsContent -> (newsContentState as NewsState.NewsContent).news
+        else -> emptyList()
     }
 
-    LaunchedEffect (listState) {
+    LaunchedEffect (Unit) {
+
+    }
+
+    LaunchedEffect (listState, newsList) {
         snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
             .collectLatest {  index ->
-                if (!newsViewModel.loading.value && index != null && index >= newsViewModel.newsList.size - 4){
-                    newsViewModel.page.value++
-
-                    newsViewModel.loading.value = true
-                    newsViewModel.searchAndSetNews(
-                        pageNumber = newsViewModel.page.value,
-                        searchPrompt = "",
-                        sportIndex = -1,
-                        itemList = newsViewModel.newsList,
-                        clearElements = false
-                    )
-                    newsViewModel.loading.value = false
+                if (!newsLoadingState && index != null && index >= newsList.size - 4){
+                    newsViewModel.loadNews(true )
                 }
             }
+
+        if (newsList.isEmpty() && !newsLoadingState) {
+            newsViewModel.loadNews(false )
+        }
+
     }
 
 
@@ -90,16 +85,13 @@ fun NewsCardRow(
 //        }
 //    }
 
-    LazyRow(state = listState, modifier = Modifier.padding(start = horizontalPaddings)) {
-        items(newsViewModel.newsListAfterSearch.size){ index ->
-
-            val news = newsViewModel.newsListAfterSearch[index]
-
+    LazyRow(state = listState, modifier = Modifier.padding(start = 12.dp)) {
+        items(newsList.size){ index ->
+            val news = newsList[index]
             Log.d("NewsCardRow", news.toString())
-
             NewsCard(
                 news = news,
-                navController = navController
+//                navController = navController
             )
         }
         item {

@@ -54,6 +54,7 @@ namespace SportAppServer.Controllers
                 }
 
                 Debug.WriteLine($"[GetNews] Успешно возвращено новостей: {paginatedNews.ItemsList.Count}");
+                Debug.WriteLine($"[GetNews] Успешно возвращено новостей: {paginatedNews.ItemsList.Count}");
 
                 return Ok(paginatedNews);
             }

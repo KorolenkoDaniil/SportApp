@@ -1,130 +1,130 @@
-package com.example.sportapp.CleanArchitexture.data.repositories
-
-import android.util.Log
-import com.example.sportapp.CleanArchitexture.data.dto.news.NewsDto
-import com.example.sportapp.CleanArchitexture.data.dto.news.NewsPageDto
-import com.example.sportapp.CleanArchitexture.data.mappers.NewsMapper
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsListEntity
-import com.example.sportapp.data.BaseUrl
-import com.example.sportapp.data.network.newsNetworkClient
-import io.ktor.client.call.body
-import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.request
-import io.ktor.http.HttpMethod
-import io.ktor.http.encodedPath
-import io.ktor.http.path
-import io.ktor.http.takeFrom
-import kotlinx.serialization.json.Json
-
-//TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
-
-class NewsRepository {
-
-    private val controllerPath = "NewsController"
-    private val getNewsEndPoint = "GetNews"
-    private val getOneNewsEndPoint = "GetOneNews"
-    private val getNewsBySearchEndPoint = "SearchNews"
-
-    val newsMapper = NewsMapper()
-
-    private val json = Json {
-        this.ignoreUnknownKeys = true
-    }
-
-
-    suspend fun getNews(pageNumber: Int): NewsListEntity {
-        val builder = HttpRequestBuilder()
-
-        builder.method = HttpMethod.Get
-
-        builder.url {
-            (BaseUrl)
-            encodedPath = "/$controllerPath/$getNewsEndPoint"
-            this.parameters.append("pageNumber", pageNumber.toString())
-        }
-
-        val requestUrl = builder.url.toString()
-        Log.d("tttNews", "Request URL: $requestUrl")
-
-        val response = newsNetworkClient.request(builder)
-
-        Log.d("tttNews", response.toString())
-
-        val responseString: String = response.body()
-
-        Log.d("tttNews", responseString)
-
-        val newsPageDto: NewsPageDto = json.decodeFromString(responseString)
-
-        return newsMapper.getNewsEntityList(newsPageDto, BaseUrl)
-    }
-
-
-
-    suspend fun getOneNews(dateTime: String, userEmail: String): NewsEntity {
-        val builder = HttpRequestBuilder()
-
-        builder.method = HttpMethod.Get
-
-        builder.url {
-            (BaseUrl)
-            encodedPath = "/$controllerPath/$getOneNewsEndPoint"
-            this.parameters.append("dateTime", dateTime)
-            this.parameters.append("userEmail", userEmail)
-
-        }
-
-        val requestUrl = builder.url.toString()
-        Log.d("tttNews", "Request URL: $requestUrl")
-
-        val response = newsNetworkClient.request(builder)
-
-        Log.d("tttNews", response.toString())
-
-        val responseString: String = response.body()
-
-        Log.d("tttNews", responseString)
-
-        val oneNewsResponse: NewsDto = json.decodeFromString(responseString)
-
-        return newsMapper.getOneNewsEntity(oneNewsResponse, BaseUrl)
-    }
-
-
-    suspend fun getNewsWithSearch(pageNumber: Int, searchPrompt: String, sportIndex: Int): NewsListEntity {
-        Log.d("getNewsWithSearch", "pageNumber = $pageNumber, sportIndex = $sportIndex, searchPrompt = $searchPrompt")
-
-        val requestBuilder = HttpRequestBuilder().apply {
-            method = HttpMethod.Get
-            url {
-                takeFrom(BaseUrl)
-                path(controllerPath, getNewsBySearchEndPoint)
-                parameters.append("searchPrompt", searchPrompt)
-                parameters.append("pageSize", "5")
-                parameters.append("pageNumber", pageNumber.toString())
-                parameters.append("sportIndex", sportIndex.toString())
-            }
-        }
-
-        // 👉 Выводим URL запроса
-        Log.d("REQUEST_URL", requestBuilder.url.toString())
-
-        // 👉 Отправляем запрос
-        val response = newsNetworkClient.request(requestBuilder)
-
-        val responseString: String = response.body()
-        Log.d("RESPONSE_BODY", responseString)
-
-        val newsPageDto: NewsPageDto = json.decodeFromString(responseString)
-
-        return newsMapper.getNewsEntityList(newsPageDto, BaseUrl)
-    }
-
-}
-
-
-
-
-
-
+//package com.example.sportapp.CleanArchitexture.data.repositories
+//
+//import android.util.Log
+//import com.example.sportapp.CleanArchitexture.data.dto.news.NewsDto
+//import com.example.sportapp.CleanArchitexture.data.dto.news.NewsPageDto
+//import com.example.sportapp.CleanArchitexture.data.mappers.NewsMapper
+//import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
+//import com.example.sportapp.CleanArchitexture.domain.models.news.NewsListEntity
+//import com.example.sportapp.data.BaseUrl
+//import com.example.sportapp.data.network.newsNetworkClient
+//import io.ktor.client.call.body
+//import io.ktor.client.request.HttpRequestBuilder
+//import io.ktor.client.request.request
+//import io.ktor.http.HttpMethod
+//import io.ktor.http.encodedPath
+//import io.ktor.http.path
+//import io.ktor.http.takeFrom
+//import kotlinx.serialization.json.Json
+//
+////TODO сделать оставить в репозитории только вызовы методов, а сами методы расписать в usecase
+//
+//class NewsRepository {
+//
+//    private val controllerPath = "NewsController"
+//    private val getNewsEndPoint = "GetNews"
+//    private val getOneNewsEndPoint = "GetOneNews"
+//    private val getNewsBySearchEndPoint = "SearchNews"
+//
+//    val newsMapper = NewsMapper()
+//
+//    private val json = Json {
+//        this.ignoreUnknownKeys = true
+//    }
+//
+//
+//    suspend fun getNews(pageNumber: Int): NewsListEntity {
+//        val builder = HttpRequestBuilder()
+//
+//        builder.method = HttpMethod.Get
+//
+//        builder.url {
+//            (BaseUrl)
+//            encodedPath = "/$controllerPath/$getNewsEndPoint"
+//            this.parameters.append("pageNumber", pageNumber.toString())
+//        }
+//
+//        val requestUrl = builder.url.toString()
+//        Log.d("tttNews", "Request URL: $requestUrl")
+//
+//        val response = newsNetworkClient.request(builder)
+//
+//        Log.d("tttNews", response.toString())
+//
+//        val responseString: String = response.body()
+//
+//        Log.d("tttNews", responseString)
+//
+//        val newsPageDto: NewsPageDto = json.decodeFromString(responseString)
+//
+//        return newsMapper.getNewsEntityList(newsPageDto, BaseUrl)
+//    }
+//
+//
+//
+//    suspend fun getOneNews(dateTime: String, userEmail: String): NewsEntity {
+//        val builder = HttpRequestBuilder()
+//
+//        builder.method = HttpMethod.Get
+//
+//        builder.url {
+//            (BaseUrl)
+//            encodedPath = "/$controllerPath/$getOneNewsEndPoint"
+//            this.parameters.append("dateTime", dateTime)
+//            this.parameters.append("userEmail", userEmail)
+//
+//        }
+//
+//        val requestUrl = builder.url.toString()
+//        Log.d("tttNews", "Request URL: $requestUrl")
+//
+//        val response = newsNetworkClient.request(builder)
+//
+//        Log.d("tttNews", response.toString())
+//
+//        val responseString: String = response.body()
+//
+//        Log.d("tttNews", responseString)
+//
+//        val oneNewsResponse: NewsDto = json.decodeFromString(responseString)
+//
+//        return newsMapper.getOneNewsEntity(oneNewsResponse, BaseUrl)
+//    }
+//
+//
+//    suspend fun getNewsWithSearch(pageNumber: Int, searchPrompt: String, sportIndex: Int): NewsListEntity {
+//        Log.d("getNewsWithSearch", "pageNumber = $pageNumber, sportIndex = $sportIndex, searchPrompt = $searchPrompt")
+//
+//        val requestBuilder = HttpRequestBuilder().apply {
+//            method = HttpMethod.Get
+//            url {
+//                takeFrom(BaseUrl)
+//                path(controllerPath, getNewsBySearchEndPoint)
+//                parameters.append("searchPrompt", searchPrompt)
+//                parameters.append("pageSize", "5")
+//                parameters.append("pageNumber", pageNumber.toString())
+//                parameters.append("sportIndex", sportIndex.toString())
+//            }
+//        }
+//
+//        // 👉 Выводим URL запроса
+//        Log.d("REQUEST_URL", requestBuilder.url.toString())
+//
+//        // 👉 Отправляем запрос
+//        val response = newsNetworkClient.request(requestBuilder)
+//
+//        val responseString: String = response.body()
+//        Log.d("RESPONSE_BODY", responseString)
+//
+//        val newsPageDto: NewsPageDto = json.decodeFromString(responseString)
+//
+//        return newsMapper.getNewsEntityList(newsPageDto, BaseUrl)
+//    }
+//
+//}
+//
+//
+//
+//
+//
+//

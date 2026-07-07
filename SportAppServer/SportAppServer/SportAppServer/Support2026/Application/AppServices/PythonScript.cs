@@ -91,9 +91,9 @@ namespace SportAppServer.Support2026.Application.AppServices
                 try
                 {
 
-                    List<NewsDtoFromParser> newsDtoList = JsonConvert.DeserializeObject<List<NewsDtoFromParser>>(text);
+                    List<NewsDto> newsDtoList = JsonConvert.DeserializeObject<List<NewsDto>>(text);
 
-                    newsDtoList.Select(NewsMapper.MapToEntity)
+                    newsList = newsDtoList.Select(NewsMapper.MapToEntity)
                         .ToList();
 
                 }
@@ -124,7 +124,7 @@ namespace SportAppServer.Support2026.Application.AppServices
 
                     foreach (var news in newNews)
                     {
-                        Debug.WriteLine(news);
+                        Debug.WriteLine(news.ToString());
                     }
 
                     Debug.WriteLine("---111---");
@@ -144,6 +144,8 @@ namespace SportAppServer.Support2026.Application.AppServices
                         Debug.WriteLine(news);
                     }
 
+
+
                     Debug.WriteLine("---222---");
 
                     
@@ -155,14 +157,16 @@ namespace SportAppServer.Support2026.Application.AppServices
 
 
 
-                    Debug.WriteLine("---333---");
+                    //Debug.WriteLine("---333---");
 
-                    foreach (var news in newNews)
-                    {
-                        Debug.WriteLine(news);
-                    }
+                    //foreach (var news in newNews)
+                    //{
+                    //    Debug.WriteLine(news);
 
-                    Debug.WriteLine("---333---");
+
+                    //}
+
+                    //Debug.WriteLine("---333---");
 
 
 
@@ -175,6 +179,7 @@ namespace SportAppServer.Support2026.Application.AppServices
                         .ToListAsync();
 
 
+
                     Debug.WriteLine("---444---");
 
                     foreach (var news in last20News)
@@ -183,6 +188,8 @@ namespace SportAppServer.Support2026.Application.AppServices
                     }
 
                     Debug.WriteLine("---444---");
+
+                    //TODO спорт сделать маленькими буквами
 
 
                     await _distributedCache.SetStringAsync("cachedNewsList", JsonConvert.SerializeObject(last20News));

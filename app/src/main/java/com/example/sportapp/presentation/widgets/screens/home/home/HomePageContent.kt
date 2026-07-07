@@ -1,123 +1,123 @@
-package com.example.sportapp.presentation.widgets.screens.home.home
-
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import com.example.sportapp.containers.ViewModelContainer
-import com.example.sportapp.presentation.widgets.screens.home.home.newsPageWidgets.overlay.BottomSheet
-import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.BottomSheetFilter
-//import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.SearchedNewsList
-import com.example.sportapp.ui.theme.style1
-
-@Composable
-fun HomePageContent(
-    viewModels: ViewModelContainer,
-    navController: NavHostController,
-    horizontalPaddings: Dp,
-) {
-
-    val isFocused = remember { mutableStateOf(false) }
-
-    val focusRequester = remember { FocusRequester() }
-
-    val openFilterOverlay = remember { mutableStateOf(false) }
-    val promptState = remember { mutableStateOf(TextFieldValue("")) }
-
-
-
-    val loading = remember { mutableStateOf(false) }
-
-    Column (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
-
-//        SearchLine(
-//            viewModels.authViewModel,
-//            navController,
-//            horizontalPaddings,
-//            viewModels.newsViewModel,
-//            promptState,
-//            openFilterOverlay,
-//            isFocused,
-//            focusRequester,
-//            viewModels.newsViewModel.newsList,
-//            loading
-//        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        LazyColumn {
-
-            if (!isFocused.value) {
-
-//                item { CurrentMatch(viewModels.matchesViewModel.nearestMatch, horizontalPaddings) }
-                item { Spacer(modifier = Modifier.height(16.dp)) }
-                item {
-                    Text(
-                        text = "Новости спорта",
-                        style = MaterialTheme.typography.style1,
-                        modifier = Modifier.padding(horizontal = horizontalPaddings)
-                    )
-                }
-                item { Spacer(modifier = Modifier.height(20.dp)) }
-                item { NewsCardRow(navController, viewModels.newsViewModel, horizontalPaddings) }
-                item { Spacer(modifier = Modifier.height(20.dp)) }
-                item {
-                    Text(
-                        text = "Рекомендованные видео",
-                        style = MaterialTheme.typography.style1,
-                        modifier = Modifier.padding(horizontal = horizontalPaddings)
-                    )
-                }
-                item { Spacer(modifier = Modifier.height(20.dp)) }
+//package com.example.sportapp.presentation.widgets.screens.home.home
+//
+////import com.example.sportapp.presentation.widgets.screens.home.home.searchUI.SearchedNewsList
+//import androidx.compose.foundation.background
+//import androidx.compose.foundation.layout.Column
+//import androidx.compose.foundation.layout.Spacer
+//import androidx.compose.foundation.layout.height
+//import androidx.compose.foundation.layout.padding
+//import androidx.compose.foundation.lazy.LazyColumn
+//import androidx.compose.material3.MaterialTheme
+//import androidx.compose.material3.Text
+//import androidx.compose.runtime.Composable
+//import androidx.compose.runtime.mutableStateOf
+//import androidx.compose.runtime.remember
+//import androidx.compose.ui.Modifier
+//import androidx.compose.ui.focus.FocusRequester
+//import androidx.compose.ui.text.input.TextFieldValue
+//import androidx.compose.ui.unit.Dp
+//import androidx.compose.ui.unit.dp
+//import androidx.navigation.NavHostController
+//import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
+//import com.example.sportapp.support2026.presentation.ui.theme.style1
+//
+//@Composable
+//fun HomePageContent(
+////    viewModels: ViewModelContainer,
+//    navController: NavHostController,
+//    horizontalPaddings: Dp,
+//    newsViewModel: NewsViewModel
+//) {
+//
+//    val isFocused = remember { mutableStateOf(false) }
+//
+//    val focusRequester = remember { FocusRequester() }
+//
+//    val openFilterOverlay = remember { mutableStateOf(false) }
+//    val promptState = remember { mutableStateOf(TextFieldValue("")) }
+//
+//
+//
+//    val loading = remember { mutableStateOf(false) }
+//
+//    Column (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
+//
+////        SearchLine(
+////            viewModels.authViewModel,
+////            navController,
+////            horizontalPaddings,
+////            viewModels.newsViewModel,
+////            promptState,
+////            openFilterOverlay,
+////            isFocused,
+////            focusRequester,
+////            viewModels.newsViewModel.newsList,
+////            loading
+////        )
+//
+//        Spacer(modifier = Modifier.height(16.dp))
+//
+//        LazyColumn {
+//
+//            if (!isFocused.value) {
+//
+////                item { CurrentMatch(viewModels.matchesViewModel.nearestMatch, horizontalPaddings) }
+//                item { Spacer(modifier = Modifier.height(16.dp)) }
 //                item {
-//                    VideoCardRow(
-//                        videoViewModel = viewModels.videoViewModel,
-//                        navController = navController,
-//                        horizontalPaddings
+//                    Text(
+//                        text = "Новости спорта",
+//                        style = MaterialTheme.typography.style1,
+//                        modifier = Modifier.padding(horizontal = horizontalPaddings)
 //                    )
 //                }
-                item { Spacer(modifier = Modifier.height(24.dp)) }
-            }
-        }
-
-//        if (isFocused.value) {
-//            SearchedNewsList(
-//                newsViewModel = viewModels.newsViewModel,
-//                searchPrompt = promptState.value.text,
-//                navController,
-//                viewModels.newsViewModel.newsListAfterSearch,
-//                loading
-//            )
+//                item { Spacer(modifier = Modifier.height(20.dp)) }
+////              item { NewsCardRow(navController, viewModels.newsViewModel, newsViewModel, horizontalPaddings) }
+//                item { NewsCardRow(navController, newsViewModel, horizontalPaddings) }
+//                item { Spacer(modifier = Modifier.height(20.dp)) }
+//                item {
+//                    Text(
+//                        text = "Рекомендованные видео",
+//                        style = MaterialTheme.typography.style1,
+//                        modifier = Modifier.padding(horizontal = horizontalPaddings)
+//                    )
+//                }
+//                item { Spacer(modifier = Modifier.height(20.dp)) }
+////                item {
+////                    VideoCardRow(
+////                        videoViewModel = viewModels.videoViewModel,
+////                        navController = navController,
+////                        horizontalPaddings
+////                    )
+////                }
+//                item { Spacer(modifier = Modifier.height(24.dp)) }
+//            }
 //        }
-
-        if (isFocused.value && openFilterOverlay.value)
-        BottomSheet(
-            showSheet = openFilterOverlay.value,
-            onDismiss = { openFilterOverlay.value = false }
-        ) {
-            BottomSheetFilter(
-                horizontalPaddings = horizontalPaddings,
-                openFilterOverlay = openFilterOverlay,
-                newsViewModel = viewModels.newsViewModel,
-                promptState = promptState,
-                viewModels.newsViewModel.newsListAfterSearch,
-                loading
-            )
-        }
-    }
-}
-
-
+//
+////        if (isFocused.value) {
+////            SearchedNewsList(
+////                newsViewModel = viewModels.newsViewModel,
+////                searchPrompt = promptState.value.text,
+////                navController,
+////                viewModels.newsViewModel.newsListAfterSearch,
+////                loading
+////            )
+////        }
+//
+////        if (isFocused.value && openFilterOverlay.value)
+////        BottomSheet(
+////            showSheet = openFilterOverlay.value,
+////            onDismiss = { openFilterOverlay.value = false }
+////        ) {
+////            BottomSheetFilter(
+////                horizontalPaddings = horizontalPaddings,
+////                openFilterOverlay = openFilterOverlay,
+////                newsViewModel = viewModels.newsViewModel,
+////                promptState = promptState,
+////                viewModels.newsViewModel.newsListAfterSearch,
+////                loading
+////            )
+////        }
+//    }
+//}
+//
+//

@@ -24,18 +24,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.ui.theme.style15
-import com.example.sportapp.ui.theme.style16
-import com.example.sportapp.ui.theme.style2
+import com.example.sportapp.support2026.features.news.domain.entities.news.News
+import com.example.sportapp.support2026.presentation.ui.theme.style15
+import com.example.sportapp.support2026.presentation.ui.theme.style16
+import com.example.sportapp.support2026.presentation.ui.theme.style2
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun NewsCard(news: NewsEntity, navController: NavHostController) {
+fun NewsCard(
+    news: News,
+//    navController: NavHostController
+) {
 
-    val painterNewsImage = rememberAsyncImagePainter(news.newsImage)
+    val painterNewsImage = rememberAsyncImagePainter(news.imageId)
     val titleLineCount = remember { mutableStateOf(0) }
 
     val format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
@@ -56,7 +58,7 @@ fun NewsCard(news: NewsEntity, navController: NavHostController) {
                 val newsDateTime = news.dateTime
                 Log.d("ttt", "pageeee  $newsDateTime")
 
-                navController.navigate("news/$newsDateTime")
+//                navController.navigate("news/$newsDateTime")
             }
         ) {
             Box(

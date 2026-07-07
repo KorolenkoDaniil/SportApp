@@ -24,7 +24,7 @@ class News:
             "date_time": self.date_time,
             "title": self.title,
             "image_id": self.image_id,
-            "article_texts": self.article_texts,
+            "text": self.article_texts,
         }
 
 def copy_news_text(driver):
@@ -112,7 +112,7 @@ def search_news_list(driver):
         try:
             news_elements = driver.find_elements(By.CLASS_NAME, "wrapper-text-news")
 
-            sport = news_elements[i].find_element(By.CLASS_NAME, "sport").text.strip()
+            sport = news_elements[i].find_element(By.CLASS_NAME, "sport").text.strip().lower()
             time_only = news_elements[i].find_element(By.CLASS_NAME, "time").text.strip()
             title = news_elements[i].find_element(By.TAG_NAME, "h5").text.strip()
             current_date_only = datetime.now().strftime("%Y-%m-%d")
