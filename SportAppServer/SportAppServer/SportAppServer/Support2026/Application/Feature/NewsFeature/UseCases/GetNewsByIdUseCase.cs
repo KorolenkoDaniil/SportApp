@@ -6,27 +6,27 @@ using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repositories.NewsRep
 
 namespace SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases
 {
-    public class GetNewsByDateUseCase
+    public class GetNewsByIdUseCase
     {
         private readonly INewsRepository _repository;
         private IPaginationBuilder<NewsApiDto> _paginationBuilder;
 
-        public GetNewsByDateUseCase(INewsRepository repository, IPaginationBuilder<NewsApiDto> paginationBuilder)
+        public GetNewsByIdUseCase(INewsRepository repository, IPaginationBuilder<NewsApiDto> paginationBuilder)
         {
             _repository = repository;
             _paginationBuilder = paginationBuilder;
         }
 
-        public async Task<PaginatedList<NewsApiDto>> Execute(string dateTime)
+        public async Task<PaginatedList<NewsApiDto>> Execute(int newsId)
         {
 
-            if (!DateTime.TryParse(dateTime, out var newsDateTime))
+            if (newsId < 1)
             {
-                Console.WriteLine("GetNewsByDateUseCase: неверный формат даты: " + dateTime);
+                Console.WriteLine("GetNewsByIdUseCase не верное ID новости" + newsId);
                 return null;
             }
 
-            News news = await _repository.GetByDateAsync(newsDateTime);
+            News news = await _repository.GetByiDAsync(newsId);
 
             if (news != null)
             {
@@ -40,7 +40,7 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases
                 return _paginationBuilder.Build();
             }
             else {
-                Console.WriteLine("GetNewsByDateUseCase: новость не найдена  " + dateTime);
+                Console.WriteLine("GetNewsByIdUseCase: новость не найдена  " + newsId);
                 return null;
             }
 

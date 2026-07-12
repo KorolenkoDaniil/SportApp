@@ -16,8 +16,8 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.sportapp.presentation.widgets.common.shared.NewsCard
-import com.example.sportapp.support2026.features.news.domain.entities.news.News
 import com.example.sportapp.support2026.features.news.presentation.NewsState
 import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun NewsCardRow(
     newsViewModel: NewsViewModel,
-    onNewsClick: (News) -> Unit
+    navController: NavHostController
 ) {
     //состояние списка UI
     val listState = rememberLazyListState()
@@ -90,7 +90,7 @@ fun NewsCardRow(
             Log.d("NewsCardRow", news.toString())
             NewsCard(
                 news = news,
-                onClick = onNewsClick
+                navController = navController
             )
         }
         item {

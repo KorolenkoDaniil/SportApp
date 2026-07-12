@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.support2026.features.news.domain.entities.news.News
 import com.example.sportapp.support2026.presentation.ui.theme.style15
@@ -34,7 +35,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun NewsCard(
     news: News,
-    onClick: (News) -> Unit
+    navController: NavHostController
 ) {
 
     val painterNewsImage = rememberAsyncImagePainter(news.imageId)
@@ -55,10 +56,10 @@ fun NewsCard(
             ),
 
             onClick = {
-                val newsDateTime = news.dateTime
-                Log.d("ttt", "pageeee  $newsDateTime")
+                val id = news.id
+                Log.d("ttt", "pageeee  $id")
 
-                onClick(news)
+                navController.navigate("oneNewsPage/$id")
             }
         ) {
             Box(

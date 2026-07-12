@@ -22,15 +22,15 @@
   },
   {
     "ContainingType": "SportAppServer.Controllers.NewsController",
-    "Method": "GetOneNewsByDate",
+    "Method": "GetOneNewsByID",
     "RelativePath": "NewsController/GetOneNews",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dateTime",
-        "Type": "System.String",
+        "Name": "newsId",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],

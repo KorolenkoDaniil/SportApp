@@ -12,7 +12,7 @@ namespace SportAppServer.Controllers
     public class NewsController : Controller
     {
         private GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
-        private GetNewsByDateUseCase _getNewsByDateUseCase;
+        private GetNewsByIdUseCase _getNewsByIdUseCase;
 
         //private readonly ILikeServise _likeService;
 
@@ -23,12 +23,12 @@ namespace SportAppServer.Controllers
         //    _likeService = likeServise;
         //}
 
-        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsByDateUseCase getNewsByDateUseCase)
+        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsByIdUseCase getNewsByDateUseCase)
         {
 
             //обьединиить множестов use cases В ФАСАД
             _getPaginatedNewsUseCase = getPaginatedNewsUseCase;
-            _getNewsByDateUseCase = getNewsByDateUseCase;
+            _getNewsByIdUseCase = getNewsByDateUseCase;
         }
 
 
@@ -71,13 +71,13 @@ namespace SportAppServer.Controllers
 
 
         [HttpGet("GetOneNews")]
-        public async Task<IActionResult> GetOneNewsByDate(string dateTime)
+        public async Task<IActionResult> GetOneNewsByID(int newsId)
         {
             try
             {
-                Debug.WriteLine($"[GetOneNewsByDate] dateTime: {dateTime}");
+                Debug.WriteLine($"[GetOneNewsById] newsId: {newsId}");
 
-                PaginatedList<NewsApiDto> paginatedNews = await _getNewsByDateUseCase.Execute(dateTime);
+                PaginatedList<NewsApiDto> paginatedNews = await _getNewsByIdUseCase.Execute(newsId);
 
                 if (paginatedNews.ItemsList == null)
                 {

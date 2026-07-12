@@ -52,9 +52,9 @@ namespace SportAppServer.Support2026.Domain.Feature.NewsFeature.Repositories.New
             throw new NotImplementedException();
         }
 
-        public async Task<News?> GetByDateAsync(DateTime dateTime)
+        public async Task<News?> GetByiDAsync(int newsID)
         {
-            return await _context.NewsList.FirstOrDefaultAsync(n => n.DateTime == dateTime);    
+            return await _context.NewsList.FirstOrDefaultAsync(n => n.Id == newsID);    
         }
 
         public async Task<List<News>> GetPaginatedNewsList(int pageNumber = 1, int pageSize = 10)

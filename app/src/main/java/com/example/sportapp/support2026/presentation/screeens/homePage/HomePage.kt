@@ -5,14 +5,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.navigation.NavHostController
 import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
-import com.example.sportapp.support2026.presentation.screeens.Screen
 import com.example.sportapp.support2026.presentation.screeens.homePage.widgets.NewsCardRow
 
 @Composable
 fun HomePage(
     newsViewModel: NewsViewModel,
-    onNavigateTo: (Screen) -> Unit
+    navController: NavHostController
 ){
     Column(
         verticalArrangement = Arrangement.Center,
@@ -22,9 +22,7 @@ fun HomePage(
 
         NewsCardRow(
             newsViewModel = newsViewModel,
-            onNewsClick = { news ->
-                onNavigateTo(Screen.OneNewsPage)
-            }
+            navController = navController
         )
     }
 }
