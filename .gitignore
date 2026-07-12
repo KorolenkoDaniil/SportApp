@@ -15,4 +15,7 @@
 local.properties
 SportAppServer/news_list.json
 .vs/
+# ИСПРАВЛЕНО: папки с картинками (без SportApp в начале и с правильными слэшами)
+SportAppServer/savedImages/
+SportAppServer/UsersImages/
 
