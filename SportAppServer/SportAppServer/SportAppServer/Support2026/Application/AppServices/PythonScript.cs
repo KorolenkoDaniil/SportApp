@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using SportAppServer.Services;
-using SportAppServer.Support2026.Application.Dto;
-using SportAppServer.Support2026.Application.Mappers;
-using SportAppServer.Support2026.Domain.Entities;
+using SportAppServer.Support2026.Application.Feature.NewsFeature.Dto;
+using SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Services;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
 using System.Diagnostics;
 using System.Text;
@@ -90,12 +90,9 @@ namespace SportAppServer.Support2026.Application.AppServices
 
                 try
                 {
+                    List<NewsParsingDto> newsDtoList = JsonConvert.DeserializeObject<List<NewsParsingDto>>(text);
 
-                    List<NewsDto> newsDtoList = JsonConvert.DeserializeObject<List<NewsDto>>(text);
-
-                    newsList = newsDtoList.Select(NewsMapper.MapToEntity)
-                        .ToList();
-
+                    newsList = newsDtoList.Select(dto => NewsMapper.MapToEntityFromParsingDto(dto)).ToList();
                 }
                 catch (JsonException jsonEx)
                 {

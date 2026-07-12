@@ -8,7 +8,6 @@ class NewsApiImpl @Inject constructor(
 ) : NewsApi {
 
     override suspend fun getPaginatedNewsList(pageNumber: Int): NewsPageDto {
-
         return networkProvider.getPaginatedNews(pageNumber)
     }
 }

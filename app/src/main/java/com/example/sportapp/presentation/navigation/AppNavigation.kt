@@ -60,95 +60,94 @@
 //                .padding( top = topPaddings),
 //
 //            builder = {
-////                composable(Screen.LoginPage.route) {
-////                    showBar.value = false
-////                    LoginPage(navController, viewModels.authViewModel, viewModels.appActivity)
-////                }
-////                composable(Screen.SignupPage.route) {
-////                    showBar.value = false
-////                    SignupPage(navController, viewModels.authViewModel, viewModels.appActivity)
-////                }
-////                composable(Screen.Loading.route) {
-////                    Loading()
-////                }
+//                composable(Screen.LoginPage.route) {
+//                    showBar.value = false
+//                    LoginPage(navController, viewModels.authViewModel, viewModels.appActivity)
+//                }
+//                composable(Screen.SignupPage.route) {
+//                    showBar.value = false
+//                    SignupPage(navController, viewModels.authViewModel, viewModels.appActivity)
+//                }
+//                composable(Screen.Loading.route) {
+//                    Loading()
+//                }
 //
 //                composable(Screen.LoadingPage.route) {
-////                    showBar.value = true
-////                    LoadingPage(
-////                        viewModels = viewModels,
-////                        navController = navController
-////                    )
-////                }
-////                composable(Screen.Home.route) {
-////                    showBar.value = true
-////                    HomePage(
-////                        viewModels = viewModels,
-//////                        states = states,
-////                        navController = navController,
-////                        horizontalPaddings = horizontalPaddings,
-////                    )
-////                }
+//                    showBar.value = true
+//                    LoadingPage(
+//                        viewModels = viewModels,
+//                        navController = navController
+//                    )
+//                }
+//                composable(Screen.Home.route) {
+//                    showBar.value = true
+//                    HomePage(
+//                        viewModels = viewModels,
+////                        states = states,
+//                        navController = navController,
+//                        horizontalPaddings = horizontalPaddings,
+//                    )
+//                }
 //
-////                composable(Screen.FirstPage.route) {
-////                    FirstPage(navController, states.authState)
-////                }
-////                composable(Screen.Matches.route) {
-////
-////                    MatchesPage(
-////                        viewModels.matchesViewModel, states.matchesState, viewModels.appActivity, navController, horizontalPaddings)
-////                }
-////                composable(Screen.VideoListPage.route) {
-////                    VideoListPage(
-////                        videoViewModel = viewModels.videoViewModel,
-////                        navController = navController
-////                    )
-////                }
-////
-////                composable(Screen.Like.route) {
-////                    AIChatPage(
-////                        viewModels.authViewModel, navController, viewModels, horizontalPaddings
-////                    )
-////                }
+//                composable(Screen.FirstPage.route) {
+//                    FirstPage(navController, states.authState)
+//                }
+//                composable(Screen.Matches.route) {
 //
-////                composable(Screen.News.route) { backStackEntry ->
-////
-////                    val newsDateTime = backStackEntry.arguments?.getString("newsId")
-////
-////                    val parsedDateTime = LocalDateTime.parse(newsDateTime!!)
-////
-////                    NewsPage(
-////                        viewModels,
-////                        states,
-////                        parsedDateTime.toString(),
-////                        navController,
-////                        horizontalPaddings,
-////                        showBar,
-////
-////                    )
-////                }
-////
-////                composable (Screen.VideoPlayerPage.route) {
-////                    VideoPlayerPage(viewModels.videoViewModel)
-////                }
-////
-////                composable (Screen.ProfileSetUpPage.route) {
-////                    ProfileSetUpPage(
-////                        authViewModel = viewModels.authViewModel,
-////                        navController
-////                    )
-////                }
-////
-////                composable (Screen.SettingsPage.route) {
-////                    SettingsPage(
-////                        authViewModel = viewModels.authViewModel,
-////                        navController,
-////                        navController,
-////                        topPaddings,
-////                    )
-//////                }
-////            }
-////        )
-////    }
-////}
+//                    MatchesPage(
+//                        viewModels.matchesViewModel, states.matchesState, viewModels.appActivity, navController, horizontalPaddings)
+//                }
+//                composable(Screen.VideoListPage.route) {
+//                    VideoListPage(
+//                        videoViewModel = viewModels.videoViewModel,
+//                        navController = navController
+//                    )
+//                }
 //
+//                composable(Screen.Like.route) {
+//                    AIChatPage(
+//                        viewModels.authViewModel, navController, viewModels, horizontalPaddings
+//                    )
+//                }
+//
+//                composable(Screen.News.route) { backStackEntry ->
+//
+//                    val newsDateTime = backStackEntry.arguments?.getString("newsId")
+//
+//                    val parsedDateTime = LocalDateTime.parse(newsDateTime!!)
+//
+//                    NewsPage(
+//                        viewModels,
+//                        states,
+//                        parsedDateTime.toString(),
+//                        navController,
+//                        horizontalPaddings,
+//                        showBar,
+//
+//                    )
+//                }
+//
+//                composable (Screen.VideoPlayerPage.route) {
+//                    VideoPlayerPage(viewModels.videoViewModel)
+//                }
+//
+//                composable (Screen.ProfileSetUpPage.route) {
+//                    ProfileSetUpPage(
+//                        authViewModel = viewModels.authViewModel,
+//                        navController
+//                    )
+//                }
+//
+//                composable (Screen.SettingsPage.route) {
+//                    SettingsPage(
+//                        authViewModel = viewModels.authViewModel,
+//                        navController,
+//                        navController,
+//                        topPaddings,
+//                    )
+////                }
+//            }
+//        )
+//    }
+//}
 //

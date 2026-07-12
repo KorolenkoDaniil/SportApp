@@ -2,10 +2,9 @@ using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.EntityFrameworkCore;
 using SportAppServer.Support2026.Application.AppServices;
-using SportAppServer.Support2026.Application.Dto;
-using SportAppServer.Support2026.Application.Pagination;
-using SportAppServer.Support2026.Application.UseCases;
-using SportAppServer.Support2026.Domain.Repositories.NewsRepositoryLayer;
+using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
+using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repositories.NewsRepositoryLayer;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
 
 

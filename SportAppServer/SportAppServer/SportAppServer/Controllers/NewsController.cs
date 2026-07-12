@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SportAppServer.Support2026.Application.Dto;
-using SportAppServer.Support2026.Application.Pagination;
-using SportAppServer.Support2026.Application.UseCases;
+using SportAppServer.Support2026.Application.Feature.NewsFeature.Dto;
+using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
+using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
 using System.Diagnostics;
 
 
@@ -39,7 +39,7 @@ namespace SportAppServer.Controllers
             {
                 Debug.WriteLine($"[GetNews] pageNumber: {pageNumber}, pageSize: {pageSize}");
 
-                PaginatedList<NewsDto> paginatedNews = await _getPaginatedNewsUseCase.Execute(pageNumber, pageSize);
+                PaginatedList<NewsApiDto> paginatedNews = await _getPaginatedNewsUseCase.Execute(pageNumber, pageSize);
 
                 if (paginatedNews.ItemsList == null)
                 {
@@ -77,7 +77,7 @@ namespace SportAppServer.Controllers
             {
                 Debug.WriteLine($"[GetOneNewsByDate] dateTime: {dateTime}");
 
-                PaginatedList<NewsDto> paginatedNews = await _getNewsByDateUseCase.Execute(dateTime);
+                PaginatedList<NewsApiDto> paginatedNews = await _getNewsByDateUseCase.Execute(dateTime);
 
                 if (paginatedNews.ItemsList == null)
                 {

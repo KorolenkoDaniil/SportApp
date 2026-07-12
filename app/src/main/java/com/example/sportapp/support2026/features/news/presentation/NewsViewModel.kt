@@ -1,7 +1,6 @@
 package com.example.sportapp.support2026.features.news.presentation
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.models.viewModels.BaseState
@@ -29,57 +28,48 @@ class NewsViewModel @Inject constructor(
 
     private val _state = MutableStateFlow<NewsState>(NewsState.Load)
     val state: StateFlow<NewsState> = _state.asStateFlow()
+    private var _allLoadedNews = MutableStateFlow(listOf<News>())
+    val allLoadedNews: StateFlow<List<News>> = _allLoadedNews.asStateFlow()
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean> = _loading.asStateFlow()
+
+
     private var currentPage = 1
-//    private var allLoadedNews = mutableListOf<News>()
-    private var allLoadedNews = listOf<News>()
-
-//    fun getLoadedNews() : List<News> {
-//        return allLoadedNews
-//    }
-
-    val loading = mutableStateOf(false)
 
     init {
         loadNews(false)
     }
 
     fun loadNews(isNextPage: Boolean) {
-
-        loading.value = true
-
         viewModelScope.launch {
-            try {
+            // 1. ЗАЩИТА: Если уже идет загрузка — игнорируем повторный вызов
+            if (_loading.value) return@launch
 
+            try {
+                _loading.value = true
                 if (isNextPage){
                     currentPage++
                 }
                 else{
                     _state.value = NewsState.Load
-                    //только для 1 страницы показываем прогресс бар
-//                    и включается состояние загрузки
+                    currentPage = 1
+                    _allLoadedNews.value = emptyList()
                 }
-
                 val news = getNewsUseCase.invoke(currentPage)
-
                 news.forEach { news ->
                     Log.d("tttNews","${news.dateTime} | ${news.title} vs ${news.text}")
                 }
-
-                allLoadedNews = allLoadedNews + news
-
-
-                _state.value = NewsState.NewsContent(allLoadedNews)
-
-                loading.value = false
+                _allLoadedNews.value = _allLoadedNews.value + news
+                _state.value = NewsState.NewsContent(_allLoadedNews.value)
             } catch (e: Throwable) {
 
                 _state.value = NewsState.Error(e)
                 Log.d("tttNews", e.message.toString())
             }
             finally {
-                loading.value = false
+                _loading.value = false
             }
         }
     }
-
+    
 }

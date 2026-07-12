@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Support2026\Application\Interfaces\" />
-    <Folder Include="Support2026\Domain\Services\" />
+    <Folder Include="Support2026\Application\Feature\NewsFeature\Interfaces\" />
     <Folder Include="Support2026\Infrastructure\Repositories\" />
     <Folder Include="Support2026\Infrastructure\Controllers\" />
     <Folder Include="Support2026\Presentation\Requests\" />

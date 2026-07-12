@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SportAppServer.Support2026.Domain.Entities;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
 
 namespace SportAppServer.Support2026.Infrastructure.Configuration
 {
@@ -10,7 +10,14 @@ namespace SportAppServer.Support2026.Infrastructure.Configuration
         {
             builder.ToTable("News");
 
-            builder.HasKey(n => n.DateTime);
+            builder.HasKey(n => n.Id);
+            builder.Property<int>("Id")
+                .HasColumnName("Id")
+                .ValueGeneratedOnAdd();
+
+            builder.Property(n => n.DateTime)
+                 .HasColumnName("DateTime")
+                 .IsRequired();
 
             builder.Property(n => n.Sport)
                 .HasColumnName("Sport")
@@ -33,9 +40,7 @@ namespace SportAppServer.Support2026.Infrastructure.Configuration
             builder.Property(n => n.TextAfterLemmatize)
                 .HasColumnName("TextAfterLemmatize");
 
-            builder.Property<int>("FTS_key")
-                .HasColumnName("FTS_key")
-                .ValueGeneratedOnAdd();
+            
         }
     }
 }

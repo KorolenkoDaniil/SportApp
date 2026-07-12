@@ -2,7 +2,7 @@ package com.example.sportapp.support2026.features.news.data.dto.mappers
 
 import com.example.sportapp.support2026.app.baseUrl
 import com.example.sportapp.support2026.features.news.domain.entities.news.News
-import com.example.sportapp.support2026.features.news.news.data.dto.components.NewsDto
+import com.example.sportapp.support2026.features.news.data.dto.components.NewsDto
 import java.time.LocalDateTime
 
 object NewsMapper {

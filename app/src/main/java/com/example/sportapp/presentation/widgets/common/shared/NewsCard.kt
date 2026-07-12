@@ -34,7 +34,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun NewsCard(
     news: News,
-//    navController: NavHostController
+    onClick: (News) -> Unit
 ) {
 
     val painterNewsImage = rememberAsyncImagePainter(news.imageId)
@@ -58,7 +58,7 @@ fun NewsCard(
                 val newsDateTime = news.dateTime
                 Log.d("ttt", "pageeee  $newsDateTime")
 
-//                navController.navigate("news/$newsDateTime")
+                onClick(news)
             }
         ) {
             Box(

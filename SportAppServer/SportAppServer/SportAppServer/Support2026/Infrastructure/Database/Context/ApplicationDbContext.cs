@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SportAppServer.Support2026.Domain.Entities;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
 
 namespace SportAppServer.Support2026.Infrastructure.Database.Context
 {

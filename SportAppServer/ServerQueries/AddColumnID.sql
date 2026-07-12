@@ -1,0 +1,18 @@
+BEGIN TRANSACTION;
+BEGIN TRY 
+
+	ALTER TABLE [News] DROP CONSTRAINT [PK_News]
+	GO;
+
+	ALTER TABLE [News]
+	ADD CONSTRAINT PK_News_id PRIMARY KEY CLUSTERED ([FTS_key]);
+
+	COMMIT TRANSACTION; 
+	PRINT 'Успешно! Колонка ID добавлена, данные сохранены.';
+END TRY 
+BEGIN CATCH 
+	IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+	PRINT 'Произошла ошибка. Изменения отменены.';
+	SELECT ERROR_MESSAGE() AS ErrorMessage;
+END CATCH;
+
