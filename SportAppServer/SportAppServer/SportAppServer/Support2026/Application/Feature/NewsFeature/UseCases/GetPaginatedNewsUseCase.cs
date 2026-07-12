@@ -22,7 +22,7 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases
            
             List<News> newsList = await _repository.GetPaginatedNewsList(pageNumber, pageSize);
 
-            List<NewsApiDto> newsDtoList = newsList.Select(NewsMapper.MapToDto).ToList();
+            List<NewsApiDto> newsDtoList = newsList.Select(NewsMapper.MapToApiDto).ToList();
 
             _paginationBuilder.SetPageNumber(pageNumber);
             _paginationBuilder.SetPageSize(pageSize);

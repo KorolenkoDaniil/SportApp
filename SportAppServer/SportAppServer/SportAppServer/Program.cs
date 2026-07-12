@@ -26,7 +26,7 @@ internal class Program
              
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
         builder.Services.AddScoped<GetPaginatedNewsUseCase>();
-        builder.Services.AddScoped<GetNewsByIdUseCase>();
+        builder.Services.AddScoped<GetNewsDetailsUseCase>();
         
         builder.Services.AddScoped(typeof(IPaginationBuilder<>), typeof(PaginationBuilder<>));
 
@@ -37,7 +37,7 @@ internal class Program
 
         // Use Cases
         builder.Services.AddScoped<GetPaginatedNewsUseCase>();
-        builder.Services.AddScoped<GetNewsByIdUseCase>();
+        builder.Services.AddScoped<GetNewsDetailsUseCase>();
 
         // Application Services
 

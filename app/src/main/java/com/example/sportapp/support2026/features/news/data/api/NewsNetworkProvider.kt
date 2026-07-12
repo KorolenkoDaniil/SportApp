@@ -23,9 +23,11 @@ class NewsNetworkProvider @Inject constructor(
         }
 
         val response : NewsPageDto = httpResponse.body()
-
         Log.d("tttNews1", "${response}")
 
         return response
     }
+
+    suspend fun getNews
+
 }

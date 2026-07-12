@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System.Text.Json.Serialization;
 
 namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Dto
 {
-    public class NewsApiDto
+    public class NewsDetailsDto
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -21,6 +20,6 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Dto
         public string ImageId { get; set; }
 
         [JsonProperty("text")]
-        public string ArticleText { get; set; }      
+        public string ArticleText { get; set; }
     }
 }

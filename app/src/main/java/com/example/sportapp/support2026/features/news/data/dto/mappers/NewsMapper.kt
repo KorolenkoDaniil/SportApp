@@ -9,10 +9,9 @@ object NewsMapper {
     fun mapNewsToEntity(dto: NewsDto): News {
 
         val imageUrl = if (!dto.imageId.isNullOrBlank()) {
-            // Если id картинки есть, собираем путь к твоему ngrok/серверу
+
             "${baseUrl}/images/${dto.imageId}"
         } else {
-            // Если картинки нет, отдаем дефолтную заглушку из интернета
             "https://habrastorage.org/r/w1560/getpro/habr/upload_files/9c7/5fa/c54/9c75fac54ebb0beaf89abd7d86b4787c.jpg"
         }
 

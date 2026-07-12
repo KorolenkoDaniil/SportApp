@@ -12,7 +12,7 @@ namespace SportAppServer.Controllers
     public class NewsController : Controller
     {
         private GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
-        private GetNewsByIdUseCase _getNewsByIdUseCase;
+        private GetNewsDetailsUseCase _getNewsDetailsUseCase;
 
         //private readonly ILikeServise _likeService;
 
@@ -23,12 +23,12 @@ namespace SportAppServer.Controllers
         //    _likeService = likeServise;
         //}
 
-        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsByIdUseCase getNewsByDateUseCase)
+        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsDetailsUseCase getNewsByDateUseCase)
         {
 
             //обьединиить множестов use cases В ФАСАД
             _getPaginatedNewsUseCase = getPaginatedNewsUseCase;
-            _getNewsByIdUseCase = getNewsByDateUseCase;
+            _getNewsDetailsUseCase = getNewsByDateUseCase;
         }
 
 
@@ -70,34 +70,28 @@ namespace SportAppServer.Controllers
 
 
 
-        [HttpGet("GetOneNews")]
-        public async Task<IActionResult> GetOneNewsByID(int newsId)
+        [HttpGet("GetNewsDetails")]
+        public async Task<IActionResult> GetNewsDetails(int newsId)
         {
             try
             {
-                Debug.WriteLine($"[GetOneNewsById] newsId: {newsId}");
+                Debug.WriteLine($"[GetNewsDetails] newsId: {newsId}");
 
-                PaginatedList<NewsApiDto> paginatedNews = await _getNewsByIdUseCase.Execute(newsId);
+                NewsDetailsDto newsDetails = await _getNewsDetailsUseCase.Execute(newsId);
 
-                if (paginatedNews.ItemsList == null)
+                if (newsDetails == null)
                 {
-                    Debug.WriteLine("[GetOneNewsByDate] paginatedNews.messages is null");
-                    return StatusCode(500, "Ошибка: данные не получены");
+                    Debug.WriteLine("[GetNewsDetails] paginatedNews.messages is null");
+                    return StatusCode(400, "Ошибка: данные не получены");
                 }
 
-                if (paginatedNews.ItemsList.Count == 0)
-                {
-                    Debug.WriteLine("[GetOneNewsByDate] Нет новостей");
-                    return NotFound();
-                }
+                Debug.WriteLine($"[GetNewsDetails] Успешно возвращена новость: {newsDetails.ToString()}");
 
-                Debug.WriteLine($"[GetOneNewsByDate] Успешно возвращено новостей: {paginatedNews.ItemsList.Count}");
-
-                return Ok(paginatedNews);
+                return Ok(newsDetails);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[GetOneNewsByDate] Ошибка: {ex.Message}");
+                Debug.WriteLine($"[GetNewsDetails] Ошибка: {ex.Message}");
                 Debug.WriteLine(ex.StackTrace);
                 return StatusCode(500, "Внутренняя ошибка сервера");
             }

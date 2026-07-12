@@ -22,8 +22,8 @@
   },
   {
     "ContainingType": "SportAppServer.Controllers.NewsController",
-    "Method": "GetOneNewsByID",
-    "RelativePath": "NewsController/GetOneNews",
+    "Method": "GetNewsDetails",
+    "RelativePath": "NewsController/GetNewsDetails",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

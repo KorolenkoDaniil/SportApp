@@ -32,11 +32,25 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers
             };
         }
 
-        public static NewsApiDto MapToDto(News entity)
+        public static NewsApiDto MapToApiDto(News entity)
         {
             return new NewsApiDto
             {
-                Id = entity.Id, // <-- ОБЯЗАТЕЛЬНО возвращаем Id, чтобы API его знало
+                Id = entity.Id,
+                DateTime = entity.DateTime,
+                Sport = entity.Sport,
+                Title = entity.Title,
+                ImageId = entity.ImageId,
+                ArticleText = entity.ArticleText,
+            };
+        }
+
+
+        public static NewsDetailsDto MapToDtoNewsWithDetails(News entity)
+        {
+            return new NewsDetailsDto
+            {
+                Id = entity.Id,
                 DateTime = entity.DateTime,
                 Sport = entity.Sport,
                 Title = entity.Title,
