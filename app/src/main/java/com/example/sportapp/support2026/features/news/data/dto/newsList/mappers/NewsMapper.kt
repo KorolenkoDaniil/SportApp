@@ -19,7 +19,7 @@ object NewsMapper {
             id = dto.id ?: 1,
             dateTime = LocalDateTime.parse(dto.dateTime),
             sport = dto.sport ?: "sport",
-            imageId = imageUrl,
+            imageUrl = imageUrl,
             text = dto.text ?: "текст не придумали",
             title = dto.title?: "не пришел title"
         )

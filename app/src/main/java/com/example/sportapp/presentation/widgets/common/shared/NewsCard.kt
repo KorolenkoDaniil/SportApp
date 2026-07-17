@@ -38,7 +38,7 @@ fun NewsCard(
     navController: NavHostController
 ) {
 
-    val painterNewsImage = rememberAsyncImagePainter(news.imageId)
+    val painterNewsImage = rememberAsyncImagePainter(news.imageUrl)
     val titleLineCount = remember { mutableStateOf(0) }
 
     val format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")

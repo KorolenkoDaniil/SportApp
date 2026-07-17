@@ -7,10 +7,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.sportapp.support2026.features.news.presentation.NewsDetailsViewModel
 import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
-import com.example.sportapp.support2026.presentation.screeens.NewsDetailsPage.NewsDetailsPage
-import com.example.sportapp.support2026.presentation.screeens.homePage.HomePage
+import com.example.sportapp.support2026.presentation.screeens.NewsDetailsPage.NewsDetailsScreen
+import com.example.sportapp.support2026.presentation.screeens.homePage.HomeScreen
 
 @Composable
 fun MainNavigation (
@@ -24,7 +23,7 @@ fun MainNavigation (
     ){
         composable (Screen.HomePage.route)
         {
-            HomePage(
+            HomeScreen(
                 newsViewModel = newsViewModel,
                 navController = navHostController
             )
@@ -36,7 +35,7 @@ fun MainNavigation (
             val newsId = backStackEntry.arguments?.getString("newsId")?.toIntOrNull()
 
             if (newsId != null) {
-                NewsDetailsPage(navHostController, newsId)
+                NewsDetailsScreen(navHostController, newsId)
             }
             else{
                 Log.d("MainNavigation", "не правильный аргумент newsId")

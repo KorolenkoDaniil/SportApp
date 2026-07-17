@@ -60,6 +60,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.unit)
     // Подключение Hilt Navigation Compose
     implementation(libs.androidx.hilt.navigation.compose)

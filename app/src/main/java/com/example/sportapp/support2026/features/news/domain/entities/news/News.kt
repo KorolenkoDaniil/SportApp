@@ -6,7 +6,7 @@ data class News(
     val id: Int,
     val dateTime: LocalDateTime,
     val sport: String,
-    val imageId: String,
+    val imageUrl: String,
     val text: String,
     val title: String
 )

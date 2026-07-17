@@ -7,11 +7,11 @@ data class NewsDetails (
     val id: Int,
     val dateTime: LocalDateTime,
     val sport: String,
-    val imageId: String,
+    val imageUrl: String,
     val text: String,
     val title: String,
 ){
     override fun toString(): String {
-        return "NewsDetails(id=$id, title='$title', sport='$sport', dateTime=$dateTime, text=$text)"
+        return "NewsDetails(id=$id, title='$title', sport='$sport', imageId=${imageUrl} dateTime=$dateTime, text=$text)"
     }
 }

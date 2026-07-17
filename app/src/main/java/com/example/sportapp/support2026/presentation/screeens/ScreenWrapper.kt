@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
@@ -24,11 +25,16 @@ fun ScreenWrapper (
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .statusBarsPadding()
-            .padding(horizontal = ScreenPaddingHorizontal, vertical = ScreenPaddingVertical)
+            .padding(horizontal = ScreenPaddingHorizontal)
     ) {
         topBar()
 
-        content()
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(horizontal = ScreenPaddingHorizontal, vertical = ScreenPaddingVertical),
+            content = content
+        )
     }
-
 }

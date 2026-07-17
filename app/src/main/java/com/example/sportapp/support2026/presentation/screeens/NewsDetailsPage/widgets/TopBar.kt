@@ -39,24 +39,3 @@ fun TopBar (navController: NavHostController) {
 
     }
 }
-
-//
-//@Composable
-//fun NewsPageHeader(title: String, navController: NavController, icon_arrow: Int) {
-//
-//    Column {
-//        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-//            Image(
-//                painter = painterResource(icon_arrow),
-//                contentDescription = "",
-//                modifier = Modifier.clickable {
-//                    navController.popBackStack()
-//                }
-//            )
-//        }
-//
-//        Spacer(Modifier.height(16.dp))
-//
-//        Text(text = "\t\t\t$title", style = MaterialTheme.typography.News_title_style)
-//    }
-//}
