@@ -1,3 +1,3 @@
 package com.example.sportapp.support2026.app
 
-val baseUrl = "https://ff20-51-38-54-209.ngrok-free.app"
+val baseUrl = "https://3757-51-91-29-143.ngrok-free.app"

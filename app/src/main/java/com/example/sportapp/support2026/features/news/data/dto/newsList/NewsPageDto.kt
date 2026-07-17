@@ -1,6 +1,6 @@
-package com.example.sportapp.support2026.features.news.data.dto
+package com.example.sportapp.support2026.features.news.data.dto.newsList
 
-import com.example.sportapp.support2026.features.news.data.dto.components.NewsDto
+import com.example.sportapp.support2026.features.news.data.dto.newsList.components.NewsDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

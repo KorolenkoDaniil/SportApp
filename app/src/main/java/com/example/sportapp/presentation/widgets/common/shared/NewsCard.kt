@@ -60,6 +60,7 @@ fun NewsCard(
                 Log.d("ttt", "pageeee  $id")
 
                 navController.navigate("oneNewsPage/$id")
+
             }
         ) {
             Box(

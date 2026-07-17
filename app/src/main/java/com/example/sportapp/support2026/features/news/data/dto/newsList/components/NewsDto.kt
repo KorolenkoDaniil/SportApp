@@ -1,4 +1,4 @@
-package com.example.sportapp.support2026.features.news.data.dto.components
+package com.example.sportapp.support2026.features.news.data.dto.newsList.components
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -11,7 +11,6 @@ class NewsDto (
     @SerialName("imageId") val imageId: String?,
     @SerialName("articleText") val text: String?,
     @SerialName("title") val title: String?,
-
 )
 
 

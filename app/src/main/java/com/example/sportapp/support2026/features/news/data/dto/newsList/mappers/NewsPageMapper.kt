@@ -1,6 +1,6 @@
-package com.example.sportapp.support2026.features.news.data.dto.mappers
+package com.example.sportapp.support2026.features.news.data.dto.newsList.mappers
 
-import com.example.sportapp.support2026.features.news.data.dto.NewsPageDto
+import com.example.sportapp.support2026.features.news.data.dto.newsList.NewsPageDto
 import com.example.sportapp.support2026.features.news.domain.entities.news.NewsPage
 
 object NewsPageMapper {

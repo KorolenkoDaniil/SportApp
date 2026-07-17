@@ -2,7 +2,8 @@ package com.example.sportapp.support2026.features.news.data.api
 
 import android.util.Log
 import com.example.sportapp.support2026.app.baseUrl
-import com.example.sportapp.support2026.features.news.data.dto.NewsPageDto
+import com.example.sportapp.support2026.features.news.data.dto.newsDetails.NewsDetailsDto
+import com.example.sportapp.support2026.features.news.data.dto.newsList.NewsPageDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -23,11 +24,22 @@ class NewsNetworkProvider @Inject constructor(
         }
 
         val response : NewsPageDto = httpResponse.body()
-        Log.d("tttNews1", "${response}")
+        Log.d("tttNews", "${response}")
 
         return response
     }
 
-    suspend fun getNews
+    suspend fun getNewsDetails(newsId: Int): NewsDetailsDto {
+        val httpResponse: HttpResponse = client.get ( "${baseUrl}/NewsController/GetNewsDetails"){
+            url{
+                parameters.append("newsId", newsId.toString())
+            }
+        }
+
+        val response : NewsDetailsDto = httpResponse.body()
+        Log.d("tttNews", "${response}")
+
+        return response
+    }
 
 }

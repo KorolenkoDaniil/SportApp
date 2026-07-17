@@ -1,6 +1,7 @@
 package com.example.sportapp.support2026.features.news.data.api
 
-import com.example.sportapp.support2026.features.news.data.dto.NewsPageDto
+import com.example.sportapp.support2026.features.news.data.dto.newsDetails.NewsDetailsDto
+import com.example.sportapp.support2026.features.news.data.dto.newsList.NewsPageDto
 import javax.inject.Inject
 
 class NewsApiImpl @Inject constructor(
@@ -11,7 +12,7 @@ class NewsApiImpl @Inject constructor(
         return networkProvider.getPaginatedNews(pageNumber)
     }
 
-    override suspend fun getNewsDetails(newsId: Int): NewsPageDto {
-        return networkProvider.
+    override suspend fun getNewsDetails(newsId: Int): NewsDetailsDto {
+        return networkProvider.getNewsDetails(newsId)
     }
 }
