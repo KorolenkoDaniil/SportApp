@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using SportAppServer.Support2026.Application.AppServices;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
-using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repositories.NewsRepositoryLayer;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository;
+using SportAppServer.Support2026.Domain.Feature.UserFeature.Repository;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
 
 
@@ -23,16 +24,11 @@ internal class Program
             }
         );
         
-             
-        builder.Services.AddScoped<INewsRepository, NewsRepository>();
-        builder.Services.AddScoped<GetPaginatedNewsUseCase>();
-        builder.Services.AddScoped<GetNewsDetailsUseCase>();
-        
-        builder.Services.AddScoped(typeof(IPaginationBuilder<>), typeof(PaginationBuilder<>));
 
 
         // Репозитории
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
         // Use Cases
@@ -95,6 +91,8 @@ internal class Program
             FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider("C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\savedImages"),
             RequestPath = "/images"
         });
+
+
 
 
         app.UseStaticFiles(new StaticFileOptions

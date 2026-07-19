@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
+using SportAppServer.Support2026.Domain.Feature.UserFeature.Entities;
 
 namespace SportAppServer.Support2026.Infrastructure.Database.Context
 {
@@ -8,10 +9,11 @@ namespace SportAppServer.Support2026.Infrastructure.Database.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
             : base(options) 
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<News> NewsList { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

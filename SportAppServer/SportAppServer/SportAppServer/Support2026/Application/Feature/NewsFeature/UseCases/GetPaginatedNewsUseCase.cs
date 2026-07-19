@@ -2,7 +2,7 @@
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
-using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repositories.NewsRepositoryLayer;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository;
 
 namespace SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases
 {

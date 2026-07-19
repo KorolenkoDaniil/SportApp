@@ -18,7 +18,7 @@
 //        {
 //            UserEmail = userEmail;
 //            UserImage = userImage;
-//            IsWhiteTheme = isWhiteTheme;    
+//            IsWhiteTheme = isWhiteTheme;
 //            Comments = comments;
 //        }
 

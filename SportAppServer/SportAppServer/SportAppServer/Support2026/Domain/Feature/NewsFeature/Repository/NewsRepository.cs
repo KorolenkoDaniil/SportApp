@@ -2,7 +2,7 @@
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
 
-namespace SportAppServer.Support2026.Domain.Feature.NewsFeature.Repositories.NewsRepositoryLayer
+namespace SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository
 {
     public class NewsRepository : INewsRepository
     {
