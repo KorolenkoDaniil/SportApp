@@ -16,7 +16,7 @@ class NewsNetworkProvider @Inject constructor(
 
     suspend fun getPaginatedNews(pageNumber: Int) : NewsPageDto {
 
-        val httpResponse: HttpResponse = client.get("${baseUrl}/NewsController/GetNews") {
+        val httpResponse: HttpResponse = client.get("${baseUrl}/api/news/GetNews") {
             url {
                 parameters.append("pageNumber", pageNumber.toString())
                 parameters.append("pageSize", "10")
@@ -30,11 +30,7 @@ class NewsNetworkProvider @Inject constructor(
     }
 
     suspend fun getNewsDetails(newsId: Int): NewsDetailsDto {
-        val httpResponse: HttpResponse = client.get ( "${baseUrl}/NewsController/GetNewsDetails"){
-            url{
-                parameters.append("newsId", newsId.toString())
-            }
-        }
+        val httpResponse: HttpResponse = client.get ( "${baseUrl}/api/news/GetNewsDetails/${newsId}")
 
         val response : NewsDetailsDto = httpResponse.body()
         Log.d("tttNews", "${response}")

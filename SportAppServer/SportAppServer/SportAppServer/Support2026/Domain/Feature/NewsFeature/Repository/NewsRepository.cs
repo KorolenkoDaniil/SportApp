@@ -64,8 +64,5 @@ namespace SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository
                 .Take(pageSize)
                 .ToListAsync();
         }
-
-
-
     }
 }

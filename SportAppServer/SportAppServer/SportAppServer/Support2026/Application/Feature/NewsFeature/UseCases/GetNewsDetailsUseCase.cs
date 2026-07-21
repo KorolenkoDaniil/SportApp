@@ -15,7 +15,7 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases
             _repository = repository;
         }
 
-        public async Task<NewsDetailsDto> Execute(int newsId)
+        public async Task<NewsDetailsDto?> Execute(int newsId)
         {
 
             if (newsId < 1)

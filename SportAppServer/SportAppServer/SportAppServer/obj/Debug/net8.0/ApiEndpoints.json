@@ -2,7 +2,7 @@
   {
     "ContainingType": "SportAppServer.Controllers.NewsController",
     "Method": "GetNews",
-    "RelativePath": "NewsController/GetNews",
+    "RelativePath": "api/News/GetNews",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -23,7 +23,7 @@
   {
     "ContainingType": "SportAppServer.Controllers.NewsController",
     "Method": "GetNewsDetails",
-    "RelativePath": "NewsController/GetNewsDetails",
+    "RelativePath": "api/News/GetNewsDetails/{newsId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -31,7 +31,23 @@
       {
         "Name": "newsId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.UserController",
+    "Method": "AddUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userRequestDto",
+        "Type": "SportAppServer.Support2026.Application.Feature.UserFeature.Dto.UserRequestDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

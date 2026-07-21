@@ -29,7 +29,7 @@
 //            return user;
 //        }
 
-//        public async Task<User> PutUser(string email)
+//        public async Task<User> AddUser(string email)
 //        {
 //            List<Comment> comments = new List<Comment>();
 //            List<Like> likes = new List<Like>();

@@ -52,7 +52,7 @@
 
 
 
-//        public async Task<News?> GetByiDAsync(string dateTime)
+//        public async Task<News?> GetByiD(string dateTime)
 //        {
 //            DateTime newsDateTime = DateTime.Parse(dateTime);
 

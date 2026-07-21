@@ -183,4 +183,4 @@ C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\Spor
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.pdb
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\SportAppServer.genruntimeconfig.cache
 C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\ref\SportAppServer.dll
-C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\swae.build.ex.cache
+C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\SportAppServer\SportAppServer\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

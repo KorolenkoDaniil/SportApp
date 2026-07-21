@@ -6,11 +6,13 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers
     public static class NewsMapper
     {
 
-        public static News MapToEntityFromApiDto(NewsApiDto dto)
+       
+
+        public static News MapToEntityFromParsingDto(NewsParsingDto dto)
         {
             return new News
             {
-                Id = dto.Id,
+                // Id здесь не заполняем, база данных сгенерирует его автоматически (IDENTITY)
                 DateTime = dto.DateTime,
                 Sport = dto.Sport,
                 Title = dto.Title,
@@ -19,11 +21,11 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers
             };
         }
 
-        public static News MapToEntityFromParsingDto(NewsParsingDto dto)
+        public static News MapToEntityFromApiDto(NewsApiDto dto)
         {
             return new News
             {
-                // Id здесь не заполняем, база данных сгенерирует его автоматически (IDENTITY)
+                Id = dto.Id,
                 DateTime = dto.DateTime,
                 Sport = dto.Sport,
                 Title = dto.Title,

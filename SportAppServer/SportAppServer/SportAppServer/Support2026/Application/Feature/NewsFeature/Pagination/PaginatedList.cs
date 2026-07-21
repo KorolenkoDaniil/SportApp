@@ -25,6 +25,6 @@
 
 
         // The list of items contained in the current page.
-        public List<T> ItemsList { get; set; }
+        public List<T> ItemsList { get; set; } = new List<T>();
     }
 }

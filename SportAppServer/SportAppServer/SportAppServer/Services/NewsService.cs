@@ -26,7 +26,7 @@
       
 //        public async Task<NewsDTO> GetNewsByDateAsync(string dateTime, string userEmail)
 //        {
-//            var searchResult = await _newsRepository.GetByiDAsync(dateTime);
+//            var searchResult = await _newsRepository.GetByiD(dateTime);
 
 //            if (searchResult != null)
 //            {

@@ -153,7 +153,7 @@
 //            if (existingUser == null)
 //            {
 //                existingUser = new User { UserEmail = comment.UserEmail, UserImage = comment.User.UserImage };
-//                await _userRepository.PutUser(existingUser.UserEmail);
+//                await _userRepository.AddUser(existingUser.UserEmail);
 //            }
 
 //            Comment newComment = CommentMapper.ConvertToEntity(comment);

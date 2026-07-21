@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SportAppServer.Support2026.Application.AppServices;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
+using SportAppServer.Support2026.Application.Feature.UserFeature.UseCases;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository;
 using SportAppServer.Support2026.Domain.Feature.UserFeature.Repository;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
@@ -34,6 +35,9 @@ internal class Program
         // Use Cases
         builder.Services.AddScoped<GetPaginatedNewsUseCase>();
         builder.Services.AddScoped<GetNewsDetailsUseCase>();
+        builder.Services.AddScoped<GetUserByEmailUseCase>();
+        builder.Services.AddScoped<GetUserByIdUseCase>();
+        builder.Services.AddScoped<AddUserToDbUseCase>();
 
         // Application Services
 

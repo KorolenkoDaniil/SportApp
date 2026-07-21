@@ -7,12 +7,12 @@ using System.Diagnostics;
 
 namespace SportAppServer.Controllers
 {
-    [Route("NewsController")]
+    [Route("api/[controller]")]
     [ApiController]
     public class NewsController : Controller
     {
-        private GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
-        private GetNewsDetailsUseCase _getNewsDetailsUseCase;
+        private readonly GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
+        private readonly GetNewsDetailsUseCase _getNewsDetailsUseCase;
 
         //private readonly ILikeServise _likeService;
 
@@ -27,6 +27,7 @@ namespace SportAppServer.Controllers
         {
 
             //обьединиить множестов use cases В ФАСАД
+            //бъединять их в один сервис имеет смысл только если конструктор разрастется до 5 + зависимостей.
             _getPaginatedNewsUseCase = getPaginatedNewsUseCase;
             _getNewsDetailsUseCase = getNewsByDateUseCase;
         }
@@ -54,7 +55,6 @@ namespace SportAppServer.Controllers
                 }
 
                 Debug.WriteLine($"[GetNews] Успешно возвращено новостей: {paginatedNews.ItemsList.Count}");
-                Debug.WriteLine($"[GetNews] Успешно возвращено новостей: {paginatedNews.ItemsList.Count}");
 
                 return Ok(paginatedNews);
             }
@@ -70,8 +70,8 @@ namespace SportAppServer.Controllers
 
 
 
-        [HttpGet("GetNewsDetails")]
-        public async Task<IActionResult> GetNewsDetails(int newsId)
+        [HttpGet("GetNewsDetails/{newsId}")]
+        public async Task<IActionResult> GetNewsDetails([FromRoute] int newsId)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace SportAppServer.Controllers
 
                 if (newsDetails == null)
                 {
-                    Debug.WriteLine("[GetNewsDetails] paginatedNews.messages is null");
+                    Debug.WriteLine("[GetNewsDetails] newsDetails is null");
                     return StatusCode(400, "Ошибка: данные не получены");
                 }
 

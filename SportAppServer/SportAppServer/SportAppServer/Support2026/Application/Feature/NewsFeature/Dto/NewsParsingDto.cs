@@ -8,15 +8,15 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Dto
         public DateTime DateTime { get; set; }
 
         [JsonProperty("sport")]
-        public string Sport { get; set; }
+        public string Sport { get; set; } = string.Empty;
 
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [JsonProperty("image_id")]
-        public string ImageId { get; set; }
+        public string ImageId { get; set; } = string.Empty;
 
         [JsonProperty("text")]
-        public string ArticleText { get; set; }
+        public string ArticleText { get; set; } = string.Empty;
     }
 }

@@ -27,12 +27,12 @@
 //            return UserMapper.ConvertToDTO(userEntity);
 //        }
 
-//        public async Task<UserDTO> PutUser(EmailDto email)
+//        public async Task<UserDTO> AddUser(EmailDto email)
 //        {
 //            if (string.IsNullOrWhiteSpace(email?.Email))
 //                return null;
 
-//            var userEntity = await _userRepository.PutUser(email.Email);
+//            var userEntity = await _userRepository.AddUser(email.Email);
 //            return UserMapper.ConvertToDTO(userEntity);
 //        }
 
