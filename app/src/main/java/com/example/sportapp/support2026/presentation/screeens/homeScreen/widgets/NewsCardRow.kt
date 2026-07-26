@@ -1,4 +1,4 @@
-package com.example.sportapp.support2026.presentation.screeens.homePage.widgets
+package com.example.sportapp.support2026.presentation.screeens.homeScreen.widgets
 
 import android.util.Log
 import androidx.compose.foundation.layout.Box

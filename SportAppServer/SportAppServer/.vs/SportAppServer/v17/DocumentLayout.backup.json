@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\support2026\\application\\feature\\userfeature\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\support2026\\application\\feature\\userfeature\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\support2026\\application\\feature\\userfeature\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|solutionrelative:sportappserver\\support2026\\application\\feature\\userfeature\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{655FB589-4120-4F52-870D-4B10183FD484}|SportAppServer\\SportAppServer.csproj|c:\\users\\korol\\androidstudioprojects\\sportapp\\sportappserver\\sportappserver\\sportappserver\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -158,29 +158,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddUserToDbUseCase.cs",
-              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs",
-              "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBAAAAAvAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
+              "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T15:36:06.563Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T14:47:50.285Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
-              "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "SportAppServer\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\UserController.cs",
+              "RelativeToolTip": "SportAppServer\\Controllers\\UserController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAcwBoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T14:47:50.285Z",
+              "WhenOpened": "2026-07-19T13:07:36.267Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddUserToDbUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs",
+              "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\AddUserToDbUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-19T15:36:06.563Z"
             },
             {
               "$type": "Document",
@@ -188,12 +199,11 @@
               "Title": "UserMapper.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Mappers\\UserMapper.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Mappers\\UserMapper.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Mappers\\UserMapper.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Mappers\\UserMapper.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Mappers\\UserMapper.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Mappers\\UserMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T14:50:07.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T14:50:07.156Z"
             },
             {
               "$type": "Document",
@@ -201,12 +211,11 @@
               "Title": "NewsParsingDto.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsParsingDto.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsParsingDto.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsParsingDto.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsParsingDto.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsParsingDto.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsParsingDto.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAQwBMAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-12T12:34:54.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-12T12:34:54.186Z"
             },
             {
               "$type": "Document",
@@ -214,12 +223,11 @@
               "Title": "GetNewsDetailsUseCase.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\UseCases\\GetNewsDetailsUseCase.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\UseCases\\GetNewsDetailsUseCase.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\UseCases\\GetNewsDetailsUseCase.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\UseCases\\GetNewsDetailsUseCase.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\UseCases\\GetNewsDetailsUseCase.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\UseCases\\GetNewsDetailsUseCase.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAA5wBEAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T16:52:52.77Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T16:52:52.77Z"
             },
             {
               "$type": "Document",
@@ -231,21 +239,7 @@
               "RelativeToolTip": "SportAppServer\\Controllers\\NewsController.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAowE8AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T10:08:51.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "SportAppServer\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "SportAppServer\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAWwCkAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T13:07:36.267Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-04T10:08:51.593Z"
             },
             {
               "$type": "Document",
@@ -253,12 +247,11 @@
               "Title": "NewsDetailsDto.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDetailsDto.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDetailsDto.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDetailsDto.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDetailsDto.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDetailsDto.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDetailsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwBYAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-12T12:35:51.237Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-12T12:35:51.237Z"
             },
             {
               "$type": "Document",
@@ -266,12 +259,11 @@
               "Title": "PaginatedList.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\PaginatedList.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\PaginatedList.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\PaginatedList.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\PaginatedList.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\PaginatedList.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\PaginatedList.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T15:56:57.493Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T15:56:57.493Z"
             },
             {
               "$type": "Document",
@@ -279,12 +271,11 @@
               "Title": "NewsDto.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDto.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDto.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDto.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDto.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDto.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Dto\\NewsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwBcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T16:27:13.604Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T16:27:13.604Z"
             },
             {
               "$type": "Document",
@@ -292,12 +283,11 @@
               "Title": "News.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Entities\\News.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Entities\\News.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Entities\\News.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Entities\\News.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Entities\\News.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Entities\\News.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T16:32:10.653Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T16:32:10.653Z"
             },
             {
               "$type": "Document",
@@ -305,12 +295,11 @@
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Repository\\IUserRepository.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Repository\\IUserRepository.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Repository\\IUserRepository.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Repository\\IUserRepository.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Repository\\IUserRepository.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Repository\\IUserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T12:53:27.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-17T12:53:27.849Z"
             },
             {
               "$type": "Document",
@@ -322,8 +311,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Entities\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T12:51:23.429Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-17T12:51:23.429Z"
             },
             {
               "$type": "Document",
@@ -335,8 +323,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Repository\\UserRepository.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAYwCQAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T12:54:02.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-17T12:54:02.141Z"
             },
             {
               "$type": "Document",
@@ -348,8 +335,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\UseCases\\GetPaginatedNewsUseCase.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:43:24.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:43:24.479Z"
             },
             {
               "$type": "Document",
@@ -357,12 +343,11 @@
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Program.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs*",
-              "RelativeToolTip": "SportAppServer\\Program.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Program.cs",
+              "RelativeToolTip": "SportAppServer\\Program.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAxwCcAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:08:48.437Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:08:48.437Z"
             },
             {
               "$type": "Document",
@@ -374,8 +359,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\GetUserByEmailUseCase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T15:36:37.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T15:36:37.959Z"
             },
             {
               "$type": "Document",
@@ -387,8 +371,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\UseCases\\GetUserByIdUseCase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T15:35:46.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T15:35:46.341Z"
             },
             {
               "$type": "Document",
@@ -400,8 +383,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Services\\INewsService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T16:22:48.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T16:22:48.722Z"
             },
             {
               "$type": "Document",
@@ -413,8 +395,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Services\\NullFilterServise.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:59:50.752Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:59:50.752Z"
             },
             {
               "$type": "Document",
@@ -422,12 +403,11 @@
               "Title": "NewsMapper.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Mappers\\NewsMapper.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Mappers\\NewsMapper.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Mappers\\NewsMapper.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Mappers\\NewsMapper.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Mappers\\NewsMapper.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Mappers\\NewsMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T15:56:41.423Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T15:56:41.423Z"
             },
             {
               "$type": "Document",
@@ -435,12 +415,11 @@
               "Title": "NewsRepository.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\NewsRepository.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\NewsRepository.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\NewsRepository.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\NewsRepository.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\NewsRepository.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\NewsRepository.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAYwEEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:42:10.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:42:10.465Z"
             },
             {
               "$type": "Document",
@@ -452,8 +431,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\INewsRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:42:09.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:42:09.646Z"
             },
             {
               "$type": "Document",
@@ -465,8 +443,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\NewsFeature\\Repository\\IPaginatedRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T16:08:45.301Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T16:08:45.301Z"
             },
             {
               "$type": "Document",
@@ -478,8 +455,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Infrastructure\\Configuration\\UserConfiguration.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAkwCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T12:57:13.493Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-17T12:57:13.493Z"
             },
             {
               "$type": "Document",
@@ -491,8 +467,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Infrastructure\\Database\\Context\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:43:10.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:43:10.353Z"
             },
             {
               "$type": "Document",
@@ -504,8 +479,7 @@
               "RelativeToolTip": "SportAppServer\\Migrations\\20260719125909_CreateAppUserTable.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAswBgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T13:00:23.082Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T13:00:23.082Z"
             },
             {
               "$type": "Document",
@@ -517,8 +491,7 @@
               "RelativeToolTip": "SportAppServer\\Context\\DBContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T12:01:36.485Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T12:01:36.485Z"
             },
             {
               "$type": "Document",
@@ -530,8 +503,7 @@
               "RelativeToolTip": "SportAppServer\\NotificationScheduler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:08:49.309Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:08:49.309Z"
             },
             {
               "$type": "Document",
@@ -543,8 +515,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Infrastructure\\Configuration\\NewsConfiguration.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAqwCgAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T15:43:37.564Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-07T15:43:37.564Z"
             },
             {
               "$type": "Document",
@@ -556,8 +527,7 @@
               "RelativeToolTip": "SportAppServer\\Models\\Entities\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T14:37:29.71Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-17T14:37:29.71Z"
             },
             {
               "$type": "Document",
@@ -569,8 +539,7 @@
               "RelativeToolTip": "SportAppServer\\Controllers\\GeminiController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T10:08:56.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-04T10:08:56.954Z"
             },
             {
               "$type": "Document",
@@ -582,8 +551,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\PaginationBuilder.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T16:22:27.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T16:22:27.234Z"
             },
             {
               "$type": "Document",
@@ -595,8 +563,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Application\\AppServices\\PythonScript.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAAtwGIAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T16:28:32.853Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T16:28:32.853Z"
             },
             {
               "$type": "Document",
@@ -608,8 +575,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\NewsFeature\\Pagination\\IPaginationBuilder.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T15:57:10.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T15:57:10.04Z"
             }
           ]
         },

@@ -43,6 +43,8 @@ hiltNavigationCompose = "1.2.0"
 navigationRuntimeKtx = "2.9.8"
 uiUnit = "1.11.4"
 ui = "1.11.4"
+google_services_v = "4.5.0"
+
 
 [libraries]
 android-image-cropper = { module = "com.github.CanHub:Android-Image-Cropper", version.ref = "androidImageCropper" }
@@ -114,3 +116,5 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+

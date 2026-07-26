@@ -1,4 +1,4 @@
-package com.example.sportapp.support2026.presentation.screeens.NewsDetailsPage.widgets
+package com.example.sportapp.support2026.presentation.screeens.newsDetailsScreen.widgets
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

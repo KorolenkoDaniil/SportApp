@@ -8,8 +8,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
-import com.example.sportapp.support2026.presentation.screeens.NewsDetailsPage.NewsDetailsScreen
-import com.example.sportapp.support2026.presentation.screeens.homePage.HomeScreen
+import com.example.sportapp.support2026.presentation.screeens.newsDetailsScreen.NewsDetailsScreen
+import com.example.sportapp.support2026.presentation.screeens.homeScreen.HomeScreen
+import com.example.sportapp.support2026.presentation.screeens.splashScreen.SplashScreen
 
 @Composable
 fun MainNavigation (
@@ -19,9 +20,9 @@ fun MainNavigation (
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.HomePage.route //TODO переделать на страницу входа
+        startDestination = Screen.SplashScreen.route
     ){
-        composable (Screen.HomePage.route)
+        composable (Screen.HomeScreen.route)
         {
             HomeScreen(
                 newsViewModel = newsViewModel,
@@ -29,7 +30,7 @@ fun MainNavigation (
             )
         }
 
-        composable (Screen.NewsDetailsPage.route)
+        composable (Screen.NewsDetailsScreen.route)
         {
             backStackEntry ->
             val newsId = backStackEntry.arguments?.getString("newsId")?.toIntOrNull()
@@ -40,6 +41,13 @@ fun MainNavigation (
             else{
                 Log.d("MainNavigation", "не правильный аргумент newsId")
             }
+        }
+
+
+        composable (Screen.SplashScreen.route) {
+            SplashScreen(
+                navController = navHostController
+            )
         }
 
     }

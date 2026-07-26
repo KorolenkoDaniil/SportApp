@@ -1,4 +1,4 @@
-package com.example.sportapp.support2026.presentation.screeens.homePage
+package com.example.sportapp.support2026.presentation.screeens.homeScreen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,7 +12,7 @@ import androidx.navigation.NavHostController
 import com.example.sportapp.support2026.features.news.presentation.NewsState
 import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
-import com.example.sportapp.support2026.presentation.screeens.homePage.widgets.NewsCardRow
+import com.example.sportapp.support2026.presentation.screeens.homeScreen.widgets.NewsCardRow
 import com.example.sportapp.support2026.presentation.screeens.sharedWidgets.LoadingWidget
 
 @Composable

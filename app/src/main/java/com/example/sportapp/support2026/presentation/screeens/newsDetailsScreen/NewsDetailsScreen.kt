@@ -1,4 +1,4 @@
-package com.example.sportapp.support2026.presentation.screeens.NewsDetailsPage
+package com.example.sportapp.support2026.presentation.screeens.newsDetailsScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -25,7 +25,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsState
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsViewModel
-import com.example.sportapp.support2026.presentation.screeens.NewsDetailsPage.widgets.TopBar
+import com.example.sportapp.support2026.presentation.screeens.newsDetailsScreen.widgets.TopBar
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
 import com.example.sportapp.support2026.presentation.screeens.sharedWidgets.LoadingWidget
 import com.example.sportapp.support2026.presentation.ui.CornerRadius_16

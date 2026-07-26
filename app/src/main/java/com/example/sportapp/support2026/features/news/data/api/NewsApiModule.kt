@@ -1,24 +1,27 @@
 package com.example.sportapp.support2026.features.news.data.api
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.ktor.client.HttpClient
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NewsApiModule {
+abstract class NewsApiModule {
 
-    @Provides
-    fun provideNewsNetworkProvider(client: HttpClient): NewsNetworkProvider {
-        return NewsNetworkProvider(client)
-    }
 
-    @Provides
-    fun provideNewsApi(
-        provider: NewsNetworkProvider
-    ): NewsApi {
-        return NewsApiImpl(provider)
-    }
+////это ручной способ
+//    @Provides
+//    fun provideNewsApi(
+//        provider: NewsNetworkProvider
+//    ): NewsApi {
+//        return NewsApiImpl(provider)
+//    }
+
+    @Binds
+    @Singleton
+    abstract fun bindNewsApi(
+        newsApiImpl: NewsApiImpl
+    ): NewsApi
 }
