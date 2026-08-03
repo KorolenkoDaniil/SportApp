@@ -4,12 +4,11 @@ import com.example.sportapp.support2026.features.user.domain.entity.User
 import com.example.sportapp.support2026.features.user.domain.repository.UserDomainRepository
 import javax.inject.Inject
 
-class AddUserToDbUseCase
-@Inject constructor(
+class GetUserUseCase @Inject constructor(
     private val repository: UserDomainRepository
 ) {
 
-    suspend fun addUser(email: String): User{
-        return repository.addUser(email)
+    suspend fun invoke (email: String): User{
+        return repository.getUser(email)
     }
 }

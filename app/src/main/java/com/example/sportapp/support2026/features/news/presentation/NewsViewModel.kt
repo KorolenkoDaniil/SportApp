@@ -17,6 +17,8 @@ sealed interface NewsState : BaseState {
     data object Load : NewsState
     data class Error(val e: Throwable) : NewsState
     data class NewsContent(val news: List<News>) : NewsState
+//    object используется для состояний, у которых нет данных.
+//    data class используется для состояний, которые несут данные.
 }
 
 

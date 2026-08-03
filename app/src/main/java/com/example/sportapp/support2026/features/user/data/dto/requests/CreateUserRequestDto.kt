@@ -4,6 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserRequestDto (
+data class CreateUserRequestDto (
     @SerialName("email") val email: String,
 )

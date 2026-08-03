@@ -1,12 +1,13 @@
 //package com.example.sportapp.domain.viewModels.authorization
-//
+
 //import com.example.sportapp.CleanArchitexture.data.repositories.UserRepository
 //import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 //import com.example.sportapp.domain.viewModels.authorization.utils.AuthorizationUtils
+//import com.example.sportapp.support2026.features.user.authorisation.AuthState
 //import com.google.firebase.auth.FirebaseAuth
 //import kotlinx.coroutines.flow.MutableStateFlow
 //import kotlinx.coroutines.tasks.await
-//
+
 //class LoginUseCase {
 //
 //    suspend fun login(

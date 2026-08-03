@@ -6,7 +6,12 @@ object UserRequestMapper {
 
     fun MapEntityToDto(entity: User): UserRequestDto {
         return UserRequestDto(
-            userName = entity.userName,
+            email = entity.email
+        )
+    }
+
+    fun MapEntityToCreateUserRequestDto(entity: User): CreateUserRequestDto {
+        return CreateUserRequestDto(
             email = entity.email
         )
     }

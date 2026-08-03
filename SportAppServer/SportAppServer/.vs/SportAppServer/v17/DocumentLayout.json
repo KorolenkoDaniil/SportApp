@@ -162,8 +162,8 @@
               "Title": "UserDto.cs",
               "DocumentMoniker": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
               "RelativeDocumentMoniker": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
-              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs*",
-              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs*",
+              "ToolTip": "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\SportAppServer\\SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
+              "RelativeToolTip": "SportAppServer\\Support2026\\Application\\Feature\\UserFeature\\Dto\\UserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-19T14:47:50.285Z",
@@ -179,8 +179,7 @@
               "RelativeToolTip": "SportAppServer\\Controllers\\UserController.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAcwBoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-19T13:07:36.267Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-19T13:07:36.267Z"
             },
             {
               "$type": "Document",
@@ -192,8 +191,7 @@
               "RelativeToolTip": "SportAppServer\\Support2026\\Domain\\Feature\\UserFeature\\Entities\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T12:51:23.429Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-17T12:51:23.429Z"
             },
             {
               "$type": "Document",

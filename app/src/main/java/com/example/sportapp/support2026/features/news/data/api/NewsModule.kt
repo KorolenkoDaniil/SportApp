@@ -10,7 +10,22 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class NewsRepositoryModule {
+abstract class NewsModule {
+
+
+////это ручной способ
+//    @Provides
+//    fun provideNewsApi(
+//        provider: NewsNetworkProvider
+//    ): NewsApi {
+//        return NewsApiImpl(provider)
+//    }
+
+    @Binds
+    @Singleton
+    abstract fun bindNewsApi(
+        newsApiImpl: NewsApiImpl
+    ): NewsApi
 
     @Binds
     @Singleton

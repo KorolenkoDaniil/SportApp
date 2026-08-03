@@ -22,14 +22,16 @@ class MainActivity : ComponentActivity(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        super.onStart()
+
+
 
         Log.d("Composable", "Composable  mainActivity1")
 
         setContent {
-
             AppTheme {
                 Scaffold(Modifier.fillMaxSize()) { innerPadding ->
-                    HomeContent (modifier = Modifier.padding(innerPadding))
+                    HomeContent(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
