@@ -5,7 +5,7 @@ namespace SportAppServer.Support2026.Domain.Feature.UserFeature.Repository
     public interface IUserRepository
     {
         User? GetByiD(int userId);
-        public User? GetByEmail(string email);
+        public Task<User?> GetByEmail(string email);
         (User?, AddUserResult) AddUserToDB(User user);
     }
 }

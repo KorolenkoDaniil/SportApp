@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SportApp</string>
     <string name="web_client_id">691650676403-odgl0dsdbb5380eh2rmijdrhgg8bb10m.apps.googleusercontent.com</string>
-    <string name="Log_in_rus">Войти</string>
+    <string name="Log_in_rus">Авторизация</string>
     <string name="slogan">"KorSport — будь в курсе, \n будь лидером"</string>
 
 </resources>

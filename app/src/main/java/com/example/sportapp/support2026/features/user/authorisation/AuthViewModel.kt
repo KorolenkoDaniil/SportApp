@@ -1,6 +1,7 @@
 package com.example.sportapp.support2026.features.user.authorisation
 
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,9 +11,11 @@ import com.example.sportapp.support2026.features.user.authorisation.useCases.Sig
 import com.example.sportapp.support2026.features.user.authorisation.utils.AuthValidation
 import com.example.sportapp.support2026.features.user.domain.entity.User
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 sealed class AuthState {
@@ -23,7 +26,8 @@ sealed class AuthState {
 }
 
 
-class AuthViewModel (
+@HiltViewModel
+class AuthViewModel @Inject constructor (
     private val checkAuthStatusUseCase: CheckAuthStatusUseCase,
     private val logInUseCase: LogInUseCase,
     private val signUpUseCase: SignUpUseCase
@@ -43,10 +47,11 @@ class AuthViewModel (
 
     private fun checkAuthStatus() {
         viewModelScope.launch {
-
             _authState.value = checkAuthStatusUseCase.invoke(
                 firebaseAuth = _firebaseAuth
             )
+
+            Log.d("checkAuthStatus","${_authState.value}")
         }
     }
 

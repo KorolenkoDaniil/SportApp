@@ -39,7 +39,7 @@
   {
     "ContainingType": "SportAppServer.Controllers.UserController",
     "Method": "AddUser",
-    "RelativePath": "api/User",
+    "RelativePath": "api/User/AddUser",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -47,6 +47,22 @@
       {
         "Name": "userRequestDto",
         "Type": "SportAppServer.Support2026.Application.Feature.UserFeature.Dto.UserRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.UserController",
+    "Method": "GetUserData",
+    "RelativePath": "api/User/GetUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "SportAppServer.Support2026.Application.Feature.UserFeature.Dto.GetUserRequestDto",
         "IsRequired": true
       }
     ],

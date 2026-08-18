@@ -13,6 +13,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -20,19 +22,40 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.R
+import com.example.sportapp.support2026.features.user.authorisation.AuthState
+import com.example.sportapp.support2026.features.user.authorisation.AuthViewModel
 import com.example.sportapp.support2026.presentation.navigation.Screen
 import com.example.sportapp.support2026.presentation.ui.theme.background_color
 import com.example.sportapp.support2026.presentation.ui.theme.style12FirstPage
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
-@Composable
-fun SplashScreen(navController: NavHostController) {
 
-    LaunchedEffect(Unit) {
-        delay(2.seconds)
-        navController.navigate(Screen.HomeScreen.route) {
-            popUpTo(Screen.SplashScreen.route) { inclusive = true }
+@Composable
+fun SplashScreen(
+    navController: NavHostController,
+    authViewModel: AuthViewModel
+) {
+    val authStatus by authViewModel.authState.collectAsState()
+
+    LaunchedEffect(authStatus) {
+        when (authStatus) {
+            is AuthState.Authenticated -> {
+                delay(1.seconds)
+                navController.navigate(Screen.HomeScreen.route) {
+                    popUpTo(Screen.SplashScreen.route) { inclusive = true }
+                }
+            }
+            is AuthState.Unauthenticated,
+            is AuthState.Error -> {
+                delay(1.seconds)
+                navController.navigate(Screen.LogInScreen.route) {
+                    popUpTo(Screen.SplashScreen.route) { inclusive = true }
+                }
+            }
+            AuthState.Loading -> {
+                // Ничего не делаем, ждем смены состояния
+            }
         }
     }
 

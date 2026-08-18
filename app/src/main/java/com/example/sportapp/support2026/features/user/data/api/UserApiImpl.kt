@@ -18,7 +18,7 @@ class UserApiImpl @Inject constructor (
 ) : UserApi {
 
     override suspend fun addUser(userRequestDto: CreateUserRequestDto): UserResponseDto {
-        val httpResponse = client.post("$baseUrl/api/User"){
+        val httpResponse = client.post("$baseUrl/api/User/AddUser"){
             setBody(
                 userRequestDto
             )
@@ -31,7 +31,7 @@ class UserApiImpl @Inject constructor (
     }
 
     override suspend fun getUser(dto: UserRequestDto): UserResponseDto {
-        val httpResponse = client.post ("$baseUrl/api/User/getUser"){
+        val httpResponse = client.post ("$baseUrl/api/User/GetUser"){
 
             contentType(ContentType.Application.Json)
             setBody(

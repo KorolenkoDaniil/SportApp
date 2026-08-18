@@ -1,4 +1,5 @@
-﻿using SportAppServer.Support2026.Domain.Feature.UserFeature.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SportAppServer.Support2026.Domain.Feature.UserFeature.Entities;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
 
 namespace SportAppServer.Support2026.Domain.Feature.UserFeature.Repository
@@ -51,9 +52,9 @@ namespace SportAppServer.Support2026.Domain.Feature.UserFeature.Repository
             return existingUser;
         }
 
-        public User? GetByEmail(string email)
+        public  Task<User?> GetByEmail(string email)
         {
-            User? existingUser = _context.Users.FirstOrDefault(u => u.Email == email);
+            Task<User?> existingUser = _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             return existingUser;
         }
     }

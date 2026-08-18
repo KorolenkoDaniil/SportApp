@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
+import com.example.sportapp.support2026.features.user.authorisation.AuthViewModel
 import com.example.sportapp.support2026.features.user.viewModel.UserViewModel
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.HomeScreen
 import com.example.sportapp.support2026.presentation.screeens.logInScreen.LogInScreen
@@ -19,12 +20,15 @@ fun MainNavigation (
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
     newsViewModel: NewsViewModel = hiltViewModel(),
-    userViewModel: UserViewModel = hiltViewModel()
+    userViewModel: UserViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel = hiltViewModel()
 ) {
     NavHost(
         navController = navHostController,
         startDestination = Screen.SplashScreen.route
     ){
+
+
         composable (Screen.HomeScreen.route)
         {
             HomeScreen(
@@ -49,14 +53,16 @@ fun MainNavigation (
 
         composable (Screen.SplashScreen.route) {
             SplashScreen(
-                navController = navHostController
+                navController = navHostController,
+                authViewModel = authViewModel
             )
         }
 
         composable (Screen.LogInScreen.route){
             LogInScreen(
                 userViewModel,
-                navController = navHostController
+                navController = navHostController,
+                authViewModel
             )
         }
 

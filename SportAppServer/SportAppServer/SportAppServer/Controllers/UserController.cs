@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportAppServer.Support2026.Application.Feature.UserFeature.Dto;
 using SportAppServer.Support2026.Application.Feature.UserFeature.UseCases;
+using SportAppServer.Support2026.Domain.Feature.UserFeature.Entities;
 using SportAppServer.Support2026.Domain.Feature.UserFeature.Repository;
 using System.Diagnostics;
 
@@ -23,7 +24,7 @@ namespace SportAppServer.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("AddUser")]
         public IActionResult AddUser([FromBody] UserRequestDto userRequestDto)
         {
             Debug.WriteLine("UsersController AddUser " + userRequestDto);
@@ -41,17 +42,26 @@ namespace SportAppServer.Controllers
                 
         }
 
-
-        //[HttpGet("GetUser")]
-        //public async Task<IActionResult> GetUserData(string email)
+        //public GetUserByEmailUseCase Get_getUserByEmailUseCase()
         //{
-        //    UserDTO user = await _userService.GetUserData(email);
-
-        //    if (user != null)
-        //        return Ok(user);
-        //    else
-        //        return BadRequest();
+        //    return _getUserByEmailUseCase;
         //}
+
+
+
+        [HttpPost("GetUser")]
+        public async Task<IActionResult> GetUserData([FromBody] GetUserRequestDto dto)
+        {
+
+            Debug.WriteLine("UsersController GetUserData " + dto); 
+
+            UserResponseDto? user = await _getUserByEmailUseCase.Execute(dto.Email);
+
+            if (user != null)
+                return Ok(user);
+            else
+                return BadRequest();
+        }
 
 
 
@@ -87,3 +97,4 @@ namespace SportAppServer.Controllers
 }
 
 
+//TODO нету стандатной аватарки
