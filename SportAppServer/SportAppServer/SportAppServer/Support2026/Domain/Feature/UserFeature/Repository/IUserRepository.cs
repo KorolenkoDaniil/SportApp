@@ -7,5 +7,6 @@ namespace SportAppServer.Support2026.Domain.Feature.UserFeature.Repository
         User? GetByiD(int userId);
         public Task<User?> GetByEmail(string email);
         (User?, AddUserResult) AddUserToDB(User user);
+        public Task<bool> CheckUserExists(string email);
     }
 }

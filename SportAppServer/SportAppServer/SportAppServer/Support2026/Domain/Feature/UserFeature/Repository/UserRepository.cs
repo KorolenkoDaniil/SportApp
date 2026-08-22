@@ -57,5 +57,10 @@ namespace SportAppServer.Support2026.Domain.Feature.UserFeature.Repository
             Task<User?> existingUser = _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             return existingUser;
         }
+
+        public Task<bool> CheckUserExists(string email)
+        {
+            return _context.Users.AnyAsync(u => u.Email == email);
+        }
     }
 }

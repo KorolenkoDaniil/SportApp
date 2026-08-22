@@ -35,6 +35,9 @@ class NewsViewModel @Inject constructor(
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading.asStateFlow()
 
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
+
 
     private var currentPage = 1
 
@@ -72,6 +75,16 @@ class NewsViewModel @Inject constructor(
                 _loading.value = false
             }
         }
+    }
+
+
+
+
+
+    fun onSearchQueryChanged(newQuery: String) {
+        _searchQuery.value = newQuery
+        // Твоя логика фильтрации списка новостей
+        //todo
     }
     
 }

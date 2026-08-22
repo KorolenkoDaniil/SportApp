@@ -27,10 +27,8 @@ fun NewsCardRow(
     newsViewModel: NewsViewModel,
     navController: NavHostController
 ) {
-    //состояние списка UI
     val listState = rememberLazyListState()
 
-    // 1. Подписываемся на состояние из ViewModel
     val newsContentState by newsViewModel.state.collectAsState()
     val newsLoadingState by newsViewModel.loading.collectAsState()
     val loadedNews by newsViewModel.allLoadedNews.collectAsState()
@@ -40,48 +38,16 @@ fun NewsCardRow(
         else -> loadedNews
     }
 
-    LaunchedEffect(Unit) {
-        if (newsList.isEmpty() && !newsLoadingState) {
-            newsViewModel.loadNews(false)
-        }
-    }
-
-
     LaunchedEffect(listState, newsList.size) {
         snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
             .collectLatest { index ->
-                if (!newsLoadingState && index != null && index >= newsList.size - 4) {
-                    newsViewModel.loadNews(true)
+                if (!newsLoadingState && index != null && newsList.isNotEmpty() && index >= newsList.size - 4) {
+                    newsViewModel.loadNews(isNextPage = true)
                 }
             }
     }
 
 
-//    LazyRow(state = listState, modifier = Modifier.padding(start = horizontalPaddings)) {
-//        items(newsViewModel.newsList.size){ index ->
-//
-//            val news = newsViewModel.newsList[index]
-//
-//            Log.d("NewsCardRow", news.toString())
-//
-//            NewsCard(
-//                news = news,
-//                navController = navController
-//            )
-//        }
-//        item {
-//            if (newsViewModel.loading.value) {
-//                Box(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(10.dp),
-//                    contentAlignment = Alignment.Center
-//                ) {
-//                    CircularProgressIndicator(modifier = Modifier.height(50.dp))
-//                }
-//            }
-//        }
-//    }
 
     LazyRow(state = listState, modifier = Modifier.padding(start = 12.dp)) {
         items(newsList.size){ index ->

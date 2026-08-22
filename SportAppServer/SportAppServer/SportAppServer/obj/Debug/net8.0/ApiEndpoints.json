@@ -54,6 +54,22 @@
   },
   {
     "ContainingType": "SportAppServer.Controllers.UserController",
+    "Method": "CheckUserExists",
+    "RelativePath": "api/User/exists",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SportAppServer.Controllers.UserController",
     "Method": "GetUserData",
     "RelativePath": "api/User/GetUser",
     "HttpMethod": "POST",

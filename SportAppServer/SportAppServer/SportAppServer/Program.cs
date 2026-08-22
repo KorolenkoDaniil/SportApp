@@ -38,6 +38,7 @@ internal class Program
         builder.Services.AddScoped<GetUserByEmailUseCase>();
         builder.Services.AddScoped<GetUserByIdUseCase>();
         builder.Services.AddScoped<AddUserToDbUseCase>();
+        builder.Services.AddScoped<CheckUserExistsUseCase>();
 
         // Application Services
 

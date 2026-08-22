@@ -1,7 +1,6 @@
 package com.example.sportapp.support2026.features.user.authorisation.useCases
 
 import android.util.Log
-import com.example.sportapp.support2026.features.user.domain.entity.User
 import com.example.sportapp.support2026.features.user.domain.repository.UserDomainRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
@@ -25,16 +24,15 @@ class LogInUseCase @Inject constructor(
 
     suspend fun serverLogin(
         email: String,
-    ): User? {
+    ): Boolean {
         return try {
-
-            val user: User = repository.getUser(
+            val result: Boolean = repository.checkUser (
                 email = email
             )
-            user
+            result
         } catch (e: Exception) {
             Log.d("exception", "${e.message}")
-            null
+            false
         }
     }
 }

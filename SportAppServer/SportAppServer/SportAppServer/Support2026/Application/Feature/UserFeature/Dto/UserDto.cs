@@ -4,8 +4,8 @@ namespace SportAppServer.Support2026.Application.Feature.UserFeature.Dto
 {
     public class UserRequestDto
     {
-        [JsonProperty("userName")]
-        public required string UserName { get; set; }
+        //[JsonProperty("userName")]
+        //public required string UserName { get; set; }
 
         [JsonProperty("email")]
         public required string Email { get; set; }
@@ -13,7 +13,8 @@ namespace SportAppServer.Support2026.Application.Feature.UserFeature.Dto
 
         public override string ToString()
         {
-            return $"{UserName} {Email}";
+            //return $"{UserName} {Email}";
+            return $"{Email}";
         }
     }
 

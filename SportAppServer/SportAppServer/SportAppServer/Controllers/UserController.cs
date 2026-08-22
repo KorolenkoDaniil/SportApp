@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportAppServer.Support2026.Application.Feature.UserFeature.Dto;
 using SportAppServer.Support2026.Application.Feature.UserFeature.UseCases;
-using SportAppServer.Support2026.Domain.Feature.UserFeature.Entities;
 using SportAppServer.Support2026.Domain.Feature.UserFeature.Repository;
 using System.Diagnostics;
 
@@ -15,11 +14,14 @@ namespace SportAppServer.Controllers
         private readonly AddUserToDbUseCase _addUserToDbUseCase;
         private readonly GetUserByIdUseCase _getUserByIdUseCase;
         private readonly GetUserByEmailUseCase _getUserByEmailUseCase;
+        private readonly CheckUserExistsUseCase _checkUserExistsUseCase;
 
-        public UserController(AddUserToDbUseCase addUserToDbUseCase, GetUserByIdUseCase getUserByIdUseCase, GetUserByEmailUseCase getUserByEmailUseCase)
+        public UserController(AddUserToDbUseCase addUserToDbUseCase, GetUserByIdUseCase getUserByIdUseCase, 
+            GetUserByEmailUseCase getUserByEmailUseCase, CheckUserExistsUseCase checkUserExistsUseCase)
         {
             _addUserToDbUseCase = addUserToDbUseCase;
             _getUserByEmailUseCase = getUserByEmailUseCase;
+            _checkUserExistsUseCase = checkUserExistsUseCase;
             _getUserByIdUseCase = getUserByIdUseCase;
         }
 
@@ -42,10 +44,13 @@ namespace SportAppServer.Controllers
                 
         }
 
-        //public GetUserByEmailUseCase Get_getUserByEmailUseCase()
-        //{
-        //    return _getUserByEmailUseCase;
-        //}
+
+        [HttpGet("exists")]
+        public async Task<IActionResult> CheckUserExists([FromQuery] string email)
+        {
+            bool exists = await _checkUserExistsUseCase.Execute(email);
+            return Ok(exists); 
+        }
 
 
 
@@ -53,7 +58,7 @@ namespace SportAppServer.Controllers
         public async Task<IActionResult> GetUserData([FromBody] GetUserRequestDto dto)
         {
 
-            Debug.WriteLine("UsersController GetUserData " + dto); 
+            Debug.WriteLine("UsersController GetUserData " + dto + "!!!!"); 
 
             UserResponseDto? user = await _getUserByEmailUseCase.Execute(dto.Email);
 

@@ -1,4 +1,4 @@
-package com.example.sportapp.support2026.presentation.screeens.newsDetailsScreen
+package com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -25,10 +25,10 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsState
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsViewModel
-import com.example.sportapp.support2026.presentation.screeens.newsDetailsScreen.widgets.TopBar
+import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.TopBar
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
 import com.example.sportapp.support2026.presentation.screeens.sharedWidgets.LoadingWidget
-import com.example.sportapp.support2026.presentation.ui.CornerRadius_16
+import com.example.sportapp.support2026.presentation.ui.CornerRadius_16dp
 
 @Composable
 fun NewsDetailsScreen (
@@ -82,7 +82,7 @@ fun NewsDetailsScreen (
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(200.dp)
-                                    .clip(RoundedCornerShape(CornerRadius_16)),
+                                    .clip(RoundedCornerShape(CornerRadius_16dp)),
                                 contentScale = ContentScale.Crop
                             )
                         }

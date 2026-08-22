@@ -19,25 +19,35 @@ class UserDataRepository @Inject constructor(
             email = email
         )
 
+        Log.d("signup","requestDto $requestDto")
+
         val responseDto = api.addUser(
             userRequestDto = requestDto
         )
-        Log.d("tttUser", "$responseDto")
+        Log.d("signup", "responseDto $responseDto")
 
-        return UserResponseMapper.MapDtoToEntity(responseDto)
+        return UserResponseMapper.mapDtoToEntity(responseDto)
     }
+
 
     override suspend fun getUser(
         email: String,
     ): User {
 
-        val dto: UserRequestDto = UserRequestDto(
+        val dto = UserRequestDto(
             email = email
         )
 
         val responseDto = api.getUser(dto)
 
-        val user = UserResponseMapper.MapDtoToEntity(responseDto)
+        val user = UserResponseMapper.mapDtoToEntity(responseDto)
         return user
+    }
+
+    override suspend fun checkUser(email: String): Boolean {
+
+        val result = api.checkUserOnServer(email)
+
+        return result
     }
 }

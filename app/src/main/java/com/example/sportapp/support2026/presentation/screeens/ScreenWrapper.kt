@@ -18,6 +18,7 @@ fun ScreenWrapper (
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
+
 ){
 
     Column(
@@ -33,7 +34,7 @@ fun ScreenWrapper (
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(horizontal = ScreenPaddingHorizontal, vertical = ScreenPaddingVertical),
+                .padding(vertical = ScreenPaddingVertical),
             content = content
         )
     }

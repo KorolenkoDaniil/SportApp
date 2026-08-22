@@ -5,9 +5,13 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import javax.inject.Singleton
 
 ////Аннотация @InstallIn
 ////Указывает, в какой scope (жизненный цикл) будет жить зависимость.
@@ -20,12 +24,16 @@ import kotlinx.serialization.json.Json
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-
-    //    Аннотация @Provides
-    //    Говорит: «вот функция, которая умеет создавать объект».
     @Provides
+    @Singleton
     fun provideHttpClient(): HttpClient {
-        return HttpClient {
+        return HttpClient(Android) {
+
+            install(DefaultRequest) {
+                header("ngrok-skip-browser-warning", "true")
+            }
+
+            // 2. Сериализация JSON
             install(ContentNegotiation) {
                 json(
                     Json {

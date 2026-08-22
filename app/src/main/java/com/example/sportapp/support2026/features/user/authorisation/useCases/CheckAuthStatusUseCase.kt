@@ -9,13 +9,16 @@ class CheckAuthStatusUseCase @Inject constructor() {
 
     suspend operator fun invoke(firebaseAuth: FirebaseAuth): AuthState {
         return try {
-            val user = firebaseAuth.currentUser ?:
-                return AuthState.Unauthenticated
+            val user = firebaseAuth.currentUser ?: return AuthState.Unauthenticated
 
+            // Обновляем данные пользователя из Firebase
             user.reload().await()
 
-            if (firebaseAuth.currentUser != null) {
-                AuthState.Authenticated
+            val currentUser = firebaseAuth.currentUser
+            val email = currentUser?.email
+
+            if (currentUser != null && !email.isNullOrBlank()) {
+                AuthState.Authenticated(email)
             } else {
                 AuthState.Unauthenticated
             }

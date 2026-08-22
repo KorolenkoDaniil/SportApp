@@ -7,4 +7,5 @@ import com.example.sportapp.support2026.features.user.data.dto.response.UserResp
 interface UserApi {
     suspend fun addUser(userRequestDto: CreateUserRequestDto): UserResponseDto
     suspend fun getUser(dto: UserRequestDto) : UserResponseDto
+    suspend fun checkUserOnServer (email: String) : Boolean
 }

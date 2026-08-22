@@ -27,6 +27,7 @@ fun LogInScreen(
     val password = remember { mutableStateOf("") }
 
     val authState by authViewModel.authState.collectAsState()
+
     val context = LocalContext.current
 
     LaunchedEffect(authState) {
@@ -34,6 +35,11 @@ fun LogInScreen(
 
         when (val state = authState) {
             is AuthState.Authenticated -> {
+
+                userViewModel.loadUser(
+                    email = state.email
+                )
+                
                 navController.navigate(Screen.HomeScreen.route) {
                     popUpTo(Screen.LogInScreen.route) { inclusive = true }
                 }
@@ -55,10 +61,12 @@ fun LogInScreen(
     }
 
     LogInContent(
-        email = email,
-        password = password,
-        authState = authState,
+        email = email.value,
+        onEmailChange = { email.value = it },
+        password = password.value,
+        onPasswordChange = { password.value = it},
         authViewModel = authViewModel,
-        navController = navController
+        authState = authState,
+        navController = navController,
     )
 }

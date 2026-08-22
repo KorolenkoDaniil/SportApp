@@ -11,37 +11,33 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.sportapp.R
 import com.example.sportapp.support2026.features.user.authorisation.AuthState
 import com.example.sportapp.support2026.features.user.authorisation.AuthViewModel
 import com.example.sportapp.support2026.presentation.navigation.Screen
+import com.example.sportapp.support2026.presentation.screeens.commonWidgets.AppTextField
+import com.example.sportapp.support2026.presentation.screeens.commonWidgets.passwordTextInput.PasswordTextField
+import com.example.sportapp.support2026.presentation.ui.height_16dp
+import com.example.sportapp.support2026.presentation.ui.paddings_20dp
 import com.example.sportapp.support2026.presentation.ui.theme.red_accent_color
 import com.example.sportapp.support2026.presentation.ui.theme.style14
 import com.example.sportapp.support2026.presentation.ui.theme.style15
+import com.example.sportapp.support2026.presentation.ui.width_270dp
 
 //todo вынести все фугкции, что надо делать по клику и передавать их
 //todo разнести элементы по виджетам
@@ -49,18 +45,16 @@ import com.example.sportapp.support2026.presentation.ui.theme.style15
 
 @Composable
 fun LogInContent (
-    email: MutableState<String>,
-    password: MutableState<String>,
+    email: String,
+    onEmailChange: (String) -> Unit,
+    password: String,
+    onPasswordChange: (String) -> Unit,
     authViewModel: AuthViewModel,
     authState: AuthState,
     navController: NavHostController,
 ) {
 
-    val passwordVisible = remember { mutableStateOf(false) }
-
-//    NotificationPermissionRequest()
-
-    Box(modifier = Modifier.padding(20.dp)) {
+    Box(modifier = Modifier.padding(paddings_20dp)) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -78,65 +72,58 @@ fun LogInContent (
                 style = MaterialTheme.typography.labelSmall
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-            //todo вынести размеры
+            Spacer(modifier = Modifier.height(height_16dp))
 
 
-            OutlinedTextField(
-                modifier = Modifier.width(270.dp),
-                //todo вынести размеры
-                value = email.value,
-                onValueChange = { email.value = it },
-                label = { Text(text = "Email") },
-                //todo вынести текст
-                singleLine = true,
-                colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = Color.White,
-                    unfocusedTextColor = Color.Black,
-                    focusedContainerColor = Color.White,
-                    focusedTextColor = Color.Black,
-                    unfocusedIndicatorColor = Color.Transparent, // Убираем обводку
-                    focusedIndicatorColor = Color.Transparent,   // Убираем обводку
-                    disabledIndicatorColor = Color.Transparent   // Убираем обводку
-                ),
-                shape = RoundedCornerShape(8.dp)
+            AppTextField(
+                value = email,
+                onValueChange = onEmailChange,
+                label = stringResource(R.string.Email_rus),
+                modifier = Modifier.width(width_270dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
 
-
-            OutlinedTextField(
-                modifier = Modifier.width(270.dp),
-                //todo вынести размеры
-                value = password.value,
-                onValueChange = { password.value = it },
-                label = { Text(text = "Password") },
-                //todo вынести текст
-                singleLine = true,
-                visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
-                trailingIcon = {
-                    val image = if (passwordVisible.value) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                    val description = if (passwordVisible.value)
-                        "Скрыть пароль" else "Показать пароль"
-                    //todo вынести текст
-                    Icon(
-                        imageVector = image,
-                        contentDescription = description,
-                        modifier = Modifier.clickable {
-                            passwordVisible.value = !passwordVisible.value
-                        }
-                    )
-                },
-                colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = Color.White,
-                    unfocusedTextColor = Color.Black,
-                    focusedContainerColor = Color.White,
-                    focusedTextColor = Color.Black,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(8.dp)
-                //todo вынести размеры
+            PasswordTextField(
+                value = password,
+                onValueChange = onPasswordChange,
+                label = stringResource(R.string.Password_rus),
+                modifier = Modifier.width(width_270dp),
             )
+
+//            OutlinedTextField(
+//                modifier = Modifier.width(width_270dp),
+//                //todo вынести размеры
+//                value = password.value,
+//                onValueChange = { password.value = it },
+//                label = { Text(text = "Password") },
+//                //todo вынести текст
+//                singleLine = true,
+//                visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
+//                trailingIcon = {
+//                    val image = if (passwordVisible.value) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+//                    val description = if (passwordVisible.value)
+//                        "Скрыть пароль" else "Показать пароль"
+//                    //todo вынести текст
+//                    Icon(
+//                        imageVector = image,
+//                        contentDescription = description,
+//                        modifier = Modifier.clickable {
+//                            passwordVisible.value = !passwordVisible.value
+//                        }
+//                    )
+//                },
+//                colors = TextFieldDefaults.colors(
+//                    unfocusedContainerColor = Color.White,
+//                    unfocusedTextColor = Color.Black,
+//                    focusedContainerColor = Color.White,
+//                    focusedTextColor = Color.Black,
+//                    unfocusedIndicatorColor = Color.Transparent,
+//                    focusedIndicatorColor = Color.Transparent,
+//                    disabledIndicatorColor = Color.Transparent
+//                ),
+//                shape = RoundedCornerShape(8.dp)
+//                //todo вынести размеры
+//            )
 
             Spacer(Modifier.height(40.dp))
             //todo вынести размеры
@@ -148,9 +135,10 @@ fun LogInContent (
                     .height(40.dp),
                 //todo вынести размеры
 
-                onClick = { authViewModel.login(
-                    email = email.value,
-                    password = password.value
+                onClick = {
+                    authViewModel.login(
+                        emailInput = email,
+                        passwordInput = password
                 )},
 
                 enabled = authState != AuthState.Loading,
@@ -159,8 +147,14 @@ fun LogInContent (
                     contentColor = Color.White
                 )
             ) {
-                Text(text = "Войти")
-                //todo вынести текст
+                if (authState is AuthState.Loading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.height(24.dp),
+                        color = Color.White
+                    )
+                } else {
+                    Text(text = "Войти")
+                }
             }
 
             Spacer(Modifier.height(24.dp))

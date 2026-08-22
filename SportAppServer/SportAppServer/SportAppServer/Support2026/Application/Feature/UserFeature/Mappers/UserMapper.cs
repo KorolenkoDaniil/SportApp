@@ -7,7 +7,7 @@ namespace SportAppServer.Support2026.Application.Feature.UserFeature.Mappers
     {
         public static User MapToEntityFromRequestDto(UserRequestDto dto) => new User
         {
-            UserName = dto.UserName,
+            UserName = "",
             Email = dto.Email,
         };
 

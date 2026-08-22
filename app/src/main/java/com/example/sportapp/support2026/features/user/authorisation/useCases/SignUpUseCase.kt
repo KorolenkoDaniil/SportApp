@@ -31,6 +31,7 @@ class SignUpUseCase @Inject constructor(
             val user: User = repository.addUser(
                 email = email
             )
+
             return user
         } catch (e: Exception) {
             Log.d("exception", "${e.message}")
