@@ -22,6 +22,30 @@ namespace SportAppServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SportAppServer.Support2026.Domain.Feature.LikeFeature.NewsLike", b =>
+                {
+                    b.Property<int>("LikeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("LikeId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LikeId"));
+
+                    b.Property<int>("NewsId")
+                        .HasColumnType("int")
+                        .HasColumnName("NewsId");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("UserEmail");
+
+                    b.HasKey("LikeId");
+
+                    b.ToTable("NewsLike", (string)null);
+                });
+
             modelBuilder.Entity("SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities.News", b =>
                 {
                     b.Property<int>("Id")

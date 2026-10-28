@@ -24,7 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Support2026\Application\Feature\Новая папка\" />
+    <Folder Include="Support2026\Application\Feature\NewsLikeFeature\Mappers\" />
+    <Folder Include="Support2026\Application\Feature\NewsLikeFeature\UseCases\" />
     <Folder Include="Support2026\Infrastructure\Repositories\" />
     <Folder Include="Support2026\Infrastructure\Controllers\" />
     <Folder Include="Support2026\Presentation\Requests\" />

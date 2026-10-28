@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Dto;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers;
@@ -13,7 +14,6 @@ namespace SportAppServer.Support2026.Application.AppServices
 {
     public class PythonScript
     {
-
         private readonly IDistributedCache _distributedCache;
         private readonly IServiceScopeFactory _scopeFactory;
 
@@ -23,19 +23,23 @@ namespace SportAppServer.Support2026.Application.AppServices
             _scopeFactory = scopeFactory;
         }
 
-
-
         public async Task RunPythonScriptAsync()
         {
-
-            await _distributedCache.RemoveAsync("cachedNewsList");
+            try
+            {
+                // Очистка кэша Redis (обернута в try-catch на случай проблем с подключением)
+                await _distributedCache.RemoveAsync("cachedNewsList");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Предупреждение Redis: не удалось очистить кэш: {ex.Message}");
+            }
 
             try
             {
-                Console.WriteLine($"Python-скрипт начало");
+                Console.WriteLine("Python-скрипт начало");
                 string pythonPath = @"C:\Users\korol\AppData\Local\Programs\Python\Python311\python.exe";
                 string scriptPath = @"C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\dataParser.py";
-
 
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
@@ -51,8 +55,8 @@ namespace SportAppServer.Support2026.Application.AppServices
                 {
                     if (process != null)
                     {
-                        string output = process.StandardOutput.ReadToEnd();
-                        string error = process.StandardError.ReadToEnd();
+                        string output = await process.StandardOutput.ReadToEndAsync();
+                        string error = await process.StandardError.ReadToEndAsync();
                         process.WaitForExit();
 
                         Console.WriteLine($"Python-скрипт завершён. Вывод: {output}");
@@ -74,10 +78,15 @@ namespace SportAppServer.Support2026.Application.AppServices
             }
         }
 
-
         private async Task GetNewNewsFromJSONAsync()
         {
-            string path = "C:\\Users\\korol\\AndroidStudioProjects\\SportApp\\SportAppServer\\news_list.json";
+            string path = @"C:\Users\korol\AndroidStudioProjects\SportApp\SportAppServer\news_list.json";
+
+            if (!File.Exists(path))
+            {
+                Console.WriteLine($"Файл JSON не найден по пути: {path}");
+                return;
+            }
 
             List<News>? newsList = new List<News>();
 
@@ -90,9 +99,16 @@ namespace SportAppServer.Support2026.Application.AppServices
 
                 try
                 {
-                    List<NewsParsingDto> newsDtoList = JsonConvert.DeserializeObject<List<NewsParsingDto>>(text);
+                    List<NewsParsingDto>? newsDtoList = JsonConvert.DeserializeObject<List<NewsParsingDto>>(text);
 
-                    newsList = newsDtoList.Select(dto => NewsMapper.MapToEntityFromParsingDto(dto)).ToList();
+                    if (newsDtoList != null)
+                    {
+                        newsList = newsDtoList
+                            .Where(dto => dto != null)
+                            .Select(dto => NewsMapper.MapToEntityFromParsingDto(dto))
+                            .Where(entity => entity != null)
+                            .ToList()!;
+                    }
                 }
                 catch (JsonException jsonEx)
                 {
@@ -118,12 +134,10 @@ namespace SportAppServer.Support2026.Application.AppServices
                         .ToList();
 
                     Debug.WriteLine("---111---");
-
                     foreach (var news in newNews)
                     {
-                        Debug.WriteLine(news.ToString());
+                        Debug.WriteLine(news?.ToString() ?? "null");
                     }
-
                     Debug.WriteLine("---111---");
 
                     if (newNews.Count == 0)
@@ -135,61 +149,35 @@ namespace SportAppServer.Support2026.Application.AppServices
                     newNews = NullFilterServise.FilterNews(newNews);
 
                     Debug.WriteLine("---222---");
-
                     foreach (var news in newNews)
                     {
-                        Debug.WriteLine(news);
+                        Debug.WriteLine(news?.ToString() ?? "null");
                     }
-
-
-
                     Debug.WriteLine("---222---");
-
-                    
-                    
-                    //foreach (var news in newNews)
-                    //{
-                    //    news.TextAfterLemmatize = await LemmatizeService.GetLems(news.ArticleText);
-                    //}
-
-
-
-                    //Debug.WriteLine("---333---");
-
-                    //foreach (var news in newNews)
-                    //{
-                    //    Debug.WriteLine(news);
-
-
-                    //}
-
-                    //Debug.WriteLine("---333---");
-
-
-
 
                     await context.NewsList.AddRangeAsync(newNews);
                     await context.SaveChangesAsync();
 
-                    List<News> last20News = await context.NewsList.OrderByDescending(n => n.DateTime)
+                    List<News> last30News = await context.NewsList
+                        .OrderByDescending(n => n.DateTime)
                         .Take(30)
                         .ToListAsync();
 
-
-
                     Debug.WriteLine("---444---");
-
-                    foreach (var news in last20News)
+                    foreach (var news in last30News)
                     {
-                        Debug.WriteLine(news);
+                        Debug.WriteLine(news?.ToString() ?? "null");
                     }
-
                     Debug.WriteLine("---444---");
 
-                    //TODO спорт сделать маленькими буквами
-
-
-                    await _distributedCache.SetStringAsync("cachedNewsList", JsonConvert.SerializeObject(last20News));
+                    try
+                    {
+                        await _distributedCache.SetStringAsync("cachedNewsList", JsonConvert.SerializeObject(last30News));
+                    }
+                    catch (Exception redisEx)
+                    {
+                        Console.WriteLine($"Не удалось записать в кэш Redis: {redisEx.Message}");
+                    }
 
                     Console.WriteLine($"Успешно добавлено {newNews.Count} новостей в базу данных.");
                 }
@@ -199,6 +187,5 @@ namespace SportAppServer.Support2026.Application.AppServices
                 }
             }
         }
-
     }
 }

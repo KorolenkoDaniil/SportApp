@@ -13,10 +13,10 @@
 //    {
 
 //        private readonly INewsRepository _newsRepository;
-//        //private readonly ILikeRepository _likeRepository;
+//        //private readonly INewsLikeRepository _likeRepository;
 //        private readonly IDistributedCache _distributedCache;
 
-//        //public NewsService(INewsRepository newsRepository, ILikeRepository likeRepository, IDistributedCache distributedCache)
+//        //public NewsService(INewsRepository newsRepository, INewsLikeRepository likeRepository, IDistributedCache distributedCache)
 //        public NewsService(INewsRepository newsRepository, IDistributedCache distributedCache)
 //        {
 //            _newsRepository = newsRepository;

@@ -6,9 +6,9 @@
 //{
 //    public class LikeServise : ILikeServise
 //    {
-//        private readonly ILikeRepository _likeRepository;
+//        private readonly INewsLikeRepository _likeRepository;
 
-//        public  LikeServise(ILikeRepository likeRepository)
+//        public  LikeServise(INewsLikeRepository likeRepository)
 //        {
 //            _likeRepository = likeRepository;
 //        }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SportAppServer.Support2026.Domain.Feature.LikeFeature;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
 using SportAppServer.Support2026.Domain.Feature.UserFeature.Entities;
 
@@ -14,6 +15,7 @@ namespace SportAppServer.Support2026.Infrastructure.Database.Context
 
         public DbSet<News> NewsList { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<NewsLike> NewsLikes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

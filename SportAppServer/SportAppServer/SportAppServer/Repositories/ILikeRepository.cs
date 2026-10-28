@@ -2,7 +2,7 @@
 
 //namespace SportAppServer.Repositories
 //{
-//    public interface ILikeRepository
+//    public interface INewsLikeRepository
 //    {
 //        Task<int> AddLikeAsync(Like like);
 //        Task<int> RemoveLikeAsync(DateTime newsDateTime, string userEmail);

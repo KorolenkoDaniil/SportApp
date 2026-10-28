@@ -7,10 +7,10 @@
 
 //namespace SportAppServer.Repositories
 //{
-//    public class LikeRepository: ILikeRepository
+//    public class NewsLikeRepository: INewsLikeRepository
 //    {
 //        private readonly ApplicationDbContext _context;
-//        public LikeRepository(ApplicationDbContext context)
+//        public NewsLikeRepository(ApplicationDbContext context)
 //        {
 //            _context = context;
 //        }

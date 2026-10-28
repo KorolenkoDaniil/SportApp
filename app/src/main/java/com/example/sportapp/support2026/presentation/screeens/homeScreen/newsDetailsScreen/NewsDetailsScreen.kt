@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -17,18 +18,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsState
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsViewModel
-import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.TopBar
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
+import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.TopBar
 import com.example.sportapp.support2026.presentation.screeens.sharedWidgets.LoadingWidget
 import com.example.sportapp.support2026.presentation.ui.CornerRadius_16dp
+import com.example.sportapp.support2026.presentation.ui.theme.News_title_style
 
 @Composable
 fun NewsDetailsScreen (
@@ -62,16 +62,19 @@ fun NewsDetailsScreen (
 
                     LazyColumn(
                         // Добавляем weight(1f), чтобы LazyColumn занял всё оставшееся пространство в ColumnWrapper
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize().padding(4.dp)
                     ) {
                         item {
                             Text(
-                                text = "Title: ${newDetails.title}",
-                                style = TextStyle(
-                                    textAlign = TextAlign.End,
-                                    color = MaterialTheme.colorScheme.onBackground
-                                ),
+                                text = "  ${newDetails.title}",
+                                style = MaterialTheme.typography.News_title_style,
                                 modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+
+                        item {
+                            Box(
+                                modifier = Modifier.height(16.dp).fillMaxWidth()
                             )
                         }
 
@@ -87,10 +90,14 @@ fun NewsDetailsScreen (
                             )
                         }
 
-
+                        item {
+                            Box(
+                                modifier = Modifier.height(16.dp).fillMaxWidth()
+                            )
+                        }
 
                         item {
-                            Text(text = "OneNewsPage $newDetails")
+                            Text(text = "${newDetails.text}")
                         }
                     }
 

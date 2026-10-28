@@ -1,6 +1,3 @@
-import nltk
-nltk.download('stopwords')
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
@@ -16,7 +13,7 @@ class SearchQuery(BaseModel):
     text: str
 
 class LemmaResponse(BaseModel):
-    lemmas: str  # Тип данных изменен на str
+    lemmas: str  # Тип данных — str
 
 def preprocess_text(text: str) -> List[str]:
     text = text.strip()
@@ -36,10 +33,8 @@ def preprocess_text(text: str) -> List[str]:
 
     return lemmas
 
-
-
 @app.post("/lemmatize", response_model=LemmaResponse)
 async def lemmatize_text(query: SearchQuery):
     lemmas = preprocess_text(query.text)
     lemmas_str = " ".join(lemmas)  
-    return LemmaResponse(lemmas=lemmas_str) 
+    return LemmaResponse(lemmas=lemmas_str)

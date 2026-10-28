@@ -5,6 +5,7 @@ using SportAppServer.Support2026.Application.AppServices;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
 using SportAppServer.Support2026.Application.Feature.UserFeature.UseCases;
+using SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository;
 using SportAppServer.Support2026.Domain.Feature.UserFeature.Repository;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
@@ -30,6 +31,7 @@ internal class Program
         // Репозитории
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<INewsLikeRepository, NewsLikeRepository>();
 
 
         // Use Cases
@@ -63,7 +65,7 @@ internal class Program
         //builder.Services.AddScoped<ICommentsService, CommentsService>();
         //builder.Services.AddScoped<IGeminiService, GeminiService>();
         //builder.Services.AddScoped<ILikeServise, LikeServise>();
-        //builder.Services.AddScoped<ILikeRepository, LikeRepository>();
+        //builder.Services.AddScoped<INewsLikeRepository, NewsLikeRepository>();
         //builder.Services.AddScoped<IMessageService, MessageService>();
         //builder.Services.AddScoped<IMessageRepository, MessageRepository>();
         builder.Services.AddScoped<PythonScript>();
