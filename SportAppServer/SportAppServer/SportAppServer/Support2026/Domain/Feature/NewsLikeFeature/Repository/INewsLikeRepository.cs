@@ -5,7 +5,7 @@ namespace SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository
     public interface INewsLikeRepository
     {
 
-        public void UpdateNewsLikeStatus (NewsLikeDto newsLike);
-        public bool CheckIfUserLikedNews(int newsId, string userEmail);
+        public Task UpdateNewsLikeStatus (NewsLikeDto newsLike);
+        public Task<bool> CheckIfUserLikedNews(int newsId, string userEmail);
     }
 }

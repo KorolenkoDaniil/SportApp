@@ -25,6 +25,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsState
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsViewModel
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
+import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.InteractiveButtons
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.TopBar
 import com.example.sportapp.support2026.presentation.screeens.sharedWidgets.LoadingWidget
 import com.example.sportapp.support2026.presentation.ui.CornerRadius_16dp
@@ -99,6 +100,24 @@ fun NewsDetailsScreen (
                         item {
                             Text(text = "${newDetails.text}")
                         }
+
+                        item {
+                            Box(
+                                modifier = Modifier.height(16.dp).fillMaxWidth()
+                            )
+                        }
+
+                        item {
+                            InteractiveButtons(
+                                overlay = TODO(),
+                                currentNews = TODO(),
+                                user = TODO(),
+                                CommentsCount = TODO(),
+                                isDarkTheme = TODO()
+                            )
+                        }
+
+
                     }
 
                 }

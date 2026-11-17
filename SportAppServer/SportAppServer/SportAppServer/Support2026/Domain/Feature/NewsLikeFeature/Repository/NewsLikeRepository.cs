@@ -17,13 +17,13 @@ namespace SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository
             return _context;
         }
 
-        public bool CheckIfUserLikedNews(int newsId, string userEmail)
+        public async Task<bool> CheckIfUserLikedNews(int newsId, string userEmail)
         {
-            return _context.NewsLikes
-                .Any(like => like.NewsId == newsId && like.UserEmail == userEmail);
+            return await Task.FromResult(_context.NewsLikes
+                .Any(like => like.NewsId == newsId && like.UserEmail == userEmail));
         }
 
-        public void UpdateNewsLikeStatus(NewsLikeDto newsLikeDto)
+        public async Task UpdateNewsLikeStatus(NewsLikeDto newsLikeDto)
         {
             NewsLike? existingLike = _context.NewsLikes
                 .FirstOrDefault(like => like.NewsId == newsLikeDto.NewsId && like.UserEmail == newsLikeDto.UserEmail);

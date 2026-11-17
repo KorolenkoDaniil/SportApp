@@ -1,6 +1,6 @@
 package com.example.sportapp.support2026.app
 
-const val baseUrl = "https://bf96-195-238-124-35.ngrok-free.app"
+const val baseUrl = "https://f1dd-195-238-127-204.ngrok-free.app"
 
 const val openLigaBbBaseUrl = "https://api.openligadb.de"
 
