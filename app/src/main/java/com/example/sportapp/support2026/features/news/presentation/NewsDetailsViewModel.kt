@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.sportapp.models.viewModels.BaseState
 import com.example.sportapp.support2026.features.news.domain.entities.news.NewsDetails
 import com.example.sportapp.support2026.features.news.domain.useCases.GetNewsDetailsUseCase
+import com.example.sportapp.support2026.features.newsLike.domain.useCases.ToggleStatusUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +22,8 @@ sealed interface NewsDetailsState : BaseState {
 
 @HiltViewModel
 class NewsDetailsViewModel @Inject constructor(
-    private val getNewsDetailsUseCase: GetNewsDetailsUseCase
+    private val getNewsDetailsUseCase: GetNewsDetailsUseCase,
+    private val toggleStatusUseCase: ToggleStatusUseCase
 ) : ViewModel(){
 
     private val _state = MutableStateFlow<NewsDetailsState>(NewsDetailsState.Load)
@@ -31,7 +33,12 @@ class NewsDetailsViewModel @Inject constructor(
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading.asStateFlow()
 
-    fun loadDetails(id: Int) {
+    private var lastClickTime = 0L
+
+    private val _isLiked = MutableStateFlow(false)
+    val isLiked: StateFlow<Boolean> = _isLiked.asStateFlow()
+
+    fun loadDetails(id: Int, email: String,) {
         viewModelScope.launch {
             if (_loading.value) return@launch
 
@@ -39,7 +46,7 @@ class NewsDetailsViewModel @Inject constructor(
                 _loading.value = true
                 _state.value = NewsDetailsState.Load
 
-                val details = getNewsDetailsUseCase(id)
+                val details = getNewsDetailsUseCase(id, email)
                 Log.d("tttNews", "$details")
 
                 if (details == null) {
@@ -47,6 +54,8 @@ class NewsDetailsViewModel @Inject constructor(
                 }
 
                 _state.value = NewsDetailsState.NewsDetailsContent(details)
+
+                _isLiked.value = details.isLiked
 
             } catch (e: Throwable) {
                 _state.value = NewsDetailsState.Error(e)
@@ -56,5 +65,46 @@ class NewsDetailsViewModel @Inject constructor(
             }
         }
     }
-    
+
+
+
+
+    fun toggleLike (
+        currentNewsId: Int,
+        email: String)
+    {
+
+        val previousState = _isLiked.value
+        _isLiked.value = !previousState
+
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastClickTime < 500) {
+            return
+        }
+        lastClickTime = currentTime
+
+
+
+        viewModelScope.launch {
+            try {
+                val toggleResult = toggleStatusUseCase.invoke(
+                    newsId = currentNewsId,
+                    email = email
+                )
+
+                // Если сервер ответил false — откатываем назад
+                if (!toggleResult) {
+                    _isLiked.value = previousState
+                    Log.e("tttNews", "Сервер отклонил лайк")
+                }
+
+            } catch (e: Throwable) {
+                // При ошибке сети тоже возвращаем старое значение, не ломая весь экран
+                _isLiked.value = previousState
+                Log.e("tttNews", "Ошибка изменения состояния лайка: ${e.message}", e)
+            }
+        }
+
+    }
+
 }

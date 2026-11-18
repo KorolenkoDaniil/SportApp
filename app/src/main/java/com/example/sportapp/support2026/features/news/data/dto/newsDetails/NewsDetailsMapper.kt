@@ -20,7 +20,8 @@ object NewsDetailsMapper {
             sport = dto.sport ?: "sport",
             imageUrl = imageUrl,
             text = dto.text ?: "текст не придумали",
-            title = dto.title?: "не пришел title"
+            title = dto.title?: "не пришел title",
+            isLiked = dto.isLiked
         )
     }
 }

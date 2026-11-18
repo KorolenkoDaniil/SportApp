@@ -6,5 +6,5 @@ import com.example.sportapp.support2026.features.news.data.dto.newsList.NewsPage
 interface NewsApi {
     suspend fun getPaginatedNewsList(pageNumber: Int) : NewsPageDto
 
-    suspend fun getNewsDetails(newsId: Int): NewsDetailsDto
+    suspend fun getNewsDetails(newsId: Int, email: String?): NewsDetailsDto
 }

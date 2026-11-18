@@ -7,6 +7,7 @@ import com.example.sportapp.support2026.features.news.data.dto.newsList.NewsPage
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
 import javax.inject.Inject
 
@@ -28,12 +29,15 @@ class NewsApiImpl @Inject constructor(
         return response
     }
 
-    override suspend fun getNewsDetails(newsId: Int): NewsDetailsDto {
-        val httpResponse: HttpResponse = client.get ( "${baseUrl}/api/news/GetNewsDetails/${newsId}")
+    override suspend fun getNewsDetails(newsId: Int, email: String?): NewsDetailsDto {
+        val httpResponse: HttpResponse = client.get("${baseUrl}/api/news/GetNewsDetails/${newsId}") {
+            if (!email.isNullOrBlank()) {
+                parameter("email", email)
+            }
+        }
 
-        val response : NewsDetailsDto = httpResponse.body()
-        Log.d("tttNews", "${response}")
-
+        val response: NewsDetailsDto = httpResponse.body()
+        Log.d("tttNews", "$response")
         return response
     }
 }

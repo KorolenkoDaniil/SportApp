@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Text.Json.Serialization;
 
 namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Dto
 {

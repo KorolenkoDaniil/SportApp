@@ -43,7 +43,7 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers
                 Sport = entity.Sport,
                 Title = entity.Title,
                 ImageId = entity.ImageId,
-                ArticleText = entity.ArticleText,
+                ArticleText = entity.ArticleText
             };
         }
 
@@ -57,7 +57,7 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers
                 Sport = entity.Sport,
                 Title = entity.Title,
                 ImageId = entity.ImageId,
-                ArticleText = entity.ArticleText,
+                ArticleText = entity.ArticleText
             };
         }
     }

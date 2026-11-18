@@ -2,6 +2,7 @@
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Dto;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
+using SportAppServer.Support2026.Application.Feature.NewsLikeFeature.UseCases;
 using System.Diagnostics;
 
 
@@ -13,6 +14,7 @@ namespace SportAppServer.Controllers
     {
         private readonly GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
         private readonly GetNewsDetailsUseCase _getNewsDetailsUseCase;
+        private readonly CheckIfUserLikedNewsUseCase _checkIfUserLikedNewsUseCase;
 
         //private readonly ILikeServise _likeService;
 
@@ -23,13 +25,14 @@ namespace SportAppServer.Controllers
         //    _likeService = likeServise;
         //}
 
-        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsDetailsUseCase getNewsByDateUseCase)
+        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsDetailsUseCase getNewsByDateUseCase, CheckIfUserLikedNewsUseCase checkIfUserLikedNewsUseCase)
         {
 
             //обьединиить множестов use cases В ФАСАД
             //бъединять их в один сервис имеет смысл только если конструктор разрастется до 5 + зависимостей.
             _getPaginatedNewsUseCase = getPaginatedNewsUseCase;
             _getNewsDetailsUseCase = getNewsByDateUseCase;
+            _checkIfUserLikedNewsUseCase = checkIfUserLikedNewsUseCase;
         }
 
 
@@ -69,30 +72,29 @@ namespace SportAppServer.Controllers
 
 
 
-
         [HttpGet("GetNewsDetails/{newsId}")]
-        public async Task<IActionResult> GetNewsDetails([FromRoute] int newsId)
+        public async Task<IActionResult> GetNewsDetails(
+            [FromRoute] int newsId,
+            [FromQuery] string? email = null) 
         {
             try
             {
-                Debug.WriteLine($"[GetNewsDetails] newsId: {newsId}");
-
-                NewsDetailsDto newsDetails = await _getNewsDetailsUseCase.Execute(newsId);
+                var newsDetails = await _getNewsDetailsUseCase.Execute(newsId);
 
                 if (newsDetails == null)
-                {
-                    Debug.WriteLine("[GetNewsDetails] newsDetails is null");
-                    return StatusCode(400, "Ошибка: данные не получены");
-                }
+                    return NotFound("Ошибка: данные не получены");
 
-                Debug.WriteLine($"[GetNewsDetails] Успешно возвращена новость: {newsDetails.ToString()}");
+                // Если email передан — проверяем лайк, если нет — оставляем false
+                if (!string.IsNullOrEmpty(email))
+                {
+                    newsDetails.isLiked = await _checkIfUserLikedNewsUseCase.ExecuteAsync(newsId, email);
+                }
 
                 return Ok(newsDetails);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"[GetNewsDetails] Ошибка: {ex.Message}");
-                Debug.WriteLine(ex.StackTrace);
                 return StatusCode(500, "Внутренняя ошибка сервера");
             }
         }

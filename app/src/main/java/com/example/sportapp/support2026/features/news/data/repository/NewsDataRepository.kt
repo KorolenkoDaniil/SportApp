@@ -24,8 +24,8 @@ class NewsDataRepository @Inject constructor(
         return entityPage.itemsList
     }
 
-    override suspend fun getNewsDetails(newsId: Int): NewsDetails {
-        val dto : NewsDetailsDto = api.getNewsDetails(newsId)
+    override suspend fun getNewsDetails(newsId: Int, email: String): NewsDetails {
+        val dto : NewsDetailsDto = api.getNewsDetails(newsId, email)
 
         val newsDetailsEntity = NewsDetailsMapper.mapNewsDetailsDtoToEntity(dto)
         return newsDetailsEntity

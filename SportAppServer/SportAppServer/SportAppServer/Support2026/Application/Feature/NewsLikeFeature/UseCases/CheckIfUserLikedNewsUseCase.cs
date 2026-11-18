@@ -12,7 +12,7 @@ namespace SportAppServer.Support2026.Application.Feature.NewsLikeFeature.UseCase
         public async Task<bool> ExecuteAsync(int newsId, string userEmail)
         {
             var like = await _newsLikeRepository.CheckIfUserLikedNews(newsId, userEmail);
-            return like != null;
+            return like;
         }
     }
 }

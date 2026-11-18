@@ -108,7 +108,6 @@ fun MainNavigation (
                 )
             }
 
-            // ИСПРАВЛЕННЫЙ БЛОК ДЛЯ НОВОСТЕЙ С ПОДДЕРЖКОЙ ДИПЛИНКОВ И ПЕРЕХОДОВ
             composable(
                 route = Screen.NewsDetailsScreen.route,
                 arguments = listOf(
@@ -117,22 +116,19 @@ fun MainNavigation (
                     }
                 ),
                 deepLinks = listOf(
-                    // Поддержка прямого диплинка из манифеста
                     navDeepLink {
                         uriPattern = "korsport://news/{newsId}"
                     },
-                    // Поддержка диплинка через ваш веб-шлюз на GitHub Pages
                     navDeepLink {
                         uriPattern = "https://korolenkodaniil.github.io/deeplink-sportapp/?id={newsId}"
                     }
                 )
             ) { backStackEntry ->
-                // Универсальное извлечение: сработает и при обычной навигации, и при диплинке
                 val newsId = backStackEntry.arguments?.getInt("newsId")
                     ?: backStackEntry.arguments?.getString("newsId")?.toIntOrNull()
 
                 if (newsId != null && newsId != -1) {
-                    NewsDetailsScreen(navHostController, newsId)
+                    NewsDetailsScreen(navHostController, newsId, userViewModel.currentUser.value)
                 } else {
                     Log.d("MainNavigation", "не правильный аргумент newsId")
                 }

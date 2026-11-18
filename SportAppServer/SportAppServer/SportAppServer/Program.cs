@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SportAppServer.Support2026.Application.AppServices;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
+using SportAppServer.Support2026.Application.Feature.NewsLikeFeature.UseCases;
 using SportAppServer.Support2026.Application.Feature.UserFeature.UseCases;
 using SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository;
@@ -41,6 +42,8 @@ internal class Program
         builder.Services.AddScoped<GetUserByIdUseCase>();
         builder.Services.AddScoped<AddUserToDbUseCase>();
         builder.Services.AddScoped<CheckUserExistsUseCase>();
+        builder.Services.AddScoped<CheckIfUserLikedNewsUseCase>();
+        builder.Services.AddScoped<UpdateNewsLikeStatusUseCase>();
 
         // Application Services
 

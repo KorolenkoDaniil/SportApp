@@ -1,5 +1,7 @@
-package com.example.sportapp.support2026.features.news.data.api
+package com.example.sportapp.support2026.features.news.data.di // или ваш актуальный пакет для модуля новостей
 
+import com.example.sportapp.support2026.features.news.data.api.NewsApi
+import com.example.sportapp.support2026.features.news.data.api.NewsApiImpl
 import com.example.sportapp.support2026.features.news.data.repository.NewsDataRepository
 import com.example.sportapp.support2026.features.news.domain.repository.NewsDomainRepository
 import dagger.Binds
@@ -12,15 +14,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class NewsModule {
 
-
-////это ручной способ
-//    @Provides
-//    fun provideNewsApi(
-//        provider: NewsNetworkProvider
-//    ): NewsApi {
-//        return NewsApiImpl(provider)
-//    }
-
     @Binds
     @Singleton
     abstract fun bindNewsApi(
@@ -30,6 +23,6 @@ abstract class NewsModule {
     @Binds
     @Singleton
     abstract fun bindNewsRepository(
-        newsDataRepository: NewsDataRepository // Сюда передаем ваш класс реализации
-    ): NewsDomainRepository // А здесь возвращаем доменный интерфейс
+        newsDataRepository: NewsDataRepository
+    ): NewsDomainRepository
 }

@@ -21,5 +21,8 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Dto
 
         [JsonProperty("text")]
         public string ArticleText { get; set; } = "";
+
+        [JsonProperty("isLiked")]
+        public bool isLiked { get; set; } = false;
     }
 }

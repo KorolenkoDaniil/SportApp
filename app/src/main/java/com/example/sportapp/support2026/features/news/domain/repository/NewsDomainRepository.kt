@@ -5,5 +5,5 @@ import com.example.sportapp.support2026.features.news.domain.entities.news.NewsD
 
 interface NewsDomainRepository{
     suspend fun getNews(page: Int): List<News>
-    suspend fun getNewsDetails(newsId: Int): NewsDetails
+    suspend fun getNewsDetails(newsId: Int, email: String): NewsDetails
 }

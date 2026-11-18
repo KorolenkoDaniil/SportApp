@@ -26,6 +26,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsState
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsViewModel
+import com.example.sportapp.support2026.features.user.domain.entity.User
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.InteractiveButtons
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.TopBar
@@ -37,6 +38,7 @@ import com.example.sportapp.support2026.presentation.ui.theme.News_title_style
 fun NewsDetailsScreen (
     navController: NavHostController,
     newsId: Int,
+    user: User?,
     newsDetailsViewModel: NewsDetailsViewModel = hiltViewModel()
 ){
 
@@ -46,8 +48,10 @@ fun NewsDetailsScreen (
     val currentNews = newsDetailsViewModel.loadedNewsDetails
 
     LaunchedEffect(Unit) {
+
+        val email = user?.email ?: ""
         if (!newsDetailsLoadingState) {
-            newsDetailsViewModel.loadDetails(newsId)
+            newsDetailsViewModel.loadDetails(newsId, email)
         }
     }
 
@@ -114,15 +118,12 @@ fun NewsDetailsScreen (
                         item {
                             InteractiveButtons(
                                 overlay = overlayVisible,
-                                currentNews = newDetails
-                            )
-                        //     InteractiveButtons(
-//                                overlay = TODO(),
-//                                currentNews = newDetails,
-////                                user = TODO(),
+                                currentNews = newDetails,
+                                user = user,
+                                newsDetailsViewModel = newsDetailsViewModel
 ////                                CommentsCount = TODO(),
 ////                                isDarkTheme = TODO()
-//                            )
+                            )
                         }
 
 

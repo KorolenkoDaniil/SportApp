@@ -27,7 +27,9 @@ namespace SportAppServer.Support2026.Infrastructure.Configuration
                 .HasMaxLength(255)
                 .IsRequired();
 
-        
+            builder.HasIndex(n => new { n.NewsId, n.UserEmail })
+                .IsUnique()
+                .HasDatabaseName("IX_NewsLike_NewsId_UserEmail");
         }
     }
 }
