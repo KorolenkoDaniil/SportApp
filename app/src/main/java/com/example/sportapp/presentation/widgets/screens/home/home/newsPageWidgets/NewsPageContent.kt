@@ -59,7 +59,7 @@
 //    val currentNews = (oneNewsState as OneNewsSate.OneNewsContent).news
 //    val painterNewsImage = rememberAsyncImagePainter(currentNews.newsImage)
 //
-//    val overlayVisible = remember { mutableStateOf(false) }
+//
 //
 //    val format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
 //    val formattedDate = currentNews.dateTime.format(format)

@@ -6,8 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -16,33 +14,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.example.sportapp.CleanArchitexture.domain.models.news.NewsEntity
-import com.example.sportapp.CleanArchitexture.domain.models.user.UserEntity
 import com.example.sportapp.R
+import com.example.sportapp.support2026.features.news.domain.entities.news.NewsDetails
 
 @Composable
 fun InteractiveButtons(
     overlay: MutableState<Boolean>,
-    currentNews: NewsEntity,
-    user: UserEntity,
-    CommentsCount: MutableState<Int>,
-    isDarkTheme: Boolean
+    currentNews: NewsDetails,
+//    user: UserEntity,
+//    CommentsCount: MutableState<Int>,
+//    isDarkTheme: Boolean
 
 ) {
 
-    val icon_like = if (isDarkTheme) { R.drawable.like } else { R.drawable.w_like }
-    val icon_comments = if (isDarkTheme) { R.drawable.comment } else { R.drawable.w_comments }
-    val icon_send = if (isDarkTheme) { R.drawable.send } else { R.drawable.w_send }
+    val icon_like =  R.drawable.like
+    val icon_comments = R.drawable.comment
+    val icon_send = R.drawable.send
 
-    //TODO не запоминается, что новость была лайкнута
+
+
+//TODO не запоминается, что новость была лайкнута
 
 //    val likeViewModel: LikeViewModel = viewModel()
 //    val likeRes = if (currentNews.isLiked) R.drawable.red_heart else icon_like
 
     val context = LocalContext.current
-    val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.dateTime}"
+    val link = "https://korolenkodaniil.github.io/deeplink-sportapp/?id=${currentNews.id}"
 
     val lastLikeTime = remember { mutableStateOf(0L) }
 //    val likeCount = remember { mutableStateOf(currentNews.likesCount) }
@@ -77,9 +75,9 @@ fun InteractiveButtons(
         )
 
         Spacer(Modifier.width(8.dp))
-        Text(text = CommentsCount.value.toString(), style = TextStyle(
-            color = MaterialTheme.colorScheme.onBackground
-        ))
+//        Text(text = CommentsCount.value.toString(), style = TextStyle(
+//            color = MaterialTheme.colorScheme.onBackground
+//        ))
 
         Spacer(Modifier.width(16.dp))
         Image(

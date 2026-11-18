@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +42,8 @@ fun NewsDetailsScreen (
 
     val newsDetailsState by newsDetailsViewModel.state.collectAsState()
     val newsDetailsLoadingState by newsDetailsViewModel.loading.collectAsState()
+    val overlayVisible = remember { mutableStateOf(false) }
+    val currentNews = newsDetailsViewModel.loadedNewsDetails
 
     LaunchedEffect(Unit) {
         if (!newsDetailsLoadingState) {
@@ -109,13 +113,25 @@ fun NewsDetailsScreen (
 
                         item {
                             InteractiveButtons(
-                                overlay = TODO(),
-                                currentNews = TODO(),
-                                user = TODO(),
-                                CommentsCount = TODO(),
-                                isDarkTheme = TODO()
+                                overlay = overlayVisible,
+                                currentNews = newDetails
                             )
+                        //     InteractiveButtons(
+//                                overlay = TODO(),
+//                                currentNews = newDetails,
+////                                user = TODO(),
+////                                CommentsCount = TODO(),
+////                                isDarkTheme = TODO()
+//                            )
                         }
+
+
+//                        BottomSheet(
+//                            showSheet = overlayVisible.value,
+//                            onDismiss = { overlayVisible.value = false }
+//                        ) {
+//                            CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
+//                        }
 
 
                     }

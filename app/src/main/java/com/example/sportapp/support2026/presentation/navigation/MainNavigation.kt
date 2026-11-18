@@ -10,9 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
 import com.example.sportapp.support2026.features.user.authorisation.AuthViewModel
 import com.example.sportapp.support2026.features.user.viewModel.UserViewModel
@@ -57,12 +60,9 @@ fun MainNavigation (
             ){
 
                 composable(Screen.SplashScreen.route) {
-
                     val parentEntry = remember(navBackStackEntry) {
                         navHostController.getBackStackEntryOrNull("auth_graph")
                     }
-
-                    // 2. Если граф еще существует — отображаем экран
                     if (parentEntry != null) {
                         val authViewModel: AuthViewModel = hiltViewModel(parentEntry)
                         SplashScreen(
@@ -73,12 +73,9 @@ fun MainNavigation (
                 }
 
                 composable(Screen.LogInScreen.route) {
-
                     val parentEntry = remember(navBackStackEntry) {
                         navHostController.getBackStackEntryOrNull("auth_graph")
                     }
-
-                    // 2. Если граф еще существует — отображаем экран
                     if (parentEntry != null) {
                         val authViewModel: AuthViewModel = hiltViewModel(parentEntry)
                         LogInScreen(
@@ -90,12 +87,9 @@ fun MainNavigation (
                 }
 
                 composable(Screen.SignUpScreen.route) {
-
                     val parentEntry = remember(navBackStackEntry) {
                         navHostController.getBackStackEntryOrNull("auth_graph")
                     }
-
-                    // 2. Если граф еще существует — отображаем экран
                     if (parentEntry != null) {
                         val authViewModel: AuthViewModel = hiltViewModel(parentEntry)
                         SignUpScreen(
@@ -105,8 +99,8 @@ fun MainNavigation (
                         )
                     }
                 }
-
             }
+
             composable(Screen.HomeScreen.route) {
                 HomeScreen(
                     navController = navHostController,
@@ -114,17 +108,35 @@ fun MainNavigation (
                 )
             }
 
-            composable(Screen.NewsDetailsScreen.route) { backStackEntry ->
-                val newsId = backStackEntry.arguments?.getString("newsId")?.toIntOrNull()
+            // ИСПРАВЛЕННЫЙ БЛОК ДЛЯ НОВОСТЕЙ С ПОДДЕРЖКОЙ ДИПЛИНКОВ И ПЕРЕХОДОВ
+            composable(
+                route = Screen.NewsDetailsScreen.route,
+                arguments = listOf(
+                    navArgument("newsId") {
+                        type = NavType.IntType
+                    }
+                ),
+                deepLinks = listOf(
+                    // Поддержка прямого диплинка из манифеста
+                    navDeepLink {
+                        uriPattern = "korsport://news/{newsId}"
+                    },
+                    // Поддержка диплинка через ваш веб-шлюз на GitHub Pages
+                    navDeepLink {
+                        uriPattern = "https://korolenkodaniil.github.io/deeplink-sportapp/?id={newsId}"
+                    }
+                )
+            ) { backStackEntry ->
+                // Универсальное извлечение: сработает и при обычной навигации, и при диплинке
+                val newsId = backStackEntry.arguments?.getInt("newsId")
+                    ?: backStackEntry.arguments?.getString("newsId")?.toIntOrNull()
 
-                if (newsId != null) {
+                if (newsId != null && newsId != -1) {
                     NewsDetailsScreen(navHostController, newsId)
                 } else {
                     Log.d("MainNavigation", "не правильный аргумент newsId")
                 }
             }
-
-
 
             composable(Screen.MatchesScheduleScreen.route) {
                 MatchesScheduleScreen()
@@ -142,8 +154,6 @@ fun NavHostController.getBackStackEntryOrNull(route: String): NavBackStackEntry?
     return try {
         getBackStackEntry(route)
     } catch (e: IllegalArgumentException) {
-        null // Если графа нет — не падаем, а возвращаем null
+        null
     }
 }
-
-
