@@ -21,7 +21,9 @@ object NewsDetailsMapper {
             imageUrl = imageUrl,
             text = dto.text ?: "текст не придумали",
             title = dto.title?: "не пришел title",
-            isLiked = dto.isLiked
+            isLiked = dto.isLiked,
+            commentsAmount = dto.commentsAmount,
+            likesAmount = dto.likesAmount
         )
     }
 }

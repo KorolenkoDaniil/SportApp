@@ -24,5 +24,11 @@ namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Dto
 
         [JsonProperty("isLiked")]
         public bool isLiked { get; set; } = false;
+
+        [JsonProperty("commentsAmount")]
+        public int CommentsAmount { get; set; } = 0;
+
+        [JsonProperty("likesAmount")]
+        public int LikesAmount { get; set; } = 0;
     }
 }

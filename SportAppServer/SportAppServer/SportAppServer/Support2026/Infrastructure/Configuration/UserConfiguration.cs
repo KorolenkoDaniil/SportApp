@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SportAppServer.Support2026.Domain.Feature.LikeFeature;
 using SportAppServer.Support2026.Domain.Feature.UserFeature.Entities;
 
 namespace SportAppServer.Support2026.Infrastructure.Configuration
@@ -27,6 +28,13 @@ namespace SportAppServer.Support2026.Infrastructure.Configuration
 
             builder.Property(u => u.ImageId)
                .HasColumnName("ImageId");
-    }
+
+
+            builder.HasMany<NewsLike>()
+                .WithOne()
+                .HasPrincipalKey(u => u.Email)
+                .HasForeignKey(like => like.UserEmail)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

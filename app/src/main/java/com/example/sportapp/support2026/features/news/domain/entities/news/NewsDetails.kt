@@ -10,7 +10,9 @@ data class NewsDetails (
     val imageUrl: String,
     val text: String,
     val title: String,
-    val isLiked: Boolean
+    val isLiked: Boolean,
+    val likesAmount: Int,
+    val commentsAmount: Int
 ){
     override fun toString(): String {
         return "NewsDetails(id=$id, title='$title', sport='$sport', imageId=${imageUrl} dateTime=$dateTime, text=$text, isLiked=$isLiked)"

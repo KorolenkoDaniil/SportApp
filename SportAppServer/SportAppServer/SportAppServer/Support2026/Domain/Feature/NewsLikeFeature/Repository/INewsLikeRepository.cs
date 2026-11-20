@@ -7,5 +7,6 @@ namespace SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository
 
         public Task UpdateNewsLikeStatus (NewsLikeDto newsLike);
         public Task<bool> CheckIfUserLikedNews(int newsId, string userEmail);
+        public Task<int> CountNewsLikes(int newsId);
     }
 }

@@ -22,6 +22,45 @@ namespace SportAppServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SportAppServer.Support2026.Domain.Feature.CommentsFeature.Entities.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CommentId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
+
+                    b.Property<DateTime>("CommentDateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CommentDateTime")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)")
+                        .HasColumnName("CommentText");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("Email");
+
+                    b.Property<int>("NewsId")
+                        .HasColumnType("int")
+                        .HasColumnName("NewsId");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("NewsId", "Email")
+                        .HasDatabaseName("IX_NewsComments_NewsId_UserEmail");
+
+                    b.ToTable("Comments", (string)null);
+                });
+
             modelBuilder.Entity("SportAppServer.Support2026.Domain.Feature.LikeFeature.NewsLike", b =>
                 {
                     b.Property<int>("LikeId")
@@ -42,6 +81,12 @@ namespace SportAppServer.Migrations
                         .HasColumnName("UserEmail");
 
                     b.HasKey("LikeId");
+
+                    b.HasIndex("UserEmail");
+
+                    b.HasIndex("NewsId", "UserEmail")
+                        .IsUnique()
+                        .HasDatabaseName("IX_NewsLike_NewsId_UserEmail");
 
                     b.ToTable("NewsLike", (string)null);
                 });
@@ -121,6 +166,31 @@ namespace SportAppServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUser", (string)null);
+                });
+
+            modelBuilder.Entity("SportAppServer.Support2026.Domain.Feature.CommentsFeature.Entities.Comment", b =>
+                {
+                    b.HasOne("SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities.News", null)
+                        .WithMany()
+                        .HasForeignKey("NewsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SportAppServer.Support2026.Domain.Feature.LikeFeature.NewsLike", b =>
+                {
+                    b.HasOne("SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities.News", null)
+                        .WithMany()
+                        .HasForeignKey("NewsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SportAppServer.Support2026.Domain.Feature.UserFeature.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserEmail")
+                        .HasPrincipalKey("Email")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

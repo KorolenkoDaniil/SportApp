@@ -30,6 +30,8 @@ import com.example.sportapp.support2026.features.user.domain.entity.User
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.InteractiveButtons
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.TopBar
+import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.overlay.BottomSheet
+import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.overlay.CommentsOverlay
 import com.example.sportapp.support2026.presentation.screeens.sharedWidgets.LoadingWidget
 import com.example.sportapp.support2026.presentation.ui.CornerRadius_16dp
 import com.example.sportapp.support2026.presentation.ui.theme.News_title_style
@@ -125,16 +127,16 @@ fun NewsDetailsScreen (
 ////                                isDarkTheme = TODO()
                             )
                         }
+                    }
 
-
-//                        BottomSheet(
-//                            showSheet = overlayVisible.value,
-//                            onDismiss = { overlayVisible.value = false }
-//                        ) {
-//                            CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
-//                        }
-
-
+                    BottomSheet(
+                        showSheet = overlayVisible.value,
+                        onDismiss = { overlayVisible.value = false }
+                    ) {
+//                        CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
+                        CommentsOverlay(
+                            overlayVisible = overlayVisible
+                        )
                     }
 
                 }

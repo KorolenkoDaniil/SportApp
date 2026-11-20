@@ -8,11 +8,11 @@ import androidx.compose.runtime.MutableState
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun CommentsOverlay(
-    showBar: MutableState<Boolean>,
+//    showBar: MutableState<Boolean>,
     overlayVisible: MutableState<Boolean>,
 //    authModel: AuthViewModel,
 //    currentNews: NewsEntity,
-    CommentsCount: MutableState<Int>
+//    CommentsCount: MutableState<Int>
 ) {
 
 //    val commentsViewModel = CommentsViewModel()

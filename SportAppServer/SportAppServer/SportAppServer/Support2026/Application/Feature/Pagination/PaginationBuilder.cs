@@ -1,4 +1,4 @@
-﻿namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination
+﻿namespace SportAppServer.Support2026.Application.Feature.Pagination
 {
     // Implementation of pattern Builder for pagintion
     public class PaginationBuilder<T> : IPaginationBuilder<T>

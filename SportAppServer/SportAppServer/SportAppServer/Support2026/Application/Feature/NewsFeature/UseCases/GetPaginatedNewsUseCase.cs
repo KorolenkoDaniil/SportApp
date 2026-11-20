@@ -1,6 +1,6 @@
 ﻿using SportAppServer.Support2026.Application.Feature.NewsFeature.Dto;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Mappers;
-using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
+using SportAppServer.Support2026.Application.Feature.Pagination;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository;
 

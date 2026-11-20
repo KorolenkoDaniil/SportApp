@@ -11,5 +11,7 @@ data class NewsDetailsDto (
     @SerialName("imageId") val imageId: String?,
     @SerialName("articleText") val text: String?,
     @SerialName("title") val title: String?,
-    @SerialName("isLiked") val isLiked: Boolean
+    @SerialName("isLiked") val isLiked: Boolean,
+    @SerialName("commentsAmount") val commentsAmount: Int,
+    @SerialName("likesAmount") val likesAmount: Int
 )

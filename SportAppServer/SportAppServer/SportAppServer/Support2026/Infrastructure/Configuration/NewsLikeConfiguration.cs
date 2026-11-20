@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SportAppServer.Support2026.Domain.Feature.LikeFeature;
+using SportAppServer.Support2026.Domain.Feature.NewsFeature.Entities;
 
 
 
@@ -30,6 +31,12 @@ namespace SportAppServer.Support2026.Infrastructure.Configuration
             builder.HasIndex(n => new { n.NewsId, n.UserEmail })
                 .IsUnique()
                 .HasDatabaseName("IX_NewsLike_NewsId_UserEmail");
+
+
+            builder.HasOne<News>()
+                .WithMany()
+                .HasForeignKey(like => like.NewsId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

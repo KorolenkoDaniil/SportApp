@@ -1,4 +1,5 @@
-﻿using SportAppServer.Support2026.Application.Feature.NewsLikeFeature.Dto;
+﻿using Microsoft.EntityFrameworkCore;
+using SportAppServer.Support2026.Application.Feature.NewsLikeFeature.Dto;
 using SportAppServer.Support2026.Infrastructure.Database.Context;
 
 namespace SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository
@@ -43,6 +44,11 @@ namespace SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository
             }
 
             _context.SaveChanges();
+        }
+
+        public async Task<int> CountNewsLikes(int newsId)
+        {
+            return await _context.NewsLikes.Where(like => like.NewsId == newsId).CountAsync();
         }
     }
 }

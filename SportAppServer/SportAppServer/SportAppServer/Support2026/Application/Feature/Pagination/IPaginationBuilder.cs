@@ -1,4 +1,4 @@
-﻿namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination
+﻿namespace SportAppServer.Support2026.Application.Feature.Pagination
 {
 
     // Pagination builder interface used to construct a

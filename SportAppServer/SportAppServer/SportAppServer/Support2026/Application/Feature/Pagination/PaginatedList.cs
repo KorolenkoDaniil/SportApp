@@ -1,4 +1,4 @@
-﻿namespace SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination
+﻿namespace SportAppServer.Support2026.Application.Feature.Pagination
 {
     // Represents a paginated result set. Contains metadata such as
     // current page number, page size, total number of

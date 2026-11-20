@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SportAppServer.Support2026.Application.Feature.CommentsFeature.UseCases;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.Dto;
-using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
 using SportAppServer.Support2026.Application.Feature.NewsLikeFeature.UseCases;
+using SportAppServer.Support2026.Application.Feature.Pagination;
 using System.Diagnostics;
 
 
@@ -15,6 +16,8 @@ namespace SportAppServer.Controllers
         private readonly GetPaginatedNewsUseCase _getPaginatedNewsUseCase;
         private readonly GetNewsDetailsUseCase _getNewsDetailsUseCase;
         private readonly CheckIfUserLikedNewsUseCase _checkIfUserLikedNewsUseCase;
+        private readonly GetCommentsAmountUseCase _getCommentsAmountUseCase;
+        private readonly GetLikesAmountUseCase _getLikesAmountUseCase;
 
         //private readonly ILikeServise _likeService;
 
@@ -25,7 +28,13 @@ namespace SportAppServer.Controllers
         //    _likeService = likeServise;
         //}
 
-        public NewsController(GetPaginatedNewsUseCase getPaginatedNewsUseCase, GetNewsDetailsUseCase getNewsByDateUseCase, CheckIfUserLikedNewsUseCase checkIfUserLikedNewsUseCase)
+        public NewsController(
+            GetPaginatedNewsUseCase getPaginatedNewsUseCase,
+            GetNewsDetailsUseCase getNewsByDateUseCase,
+            CheckIfUserLikedNewsUseCase checkIfUserLikedNewsUseCase,
+            GetCommentsAmountUseCase getCommentsAmountUseCase,
+            GetLikesAmountUseCase getLikesAmountUseCase
+            )
         {
 
             //обьединиить множестов use cases В ФАСАД
@@ -33,6 +42,8 @@ namespace SportAppServer.Controllers
             _getPaginatedNewsUseCase = getPaginatedNewsUseCase;
             _getNewsDetailsUseCase = getNewsByDateUseCase;
             _checkIfUserLikedNewsUseCase = checkIfUserLikedNewsUseCase;
+            _getCommentsAmountUseCase = getCommentsAmountUseCase;
+            _getLikesAmountUseCase = getLikesAmountUseCase;
         }
 
 
@@ -79,10 +90,24 @@ namespace SportAppServer.Controllers
         {
             try
             {
+
                 var newsDetails = await _getNewsDetailsUseCase.Execute(newsId);
 
                 if (newsDetails == null)
+                {
+                    throw new ArgumentNullException("Ошибка GetNewsDetails новость не найденаЫ");
+                }
+
+
+                newsDetails.CommentsAmount = await _getCommentsAmountUseCase.Execute(newsId);
+                newsDetails.LikesAmount = await _getLikesAmountUseCase.Execute(newsId);
+
+                if (newsDetails == null)
                     return NotFound("Ошибка: данные не получены");
+
+
+                
+
 
                 // Если email передан — проверяем лайк, если нет — оставляем false
                 if (!string.IsNullOrEmpty(email))

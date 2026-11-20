@@ -2,10 +2,12 @@ using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.EntityFrameworkCore;
 using SportAppServer.Support2026.Application.AppServices;
-using SportAppServer.Support2026.Application.Feature.NewsFeature.Pagination;
+using SportAppServer.Support2026.Application.Feature.CommentsFeature.UseCases;
 using SportAppServer.Support2026.Application.Feature.NewsFeature.UseCases;
 using SportAppServer.Support2026.Application.Feature.NewsLikeFeature.UseCases;
+using SportAppServer.Support2026.Application.Feature.Pagination;
 using SportAppServer.Support2026.Application.Feature.UserFeature.UseCases;
+using SportAppServer.Support2026.Domain.Feature.CommentsFeature.Repository;
 using SportAppServer.Support2026.Domain.Feature.LikeFeature.Repository;
 using SportAppServer.Support2026.Domain.Feature.NewsFeature.Repository;
 using SportAppServer.Support2026.Domain.Feature.UserFeature.Repository;
@@ -33,7 +35,7 @@ internal class Program
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<INewsLikeRepository, NewsLikeRepository>();
-
+        builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
         // Use Cases
         builder.Services.AddScoped<GetPaginatedNewsUseCase>();
@@ -44,12 +46,19 @@ internal class Program
         builder.Services.AddScoped<CheckUserExistsUseCase>();
         builder.Services.AddScoped<CheckIfUserLikedNewsUseCase>();
         builder.Services.AddScoped<UpdateNewsLikeStatusUseCase>();
+        builder.Services.AddScoped<GetCommentsAmountUseCase>();
+        builder.Services.AddScoped<GetLikesAmountUseCase>();
+        builder.Services.AddScoped<AddNewCommentUseCase>();
+        builder.Services.AddScoped<GetPaginatedCommentsList>();
+        builder.Services.AddScoped<DeleteCommentUseCase>();
+        builder.Services.AddScoped<EditCommentUseCase>();
 
         // Application Services
 
 
         // Generic Builders
         builder.Services.AddScoped(typeof(IPaginationBuilder<>), typeof(PaginationBuilder<>));
+     
 
 
 

@@ -1,82 +1,121 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-//using SportAppServer.Models.DTOs.Requests;
-//using SportAppServer.Models.Entities;
-//using SportAppServer.Models.NewsPagination;
-//using SportAppServer.Services;
-//using System.Diagnostics;
-
-//namespace SportAppServer.Controllers
-//{
-//    [Route("Comments")]
-//    [ApiController]
-//    public class CommentsController : Controller
-//    {
-//        private readonly ICommentsService _commentsService;
-
-//        public CommentsController(ICommentsService commentsService)
-//        {
-//            _commentsService = commentsService;
-//        }
-
-
-//        [HttpGet("GetComments")]
-//        public async Task<IActionResult> GetComments([FromQuery] DateTime itemId, string Viewer, int pageNumber = 1, int pageSize = 10)
-//        {
-//            CommentsPagination paginatedComments = await _commentsService.GetPaginatedCommentsList(itemId, Viewer, pageNumber, pageSize);
-
-//            return Ok(paginatedComments);
-//        }
-
-
-
-//        [HttpPost("PutComment")]
-//        public async Task<IActionResult> PutComment ([FromBody] CommentDTO comment)
-//        {
-//            CommentDTO commentDTO = await _commentsService.PutCommment(comment);
-
-//            return Ok(commentDTO);
-//        }
+﻿using Microsoft.AspNetCore.Mvc;
+using SportAppServer.Support2026.Application.Feature.CommentsFeature.Dto;
+using SportAppServer.Support2026.Application.Feature.CommentsFeature.Mappers;
+using SportAppServer.Support2026.Application.Feature.CommentsFeature.UseCases;
+using SportAppServer.Support2026.Application.Feature.Pagination;
+using SportAppServer.Support2026.Domain.Feature.CommentsFeature.Entities;
+using System.Diagnostics;
 
 
 
 
-//        [HttpPost("AddLike")]
-//        public async Task<IActionResult> AddLike([FromBody] AddCommentLike likeData)
-//        {
-
-//            Debug.WriteLine($"LikeData: {likeData.LikeAuthor}, {likeData.CommentId}");
-
-//            if (string.IsNullOrEmpty(likeData.LikeAuthor))
-//                return BadRequest();
-
-//            int likesCount = await _commentsService.AddLike(likeData.LikeAuthor, likeData.CommentId);
-
-//            if (likesCount < 0)
-//            {
-//                return BadRequest();
-//            }
-
-//            return Ok(likesCount);
-//        }
+//todo сипарвить падение если сотавили коммент в с почтой не зи бахы
 
 
-//        [HttpPost("RemoveLike")]
-//        public async Task<IActionResult> RemoveLike ([FromBody] AddCommentLike likeData)
-//        {
 
-//            Debug.WriteLine($"LikeData: {likeData.LikeAuthor}, {likeData.CommentId}");
+namespace SportAppServer.Controllers
+{
+    [Route("Comments")]
+    [ApiController]
+    public class CommentsController : ControllerBase
+    {
+        private readonly AddNewCommentUseCase _addNewCommentUseCase;
+        private readonly GetPaginatedCommentsList _getPaginatedCommentsList;
+        private readonly DeleteCommentUseCase _deleteCommentUseCase;
+        private readonly EditCommentUseCase _editCommentUseCase;
 
-//            if (string.IsNullOrEmpty(likeData.LikeAuthor))
-//                return BadRequest();
+        public CommentsController(
+            AddNewCommentUseCase addNewCommentUseCase,
+            GetPaginatedCommentsList getPaginatedCommentsList,
+            DeleteCommentUseCase deleteCommentUseCase,
+            EditCommentUseCase editCommentUseCase)
+        {
+            _addNewCommentUseCase = addNewCommentUseCase;
+            _getPaginatedCommentsList = getPaginatedCommentsList;
+            _deleteCommentUseCase = deleteCommentUseCase;
+            _editCommentUseCase = editCommentUseCase;
+        }
 
-//            int likesCount = await _commentsService.RemoveLike(likeData.LikeAuthor, likeData.CommentId);
+        [HttpGet("GetComments")]
+        public async Task<IActionResult> GetComments(
+            [FromQuery] string? email,
+            [FromQuery] int newsId,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
+        {
+            try
+            {
+                Debug.WriteLine($"[GetComments] newsId: {newsId}, pageNumber: {pageNumber}, pageSize: {pageSize}");
 
-//            if (likesCount < 0)
-//            {
-//                return BadRequest();
-//            }
+                PaginatedList<CommentDtoResponse> paginatedList =
+                    await _getPaginatedCommentsList.Execute(pageNumber, pageSize, email, newsId);
 
-//            return Ok(likesCount);
-//        }
-//    }
-//}
+                if (paginatedList.ItemsList == null)
+                {
+                    Debug.WriteLine("[GetComments] paginatedList.ItemsList is null");
+                    return StatusCode(500, "Ошибка: данные не получены");
+                }
+
+                if (paginatedList.ItemsList.Count == 0)
+                {
+                    Debug.WriteLine($"[GetComments] Нет комментариев для новости с id {newsId}");
+                    return NotFound();
+                }
+
+                return Ok(paginatedList);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[GetComments] Ошибка: {ex.Message}");
+                Debug.WriteLine(ex.StackTrace);
+                return StatusCode(500, "Внутренняя ошибка сервера");
+            }
+        }
+
+        [HttpPost("AddNewComment")]
+        public async Task<IActionResult> PutComment([FromBody] CommentDtoRequest commentDtoRequest)
+        {
+            if (commentDtoRequest == null || string.IsNullOrWhiteSpace(commentDtoRequest.CommentText))
+                return BadRequest("Текст комментария не может быть пустым");
+
+            Comment? comment = await _addNewCommentUseCase.AddNewsComment(commentDtoRequest);
+
+            if (comment == null)
+                return BadRequest("Не удалось добавить комментарий");
+
+            CommentDtoResponse commentDtoResponse = comment.ToResponseDto();
+
+            return Ok(commentDtoResponse);
+        }
+
+        [HttpDelete("DeleteComment/{commentId:int}")]
+        public async Task<IActionResult> DeleteComment([FromRoute] int commentId)
+        {
+            if (commentId < 1)
+                return BadRequest("Неверный id комментария");
+
+            bool isDeleted = await _deleteCommentUseCase.Execute(commentId);
+            if (!isDeleted)
+                return NotFound("Комментарий не найден");
+
+            return Ok(true);
+        }
+
+        [HttpPut("EditComment")]
+        public async Task<IActionResult> EditComment([FromBody] EditCommentRequest request)
+        {
+            if (request == null || request.CommentId < 1)
+                return BadRequest("Неверный id комментария");
+
+            if (string.IsNullOrWhiteSpace(request.NewText))
+                return BadRequest("Комментарий пуст");
+
+            bool isEdited = await _editCommentUseCase.Execute(request.CommentId, request.NewText);
+            if (!isEdited)
+                return NotFound("Комментарий не найден");
+
+            return Ok(true);
+        }
+    }
+
+}
