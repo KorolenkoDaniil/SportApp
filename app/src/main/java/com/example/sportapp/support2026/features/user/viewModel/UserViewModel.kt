@@ -8,8 +8,11 @@ import com.example.sportapp.support2026.features.user.domain.useCases.GetUserUse
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +25,14 @@ class UserViewModel @Inject constructor(
 
     private val _currentUser = MutableStateFlow<User?>(null)
     val currentUser: StateFlow<User?> = _currentUser.asStateFlow()
+
+    val isAuthenticated: StateFlow<Boolean> = _currentUser
+        .map { it != null }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = false
+        )
 
     init {
         viewModelScope.launch {
@@ -44,5 +55,10 @@ class UserViewModel @Inject constructor(
         val user = getUserUseCase.GetUserData(email)
         _currentUser.value = user
         Log.d("UserViewModel", "Данные пользователя с сервера: $user")
+    }
+
+    fun logout() {
+        firebaseAuth.signOut()
+        _currentUser.value = null
     }
 }

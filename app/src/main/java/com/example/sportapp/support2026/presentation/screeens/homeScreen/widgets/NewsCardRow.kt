@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun NewsCardRow(
     newsViewModel: NewsViewModel,
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     val listState = rememberLazyListState()
 

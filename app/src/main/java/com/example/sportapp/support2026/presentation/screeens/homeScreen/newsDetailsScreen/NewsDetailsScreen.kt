@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.sportapp.support2026.features.comments.presentation.CommentsViewModel
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsState
 import com.example.sportapp.support2026.features.news.presentation.NewsDetailsViewModel
 import com.example.sportapp.support2026.features.user.domain.entity.User
@@ -41,13 +42,15 @@ fun NewsDetailsScreen (
     navController: NavHostController,
     newsId: Int,
     user: User?,
-    newsDetailsViewModel: NewsDetailsViewModel = hiltViewModel()
+    isAuthenticated: Boolean,
+    newsDetailsViewModel: NewsDetailsViewModel = hiltViewModel(),
+    commentsViewModel: CommentsViewModel = hiltViewModel()
 ){
 
     val newsDetailsState by newsDetailsViewModel.state.collectAsState()
     val newsDetailsLoadingState by newsDetailsViewModel.loading.collectAsState()
     val overlayVisible = remember { mutableStateOf(false) }
-    val currentNews = newsDetailsViewModel.loadedNewsDetails
+
 
     LaunchedEffect(Unit) {
 
@@ -55,6 +58,12 @@ fun NewsDetailsScreen (
         if (!newsDetailsLoadingState) {
             newsDetailsViewModel.loadDetails(newsId, email)
         }
+
+        commentsViewModel.loadComments(
+            newsId = newsId,
+            email = email,
+            isNextPage = false
+        )
     }
 
     ScreenWrapper(
@@ -133,9 +142,12 @@ fun NewsDetailsScreen (
                         showSheet = overlayVisible.value,
                         onDismiss = { overlayVisible.value = false }
                     ) {
-//                        CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
                         CommentsOverlay(
-                            overlayVisible = overlayVisible
+                            overlayVisible = overlayVisible,
+                            commentsViewModel = commentsViewModel,
+                            currentNews = newDetails,
+                            email =  user?.email ?: "",
+                            isAuthenticated = isAuthenticated
                         )
                     }
 
@@ -150,96 +162,3 @@ fun NewsDetailsScreen (
         }
     )
 }
-
-//@SuppressLint("StateFlowValueCalledInComposition")
-//@Composable
-//fun NewsPageContent(
-//    oneNewsState: OneNewsSate,
-//    navController: NavHostController,
-//    newsViewModel: NewsActivityViewModel,
-//    horizontalPaddings: Dp,
-//    authModel: AuthViewModel,
-//    showBar: MutableState<Boolean>,
-//) {
-//
-//    //TODO поднять дату и время выше
-////    val isDarkTheme by appActivityViewModel.appTheme.collectAsState()
-//
-//    val isDarkTheme = authModel.themeIsWhite.collectAsState().value
-//
-//    val icon_arrow = if (isDarkTheme) { R.drawable.arrow_small_left_1 } else { R.drawable.w_left_arrow }
-//
-//
-//    val currentNews = (oneNewsState as OneNewsSate.OneNewsContent).news
-//    val painterNewsImage = rememberAsyncImagePainter(currentNews.newsImage)
-//
-//    val overlayVisible = remember { mutableStateOf(false) }
-//
-//    val format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
-//    val formattedDate = currentNews.dateTime.format(format)
-//
-//    val CommentsCount = remember { mutableStateOf(currentNews.commentsCount) }
-//
-//    LazyColumn (modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
-//        item {
-//            Box(Modifier.padding(horizontal = horizontalPaddings)) {
-//
-//                Column {
-//
-//                    NewsPageHeader(currentNews.title, navController, icon_arrow)
-//
-//                    Spacer(Modifier.height(4.dp))
-//
-//                    Text(
-//                        text = formattedDate,
-//                        style = TextStyle(textAlign = TextAlign.End, color = MaterialTheme.colorScheme.onBackground),
-//                        modifier = Modifier.fillMaxWidth()
-//                    )
-//
-//                    Spacer(Modifier.height(2.dp))
-//
-//                    Image(
-//                        painter = painterNewsImage,
-//                        contentDescription = "newsImage",
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .clip(RoundedCornerShape(16.dp))
-//                            .height(200.dp),
-//                        contentScale = ContentScale.Crop
-//                    )
-//
-//                    Spacer(Modifier.height(20.dp))
-//
-//                    Text(text = "\t\t\t" + currentNews.articleText, style = TextStyle(
-//                        color = MaterialTheme.colorScheme.onBackground
-//                    ))
-//
-//                    Spacer(Modifier.height(20.dp))
-//
-//                    val user = authModel.currentUser.collectAsState().value ?: return@Box
-//
-//                    InteractiveButtons(overlayVisible, currentNews, user, CommentsCount, isDarkTheme)
-//
-//                    Spacer(Modifier.height(20.dp))
-//                }
-//            }
-//        }
-//
-//        item {
-//            NewsCardRow(navController, newsViewModel, horizontalPaddings)
-//            Spacer(Modifier.height(20.dp))
-//        }
-//    }
-//
-//
-//    BottomSheet(
-//        showSheet = overlayVisible.value,
-//        onDismiss = { overlayVisible.value = false }
-//    ) {
-//        CommentsOverlay(showBar, overlayVisible, authModel, currentNews, CommentsCount)
-//    }
-//
-//
-//
-//
-//}

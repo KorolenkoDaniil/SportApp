@@ -69,7 +69,7 @@ namespace SportAppServer.Support2026.Domain.Feature.CommentsFeature.Repository
                 .Take(pageSize)
                 .ToListAsync();
 
-            if (string.IsNullOrWhiteSpace(email))
+            if (string.IsNullOrWhiteSpace(email) || pageNumber != 1 )
                 return newsComments;
 
             List<Comment> userComments = await _context.Comments

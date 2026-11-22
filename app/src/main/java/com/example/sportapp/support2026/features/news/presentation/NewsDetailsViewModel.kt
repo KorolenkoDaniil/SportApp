@@ -61,6 +61,7 @@ class NewsDetailsViewModel @Inject constructor(
 
                 _state.value = NewsDetailsState.NewsDetailsContent(details)
 
+                _loadedNewsDetails.value = details
                 _isLiked.value = details.isLiked
                 _commentsAmount.value = details.commentsAmount
                 _likesAmount.value = details.likesAmount
@@ -82,6 +83,12 @@ class NewsDetailsViewModel @Inject constructor(
         email: String
     )
     {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastClickTime < 500) {
+            return
+        }
+        lastClickTime = currentTime
+
 
         val previousState = _isLiked.value
         val previousAmount = _likesAmount.value
@@ -92,11 +99,8 @@ class NewsDetailsViewModel @Inject constructor(
         else
             _likesAmount.value = likesAmount.value - 1
 
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - lastClickTime < 500) {
-            return
-        }
-        lastClickTime = currentTime
+
+
 
 
 

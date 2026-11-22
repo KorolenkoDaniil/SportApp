@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -37,6 +38,7 @@ fun MainNavigation (
 
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val isAuthenticated by userViewModel.isAuthenticated.collectAsState()
 
     Scaffold(
         modifier = modifier,
@@ -128,7 +130,7 @@ fun MainNavigation (
                     ?: backStackEntry.arguments?.getString("newsId")?.toIntOrNull()
 
                 if (newsId != null && newsId != -1) {
-                    NewsDetailsScreen(navHostController, newsId, userViewModel.currentUser.value)
+                    NewsDetailsScreen(navHostController, newsId, userViewModel.currentUser.value, isAuthenticated)
                 } else {
                     Log.d("MainNavigation", "не правильный аргумент newsId")
                 }
