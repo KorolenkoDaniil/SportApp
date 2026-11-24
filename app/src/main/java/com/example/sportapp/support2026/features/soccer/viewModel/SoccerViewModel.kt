@@ -3,73 +3,54 @@ package com.example.sportapp.support2026.features.soccer.viewModel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sportapp.models.viewModels.BaseState
 import com.example.sportapp.support2026.features.soccer.domain.entities.Match
 import com.example.sportapp.support2026.features.soccer.domain.useCases.GetMatchByIdUseCase
 import com.example.sportapp.support2026.features.soccer.domain.useCases.LoadLeagueMatchesUseCase
-import com.example.sportapp.support2026.features.user.domain.entity.User
-import com.example.sportapp.support2026.features.user.domain.useCases.GetUserUseCase
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+sealed interface MatchesListState : BaseState {
+    data object Load : MatchesListState
+    data class Error(val e: Throwable) : MatchesListState
+    //    object используется для состояний, у которых нет данных.
+    //    data class используется для состояний, которые несут данные.
+    data class MatchesContent(val matches: List<Match>) : MatchesListState
+}
 
 @HiltViewModel
 class SoccerViewModel @Inject constructor(
     private val loadLeagueMatchesUseCase: LoadLeagueMatchesUseCase,
-    private val getMatchByIdUseCase: GetMatchByIdUseCase
+    private val getMatchByIdaUseCase: GetMatchByIdUseCase
 ) : ViewModel() {
 
-    private val _matchesList: MutableStateFlow<List<Match>?> = MutableStateFlow(null)
-    val matchesList: StateFlow<List<Match>?> = _matchesList.asStateFlow()
-
-
-    init {
-        viewModelScope.launch {
-            loadMatches()
-        }
-    }
-
-    suspend fun loadMatches () {
-        _matchesList.value = loadLeagueMatchesUseCase.LoadLeagueMatches()
-    }
-}
-
-
-
-
-@HiltViewModel
-class UserViewModel @Inject constructor(
-    private val getUserUseCase: GetUserUseCase,
-    private val firebaseAuth: FirebaseAuth // 👈 Добавляем FirebaseAuth
-) : ViewModel() {
-
-    private val _currentUser = MutableStateFlow<User?>(null)
-    val currentUser: StateFlow<User?> = _currentUser.asStateFlow()
+    private val _matchesUiState: MutableStateFlow<MatchesListState> =
+        MutableStateFlow(MatchesListState.Load)
+    val matchesUiState: StateFlow<MatchesListState> = _matchesUiState.asStateFlow()
 
     init {
+        loadMatches()
+    }
+
+    fun loadMatches() {
+        if (_matchesUiState.value is MatchesListState.Load && viewModelScope.coroutineContext.isActive.not()) {
+            return
+        }
+
         viewModelScope.launch {
-            checkAndLoadCurrentUser()
+            _matchesUiState.value = MatchesListState.Load
+            try {
+                val matches = loadLeagueMatchesUseCase.LoadLeagueMatches()
+                _matchesUiState.value = MatchesListState.MatchesContent(matches = matches)
+            } catch (e: Throwable) {
+                Log.d("tttMatches", e.message.toString())
+                _matchesUiState.value = MatchesListState.Error(e)
+            }
         }
-    }
-
-    suspend fun checkAndLoadCurrentUser() {
-        val firebaseUser = firebaseAuth.currentUser
-        val email = firebaseUser?.email
-
-        if (!email.isNullOrBlank()) {
-            loadUser(email)
-        }
-    }
-
-    suspend fun loadUser(email: String) {
-
-        Log.d("UserViewModel", "Отправляем запрос на сервер для email: $email")
-        val user = getUserUseCase.GetUserData(email)
-        _currentUser.value = user
-        Log.d("UserViewModel", "Данные пользователя с сервера: $user")
     }
 }

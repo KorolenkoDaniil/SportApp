@@ -6,5 +6,5 @@ interface SoccerDomainRepository {
 
     suspend fun getMatchData(matchId: Int) : Match
 
-    suspend fun getLeagueMatches() : List<Match>?
+    suspend fun getLeagueMatches() : List<Match>
 }

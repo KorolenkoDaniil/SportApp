@@ -19,7 +19,7 @@ class SoccerDataRepository @Inject constructor(
         return matchData.toDomain()
     }
 
-    override suspend fun getLeagueMatches(): List<Match>? {
+    override suspend fun getLeagueMatches(): List<Match> {
 
         val matchDataList: List<MatchDto> = api
             .getLeagueMatches()

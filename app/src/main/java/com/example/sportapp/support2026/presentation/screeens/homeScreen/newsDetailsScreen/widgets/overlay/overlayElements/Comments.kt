@@ -24,8 +24,6 @@ import com.example.sportapp.support2026.features.comments.presentation.CommentsS
 import com.example.sportapp.support2026.features.comments.presentation.CommentsViewModel
 import com.example.sportapp.support2026.features.news.domain.entities.news.NewsDetails
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.newsDetailsScreen.widgets.overlay.overlayElements.comments.CommentItem
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Composable
 fun Comments(
@@ -47,23 +45,7 @@ fun Comments(
             val hasScrolled = listState.firstVisibleItemIndex > 0 || listState.firstVisibleItemScrollOffset > 0
             lastVisibleIndex to hasScrolled
         }
-            .distinctUntilChanged()
-            .collectLatest { (lastVisibleIndex, hasScrolled) ->
-                if (
-                    hasScrolled &&
-                    !isLoading &&
-                    hasMorePages &&
-                    commentsList.isNotEmpty() &&
-                    lastVisibleIndex != null &&
-                    lastVisibleIndex >= commentsList.lastIndex - 1
-                ) {
-                    commentsViewModel.loadComments(
-                        newsId = currentNews.id,
-                        email = email,
-                        isNextPage = true
-                    )
-                }
-            }
+
     }
 
     when {

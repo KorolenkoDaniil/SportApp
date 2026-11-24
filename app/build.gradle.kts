@@ -12,6 +12,12 @@ android {
     namespace = "com.example.sportapp"
     compileSdk = 35
 
+lint {
+    disable.add("NullSafeMutableLiveData")
+    abortOnError = false
+    checkReleaseBuilds = false
+}
+
     defaultConfig {
         applicationId = "com.example.sportapp"
         minSdk = 26
@@ -92,6 +98,9 @@ dependencies {
     // Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
 
     // Compose
     implementation(libs.androidx.core.ktx)

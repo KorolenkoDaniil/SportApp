@@ -39,6 +39,7 @@ fun MainNavigation (
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
     val isAuthenticated by userViewModel.isAuthenticated.collectAsState()
+    val currentUser by userViewModel.currentUser.collectAsState()
 
     Scaffold(
         modifier = modifier,
@@ -59,7 +60,7 @@ fun MainNavigation (
             navigation(
                 startDestination = Screen.SplashScreen.route,
                 route = "auth_graph"
-            ){
+            ) {
 
                 composable(Screen.SplashScreen.route) {
                     val parentEntry = remember(navBackStackEntry) {
@@ -122,7 +123,8 @@ fun MainNavigation (
                         uriPattern = "korsport://news/{newsId}"
                     },
                     navDeepLink {
-                        uriPattern = "https://korolenkodaniil.github.io/deeplink-sportapp/?id={newsId}"
+                        uriPattern =
+                            "https://korolenkodaniil.github.io/deeplink-sportapp/?id={newsId}"
                     }
                 )
             ) { backStackEntry ->
@@ -130,18 +132,36 @@ fun MainNavigation (
                     ?: backStackEntry.arguments?.getString("newsId")?.toIntOrNull()
 
                 if (newsId != null && newsId != -1) {
-                    NewsDetailsScreen(navHostController, newsId, userViewModel.currentUser.value, isAuthenticated)
+
+                    NewsDetailsScreen(
+                        navController = navHostController,
+                        newsId = newsId,
+                        user = currentUser,
+                        isAuthenticated = isAuthenticated,
+                    )
                 } else {
                     Log.d("MainNavigation", "не правильный аргумент newsId")
                 }
             }
 
             composable(Screen.MatchesScheduleScreen.route) {
-                MatchesScheduleScreen()
+                MatchesScheduleScreen(
+                    navController = navHostController
+                )
             }
 
-            composable(Screen.MatchDetailsScreen.route) {
-                MatchDetailsScreen()
+            composable(
+                route = Screen.MatchDetailsScreen.route,
+                arguments = listOf(
+                    navArgument("matchId") {
+                        type = NavType.IntType
+                    }
+                )
+            ) { backStackEntry ->
+                val matchId = backStackEntry.arguments?.getInt("matchId")
+                MatchDetailsScreen(
+                    matchId = matchId
+                )
             }
         }
     }

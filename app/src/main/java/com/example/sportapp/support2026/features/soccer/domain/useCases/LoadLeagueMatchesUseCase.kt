@@ -10,12 +10,12 @@ class LoadLeagueMatchesUseCase @Inject constructor(
     private val repository: SoccerDomainRepository
 ) {
 
-    suspend fun LoadLeagueMatches( ): List<Match>? {
+    suspend fun LoadLeagueMatches( ): List<Match> {
         return try {
             repository.getLeagueMatches()
         } catch (e: Exception) {
             Log.d("exception", "${e.message}")
-            null
+            emptyList<Match>()
         }
     }
 }

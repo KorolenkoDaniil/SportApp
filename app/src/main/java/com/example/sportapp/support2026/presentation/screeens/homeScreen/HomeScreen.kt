@@ -13,7 +13,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.sportapp.support2026.features.news.presentation.NewsState
 import com.example.sportapp.support2026.features.news.presentation.NewsViewModel
-import com.example.sportapp.support2026.features.soccer.viewModel.SoccerViewModel
 import com.example.sportapp.support2026.features.user.viewModel.UserViewModel
 import com.example.sportapp.support2026.presentation.screeens.ScreenWrapper
 import com.example.sportapp.support2026.presentation.screeens.homeScreen.widgets.NewsCardRow
@@ -24,7 +23,6 @@ import com.example.sportapp.support2026.presentation.screeens.sharedWidgets.Load
 fun HomeScreen(
     navController: NavHostController,
     userViewModel: UserViewModel,
-    soccerViewModel: SoccerViewModel = hiltViewModel(),
     newsViewModel: NewsViewModel = hiltViewModel(),
 ) {
     val newsState by newsViewModel.state.collectAsState()

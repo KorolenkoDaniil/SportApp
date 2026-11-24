@@ -41,7 +41,7 @@ fun HomeContent(modifier: Modifier){
 
     MainNavigation(
         modifier = modifier,
-        navHostController = navController
+        navHostController = navController,
     )
 }
 

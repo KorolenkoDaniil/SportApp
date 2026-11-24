@@ -48,8 +48,8 @@ fun Match.toDto(): MatchDto {
     )
 }
 
-fun List<MatchDto>?.toDomain(): List<Match>? {
-    return this?.map { it.toDomain() }
+fun List<MatchDto>?.toDomain(): List<Match> {
+    return this?.map { it.toDomain() }!!
 }
 
 fun List<Match>.toDto(): List<MatchDto> {
